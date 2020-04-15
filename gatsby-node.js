@@ -6,4 +6,4 @@ require("ts-node").register(
   )
 )
 
-exports.createPages = require("./utils/gatsby-node").createPages
+exports.createPages = require("./src/utils/gatsby-node").createPages
