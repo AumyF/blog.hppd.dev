@@ -1,7 +1,7 @@
 {
-  "name": "gatsby-starter-hello-world",
+  "name": "boke-kkrnme",
   "private": true,
-  "description": "A simplified bare-bones starter for Gatsby",
+  "description": "Mominis's blog",
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
@@ -14,18 +14,18 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
+    "@types/node": "^13.11.1",
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.6",
     "gatsby": "^2.20.12",
+    "gatsby-plugin-graphql-codegen": "^2.7.1",
+    "gatsby-plugin-typescript": "^2.3.1",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-dom": "^16.12.0",
+    "ts-node": "^8.8.2",
+    "typescript": "^3.8.3"
   },
   "devDependencies": {
     "prettier": "2.0.4"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-hello-world"
-  },
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
   }
 }
