@@ -30,5 +30,6 @@ module.exports = {
     {
       resolve: `gatsby-plugin-mdx`,
     },
+    `gatsby-plugin-emotion`,
   ],
 }
