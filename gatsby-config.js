@@ -20,5 +20,15 @@ module.exports = {
         fileName: `types/graphqlTypes.d.ts`,
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `posts`,
+        path: `${__dirname}/src/posts`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-mdx`,
+    },
   ],
 }
