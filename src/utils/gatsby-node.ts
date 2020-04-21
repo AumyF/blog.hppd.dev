@@ -6,7 +6,6 @@ import {
 } from "../../types/graphqlTypes"
 import Path from "path"
 import { Post } from "./post"
-import { replaceNullWith } from "./removeNullFromObject"
 import { compact } from "lodash"
 
 export const createPages: GatsbyNode["createPages"] = async ({
