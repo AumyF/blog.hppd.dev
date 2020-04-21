@@ -15,12 +15,6 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-graphql-codegen`,
-      options: {
-        fileName: `types/graphqlTypes.d.ts`,
-      },
-    },
-    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `posts`,
@@ -31,5 +25,11 @@ module.exports = {
       resolve: `gatsby-plugin-mdx`,
     },
     `gatsby-plugin-emotion`,
+    {
+      resolve: `gatsby-plugin-graphql-codegen`,
+      options: {
+        fileName: `types/graphqlTypes.d.ts`,
+      },
+    },
   ],
 }
