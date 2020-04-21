@@ -11,7 +11,7 @@ export const SidebarButtonsGroup: React.FC<SidebarButtonsGroupProps> = ({
 }) => (
   <ul
     css={css`
-      list-style: none;
+      margin-left: 10%;
     `}
   >
     {buttons.map(c => (

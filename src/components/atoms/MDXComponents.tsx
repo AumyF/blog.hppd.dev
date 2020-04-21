@@ -3,7 +3,7 @@ import { Components } from "@mdx-js/react"
 import React from "react"
 import SwipingAnchor from "./SwipingAnchor"
 import styled from "@emotion/styled"
-import { homura as cs } from "../../styles/colorScheme"
+import { scheme as cs } from "../../styles/colorScheme"
 
 type Elm = JSX.IntrinsicElements
 

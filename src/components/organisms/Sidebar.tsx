@@ -4,6 +4,7 @@ import { css } from "@emotion/core"
 import { mq } from "../../styles/mediaQueries"
 import { SidebarButton } from "../atoms/SidebarButton"
 import SidebarButtonsGroup from "../molecules/SidebarButtonsGroup"
+import { scheme } from "../../styles/colorScheme"
 
 export type SidebarProps = {}
 
@@ -22,6 +23,7 @@ export const Sidebar: React.FC<SidebarProps> = () => (
       ${mq.lg} {
         width: 200px;
       }
+      background-color: ${scheme.sidebarBackground};
     `}
   >
     <SidebarButtonsGroup
@@ -30,8 +32,5 @@ export const Sidebar: React.FC<SidebarProps> = () => (
         { icon: faTags, to: "tags", children: "TAGS" },
       ]}
     />
-    <SidebarButton icon={faHome} to="/">
-      HOME
-    </SidebarButton>
   </nav>
 )
