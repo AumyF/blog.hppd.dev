@@ -1,12 +1,11 @@
 import React from "react"
 import { css } from "@emotion/core"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faHome } from "@fortawesome/free-solid-svg-icons"
+import { Layout } from "../components/templates/Layout"
 
 export default () => (
-  <div
-    css={css`
-      font-size: 10rem;
-    `}
-  >
-    Hello world!
-  </div>
+  <Layout title="INDEX">
+    <p>Hello, world</p>
+  </Layout>
 )
