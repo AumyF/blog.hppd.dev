@@ -1,4 +1,4 @@
-import { TOC } from "../utils/toc"
+import { TOC } from "./toc"
 import { Mdx, MdxFrontmatter, MdxEdge } from "../../types/graphqlTypes"
 import { compact } from "lodash"
 
