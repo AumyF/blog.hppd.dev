@@ -2,7 +2,7 @@ import React from "react"
 import { css } from "@emotion/core"
 import { useStaticQuery, graphql, Link } from "gatsby"
 import { Mdx } from "../../../types/graphqlTypes"
-import { Post } from "../../utils/post"
+import { Post } from "../../libs/post"
 import { totalmem } from "os"
 import { scheme } from "../../styles/colorScheme"
 

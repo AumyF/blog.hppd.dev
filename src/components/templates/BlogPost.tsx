@@ -1,5 +1,5 @@
 import React from "react"
-import { Post } from "../../utils/post"
+import { Post } from "../../libs/post"
 import { MDXProvider } from "@mdx-js/react"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import { MDXComponents } from "../atoms/MDXComponents"

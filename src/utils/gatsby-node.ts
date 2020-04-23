@@ -5,7 +5,7 @@ import {
   MdxFrontmatter,
 } from "../../types/graphqlTypes"
 import Path from "path"
-import { Post } from "./post"
+import { Post } from "../libs/post"
 import { compact, concat, uniqBy, unzip, toPairs } from "lodash"
 import { TagsPageContext, Tag } from "../components/templates/Tags"
 import _ from "lodash"

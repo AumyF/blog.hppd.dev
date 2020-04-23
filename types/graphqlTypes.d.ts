@@ -599,8 +599,8 @@ export type FileFieldsEnum =
   'childMdx___frontmatter___path' |
   'childMdx___frontmatter___status' |
   'childMdx___frontmatter___tags' |
-  'childMdx___frontmatter___category' |
   'childMdx___frontmatter___date' |
+  'childMdx___frontmatter___category' |
   'childMdx___body' |
   'childMdx___excerpt' |
   'childMdx___headings' |
@@ -838,8 +838,8 @@ export type MdxFieldsEnum =
   'frontmatter___path' |
   'frontmatter___status' |
   'frontmatter___tags' |
-  'frontmatter___category' |
   'frontmatter___date' |
+  'frontmatter___category' |
   'body' |
   'excerpt' |
   'headings' |
@@ -962,8 +962,8 @@ export type MdxFrontmatter = {
   path?: Maybe<Scalars['String']>;
   status?: Maybe<Scalars['String']>;
   tags?: Maybe<Array<Maybe<Scalars['String']>>>;
-  category?: Maybe<Scalars['String']>;
   date?: Maybe<Scalars['Date']>;
+  category?: Maybe<Scalars['String']>;
 };
 
 
@@ -979,8 +979,8 @@ export type MdxFrontmatterFilterInput = {
   path?: Maybe<StringQueryOperatorInput>;
   status?: Maybe<StringQueryOperatorInput>;
   tags?: Maybe<StringQueryOperatorInput>;
-  category?: Maybe<StringQueryOperatorInput>;
   date?: Maybe<DateQueryOperatorInput>;
+  category?: Maybe<StringQueryOperatorInput>;
 };
 
 export type MdxGroupConnection = {
@@ -1197,7 +1197,6 @@ export type QueryAllSitePageArgs = {
 
 export type QuerySiteArgs = {
   buildTime?: Maybe<DateQueryOperatorInput>;
-  siteMetadata?: Maybe<SiteSiteMetadataFilterInput>;
   port?: Maybe<IntQueryOperatorInput>;
   host?: Maybe<StringQueryOperatorInput>;
   polyfill?: Maybe<BooleanQueryOperatorInput>;
@@ -1287,7 +1286,6 @@ export type QueryAllSitePluginArgs = {
 
 export type Site = Node & {
   buildTime?: Maybe<Scalars['Date']>;
-  siteMetadata?: Maybe<SiteSiteMetadata>;
   port?: Maybe<Scalars['Int']>;
   host?: Maybe<Scalars['String']>;
   polyfill?: Maybe<Scalars['Boolean']>;
@@ -1489,7 +1487,6 @@ export type SiteEdge = {
 
 export type SiteFieldsEnum = 
   'buildTime' |
-  'siteMetadata___title' |
   'port' |
   'host' |
   'polyfill' |
@@ -1583,7 +1580,6 @@ export type SiteFieldsEnum =
 
 export type SiteFilterInput = {
   buildTime?: Maybe<DateQueryOperatorInput>;
-  siteMetadata?: Maybe<SiteSiteMetadataFilterInput>;
   port?: Maybe<IntQueryOperatorInput>;
   host?: Maybe<StringQueryOperatorInput>;
   polyfill?: Maybe<BooleanQueryOperatorInput>;
@@ -2196,14 +2192,6 @@ export type SitePluginPluginOptionsFilterInput = {
 export type SitePluginSortInput = {
   fields?: Maybe<Array<Maybe<SitePluginFieldsEnum>>>;
   order?: Maybe<Array<Maybe<SortOrderEnum>>>;
-};
-
-export type SiteSiteMetadata = {
-  title?: Maybe<Scalars['String']>;
-};
-
-export type SiteSiteMetadataFilterInput = {
-  title?: Maybe<StringQueryOperatorInput>;
 };
 
 export type SiteSortInput = {
