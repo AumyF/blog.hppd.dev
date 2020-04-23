@@ -2212,14 +2212,6 @@ export type StringQueryOperatorInput = {
   glob?: Maybe<Scalars['String']>;
 };
 
-export type TagsPageQueryVariables = {};
-
-
-export type TagsPageQuery = { allMdx: { edges: Array<{ node: (
-        Pick<Mdx, 'id' | 'tableOfContents' | 'excerpt' | 'body' | 'fileAbsolutePath'>
-        & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'title' | 'category' | 'date' | 'path' | 'status' | 'tags'>>, headings?: Maybe<Array<Maybe<Pick<MdxHeadingMdx, 'value' | 'depth'>>>>, wordCount?: Maybe<Pick<MdxWordCount, 'paragraphs'>> }
-      ) }> } };
-
 export type GatsbyNodeQueryVariables = {};
 
 

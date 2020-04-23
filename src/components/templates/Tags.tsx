@@ -1,8 +1,7 @@
 import React from "react"
 import { css } from "@emotion/core"
 import { Layout } from "./Layout"
-import { graphql, PageProps } from "gatsby"
-import { TagsPageQuery } from "../../../types/graphqlTypes"
+import { PageProps } from "gatsby"
 
 export type Tag = { name: string; parent?: string }
 export type TagsPageContext = {
@@ -24,36 +23,5 @@ export const TagsPage: (props: TagsPageProps) => React.ReactElement = ({
     </table>
   </Layout>
 )
-
-export const pageQuery = graphql`
-  query TagsPage {
-    allMdx {
-      edges {
-        node {
-          id
-          frontmatter {
-            title
-            category
-            date(formatString: "YYYY-MM-DD")
-            path
-            status
-            tags
-          }
-          headings {
-            value
-            depth
-          }
-          tableOfContents
-          excerpt
-          body
-          wordCount {
-            paragraphs
-          }
-          fileAbsolutePath
-        }
-      }
-    }
-  }
-`
 
 export default TagsPage
