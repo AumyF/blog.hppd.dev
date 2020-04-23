@@ -3,7 +3,8 @@ import { Sidebar } from "../organisms/Sidebar"
 import { Helmet } from "react-helmet"
 import { Main } from "./Main"
 import "sanitize.css"
-import { css } from "@emotion/core"
+import { css, Global } from "@emotion/core"
+import { scheme } from "../../styles/colorScheme"
 
 export type LayoutProps = {
   title: string
@@ -16,6 +17,17 @@ export const Layout: React.FC<LayoutProps> = ({ title, children }) => (
       font-size: 20px;
     `}
   >
+    <Global
+      styles={css`
+        html {
+          background-color: ${scheme.background};
+          color: ${scheme.text};
+        }
+        a {
+          color: ${scheme.primaryAccent};
+        }
+      `}
+    />
     <Helmet>
       <title>{title}</title>
     </Helmet>

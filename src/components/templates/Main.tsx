@@ -8,6 +8,7 @@ export const Main: React.FC<MainProps> = ({ children }) => (
     id="main"
     css={css`
       margin-left: 200px;
+      padding: 20px;
     `}
   >
     {children}

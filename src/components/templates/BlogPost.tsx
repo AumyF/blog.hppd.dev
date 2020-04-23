@@ -4,17 +4,17 @@ import { MDXProvider } from "@mdx-js/react"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import { MDXComponents } from "../atoms/MDXComponents"
 import _ from "lodash"
+import { Layout } from "./Layout"
 
 export type BlogPostProps = {
   pageContext: { post: Post }
 }
 
 export const BlogPost: React.FC<BlogPostProps> = ({ pageContext }) => (
-  <div>
-    <h1>{pageContext.post.title}</h1>
+  <Layout title={pageContext.post.title}>
     <MDXProvider components={MDXComponents}>
       <MDXRenderer>{pageContext.post.body}</MDXRenderer>
     </MDXProvider>
-  </div>
+  </Layout>
 )
 export default BlogPost

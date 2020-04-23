@@ -1,5 +1,6 @@
 import { TOC } from "./toc"
-import { Mdx, MdxFrontmatter } from "../../types/graphqlTypes"
+import { Mdx, MdxFrontmatter, MdxEdge } from "../../types/graphqlTypes"
+import { compact } from "lodash"
 
 export type Post = {
   id: string
@@ -8,39 +9,26 @@ export type Post = {
   excerpt: string
   path: string
   status: string
+  category: string
   tags: readonly string[]
   title: string
   date: string
-  description: string
 }
 
-/** allMdx.edges.[].node: Mdx を Postに変換する。すべてのfrontmatter値のnullチェックを行う。*/
-export const toPostStrict = <T extends keyof Post>({
-  body,
-  excerpt,
-  id,
-  tableOfContents,
-  frontmatter,
-}: Mdx): Pick<Post, T> => {
-  /* 
-    スマートキャスト働かせてnullチェックするやりかたがわからんかった。のでゴリ押しキャスト
-    */
-  if (frontmatter == null) {
-    throw new Error("frontmatter is null")
-  }
-  Object.values(frontmatter).map(v => {
-    if (v == null) {
-      throw new TypeError()
-    }
-  })
-
-  const post = {
+export const Post: (e: MdxEdge) => Post = ({
+  node: { body, excerpt, id, tableOfContents, frontmatter },
+}) => {
+  return {
     body,
-    excerpt,
     id,
-    tableOfContents,
-    ...(frontmatter as Required<MdxFrontmatter>),
+    toc: tableOfContents,
+    date: frontmatter?.date ?? "UNDATED",
+    description: excerpt,
+    excerpt: excerpt,
+    path: frontmatter?.path ?? id,
+    status: frontmatter?.status ?? "public",
+    tags: compact(frontmatter?.tags),
+    title: frontmatter?.title ?? "Untitled",
+    category: frontmatter?.category ?? "UNCATEGORIZED",
   }
-
-  return post
 }

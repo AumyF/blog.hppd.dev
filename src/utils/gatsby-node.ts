@@ -6,7 +6,9 @@ import {
 } from "../../types/graphqlTypes"
 import Path from "path"
 import { Post } from "./post"
-import { compact } from "lodash"
+import { compact, concat, uniqBy, unzip, toPairs } from "lodash"
+import { TagsPageContext, Tag } from "../components/templates/Tags"
+import _ from "lodash"
 
 export const createPages: GatsbyNode["createPages"] = async ({
   graphql,
@@ -62,38 +64,23 @@ export const createPages: GatsbyNode["createPages"] = async ({
     return
   }
 
-  const ToPost: (e: MdxEdge) => Post = ({
-    node: { body, excerpt, id, tableOfContents, frontmatter },
-  }) => {
-    const { title, date, path, status, tags } = frontmatter
-      ? frontmatter
-      : ({
-          title: "Untitled",
-          date: "2020-09-09",
-          path: id,
-          status: "public",
-          tags: [],
-        } as MdxFrontmatter)
-    return {
-      body,
-      id,
-      toc: tableOfContents,
-      date: date,
-      description: excerpt,
-      excerpt: excerpt,
-      path: path!,
-      status: status!,
-      tags: compact(tags),
-      title: title!,
-    }
-  }
+  const tagTmpArray: string[] = [],
+    categoryTmpArray: string[] = []
 
   result.data.allMdx.edges.forEach(edge => {
-    const post = ToPost(edge)
+    const post = Post(edge)
     createPage({
       path: post.path ?? post.id,
       component: Path.resolve("./src/components/templates/BlogPost.tsx"),
       context: { post: post },
     })
+    tagTmpArray.push(...post.tags)
+    categoryTmpArray.push(post.category)
+  })
+
+  createPage<TagsPageContext>({
+    path: "/tags",
+    component: Path.resolve("./src/components/templates/Tags.tsx"),
+    context: { tags: tagTmpArray.map(t => ({ name: t })) },
   })
 }

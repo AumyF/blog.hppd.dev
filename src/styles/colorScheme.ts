@@ -14,7 +14,7 @@ export const scheme: Readonly<
 > = {
   background: "#1e1e20",
   cardBackground: "#303032",
-  sidebarBackground: "#e0e0e0",
+  sidebarBackground: "#703399",
   primaryAccent: "#63b3ed",
   secondaryAccent: "#f6e05e",
   text: "#d0d0d0",

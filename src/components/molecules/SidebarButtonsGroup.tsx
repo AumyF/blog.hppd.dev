@@ -15,7 +15,7 @@ export const SidebarButtonsGroup: React.FC<SidebarButtonsGroupProps> = ({
     `}
   >
     {buttons.map(c => (
-      <SidebarButton {...c} />
+      <SidebarButton {...c} key={c.children} />
     ))}
   </ul>
 )

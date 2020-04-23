@@ -20,16 +20,20 @@ export const Sidebar: React.FC<SidebarProps> = () => (
     id="sidebar"
     css={css`
       position: fixed;
+      height: 100%;
       ${mq.lg} {
         width: 200px;
       }
       background-color: ${scheme.sidebarBackground};
+      a {
+        color: ${scheme.text};
+      }
     `}
   >
     <SidebarButtonsGroup
       buttons={[
         { icon: faHome, to: "/", children: "HOME" },
-        { icon: faTags, to: "tags", children: "TAGS" },
+        { icon: faTags, to: "/tags/", children: "TAGS" },
       ]}
     />
   </nav>
