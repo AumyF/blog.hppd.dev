@@ -5,6 +5,7 @@ import { Main } from "./Main"
 import "sanitize.css"
 import { css, Global } from "@emotion/core"
 import { scheme } from "../../styles/colorScheme"
+import s from "../../images/dark.svg"
 
 export type LayoutProps = {
   title: string
@@ -15,6 +16,8 @@ export const Layout: React.FC<LayoutProps> = ({ title, children }) => (
     id="Layout"
     css={css`
       font-size: 20px;
+      height: 100vh;
+      background-image: url(${s});
     `}
   >
     <Global
@@ -22,6 +25,8 @@ export const Layout: React.FC<LayoutProps> = ({ title, children }) => (
         html {
           background-color: ${scheme.background};
           color: ${scheme.text};
+        }
+        body {
         }
         a {
           color: ${scheme.primaryAccent};

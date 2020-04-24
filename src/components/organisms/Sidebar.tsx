@@ -5,6 +5,7 @@ import { mq } from "../../styles/mediaQueries"
 import { SidebarButton } from "../atoms/SidebarButton"
 import SidebarButtonsGroup from "../molecules/SidebarButtonsGroup"
 import { scheme } from "../../styles/colorScheme"
+import { readFileSync } from "fs"
 
 export type SidebarProps = {}
 
@@ -24,7 +25,7 @@ export const Sidebar: React.FC<SidebarProps> = () => (
       ${mq.lg} {
         width: 200px;
       }
-      background-color: ${scheme.sidebarBackground};
+      backdrop-filter: blur(2px);
       a {
         color: ${scheme.text};
       }

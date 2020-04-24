@@ -5,14 +5,15 @@ import { Mdx } from "../../../types/graphqlTypes"
 import { Post } from "../../libs/post"
 import { totalmem } from "os"
 import { scheme } from "../../styles/colorScheme"
+import {} from "ts-essentials"
 
 export type PostLinkProps = Readonly<{
-  post: Pick<Post, "excerpt" | "path" | "title">
+  excerpt: string
+  path: string
+  title: string
 }>
 
-export const PostLink: React.FC<PostLinkProps> = ({
-  post: { excerpt, path, title },
-}) => (
+export const PostLink: React.FC<PostLinkProps> = ({ excerpt, path, title }) => (
   <Link
     to={path}
     css={css`

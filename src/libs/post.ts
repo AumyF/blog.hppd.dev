@@ -9,7 +9,6 @@ export type Post = {
   excerpt: string
   path: string
   status: string
-  category: string
   tags: readonly string[]
   title: string
   date: string
@@ -29,6 +28,5 @@ export const Post: (e: MdxEdge) => Post = ({
     status: frontmatter?.status ?? "public",
     tags: compact(frontmatter?.tags),
     title: frontmatter?.title ?? "Untitled",
-    category: frontmatter?.category ?? "UNCATEGORIZED",
   }
 }

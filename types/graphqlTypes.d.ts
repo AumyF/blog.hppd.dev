@@ -596,11 +596,10 @@ export type FileFieldsEnum =
   'childMdx___rawBody' |
   'childMdx___fileAbsolutePath' |
   'childMdx___frontmatter___title' |
+  'childMdx___frontmatter___date' |
+  'childMdx___frontmatter___tags' |
   'childMdx___frontmatter___path' |
   'childMdx___frontmatter___status' |
-  'childMdx___frontmatter___tags' |
-  'childMdx___frontmatter___date' |
-  'childMdx___frontmatter___category' |
   'childMdx___body' |
   'childMdx___excerpt' |
   'childMdx___headings' |
@@ -835,11 +834,10 @@ export type MdxFieldsEnum =
   'rawBody' |
   'fileAbsolutePath' |
   'frontmatter___title' |
+  'frontmatter___date' |
+  'frontmatter___tags' |
   'frontmatter___path' |
   'frontmatter___status' |
-  'frontmatter___tags' |
-  'frontmatter___date' |
-  'frontmatter___category' |
   'body' |
   'excerpt' |
   'headings' |
@@ -959,11 +957,10 @@ export type MdxFilterInput = {
 
 export type MdxFrontmatter = {
   title: Scalars['String'];
+  date?: Maybe<Scalars['Date']>;
+  tags?: Maybe<Array<Maybe<Scalars['String']>>>;
   path?: Maybe<Scalars['String']>;
   status?: Maybe<Scalars['String']>;
-  tags?: Maybe<Array<Maybe<Scalars['String']>>>;
-  date?: Maybe<Scalars['Date']>;
-  category?: Maybe<Scalars['String']>;
 };
 
 
@@ -976,11 +973,10 @@ export type MdxFrontmatterDateArgs = {
 
 export type MdxFrontmatterFilterInput = {
   title?: Maybe<StringQueryOperatorInput>;
+  date?: Maybe<DateQueryOperatorInput>;
+  tags?: Maybe<StringQueryOperatorInput>;
   path?: Maybe<StringQueryOperatorInput>;
   status?: Maybe<StringQueryOperatorInput>;
-  tags?: Maybe<StringQueryOperatorInput>;
-  date?: Maybe<DateQueryOperatorInput>;
-  category?: Maybe<StringQueryOperatorInput>;
 };
 
 export type MdxGroupConnection = {
@@ -1639,12 +1635,10 @@ export type SitePageConnectionGroupArgs = {
 
 export type SitePageContext = {
   post?: Maybe<SitePageContextPost>;
-  tags?: Maybe<Array<Maybe<SitePageContextTags>>>;
 };
 
 export type SitePageContextFilterInput = {
   post?: Maybe<SitePageContextPostFilterInput>;
-  tags?: Maybe<SitePageContextTagsFilterListInput>;
 };
 
 export type SitePageContextPost = {
@@ -1658,7 +1652,6 @@ export type SitePageContextPost = {
   status?: Maybe<Scalars['String']>;
   tags?: Maybe<Array<Maybe<Scalars['String']>>>;
   title?: Maybe<Scalars['String']>;
-  category?: Maybe<Scalars['String']>;
 };
 
 export type SitePageContextPostFilterInput = {
@@ -1672,7 +1665,6 @@ export type SitePageContextPostFilterInput = {
   status?: Maybe<StringQueryOperatorInput>;
   tags?: Maybe<StringQueryOperatorInput>;
   title?: Maybe<StringQueryOperatorInput>;
-  category?: Maybe<StringQueryOperatorInput>;
 };
 
 export type SitePageContextPostToc = {
@@ -1695,18 +1687,6 @@ export type SitePageContextPostTocItemsFilterInput = {
 
 export type SitePageContextPostTocItemsFilterListInput = {
   elemMatch?: Maybe<SitePageContextPostTocItemsFilterInput>;
-};
-
-export type SitePageContextTags = {
-  name?: Maybe<Scalars['String']>;
-};
-
-export type SitePageContextTagsFilterInput = {
-  name?: Maybe<StringQueryOperatorInput>;
-};
-
-export type SitePageContextTagsFilterListInput = {
-  elemMatch?: Maybe<SitePageContextTagsFilterInput>;
 };
 
 export type SitePageEdge = {
@@ -1818,9 +1798,6 @@ export type SitePageFieldsEnum =
   'context___post___status' |
   'context___post___tags' |
   'context___post___title' |
-  'context___post___category' |
-  'context___tags' |
-  'context___tags___name' |
   'pluginCreator___id' |
   'pluginCreator___parent___id' |
   'pluginCreator___parent___parent___id' |
@@ -2212,10 +2189,21 @@ export type StringQueryOperatorInput = {
   glob?: Maybe<Scalars['String']>;
 };
 
+export type TagsPageQueryVariables = {};
+
+
+export type TagsPageQuery = { allMdx: { group: Array<(
+      Pick<MdxGroupConnection, 'totalCount' | 'fieldValue'>
+      & { edges: Array<{ node: (
+          Pick<Mdx, 'excerpt'>
+          & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'title' | 'date' | 'path'>> }
+        ) }> }
+    )> } };
+
 export type GatsbyNodeQueryVariables = {};
 
 
 export type GatsbyNodeQuery = { allMdx: { edges: Array<{ node: (
         Pick<Mdx, 'id' | 'tableOfContents' | 'fileAbsolutePath' | 'body' | 'excerpt'>
         & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'path' | 'status' | 'tags' | 'title' | 'date'>> }
-      ), next?: Maybe<{ frontmatter?: Maybe<Pick<MdxFrontmatter, 'title'>> }>, previous?: Maybe<{ frontmatter?: Maybe<Pick<MdxFrontmatter, 'path' | 'title'>> }> }> } };
+      ), next?: Maybe<{ frontmatter?: Maybe<Pick<MdxFrontmatter, 'title' | 'path'>> }>, previous?: Maybe<{ frontmatter?: Maybe<Pick<MdxFrontmatter, 'path' | 'title'>> }> }> } };

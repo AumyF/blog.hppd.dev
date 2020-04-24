@@ -7,8 +7,8 @@ import {
 import Path from "path"
 import { Post } from "../libs/post"
 import { compact, concat, uniqBy, unzip, toPairs } from "lodash"
-import { TagsPageContext, Tag } from "../components/templates/Tags"
 import _ from "lodash"
+import { IndividualTagPageContext } from "../components/templates/IndividualTagPage"
 
 export const createPages: GatsbyNode["createPages"] = async ({
   graphql,
@@ -42,6 +42,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
           next {
             frontmatter {
               title
+              path
             }
           }
           previous {
@@ -64,8 +65,8 @@ export const createPages: GatsbyNode["createPages"] = async ({
     return
   }
 
-  const tagTmpArray: string[] = [],
-    categoryTmpArray: string[] = []
+  const tagTmpArray: string[] = []
+  const classifiedPosts: { [index: string]: Post[] } = {}
 
   result.data.allMdx.edges.forEach(edge => {
     const post = Post(edge)
@@ -75,12 +76,21 @@ export const createPages: GatsbyNode["createPages"] = async ({
       context: { post: post },
     })
     tagTmpArray.push(...post.tags)
-    categoryTmpArray.push(post.category)
   })
 
-  createPage<TagsPageContext>({
+  /**createPage<TagsPageContext>({
     path: "/tags",
     component: Path.resolve("./src/components/templates/Tags.tsx"),
-    context: { tags: tagTmpArray.map(t => ({ name: t })) },
+    context: { tags: tagTmpArray },
   })
+
+  tagTmpArray.forEach(tag => (createPage<IndividualTagPageContext>({
+    path: "/tags/" + tag
+  ,component: Path.resolve("./src/components/templates/IndividualTagPageContext"),
+  context: {tag: tag, posts:}
+  })))
+  createPage<IndividualTagPageContext>({
+    path: "/tags/" ,
+    component: 
+  }) */
 }
