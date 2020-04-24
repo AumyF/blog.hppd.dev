@@ -16,8 +16,10 @@ export const Layout: React.FC<LayoutProps> = ({ title, children }) => (
     id="Layout"
     css={css`
       font-size: 20px;
-      height: 100vh;
+      min-height: 100vh;
       background-image: url(${s});
+      background-attachment: fixed;
+      background-size: cover;
     `}
   >
     <Global
