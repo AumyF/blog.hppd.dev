@@ -1645,7 +1645,7 @@ export type SitePageContextPost = {
   body?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   toc?: Maybe<SitePageContextPostToc>;
-  date?: Maybe<Scalars['Date']>;
+  date?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
   excerpt?: Maybe<Scalars['String']>;
   path?: Maybe<Scalars['String']>;
@@ -1658,7 +1658,7 @@ export type SitePageContextPostFilterInput = {
   body?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
   toc?: Maybe<SitePageContextPostTocFilterInput>;
-  date?: Maybe<DateQueryOperatorInput>;
+  date?: Maybe<StringQueryOperatorInput>;
   description?: Maybe<StringQueryOperatorInput>;
   excerpt?: Maybe<StringQueryOperatorInput>;
   path?: Maybe<StringQueryOperatorInput>;
