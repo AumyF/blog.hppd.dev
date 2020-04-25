@@ -4,8 +4,8 @@ import { Helmet } from "react-helmet"
 import { Main } from "./Main"
 import "sanitize.css"
 import { css, Global } from "@emotion/core"
-import { scheme } from "../../styles/colorScheme"
 import s from "../../images/dark.svg"
+import { styleValues } from "../../styles/styleValues"
 
 export type LayoutProps = {
   title: string
@@ -25,13 +25,13 @@ export const Layout: React.FC<LayoutProps> = ({ title, children }) => (
     <Global
       styles={css`
         html {
-          background-color: ${scheme.background};
-          color: ${scheme.text};
+          background-color: #000;
+          color: ${styleValues.global.text};
         }
         body {
         }
         a {
-          color: ${scheme.primaryAccent};
+          color: ${styleValues.global.primaryAccent};
         }
       `}
     />

@@ -4,8 +4,8 @@ import { css } from "@emotion/core"
 import { mq } from "../../styles/mediaQueries"
 import { SidebarButton } from "../atoms/SidebarButton"
 import SidebarButtonsGroup from "../molecules/SidebarButtonsGroup"
-import { scheme } from "../../styles/colorScheme"
 import { readFileSync } from "fs"
+import { styleValues } from "../../styles/styleValues"
 
 export type SidebarProps = {}
 
@@ -27,7 +27,7 @@ export const Sidebar: React.FC<SidebarProps> = () => (
       }
       backdrop-filter: blur(2px);
       a {
-        color: ${scheme.text};
+        color: ${styleValues.global.text};
       }
     `}
   >

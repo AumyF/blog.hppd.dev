@@ -3,9 +3,8 @@ import { css } from "@emotion/core"
 import { useStaticQuery, graphql, Link } from "gatsby"
 import { Mdx } from "../../../types/graphqlTypes"
 import { Post } from "../../libs/post"
-import { totalmem } from "os"
-import { scheme } from "../../styles/colorScheme"
 import {} from "ts-essentials"
+import { styleValues } from "../../styles/styleValues"
 
 export type PostLinkProps = Readonly<{
   excerpt: string
@@ -18,7 +17,7 @@ export const PostLink: React.FC<PostLinkProps> = ({ excerpt, path, title }) => (
     to={path}
     css={css`
       display: block;
-      border: 1px solid ${scheme.border};
+      border: 1px solid ${styleValues.global.border};
     `}
   >
     <div>

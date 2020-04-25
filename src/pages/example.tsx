@@ -2,7 +2,6 @@ import React from "react"
 import { css } from "@emotion/core"
 import { PageProps } from "gatsby"
 import { Layout } from "../components/templates/Layout"
-import { scheme } from "../styles/colorScheme"
 
 export type ExamplePageProps = PageProps<{}>
 

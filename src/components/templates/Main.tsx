@@ -1,6 +1,5 @@
 import React from "react"
 import { css } from "@emotion/core"
-import { scheme } from "../../styles/colorScheme"
 import MainHeader from "../organisms/ContentHeader"
 import { styleValues } from "../../styles/styleValues"
 
@@ -22,7 +21,7 @@ export const Main: React.FC<MainProps> = ({ children, title }) => (
       id="main"
       css={css`
         padding: 20px;
-        background-color: ${scheme.background};
+        background-color: ${styleValues.main.background};
         /*border-top-left-radius: ${styleValues.main.borderRadius};
         border-top-right-radius: ${styleValues.main.borderRadius};*/
       `}

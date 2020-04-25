@@ -20,3 +20,16 @@ export const scheme: Readonly<
   text: "#d0d0d0",
   border: "#404040",
 }
+
+const homura = {
+  dark: "#1e1e20",
+  shadow: "#303032",
+  stone: "#404040",
+  blue: "#63b3ed",
+  yellow: "#f6e05e",
+  gray: "#d0d0d0",
+}
+
+const Abyss = {} as const
+
+export default homura
