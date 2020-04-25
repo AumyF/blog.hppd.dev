@@ -39,9 +39,6 @@ export const Layout: React.FC<LayoutProps> = ({ title, children }) => (
       <title>{title}</title>
     </Helmet>
     <Sidebar />
-    <Main>
-      <h1>{title}</h1>
-      {children}
-    </Main>
+    <Main title={title}>{children}</Main>
   </div>
 )
