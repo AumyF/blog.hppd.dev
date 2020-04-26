@@ -27,6 +27,7 @@ export const Layout: React.FC<LayoutProps> = ({ title, children }) => (
         html {
           background-color: #000;
           color: ${styleValues.global.text};
+          scrollbar-color: ${styleValues.global.scrollbar};
         }
         body {
         }
