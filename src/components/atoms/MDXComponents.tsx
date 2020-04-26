@@ -3,19 +3,19 @@ import { Components } from "@mdx-js/react"
 import React from "react"
 import SwipingAnchor from "./SwipingAnchor"
 import styled from "@emotion/styled"
-import { scheme as cs } from "../../styles/colorScheme"
+import { styleValues } from "../../styles/styleValues"
 
 type Elm = JSX.IntrinsicElements
 
 export const MDXComponents: Readonly<Required<Components>> = {
   h1: styled.h1`
-    border-bottom: 1px solid ${cs.border};
+    border-bottom: 1px solid ${styleValues.global.border};
     font-size: 1.5rem;
     margin-top: 1rem;
     margin-bottom: 0.5rem;
   `,
   h2: styled.h2`
-    border-bottom: 1px solid ${cs.border};
+    border-bottom: 1px solid ${styleValues.global.border};
     font-weight: medium;
     font-size: 1.2rem;
     padding-left: 0.25rem;
@@ -45,7 +45,7 @@ export const MDXComponents: Readonly<Required<Components>> = {
           transition: 300ms all ease-in;
           margin-right: 0.25rem;
           &:hover {
-            background-color: ${cs.primaryAccent};
+            background-color: ${styleValues.global.primaryAccent};
           }
           svg {
             display: inline;
@@ -68,7 +68,7 @@ export const MDXComponents: Readonly<Required<Components>> = {
   hr: styled.hr`
     margin-top: 0.75rem;
     margin-bottom: 0.75rem;
-    border: 1px solid ${cs.border};
+    border: 1px solid ${styleValues.global.border};
   `,
   img: styled.img``,
   inlineCode: styled.code``,

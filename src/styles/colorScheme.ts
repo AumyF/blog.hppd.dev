@@ -1,35 +1,35 @@
 type colors =
-  | "primaryAccent"
-  | "background"
-  | "cardBackground"
-  | "sidebarBackground"
-  | "text"
-  | "border"
-  | "secondaryAccent"
+  | "dark"
+  | "shadow"
+  | "stone"
+  | "gray"
+  | "red"
+  | "blue"
+  | "green"
+  | "yellow"
+  | "gray"
+type Scheme = { [index in colors]: string } & { name: string }
 
-export const scheme: Readonly<
-  {
-    [index in colors]: string
-  }
-> = {
-  background: "#1e1e20",
-  cardBackground: "#303032",
-  sidebarBackground: "#703399",
-  primaryAccent: "#63b3ed",
-  secondaryAccent: "#f6e05e",
-  text: "#d0d0d0",
-  border: "#404040",
-}
-
-const homura = {
+const homura: Scheme = {
+  name: "A timetraveler girl",
   dark: "#1e1e20",
   shadow: "#303032",
   stone: "#404040",
   blue: "#63b3ed",
   yellow: "#f6e05e",
   gray: "#d0d0d0",
+  green: "#43B581",
+  red: "#F04747",
 }
 
-const Abyss = {} as const
+const Abyss: Scheme = {
+  ...homura,
+  name: "An explorer of the gaming abyss",
+  dark: "#36393F",
+  yellow: "#FAA61A",
+  green: "#43B581",
+  blue: "#7289DA",
+  red: "#F04747",
+}
 
 export default homura
