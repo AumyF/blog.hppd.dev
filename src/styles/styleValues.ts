@@ -1,17 +1,18 @@
-import homura from "./colorScheme"
+import scheme from "./colorScheme"
 
 export const styleValues = {
   global: {
-    text: homura.gray,
-    primaryAccent: homura.blue,
-    secondaryAccent: homura.yellow,
-    border: homura.stone,
+    text: scheme.gray,
+    primaryAccent: scheme.blue,
+    secondaryAccent: scheme.yellow,
+    border: scheme.stone,
+    scrollbar: scheme.stone + scheme.dark,
   },
   main: {
-    background: homura.dark,
+    background: scheme.dark,
     borderRadius: "16px",
   },
   Card: {
-    background: homura.shadow,
+    background: scheme.shadow,
   },
 } as const
