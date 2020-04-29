@@ -5,7 +5,7 @@ import { faHome } from "@fortawesome/free-solid-svg-icons"
 import { Layout } from "../components/templates/Layout"
 
 export default () => (
-  <Layout title="INDEX">
+  <Layout title="MOMIREPO">
     <p>Hello, world</p>
   </Layout>
 )

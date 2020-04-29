@@ -8,7 +8,9 @@ import Path from "path"
 import { Post } from "../libs/post"
 import { compact, concat, uniqBy, unzip, toPairs } from "lodash"
 import _ from "lodash"
-import { IndividualTagPageContext } from "../components/templates/IndividualTagPage"
+import IndividualTagPage, {
+  IndividualTagPageContext,
+} from "../components/templates/IndividualTagPage"
 
 export const createPages: GatsbyNode["createPages"] = async ({
   graphql,
@@ -68,22 +70,22 @@ export const createPages: GatsbyNode["createPages"] = async ({
       component: Path.resolve("./src/components/templates/BlogPost.tsx"),
       context: { post: post },
     })
+    post.tags.forEach(t => {
+      if (classifiedPosts[t] == null) {
+        classifiedPosts[t] = []
+      }
+      classifiedPosts[t].push(post)
+    })
     tagTmpArray.push(...post.tags)
   })
 
-  /**createPage<TagsPageContext>({
-    path: "/tags",
-    component: Path.resolve("./src/components/templates/Tags.tsx"),
-    context: { tags: tagTmpArray },
-  })
-
-  tagTmpArray.forEach(tag => (createPage<IndividualTagPageContext>({
-    path: "/tags/" + tag
-  ,component: Path.resolve("./src/components/templates/IndividualTagPageContext"),
-  context: {tag: tag, posts:}
-  })))
-  createPage<IndividualTagPageContext>({
-    path: "/tags/" ,
-    component: 
-  }) */
+  tagTmpArray.forEach(tag =>
+    createPage<IndividualTagPageContext>({
+      path: "/tags/" + tag,
+      component: Path.resolve(
+        "./src/components/templates/IndividualTagPage.tsx"
+      ),
+      context: { tag: tag, posts: classifiedPosts[tag] },
+    })
+  )
 }

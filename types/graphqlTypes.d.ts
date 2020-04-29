@@ -1619,10 +1619,14 @@ export type SitePageConnectionGroupArgs = {
 
 export type SitePageContext = {
   post?: Maybe<SitePageContextPost>;
+  tag?: Maybe<Scalars['String']>;
+  posts?: Maybe<Array<Maybe<SitePageContextPosts>>>;
 };
 
 export type SitePageContextFilterInput = {
   post?: Maybe<SitePageContextPostFilterInput>;
+  tag?: Maybe<StringQueryOperatorInput>;
+  posts?: Maybe<SitePageContextPostsFilterListInput>;
 };
 
 export type SitePageContextPost = {
@@ -1661,6 +1665,150 @@ export type SitePageContextPostFilterInput = {
   status?: Maybe<StringQueryOperatorInput>;
   title?: Maybe<StringQueryOperatorInput>;
   tags?: Maybe<StringQueryOperatorInput>;
+};
+
+export type SitePageContextPosts = {
+  date?: Maybe<SitePageContextPostsDate>;
+  path?: Maybe<Scalars['String']>;
+  body?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  toc?: Maybe<SitePageContextPostsToc>;
+  description?: Maybe<Scalars['String']>;
+  excerpt?: Maybe<Scalars['String']>;
+  status?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  tags?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+export type SitePageContextPostsDate = {
+  year?: Maybe<Scalars['Int']>;
+  month?: Maybe<Scalars['Int']>;
+  day?: Maybe<Scalars['Int']>;
+};
+
+export type SitePageContextPostsDateFilterInput = {
+  year?: Maybe<IntQueryOperatorInput>;
+  month?: Maybe<IntQueryOperatorInput>;
+  day?: Maybe<IntQueryOperatorInput>;
+};
+
+export type SitePageContextPostsFilterInput = {
+  date?: Maybe<SitePageContextPostsDateFilterInput>;
+  path?: Maybe<StringQueryOperatorInput>;
+  body?: Maybe<StringQueryOperatorInput>;
+  id?: Maybe<StringQueryOperatorInput>;
+  toc?: Maybe<SitePageContextPostsTocFilterInput>;
+  description?: Maybe<StringQueryOperatorInput>;
+  excerpt?: Maybe<StringQueryOperatorInput>;
+  status?: Maybe<StringQueryOperatorInput>;
+  title?: Maybe<StringQueryOperatorInput>;
+  tags?: Maybe<StringQueryOperatorInput>;
+};
+
+export type SitePageContextPostsFilterListInput = {
+  elemMatch?: Maybe<SitePageContextPostsFilterInput>;
+};
+
+export type SitePageContextPostsToc = {
+  items?: Maybe<Array<Maybe<SitePageContextPostsTocItems>>>;
+};
+
+export type SitePageContextPostsTocFilterInput = {
+  items?: Maybe<SitePageContextPostsTocItemsFilterListInput>;
+};
+
+export type SitePageContextPostsTocItems = {
+  url?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  items?: Maybe<Array<Maybe<SitePageContextPostsTocItemsItems>>>;
+};
+
+export type SitePageContextPostsTocItemsFilterInput = {
+  url?: Maybe<StringQueryOperatorInput>;
+  title?: Maybe<StringQueryOperatorInput>;
+  items?: Maybe<SitePageContextPostsTocItemsItemsFilterListInput>;
+};
+
+export type SitePageContextPostsTocItemsFilterListInput = {
+  elemMatch?: Maybe<SitePageContextPostsTocItemsFilterInput>;
+};
+
+export type SitePageContextPostsTocItemsItems = {
+  url?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  items?: Maybe<Array<Maybe<SitePageContextPostsTocItemsItemsItems>>>;
+};
+
+export type SitePageContextPostsTocItemsItemsFilterInput = {
+  url?: Maybe<StringQueryOperatorInput>;
+  title?: Maybe<StringQueryOperatorInput>;
+  items?: Maybe<SitePageContextPostsTocItemsItemsItemsFilterListInput>;
+};
+
+export type SitePageContextPostsTocItemsItemsFilterListInput = {
+  elemMatch?: Maybe<SitePageContextPostsTocItemsItemsFilterInput>;
+};
+
+export type SitePageContextPostsTocItemsItemsItems = {
+  url?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  items?: Maybe<Array<Maybe<SitePageContextPostsTocItemsItemsItemsItems>>>;
+};
+
+export type SitePageContextPostsTocItemsItemsItemsFilterInput = {
+  url?: Maybe<StringQueryOperatorInput>;
+  title?: Maybe<StringQueryOperatorInput>;
+  items?: Maybe<SitePageContextPostsTocItemsItemsItemsItemsFilterListInput>;
+};
+
+export type SitePageContextPostsTocItemsItemsItemsFilterListInput = {
+  elemMatch?: Maybe<SitePageContextPostsTocItemsItemsItemsFilterInput>;
+};
+
+export type SitePageContextPostsTocItemsItemsItemsItems = {
+  url?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  items?: Maybe<Array<Maybe<SitePageContextPostsTocItemsItemsItemsItemsItems>>>;
+};
+
+export type SitePageContextPostsTocItemsItemsItemsItemsFilterInput = {
+  url?: Maybe<StringQueryOperatorInput>;
+  title?: Maybe<StringQueryOperatorInput>;
+  items?: Maybe<SitePageContextPostsTocItemsItemsItemsItemsItemsFilterListInput>;
+};
+
+export type SitePageContextPostsTocItemsItemsItemsItemsFilterListInput = {
+  elemMatch?: Maybe<SitePageContextPostsTocItemsItemsItemsItemsFilterInput>;
+};
+
+export type SitePageContextPostsTocItemsItemsItemsItemsItems = {
+  url?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  items?: Maybe<Array<Maybe<SitePageContextPostsTocItemsItemsItemsItemsItemsItems>>>;
+};
+
+export type SitePageContextPostsTocItemsItemsItemsItemsItemsFilterInput = {
+  url?: Maybe<StringQueryOperatorInput>;
+  title?: Maybe<StringQueryOperatorInput>;
+  items?: Maybe<SitePageContextPostsTocItemsItemsItemsItemsItemsItemsFilterListInput>;
+};
+
+export type SitePageContextPostsTocItemsItemsItemsItemsItemsFilterListInput = {
+  elemMatch?: Maybe<SitePageContextPostsTocItemsItemsItemsItemsItemsFilterInput>;
+};
+
+export type SitePageContextPostsTocItemsItemsItemsItemsItemsItems = {
+  url?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+};
+
+export type SitePageContextPostsTocItemsItemsItemsItemsItemsItemsFilterInput = {
+  url?: Maybe<StringQueryOperatorInput>;
+  title?: Maybe<StringQueryOperatorInput>;
+};
+
+export type SitePageContextPostsTocItemsItemsItemsItemsItemsItemsFilterListInput = {
+  elemMatch?: Maybe<SitePageContextPostsTocItemsItemsItemsItemsItemsItemsFilterInput>;
 };
 
 export type SitePageContextPostToc = {
@@ -1876,6 +2024,20 @@ export type SitePageFieldsEnum =
   'context___post___status' |
   'context___post___title' |
   'context___post___tags' |
+  'context___tag' |
+  'context___posts' |
+  'context___posts___date___year' |
+  'context___posts___date___month' |
+  'context___posts___date___day' |
+  'context___posts___path' |
+  'context___posts___body' |
+  'context___posts___id' |
+  'context___posts___toc___items' |
+  'context___posts___description' |
+  'context___posts___excerpt' |
+  'context___posts___status' |
+  'context___posts___title' |
+  'context___posts___tags' |
   'pluginCreator___id' |
   'pluginCreator___parent___id' |
   'pluginCreator___parent___parent___id' |
