@@ -2429,6 +2429,14 @@ export type StringQueryOperatorInput = {
   glob?: Maybe<Scalars['String']>;
 };
 
+export type GatsbyNodeQueryVariables = {};
+
+
+export type GatsbyNodeQuery = { allMdx: { edges: Array<{ node: (
+        Pick<Mdx, 'id' | 'tableOfContents' | 'fileAbsolutePath' | 'body' | 'excerpt'>
+        & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'status' | 'tags' | 'title'>> }
+      ), next?: Maybe<{ frontmatter?: Maybe<Pick<MdxFrontmatter, 'title'>> }>, previous?: Maybe<{ frontmatter?: Maybe<Pick<MdxFrontmatter, 'title'>> }> }> } };
+
 export type TagsPageQueryVariables = {};
 
 
@@ -2439,11 +2447,3 @@ export type TagsPageQuery = { allMdx: { group: Array<(
           & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'title'>> }
         ) }> }
     )> } };
-
-export type GatsbyNodeQueryVariables = {};
-
-
-export type GatsbyNodeQuery = { allMdx: { edges: Array<{ node: (
-        Pick<Mdx, 'id' | 'tableOfContents' | 'fileAbsolutePath' | 'body' | 'excerpt'>
-        & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'status' | 'tags' | 'title'>> }
-      ), next?: Maybe<{ frontmatter?: Maybe<Pick<MdxFrontmatter, 'title'>> }>, previous?: Maybe<{ frontmatter?: Maybe<Pick<MdxFrontmatter, 'title'>> }> }> } };
