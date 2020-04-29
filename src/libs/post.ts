@@ -15,7 +15,19 @@ export type Post = {
   date: PostDate
 }
 
-export const Post: (e: MdxEdge) => Post = ({
+export const Post: (e: {
+  node: Pick<
+    Mdx,
+    | "body"
+    | "excerpt"
+    | "fileAbsolutePath"
+    | "frontmatter"
+    | "id"
+    | "tableOfContents"
+  >
+  /* previous: Mdx
+  next: Mdx*/
+}) => Post = ({
   node: { body, excerpt, id, tableOfContents, frontmatter, fileAbsolutePath },
 }) => {
   const splitted = fileAbsolutePath.split("/"),
