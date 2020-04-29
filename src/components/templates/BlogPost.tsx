@@ -10,10 +10,14 @@ export type BlogPostProps = {
   pageContext: { post: Post }
 }
 
-export const BlogPost: React.FC<BlogPostProps> = ({ pageContext }) => (
-  <Layout title={pageContext.post.title}>
+export const BlogPost: React.FC<BlogPostProps> = ({
+  pageContext: {
+    post: { title, date, body },
+  },
+}) => (
+  <Layout title={title} date={date}>
     <MDXProvider components={MDXComponents}>
-      <MDXRenderer>{pageContext.post.body}</MDXRenderer>
+      <MDXRenderer>{body}</MDXRenderer>
     </MDXProvider>
   </Layout>
 )

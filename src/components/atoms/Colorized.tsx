@@ -17,3 +17,6 @@ export const Colorized: (color: keyof typeof scheme) => React.FC = color => ({
 )
 
 export default Colorized
+
+export const Red = Colorized("red"),
+  Blue = Colorized("blue")

@@ -2,10 +2,11 @@ import React from "react"
 import { css } from "@emotion/core"
 import MainHeader from "../organisms/ContentHeader"
 import { styleValues } from "../../styles/styleValues"
+import { PostDate } from "../../libs/date"
 
-export type MainProps = { title: string }
+export type MainProps = { title: string; date?: PostDate }
 
-export const Main: React.FC<MainProps> = ({ children, title }) => (
+export const Main: React.FC<MainProps> = ({ children, title, date }) => (
   <div
     css={css`
       margin: 0;
@@ -16,7 +17,7 @@ export const Main: React.FC<MainProps> = ({ children, title }) => (
       overflow: hidden;
     `}
   >
-    <MainHeader title={title} />
+    <MainHeader title={title} date={date} />
     <main
       id="main"
       css={css`

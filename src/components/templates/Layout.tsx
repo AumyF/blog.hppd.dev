@@ -6,12 +6,14 @@ import "sanitize.css"
 import { css, Global } from "@emotion/core"
 import s from "../../images/dark.svg"
 import { styleValues } from "../../styles/styleValues"
+import { PostDate } from "../../libs/date"
 
 export type LayoutProps = {
+  date?: PostDate
   title: string
 }
 
-export const Layout: React.FC<LayoutProps> = ({ title, children }) => (
+export const Layout: React.FC<LayoutProps> = ({ title, children, date }) => (
   <div
     id="Layout"
     css={css`
@@ -40,6 +42,8 @@ export const Layout: React.FC<LayoutProps> = ({ title, children }) => (
       <title>{title}</title>
     </Helmet>
     <Sidebar />
-    <Main title={title}>{children}</Main>
+    <Main title={title} date={date}>
+      {children}
+    </Main>
   </div>
 )
