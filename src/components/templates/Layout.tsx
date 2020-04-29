@@ -22,6 +22,10 @@ export const Layout: React.FC<LayoutProps> = ({ title, children, date }) => (
       background-image: url(${s});
       background-attachment: fixed;
       background-size: cover;
+      cursor: auto;
+      a {
+        text-decoration: none;
+      }
     `}
   >
     <Global

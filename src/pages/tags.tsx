@@ -17,9 +17,9 @@ export const TagsPage: (props: TagsPageProps) => React.ReactElement = ({
   <Layout title="TAGS">
     {group.map(tag => (
       <section>
-        <h2>
+        <h1>
           <Link to={"tags/" + tag.fieldValue ?? "#"}>{tag.fieldValue}</Link>
-        </h2>
+        </h1>
         <p>記事数: {tag.totalCount}</p>
         {tag.edges.map(({ node: post }) => {
           const pathAndTitle = genPostDateAndPath(post.fileAbsolutePath)
