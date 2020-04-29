@@ -36,7 +36,7 @@ export const TagsPage: (props: TagsPageProps) => React.ReactElement = ({
 
 export const pageQuery = graphql`
   query TagsPage {
-    allMdx(sort: { fields: frontmatter___date, order: ASC }) {
+    allMdx {
       group(field: frontmatter___tags) {
         totalCount
         fieldValue

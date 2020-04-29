@@ -596,10 +596,8 @@ export type FileFieldsEnum =
   'childMdx___rawBody' |
   'childMdx___fileAbsolutePath' |
   'childMdx___frontmatter___title' |
-  'childMdx___frontmatter___date' |
-  'childMdx___frontmatter___tags' |
-  'childMdx___frontmatter___path' |
   'childMdx___frontmatter___status' |
+  'childMdx___frontmatter___tags' |
   'childMdx___body' |
   'childMdx___excerpt' |
   'childMdx___headings' |
@@ -834,10 +832,8 @@ export type MdxFieldsEnum =
   'rawBody' |
   'fileAbsolutePath' |
   'frontmatter___title' |
-  'frontmatter___date' |
-  'frontmatter___tags' |
-  'frontmatter___path' |
   'frontmatter___status' |
+  'frontmatter___tags' |
   'body' |
   'excerpt' |
   'headings' |
@@ -957,26 +953,14 @@ export type MdxFilterInput = {
 
 export type MdxFrontmatter = {
   title: Scalars['String'];
-  date?: Maybe<Scalars['Date']>;
-  tags?: Maybe<Array<Maybe<Scalars['String']>>>;
-  path?: Maybe<Scalars['String']>;
   status?: Maybe<Scalars['String']>;
-};
-
-
-export type MdxFrontmatterDateArgs = {
-  formatString?: Maybe<Scalars['String']>;
-  fromNow?: Maybe<Scalars['Boolean']>;
-  difference?: Maybe<Scalars['String']>;
-  locale?: Maybe<Scalars['String']>;
+  tags?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
 export type MdxFrontmatterFilterInput = {
   title?: Maybe<StringQueryOperatorInput>;
-  date?: Maybe<DateQueryOperatorInput>;
-  tags?: Maybe<StringQueryOperatorInput>;
-  path?: Maybe<StringQueryOperatorInput>;
   status?: Maybe<StringQueryOperatorInput>;
+  tags?: Maybe<StringQueryOperatorInput>;
 };
 
 export type MdxGroupConnection = {
@@ -1655,15 +1639,15 @@ export type SitePageContextPost = {
 };
 
 export type SitePageContextPostDate = {
-  year?: Maybe<Scalars['Float']>;
-  month?: Maybe<Scalars['Float']>;
-  day?: Maybe<Scalars['Float']>;
+  year?: Maybe<Scalars['Int']>;
+  month?: Maybe<Scalars['Int']>;
+  day?: Maybe<Scalars['Int']>;
 };
 
 export type SitePageContextPostDateFilterInput = {
-  year?: Maybe<FloatQueryOperatorInput>;
-  month?: Maybe<FloatQueryOperatorInput>;
-  day?: Maybe<FloatQueryOperatorInput>;
+  year?: Maybe<IntQueryOperatorInput>;
+  month?: Maybe<IntQueryOperatorInput>;
+  day?: Maybe<IntQueryOperatorInput>;
 };
 
 export type SitePageContextPostFilterInput = {
@@ -2299,5 +2283,5 @@ export type GatsbyNodeQueryVariables = {};
 
 export type GatsbyNodeQuery = { allMdx: { edges: Array<{ node: (
         Pick<Mdx, 'id' | 'tableOfContents' | 'fileAbsolutePath' | 'body' | 'excerpt'>
-        & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'path' | 'status' | 'tags' | 'title' | 'date'>> }
-      ), next?: Maybe<{ frontmatter?: Maybe<Pick<MdxFrontmatter, 'title' | 'path'>> }>, previous?: Maybe<{ frontmatter?: Maybe<Pick<MdxFrontmatter, 'path' | 'title'>> }> }> } };
+        & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'status' | 'tags' | 'title'>> }
+      ), next?: Maybe<{ frontmatter?: Maybe<Pick<MdxFrontmatter, 'title'>> }>, previous?: Maybe<{ frontmatter?: Maybe<Pick<MdxFrontmatter, 'title'>> }> }> } };

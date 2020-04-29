@@ -20,10 +20,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
     allMdx: Pick<MdxConnection, "edges">
   }>(`
     query gatsbyNode {
-      allMdx(
-        sort: { fields: frontmatter___date, order: ASC }
-        filter: { frontmatter: { status: { ne: "private" } } }
-      ) {
+      allMdx(filter: { frontmatter: { status: { ne: "private" } } }) {
         edges {
           node {
             id
@@ -32,22 +29,18 @@ export const createPages: GatsbyNode["createPages"] = async ({
             body
             excerpt
             frontmatter {
-              path
               status
               tags
               title
-              date
             }
           }
           next {
             frontmatter {
               title
-              path
             }
           }
           previous {
             frontmatter {
-              path
               title
             }
           }
