@@ -596,10 +596,10 @@ export type FileFieldsEnum =
   'childMdx___rawBody' |
   'childMdx___fileAbsolutePath' |
   'childMdx___frontmatter___title' |
+  'childMdx___frontmatter___date' |
+  'childMdx___frontmatter___tags' |
   'childMdx___frontmatter___path' |
   'childMdx___frontmatter___status' |
-  'childMdx___frontmatter___tags' |
-  'childMdx___frontmatter___date' |
   'childMdx___body' |
   'childMdx___excerpt' |
   'childMdx___headings' |
@@ -834,10 +834,10 @@ export type MdxFieldsEnum =
   'rawBody' |
   'fileAbsolutePath' |
   'frontmatter___title' |
+  'frontmatter___date' |
+  'frontmatter___tags' |
   'frontmatter___path' |
   'frontmatter___status' |
-  'frontmatter___tags' |
-  'frontmatter___date' |
   'body' |
   'excerpt' |
   'headings' |
@@ -957,10 +957,10 @@ export type MdxFilterInput = {
 
 export type MdxFrontmatter = {
   title: Scalars['String'];
+  date?: Maybe<Scalars['Date']>;
+  tags?: Maybe<Array<Maybe<Scalars['String']>>>;
   path?: Maybe<Scalars['String']>;
   status?: Maybe<Scalars['String']>;
-  tags?: Maybe<Array<Maybe<Scalars['String']>>>;
-  date?: Maybe<Scalars['Date']>;
 };
 
 
@@ -973,10 +973,10 @@ export type MdxFrontmatterDateArgs = {
 
 export type MdxFrontmatterFilterInput = {
   title?: Maybe<StringQueryOperatorInput>;
+  date?: Maybe<DateQueryOperatorInput>;
+  tags?: Maybe<StringQueryOperatorInput>;
   path?: Maybe<StringQueryOperatorInput>;
   status?: Maybe<StringQueryOperatorInput>;
-  tags?: Maybe<StringQueryOperatorInput>;
-  date?: Maybe<DateQueryOperatorInput>;
 };
 
 export type MdxGroupConnection = {
@@ -1642,27 +1642,41 @@ export type SitePageContextFilterInput = {
 };
 
 export type SitePageContextPost = {
+  date?: Maybe<SitePageContextPostDate>;
+  path?: Maybe<Scalars['String']>;
   body?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   toc?: Maybe<SitePageContextPostToc>;
   description?: Maybe<Scalars['String']>;
   excerpt?: Maybe<Scalars['String']>;
-  path?: Maybe<Scalars['String']>;
   status?: Maybe<Scalars['String']>;
-  tags?: Maybe<Array<Maybe<Scalars['String']>>>;
   title?: Maybe<Scalars['String']>;
+  tags?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+export type SitePageContextPostDate = {
+  year?: Maybe<Scalars['Float']>;
+  month?: Maybe<Scalars['Float']>;
+  day?: Maybe<Scalars['Float']>;
+};
+
+export type SitePageContextPostDateFilterInput = {
+  year?: Maybe<FloatQueryOperatorInput>;
+  month?: Maybe<FloatQueryOperatorInput>;
+  day?: Maybe<FloatQueryOperatorInput>;
 };
 
 export type SitePageContextPostFilterInput = {
+  date?: Maybe<SitePageContextPostDateFilterInput>;
+  path?: Maybe<StringQueryOperatorInput>;
   body?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
   toc?: Maybe<SitePageContextPostTocFilterInput>;
   description?: Maybe<StringQueryOperatorInput>;
   excerpt?: Maybe<StringQueryOperatorInput>;
-  path?: Maybe<StringQueryOperatorInput>;
   status?: Maybe<StringQueryOperatorInput>;
-  tags?: Maybe<StringQueryOperatorInput>;
   title?: Maybe<StringQueryOperatorInput>;
+  tags?: Maybe<StringQueryOperatorInput>;
 };
 
 export type SitePageContextPostToc = {
@@ -1866,15 +1880,18 @@ export type SitePageFieldsEnum =
   'internal___owner' |
   'internal___type' |
   'isCreatedByStatefulCreatePages' |
+  'context___post___date___year' |
+  'context___post___date___month' |
+  'context___post___date___day' |
+  'context___post___path' |
   'context___post___body' |
   'context___post___id' |
   'context___post___toc___items' |
   'context___post___description' |
   'context___post___excerpt' |
-  'context___post___path' |
   'context___post___status' |
-  'context___post___tags' |
   'context___post___title' |
+  'context___post___tags' |
   'pluginCreator___id' |
   'pluginCreator___parent___id' |
   'pluginCreator___parent___parent___id' |
@@ -2272,8 +2289,8 @@ export type TagsPageQueryVariables = {};
 export type TagsPageQuery = { allMdx: { group: Array<(
       Pick<MdxGroupConnection, 'totalCount' | 'fieldValue'>
       & { edges: Array<{ node: (
-          Pick<Mdx, 'excerpt'>
-          & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'title' | 'date' | 'path'>> }
+          Pick<Mdx, 'excerpt' | 'fileAbsolutePath'>
+          & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'title'>> }
         ) }> }
     )> } };
 
