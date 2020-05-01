@@ -51,7 +51,9 @@ export const MDXComponents: Readonly<Required<Components>> = {
             display: inline;
           }
         `}
-      ></a>
+      >
+        {props.children}
+      </a>
     ) : (
       <SwipingAnchor to={props.href!} {...props} />
     ),
