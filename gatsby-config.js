@@ -4,6 +4,8 @@
  * See: https://www.gatsbyjs.org/docs/gatsby-config/
  */
 
+/** @type import('gatsby').GatsbyConfig */
+
 module.exports = {
   /* Your site config here */
   plugins: [
