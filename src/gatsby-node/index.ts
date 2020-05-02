@@ -3,6 +3,7 @@ import {
   MdxConnection,
   MdxEdge,
   MdxFrontmatter,
+  GatsbyNodeQuery,
 } from "../../types/graphqlTypes"
 import Path from "path"
 import { Post } from "../libs/post"
@@ -11,6 +12,8 @@ import _ from "lodash"
 import IndividualTagPage, {
   IndividualTagPageContext,
 } from "../components/templates/IndividualTagPage"
+import { ArchiveMonthPageContenxt } from "../components/templates/ArchiveMonthPage"
+import { ArchiveYearPageContext } from "../components/templates/ArchiveYearPage"
 
 export const createPages: GatsbyNode["createPages"] = async ({
   graphql,
@@ -18,9 +21,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
   reporter,
 }) => {
   console.log("хорошо!")
-  const result = await graphql<{
-    allMdx: Pick<MdxConnection, "edges">
-  }>(`
+  const result = await graphql<GatsbyNodeQuery>(`
     query gatsbyNode {
       allMdx(filter: { frontmatter: { status: { ne: "private" } } }) {
         edges {
@@ -46,6 +47,16 @@ export const createPages: GatsbyNode["createPages"] = async ({
               title
             }
           }
+        }
+      }
+      allDirectory {
+        group(field: relativeDirectory) {
+          edges {
+            node {
+              name
+            }
+          }
+          fieldValue
         }
       }
     }
@@ -88,4 +99,27 @@ export const createPages: GatsbyNode["createPages"] = async ({
       context: { tag: tag, posts: classifiedPosts[tag] },
     })
   )
+  result.data.allDirectory.group.forEach(({ edges, fieldValue }) => {
+    edges.forEach(({ node: { name } }) => {
+      if (fieldValue === "..") {
+        return
+      } else if (fieldValue === "") {
+        createPage<ArchiveYearPageContext>({
+          component: Path.resolve(
+            "./src/components/templates/ArchiveYearPage.tsx"
+          ),
+          context: { year: name, posts: [] },
+          path: `/${name}/`,
+        })
+      } else {
+        createPage<ArchiveMonthPageContenxt>({
+          component: Path.resolve(
+            "./src/components/templates/ArchiveMonthPage.tsx"
+          ),
+          context: { month: name, posts: [] },
+          path: `/${fieldValue}/${name}`,
+        })
+      }
+    })
+  })
 }

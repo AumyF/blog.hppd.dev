@@ -1621,12 +1621,16 @@ export type SitePageContext = {
   post?: Maybe<SitePageContextPost>;
   tag?: Maybe<Scalars['String']>;
   posts?: Maybe<Array<Maybe<SitePageContextPosts>>>;
+  year?: Maybe<Scalars['Date']>;
+  month?: Maybe<Scalars['String']>;
 };
 
 export type SitePageContextFilterInput = {
   post?: Maybe<SitePageContextPostFilterInput>;
   tag?: Maybe<StringQueryOperatorInput>;
   posts?: Maybe<SitePageContextPostsFilterListInput>;
+  year?: Maybe<DateQueryOperatorInput>;
+  month?: Maybe<StringQueryOperatorInput>;
 };
 
 export type SitePageContextPost = {
@@ -2038,6 +2042,8 @@ export type SitePageFieldsEnum =
   'context___posts___status' |
   'context___posts___title' |
   'context___posts___tags' |
+  'context___year' |
+  'context___month' |
   'pluginCreator___id' |
   'pluginCreator___parent___id' |
   'pluginCreator___parent___parent___id' |
@@ -2429,13 +2435,26 @@ export type StringQueryOperatorInput = {
   glob?: Maybe<Scalars['String']>;
 };
 
+export type ArchiveYearPageQueryVariables = {
+  year?: Maybe<Scalars['String']>;
+};
+
+
+export type ArchiveYearPageQuery = { allSitePage: { edges: Array<{ node: (
+        Pick<SitePage, 'path'>
+        & { context?: Maybe<{ post?: Maybe<Pick<SitePageContextPost, 'title' | 'path'>> }> }
+      ) }> } };
+
 export type GatsbyNodeQueryVariables = {};
 
 
 export type GatsbyNodeQuery = { allMdx: { edges: Array<{ node: (
         Pick<Mdx, 'id' | 'tableOfContents' | 'fileAbsolutePath' | 'body' | 'excerpt'>
         & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'status' | 'tags' | 'title'>> }
-      ), next?: Maybe<{ frontmatter?: Maybe<Pick<MdxFrontmatter, 'title'>> }>, previous?: Maybe<{ frontmatter?: Maybe<Pick<MdxFrontmatter, 'title'>> }> }> } };
+      ), next?: Maybe<{ frontmatter?: Maybe<Pick<MdxFrontmatter, 'title'>> }>, previous?: Maybe<{ frontmatter?: Maybe<Pick<MdxFrontmatter, 'title'>> }> }> }, allDirectory: { group: Array<(
+      Pick<DirectoryGroupConnection, 'fieldValue'>
+      & { edges: Array<{ node: Pick<Directory, 'name'> }> }
+    )> } };
 
 export type TagsPageQueryVariables = {};
 
