@@ -33,6 +33,5 @@ module.exports = {
         fileName: `types/graphqlTypes.d.ts`,
       },
     },
-    `gatsby-plugin-react-helmet`,
   ],
 }
