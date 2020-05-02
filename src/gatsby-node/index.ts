@@ -108,7 +108,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
           component: Path.resolve(
             "./src/components/templates/ArchiveYearPage.tsx"
           ),
-          context: { year: name, posts: [] },
+          context: { year: `//${name}/\\d\\d/.+/`, posts: [] },
           path: `/${name}/`,
         })
       } else {

@@ -1621,7 +1621,7 @@ export type SitePageContext = {
   post?: Maybe<SitePageContextPost>;
   tag?: Maybe<Scalars['String']>;
   posts?: Maybe<Array<Maybe<SitePageContextPosts>>>;
-  year?: Maybe<Scalars['Date']>;
+  year?: Maybe<Scalars['String']>;
   month?: Maybe<Scalars['String']>;
 };
 
@@ -1629,7 +1629,7 @@ export type SitePageContextFilterInput = {
   post?: Maybe<SitePageContextPostFilterInput>;
   tag?: Maybe<StringQueryOperatorInput>;
   posts?: Maybe<SitePageContextPostsFilterListInput>;
-  year?: Maybe<DateQueryOperatorInput>;
+  year?: Maybe<StringQueryOperatorInput>;
   month?: Maybe<StringQueryOperatorInput>;
 };
 
