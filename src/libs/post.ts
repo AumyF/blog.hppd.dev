@@ -43,6 +43,10 @@ export const Post: (e: {
   }
 }
 
+/**
+ * mdxのパスからdateとpathを生成する。
+ * @param fileAbsolutePath
+ */
 export const genPostDateAndPath: (
   fileAbsolutePath: string
 ) => { path: string; date: PostDate } = fileAbsolutePath => {
@@ -54,6 +58,6 @@ export const genPostDateAndPath: (
   const date = PostDate(year, month, day)
   return {
     date,
-    path: [year, month, day, title.join("-")].join("/"),
+    path: [year, month, [day, ...title].join("-")].join("/"),
   }
 }
