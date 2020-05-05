@@ -1,7 +1,7 @@
-import { css } from "@emotion/core"
-import React from "react"
-import { AnchorOrLink } from "./AnchorOrLink"
-import { GatsbyLinkProps } from "gatsby"
+import { css } from "@emotion/core";
+import React from "react";
+import { AnchorOrLink } from "./AnchorOrLink";
+import { GatsbyLinkProps } from "gatsby";
 
 export const SwipingAnchor: React.FC<GatsbyLinkProps<unknown>> = props => (
   <span className="inline-block relative z-0">
@@ -34,6 +34,6 @@ export const SwipingAnchor: React.FC<GatsbyLinkProps<unknown>> = props => (
       {...props}
     />
   </span>
-)
+);
 
-export default SwipingAnchor
+export default SwipingAnchor;

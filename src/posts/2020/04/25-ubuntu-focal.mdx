@@ -4,20 +4,22 @@ title: Ubuntu 20.04を入れる
 
 # 要約
 
-WSL1のUbuntu 18.04(Bionic)を20.04にアプデしようと思ったら***何もしてないのに壊れた***のでいっそのことクリーンインストールしてお掃除した。
+WSL1 の Ubuntu 18.04(Bionic)を 20.04 にアプデしようと思ったら**_何もしてないのに壊れた_**のでいっそのことクリーンインストールしてお掃除した。
 
 # インストールするまで
 
 <kbd></kbd>
-<kbd>Windows</kbd>+<kbd>S</kbd>で検索を開き、適当に検索して「Windowsの機能の有効化または無効化」を開く。真ん中やや下らへんの「Windows Subsystem for Linux」というチェックボックスにチェックを入れてOSを再起動。
+<kbd>Windows</kbd>+<kbd>S</kbd>
+で検索を開き、適当に検索して「Windowsの機能の有効化または無効化」を開く。真ん中やや下らへんの「Windows
+Subsystem for Linux」というチェックボックスにチェックを入れてOSを再起動。
 
-再起動後、Microsoft Storeで「Ubuntu」と検索。Ubuntuという名前のアプリが複数あるが今回は「Ubuntu 20.04 LTS」を入れることにする。
+再起動後、Microsoft Store で「Ubuntu」と検索。Ubuntu という名前のアプリが複数あるが今回は「Ubuntu 20.04 LTS」を入れることにする。
 
-インスコ(死語)の後ユーザー名、パスワードを設定してWSLの世界にレッツゴー。無事bashが起動したらOK。bash消滅のカウントダウンが始まる。
+インスコ(死語)の後ユーザー名、パスワードを設定して WSL の世界にレッツゴー。無事 bash が起動したら OK。bash 消滅のカウントダウンが始まる。
 
 # apt
 
-aptの設定をしていく。デフォルトでは遠路わざわざアメリカまで取っていきやがるので、近場のミラーから取得するように変えよう。
+apt の設定をしていく。デフォルトでは遠路わざわざアメリカまで取っていきやがるので、近場のミラーから取得するように変えよう。
 
 [Ubuntu 18.04 LTS の APT で高速なミラーリポジトリを使う - CUBE SUGAR CONTAINER](https://blog.amedama.jp/entry/2019/09/11/234050)
 
@@ -31,14 +33,13 @@ sudo sed -i.bak -e 's%http://[^ ]\+%mirror://mirrors.ubuntu.com/mirrors.txt%g' /
 sudo apt update && sudo apt upgrade -y
 ```
 
+# Bash を消す
 
-# Bashを消す
-
-Bionicではzshを使っていたのだがいまいち機能を把握しておらず使いこなせていなかった感がある。なのでFriendly Interactive Shellの略であるらしい **fish** を使うことにした。
+Bionic では zsh を使っていたのだがいまいち機能を把握しておらず使いこなせていなかった感がある。なので Friendly Interactive Shell の略であるらしい **fish** を使うことにした。
 
 普通に `apt` で入ってくれるのが嬉しいところ。
 
-デフォルトシェルに登録する。aptで入れてるせいかfishのパスがドキュメントと違った[^fish-path]が多分問題ないだろう。
+デフォルトシェルに登録する。apt で入れてるせいか fish のパスがドキュメントと違った[^fish-path]が多分問題ないだろう。
 
 [^fish-path]: `/usr/local/bin/fish`らしいのだが`/usr/bin/fish`になっていた。わからない場合は`which fish`で調べるといいと思う。
 
@@ -46,21 +47,21 @@ Bionicではzshを使っていたのだがいまいち機能を把握してお�
 chsh -s /usr/bin/fish
 ```
 
-# Homebrewを入れる
+# Homebrew を入れる
 
-**Homebrew** といえばmacOS用のパッケージマネージャという印象が強いかもしれないが、実はLinuxでも使える。aptで入らないパッケージもだいたいここに入っててコマンド一本で入れられるので非常に助かる。
+**Homebrew** といえば macOS 用のパッケージマネージャという印象が強いかもしれないが、実は Linux でも使える。apt で入らないパッケージもだいたいここに入っててコマンド一本で入れられるので非常に助かる。
 
 [Homebrew on Linux - Homebrew Documentation](https://docs.brew.sh/Homebrew-on-Linux)を参考に入れよう。
 
-コマンドを貼り付けるだけなのだがfishがPOSIX非互換なせいか動かないので変形した。多分これで動くはず。
+コマンドを貼り付けるだけなのだが fish が POSIX 非互換なせいか動かないので変形した。多分これで動くはず。
 
 ```
 curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash
 ```
 
-こういう系のはfishでやるとコケやすいのでbashに移ってやったほうがよいかも。
+こういう系のは fish でやるとコケやすいので bash に移ってやったほうがよいかも。
 
-# Starshipを入れる
+# Starship を入れる
 
-zshでも使ってたプロンプトカスタマイズするあれ。Rust製。
-参考: [🚀プロンプトを超絶おしゃれにする Starship を紹介 - Qiita](https://qiita.com/unhappychoice/items/3b774310d95e2124eb77)
+zsh でも使ってたプロンプトカスタマイズするあれ。Rust 製。
+参考: [🚀 プロンプトを超絶おしゃれにする Starship を紹介 - Qiita](https://qiita.com/unhappychoice/items/3b774310d95e2124eb77)

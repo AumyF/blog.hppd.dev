@@ -1,10 +1,10 @@
-import React from "react"
-import { css } from "@emotion/core"
-import MainHeader from "../organisms/ContentHeader"
-import { styleValues } from "../../styles/styleValues"
-import { PostDate } from "../../libs/date"
+import React from "react";
+import { css } from "@emotion/core";
+import MainHeader from "../organisms/ContentHeader";
+import { styleValues } from "../../styles/styleValues";
+import { PostDate } from "../../libs/date";
 
-export type MainProps = { title: string; date?: PostDate }
+export type MainProps = { title: string; date?: PostDate };
 
 export const Main: React.FC<MainProps> = ({ children, title, date }) => (
   <div
@@ -28,4 +28,4 @@ export const Main: React.FC<MainProps> = ({ children, title, date }) => (
       {children}
     </main>
   </div>
-)
+);

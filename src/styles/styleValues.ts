@@ -1,4 +1,4 @@
-import scheme from "./colorScheme"
+import scheme from "./colorScheme";
 
 export const styleValues = {
   global: {
@@ -15,4 +15,4 @@ export const styleValues = {
   Card: {
     background: scheme.shadow,
   },
-} as const
+} as const;

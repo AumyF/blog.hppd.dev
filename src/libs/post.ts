@@ -1,19 +1,19 @@
-import { TOC } from "./toc"
-import { Mdx, MdxFrontmatter, MdxEdge } from "../../types/graphqlTypes"
-import { compact } from "lodash"
-import { PostDate } from "./date"
+import { TOC } from "./toc";
+import { Mdx, MdxFrontmatter, MdxEdge } from "../../types/graphqlTypes";
+import { compact } from "lodash";
+import { PostDate } from "./date";
 
 export type Post = {
-  id: string
-  toc: TOC
-  body: string
-  excerpt: string
-  path: string
-  status: string
-  tags: readonly string[]
-  title: string
-  date: PostDate
-}
+  id: string;
+  toc: TOC;
+  body: string;
+  excerpt: string;
+  path: string;
+  status: string;
+  tags: readonly string[];
+  title: string;
+  date: PostDate;
+};
 
 export const Post: (e: {
   node: Pick<
@@ -24,7 +24,7 @@ export const Post: (e: {
     | "frontmatter"
     | "id"
     | "tableOfContents"
-  >
+  >;
   /* previous: Mdx
   next: Mdx*/
 }) => Post = ({
@@ -40,8 +40,8 @@ export const Post: (e: {
     status: frontmatter?.status ?? "public",
     title: frontmatter?.title ?? "UNTITLED",
     tags: compact(frontmatter?.tags),
-  }
-}
+  };
+};
 
 /**
  * mdxのパスからdateとpathを生成する。
@@ -54,10 +54,10 @@ export const genPostDateAndPath: (
     fileName = splitted.pop()?.split(".")[0],
     [day, ...title] = fileName?.split("-") ?? ["01", "untitled"],
     month = splitted.pop() ?? "01",
-    year = splitted.pop() ?? "2000"
-  const date = PostDate(year, month, day)
+    year = splitted.pop() ?? "2000";
+  const date = PostDate(year, month, day);
   return {
     date,
     path: [year, month, [day, ...title].join("-")].join("/"),
-  }
-}
+  };
+};

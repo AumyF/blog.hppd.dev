@@ -1,20 +1,20 @@
-import React from "react"
-import { faHome, faTags } from "@fortawesome/free-solid-svg-icons"
-import { css } from "@emotion/core"
-import { mq } from "../../styles/mediaQueries"
-import { SidebarButton } from "../atoms/SidebarButton"
-import SidebarButtonsGroup from "../molecules/SidebarButtonsGroup"
-import { readFileSync } from "fs"
-import { styleValues } from "../../styles/styleValues"
+import React from "react";
+import { faHome, faTags } from "@fortawesome/free-solid-svg-icons";
+import { css } from "@emotion/core";
+import { mq } from "../../styles/mediaQueries";
+import { SidebarButton } from "../atoms/SidebarButton";
+import SidebarButtonsGroup from "../molecules/SidebarButtonsGroup";
+import { readFileSync } from "fs";
+import { styleValues } from "../../styles/styleValues";
 
-export type SidebarProps = {}
+export type SidebarProps = {};
 
 export const sidebarWidth: { [index in "sm" | "md" | "lg" | "xl"]: string } = {
   sm: "200px",
   md: "200px",
   lg: "200px",
   xl: "200px",
-}
+};
 
 export const Sidebar: React.FC<SidebarProps> = () => (
   <nav
@@ -38,4 +38,4 @@ export const Sidebar: React.FC<SidebarProps> = () => (
       ]}
     />
   </nav>
-)
+);

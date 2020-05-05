@@ -1,8 +1,8 @@
-import React from "react"
-import { css } from "@emotion/core"
-import { PostDate, PostDateToString } from "../../libs/date"
+import React from "react";
+import { css } from "@emotion/core";
+import { PostDate, PostDateToString } from "../../libs/date";
 
-export type MainHeaderProps = { title: string; date?: PostDate }
+export type MainHeaderProps = { title: string; date?: PostDate };
 
 export const MainHeader: React.FC<MainHeaderProps> = ({ title, date }) => {
   return (
@@ -15,7 +15,7 @@ export const MainHeader: React.FC<MainHeaderProps> = ({ title, date }) => {
       <h1>{title}</h1>
       <div>{PostDateToString(date)}</div>
     </header>
-  )
-}
+  );
+};
 
-export default MainHeader
+export default MainHeader;

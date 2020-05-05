@@ -1,15 +1,15 @@
-import React from "react"
-import { css } from "@emotion/core"
-import { PageProps } from "gatsby"
-import { Layout } from "./Layout"
-import { Post } from "../../libs/post"
-import PostLink from "../molecules/PostLink"
+import React from "react";
+import { css } from "@emotion/core";
+import { PageProps } from "gatsby";
+import { Layout } from "./Layout";
+import { Post } from "../../libs/post";
+import PostLink from "../molecules/PostLink";
 
 export type ArchiveMonthPageContenxt = {
-  month: string
-  posts: Post[]
-}
-export type ArchiveMonthPageProps = PageProps<{}, ArchiveMonthPageContenxt>
+  month: string;
+  posts: Post[];
+};
+export type ArchiveMonthPageProps = PageProps<{}, ArchiveMonthPageContenxt>;
 
 export const ArchiveMonthPage: React.FC<ArchiveMonthPageProps> = ({
   pageContext: { month, posts },
@@ -21,6 +21,6 @@ export const ArchiveMonthPage: React.FC<ArchiveMonthPageProps> = ({
       ))}
     </div>
   </Layout>
-)
+);
 
-export default ArchiveMonthPage
+export default ArchiveMonthPage;

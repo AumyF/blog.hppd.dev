@@ -1,16 +1,16 @@
-import React from "react"
-import { css } from "@emotion/core"
-import { useStaticQuery, graphql, Link } from "gatsby"
-import { Mdx } from "../../../types/graphqlTypes"
-import { Post } from "../../libs/post"
-import {} from "ts-essentials"
-import { styleValues } from "../../styles/styleValues"
+import React from "react";
+import { css } from "@emotion/core";
+import { useStaticQuery, graphql, Link } from "gatsby";
+import { Mdx } from "../../../types/graphqlTypes";
+import { Post } from "../../libs/post";
+import {} from "ts-essentials";
+import { styleValues } from "../../styles/styleValues";
 
 export type PostLinkProps = Readonly<{
-  excerpt: string
-  path: string
-  title: string
-}>
+  excerpt: string;
+  path: string;
+  title: string;
+}>;
 
 export const PostLink: React.FC<PostLinkProps> = ({ excerpt, path, title }) => (
   <Link
@@ -27,9 +27,9 @@ export const PostLink: React.FC<PostLinkProps> = ({ excerpt, path, title }) => (
     </div>
     <p>{excerpt}</p>
   </Link>
-)
+);
 
-export default PostLink
+export default PostLink;
 
 /**
 const Styled = styled(Plain)`

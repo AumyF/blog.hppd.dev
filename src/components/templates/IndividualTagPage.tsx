@@ -1,12 +1,12 @@
-import React from "react"
-import { css } from "@emotion/core"
-import { PageProps } from "gatsby"
-import { Layout } from "./Layout"
-import { Post } from "../../libs/post"
-import PostLink from "../molecules/PostLink"
+import React from "react";
+import { css } from "@emotion/core";
+import { PageProps } from "gatsby";
+import { Layout } from "./Layout";
+import { Post } from "../../libs/post";
+import PostLink from "../molecules/PostLink";
 
-export type IndividualTagPageContext = { tag: string; posts: Post[] }
-export type IndividualTagPageProps = PageProps<{}, IndividualTagPageContext>
+export type IndividualTagPageContext = { tag: string; posts: Post[] };
+export type IndividualTagPageProps = PageProps<{}, IndividualTagPageContext>;
 
 export const IndividualTagPage: React.FC<IndividualTagPageProps> = ({
   pageContext: { posts, tag },
@@ -18,6 +18,6 @@ export const IndividualTagPage: React.FC<IndividualTagPageProps> = ({
       ))}
     </div>
   </Layout>
-)
+);
 
-export default IndividualTagPage
+export default IndividualTagPage;

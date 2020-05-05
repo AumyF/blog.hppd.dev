@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import store from "../store"
-import { RootState, Thunk, Dispatch } from "../store"
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import store from "../store";
+import { RootState, Thunk, Dispatch } from "../store";
 
 export enum ThemeMode {
   LIGHT = "light",
@@ -8,12 +8,12 @@ export enum ThemeMode {
 }
 
 interface UIState {
-  themeMode: ThemeMode
+  themeMode: ThemeMode;
 }
 
 const initialState: UIState = {
   themeMode: ThemeMode.LIGHT,
-}
+};
 
 // Slice
 const uiSlice = createSlice({
@@ -21,25 +21,25 @@ const uiSlice = createSlice({
   initialState,
   reducers: {
     setThemeMode: (state, action: PayloadAction<ThemeMode>) => {
-      const { payload } = action
-      state.themeMode = payload
+      const { payload } = action;
+      state.themeMode = payload;
     },
   },
-})
+});
 
 // Reducers
-export default uiSlice.reducer
+export default uiSlice.reducer;
 
 // Selectors
-export const uiSelector = (state: RootState) => state.ui
+export const uiSelector = (state: RootState) => state.ui;
 
 // Actions
-const { setThemeMode } = uiSlice.actions
+const { setThemeMode } = uiSlice.actions;
 
 // Thunks
 export const toggleThemeMode = (): Thunk => (dispatch: Dispatch) => {
-  const { themeMode } = store.getState().ui
-  const mode = themeMode === ThemeMode.LIGHT ? ThemeMode.DARK : ThemeMode.LIGHT
+  const { themeMode } = store.getState().ui;
+  const mode = themeMode === ThemeMode.LIGHT ? ThemeMode.DARK : ThemeMode.LIGHT;
 
-  dispatch(setThemeMode(mode))
-}
+  dispatch(setThemeMode(mode));
+};

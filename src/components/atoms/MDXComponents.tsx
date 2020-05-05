@@ -1,11 +1,11 @@
-import { css } from "@emotion/core"
-import { Components } from "@mdx-js/react"
-import React from "react"
-import SwipingAnchor from "./SwipingAnchor"
-import styled from "@emotion/styled"
-import { styleValues } from "../../styles/styleValues"
+import { css } from "@emotion/core";
+import { Components } from "@mdx-js/react";
+import React from "react";
+import SwipingAnchor from "./SwipingAnchor";
+import styled from "@emotion/styled";
+import { styleValues } from "../../styles/styleValues";
 
-type Elm = JSX.IntrinsicElements
+type Elm = JSX.IntrinsicElements;
 
 export const MDXComponents: Readonly<Required<Components>> = {
   h1: styled.h1`
@@ -80,6 +80,6 @@ export const MDXComponents: Readonly<Required<Components>> = {
   tr: styled.tr``,
   table: styled.table``,
   td: styled.td``,
-}
+};
 
-export default MDXComponents
+export default MDXComponents;

@@ -1,22 +1,22 @@
-import React from "react"
-import { css } from "@emotion/core"
-import { PageProps, graphql } from "gatsby"
-import { Layout } from "./Layout"
-import { Post } from "../../libs/post"
-import PostLink from "../molecules/PostLink"
+import React from "react";
+import { css } from "@emotion/core";
+import { PageProps, graphql } from "gatsby";
+import { Layout } from "./Layout";
+import { Post } from "../../libs/post";
+import PostLink from "../molecules/PostLink";
 import {
   ArchiveYearPageQuery,
   ArchiveYearPageQueryVariables,
-} from "../../../types/graphqlTypes"
+} from "../../../types/graphqlTypes";
 
 export type ArchiveYearPageContext = {
-  year: string
-  posts: Post[]
-}
+  year: string;
+  posts: Post[];
+};
 export type ArchiveYearPageProps = PageProps<
   ArchiveYearPageQuery,
   ArchiveYearPageContext
->
+>;
 
 export const ArchiveYearPage: React.FC<ArchiveYearPageProps> = ({
   pageContext: { posts, year },
@@ -35,13 +35,13 @@ export const ArchiveYearPage: React.FC<ArchiveYearPageProps> = ({
               path: context?.post?.path ?? "#",
             }}
           />
-        )
+        );
       })}
     </div>
   </Layout>
-)
+);
 
-export default ArchiveYearPage
+export default ArchiveYearPage;
 
 export const pageQuery = graphql`
   query ArchiveYearPage($year: String) {
@@ -53,4 +53,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

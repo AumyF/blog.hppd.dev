@@ -1,10 +1,10 @@
-import React from "react"
-import { css } from "@emotion/core"
-import { SidebarButtonProps, SidebarButton } from "../atoms/SidebarButton"
+import React from "react";
+import { css } from "@emotion/core";
+import { SidebarButtonProps, SidebarButton } from "../atoms/SidebarButton";
 
 export type SidebarButtonsGroupProps = {
-  buttons: SidebarButtonProps[]
-}
+  buttons: SidebarButtonProps[];
+};
 
 export const SidebarButtonsGroup: React.FC<SidebarButtonsGroupProps> = ({
   buttons,
@@ -18,6 +18,6 @@ export const SidebarButtonsGroup: React.FC<SidebarButtonsGroupProps> = ({
       <SidebarButton {...c} key={c.children} />
     ))}
   </ul>
-)
+);
 
-export default SidebarButtonsGroup
+export default SidebarButtonsGroup;

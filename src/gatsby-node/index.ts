@@ -1,18 +1,18 @@
-import { GatsbyNode } from "gatsby"
-import { GatsbyNodeQuery } from "../../types/graphqlTypes"
-import Path from "path"
-import { Post } from "../libs/post"
-import _ from "lodash"
-import { IndividualTagPageContext } from "../components/templates/IndividualTagPage"
-import { ArchiveMonthPageContenxt } from "../components/templates/ArchiveMonthPage"
-import { ArchiveYearPageContext } from "../components/templates/ArchiveYearPage"
+import { GatsbyNode } from "gatsby";
+import { GatsbyNodeQuery } from "../../types/graphqlTypes";
+import Path from "path";
+import { Post } from "../libs/post";
+import _ from "lodash";
+import { IndividualTagPageContext } from "../components/templates/IndividualTagPage";
+import { ArchiveMonthPageContenxt } from "../components/templates/ArchiveMonthPage";
+import { ArchiveYearPageContext } from "../components/templates/ArchiveYearPage";
 
 export const createPages: GatsbyNode["createPages"] = async ({
   graphql,
   actions: { createPage },
   reporter,
 }) => {
-  console.log("хорошо!")
+  console.log("хорошо!");
   const result = await graphql<GatsbyNodeQuery>(`
     query gatsbyNode {
       allMdx(filter: { frontmatter: { status: { ne: "private" } } }) {
@@ -52,35 +52,35 @@ export const createPages: GatsbyNode["createPages"] = async ({
         }
       }
     }
-  `)
+  `);
 
   if (result.errors) {
-    reporter.panicOnBuild(result.errors)
-    return
+    reporter.panicOnBuild(result.errors);
+    return;
   }
   if (!result.data) {
-    reporter.panicOnBuild("result.data is undefined")
-    return
+    reporter.panicOnBuild("result.data is undefined");
+    return;
   }
 
-  const tagTmpArray: string[] = []
-  const classifiedPosts: { [index: string]: Post[] } = {}
+  const tagTmpArray: string[] = [];
+  const classifiedPosts: { [index: string]: Post[] } = {};
 
   result.data.allMdx.edges.forEach(edge => {
-    const post = Post(edge)
+    const post = Post(edge);
     createPage({
       path: post.path ?? post.id,
       component: Path.resolve("./src/components/templates/BlogPost.tsx"),
       context: { post: post },
-    })
+    });
     post.tags.forEach(t => {
       if (classifiedPosts[t] == null) {
-        classifiedPosts[t] = []
+        classifiedPosts[t] = [];
       }
-      classifiedPosts[t].push(post)
-    })
-    tagTmpArray.push(...post.tags)
-  })
+      classifiedPosts[t].push(post);
+    });
+    tagTmpArray.push(...post.tags);
+  });
 
   tagTmpArray.forEach(tag =>
     createPage<IndividualTagPageContext>({
@@ -90,11 +90,11 @@ export const createPages: GatsbyNode["createPages"] = async ({
       ),
       context: { tag: tag, posts: classifiedPosts[tag] },
     })
-  )
+  );
   result.data.allDirectory.group.forEach(({ edges, fieldValue }) => {
     edges.forEach(({ node: { name } }) => {
       if (fieldValue === "..") {
-        return
+        return;
       } else if (fieldValue === "") {
         createPage<ArchiveYearPageContext>({
           component: Path.resolve(
@@ -102,7 +102,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
           ),
           context: { year: `//${name}/\\d\\d/.+/`, posts: [] },
           path: `/${name}/`,
-        })
+        });
       } else {
         createPage<ArchiveMonthPageContenxt>({
           component: Path.resolve(
@@ -110,8 +110,8 @@ export const createPages: GatsbyNode["createPages"] = async ({
           ),
           context: { month: name, posts: [] },
           path: `/${fieldValue}/${name}`,
-        })
+        });
       }
-    })
-  })
-}
+    });
+  });
+};

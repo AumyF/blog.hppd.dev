@@ -1,17 +1,17 @@
-import React from "react"
-import { Sidebar } from "../organisms/Sidebar"
-import { Helmet } from "react-helmet"
-import { Main } from "./Main"
-import "sanitize.css"
-import { css, Global } from "@emotion/core"
-import s from "../../images/dark.svg"
-import { styleValues } from "../../styles/styleValues"
-import { PostDate } from "../../libs/date"
+import React from "react";
+import { Sidebar } from "../organisms/Sidebar";
+import { Helmet } from "react-helmet";
+import { Main } from "./Main";
+import "sanitize.css";
+import { css, Global } from "@emotion/core";
+import s from "../../images/dark.svg";
+import { styleValues } from "../../styles/styleValues";
+import { PostDate } from "../../libs/date";
 
 export type LayoutProps = {
-  date?: PostDate
-  title: string
-}
+  date?: PostDate;
+  title: string;
+};
 
 export const Layout: React.FC<LayoutProps> = ({ title, children, date }) => (
   <div
@@ -50,4 +50,4 @@ export const Layout: React.FC<LayoutProps> = ({ title, children, date }) => (
       {children}
     </Main>
   </div>
-)
+);

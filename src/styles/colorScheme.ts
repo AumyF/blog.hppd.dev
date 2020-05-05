@@ -7,8 +7,8 @@ type colors =
   | "blue"
   | "green"
   | "yellow"
-  | "gray"
-type Scheme = { [index in colors]: string } & { name: string }
+  | "gray";
+type Scheme = { [index in colors]: string } & { name: string };
 
 const homura: Scheme = {
   name: "A timetraveler girl",
@@ -20,7 +20,7 @@ const homura: Scheme = {
   gray: "#d0d0d0",
   green: "#43B581",
   red: "#F04747",
-}
+};
 
 const Abyss: Scheme = {
   ...homura,
@@ -30,6 +30,6 @@ const Abyss: Scheme = {
   green: "#43B581",
   blue: "#7289DA",
   red: "#F04747",
-}
+};
 
-export default homura
+export default homura;

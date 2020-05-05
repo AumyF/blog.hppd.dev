@@ -1,14 +1,14 @@
-import React from "react"
-import { css } from "@emotion/core"
-import { IconProp } from "@fortawesome/fontawesome-svg-core"
-import AnchorOrLink from "./AnchorOrLink"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import React from "react";
+import { css } from "@emotion/core";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import AnchorOrLink from "./AnchorOrLink";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export type SidebarButtonProps = {
-  icon: IconProp
-  to: string
-  children: string
-}
+  icon: IconProp;
+  to: string;
+  children: string;
+};
 export const SidebarButton: React.FC<SidebarButtonProps> = ({
   icon,
   children,
@@ -25,4 +25,4 @@ export const SidebarButton: React.FC<SidebarButtonProps> = ({
       {children}
     </AnchorOrLink>
   </li>
-)
+);
