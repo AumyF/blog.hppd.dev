@@ -1,17 +1,9 @@
-import { GatsbyNode, CreatePagesArgs } from "gatsby"
-import {
-  MdxConnection,
-  MdxEdge,
-  MdxFrontmatter,
-  GatsbyNodeQuery,
-} from "../../types/graphqlTypes"
+import { GatsbyNode } from "gatsby"
+import { GatsbyNodeQuery } from "../../types/graphqlTypes"
 import Path from "path"
 import { Post } from "../libs/post"
-import { compact, concat, uniqBy, unzip, toPairs } from "lodash"
 import _ from "lodash"
-import IndividualTagPage, {
-  IndividualTagPageContext,
-} from "../components/templates/IndividualTagPage"
+import { IndividualTagPageContext } from "../components/templates/IndividualTagPage"
 import { ArchiveMonthPageContenxt } from "../components/templates/ArchiveMonthPage"
 import { ArchiveYearPageContext } from "../components/templates/ArchiveYearPage"
 

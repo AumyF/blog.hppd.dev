@@ -2440,10 +2440,7 @@ export type ArchiveYearPageQueryVariables = {
 };
 
 
-export type ArchiveYearPageQuery = { allSitePage: { edges: Array<{ node: (
-        Pick<SitePage, 'path'>
-        & { context?: Maybe<{ post?: Maybe<Pick<SitePageContextPost, 'title' | 'path'>> }> }
-      ) }> } };
+export type ArchiveYearPageQuery = { allSitePage: { edges: Array<{ node: Pick<SitePage, 'path'> }> } };
 
 export type GatsbyNodeQueryVariables = {};
 
