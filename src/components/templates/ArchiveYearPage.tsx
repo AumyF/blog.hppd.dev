@@ -2,7 +2,7 @@ import React from "react";
 import { css } from "@emotion/core";
 import { PageProps, graphql } from "gatsby";
 import { Layout } from "./Layout";
-import { Post } from "../../libs/post";
+import { Post, genPostDateAndPath } from "../../libs/post";
 import PostLink from "../molecules/PostLink";
 import {
   ArchiveYearPageQuery,
@@ -12,6 +12,8 @@ import {
 export type ArchiveYearPageContext = {
   year: string;
   posts: Post[];
+  startDate: string;
+  endDate: string;
 };
 export type ArchiveYearPageProps = PageProps<
   ArchiveYearPageQuery,
@@ -21,22 +23,20 @@ export type ArchiveYearPageProps = PageProps<
 export const ArchiveYearPage: React.FC<ArchiveYearPageProps> = ({
   pageContext: { posts, year },
   data: {
-    allSitePage: { edges },
+    allMdx: { edges },
   },
 }) => (
   <Layout title={year}>
     <div>
-      {edges.map(({ node: { path, context } }) => {
-        return (
-          <PostLink
-            {...{
-              title: context?.post?.title ?? "",
-              excerpt: "",
-              path: context?.post?.path ?? "#",
-            }}
-          />
-        );
-      })}
+      {edges.map(({ node: { fileAbsolutePath, frontmatter, excerpt } }) => (
+        <PostLink
+          {...{
+            excerpt,
+            title: frontmatter?.title ?? "UNTITLED",
+            path: genPostDateAndPath(fileAbsolutePath).path,
+          }}
+        />
+      ))}
     </div>
   </Layout>
 );
@@ -44,11 +44,18 @@ export const ArchiveYearPage: React.FC<ArchiveYearPageProps> = ({
 export default ArchiveYearPage;
 
 export const pageQuery = graphql`
-  query ArchiveYearPage($year: String) {
-    allSitePage(filter: { path: { regex: $year } }) {
+  query ArchiveYearPage($startDate: Date, $endDate: Date) {
+    allMdx(
+      filter: { frontmatter: { date: { gt: $startDate, lt: $endDate } } }
+    ) {
       edges {
         node {
-          path
+          frontmatter {
+            title
+            date
+          }
+          excerpt
+          fileAbsolutePath
         }
       }
     }

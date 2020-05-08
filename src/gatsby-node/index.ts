@@ -1,11 +1,45 @@
-import { GatsbyNode } from "gatsby";
-import { GatsbyNodeQuery } from "../../types/graphqlTypes";
+import {
+  GatsbyNode,
+  CreateSchemaCustomizationArgs,
+  GatsbyBrowser,
+  CreateNodeArgs,
+} from "gatsby";
+import {
+  //GatsbyNodeQuery,
+  Mdx,
+  Maybe,
+  MdxFrontmatter,
+  DirectoryGroupConnection,
+  Directory,
+} from "../../types/graphqlTypes";
 import Path from "path";
 import { Post } from "../libs/post";
 import _ from "lodash";
 import { IndividualTagPageContext } from "../components/templates/IndividualTagPage";
 import { ArchiveMonthPageContenxt } from "../components/templates/ArchiveMonthPage";
 import { ArchiveYearPageContext } from "../components/templates/ArchiveYearPage";
+
+type GatsbyNodeQuery = {
+  allMdx: {
+    edges: Array<{
+      node: Pick<
+        Mdx,
+        "id" | "tableOfContents" | "fileAbsolutePath" | "body" | "excerpt"
+      > & {
+        frontmatter?: Maybe<Pick<MdxFrontmatter, "status" | "tags" | "title">>;
+      };
+      next?: Maybe<{ frontmatter?: Maybe<Pick<MdxFrontmatter, "title">> }>;
+      previous?: Maybe<{ frontmatter?: Maybe<Pick<MdxFrontmatter, "title">> }>;
+    }>;
+  };
+  allDirectory: {
+    group: Array<
+      Pick<DirectoryGroupConnection, "fieldValue"> & {
+        edges: Array<{ node: Pick<Directory, "name"> }>;
+      }
+    >;
+  };
+};
 
 export const createPages: GatsbyNode["createPages"] = async ({
   graphql,
@@ -100,7 +134,12 @@ export const createPages: GatsbyNode["createPages"] = async ({
           component: Path.resolve(
             "./src/components/templates/ArchiveYearPage.tsx"
           ),
-          context: { year: `//${name}/\\d\\d/.+/`, posts: [] },
+          context: {
+            year: name,
+            posts: [],
+            startDate: `${name}-01-01`,
+            endDate: `${parseInt(name) + 1}-01-01`,
+          },
           path: `/${name}/`,
         });
       } else {
@@ -108,10 +147,40 @@ export const createPages: GatsbyNode["createPages"] = async ({
           component: Path.resolve(
             "./src/components/templates/ArchiveMonthPage.tsx"
           ),
-          context: { month: name, posts: [] },
+          context: {
+            month: name,
+            posts: [],
+            startDate: `${fieldValue}-${name}-01`,
+            endDate: `${fieldValue}-${parseInt(name) + 1}-01`,
+          },
           path: `/${fieldValue}/${name}`,
         });
       }
     });
   });
 };
+
+/*
+export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] = async ({
+  actions: { createTypes },
+  schema: { buildObjectType },
+}: CreateSchemaCustomizationArgs) => {
+  createTypes(
+    buildObjectType({
+      name: "PostDate",
+      fields: { year: "Int!", month: "Int!", day: "Int!" },
+    })
+  );
+};
+
+export const onCreateNode: GatsbyNode["onCreateNode"] = ({
+  actions: { createNodeField },
+  node,
+}: CreateNodeArgs) => {
+  if (!isMdx(node)) return;
+  createNodeField({node: node,fieldName: "PostDate",value: "" })
+};
+
+const isMdx = (node: { internal: { type: string } }): node is Mdx =>
+  node.internal.type === "Mdx";
+*/

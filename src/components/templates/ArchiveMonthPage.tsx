@@ -1,26 +1,61 @@
 import React from "react";
 import { css } from "@emotion/core";
-import { PageProps } from "gatsby";
+import { PageProps, graphql } from "gatsby";
 import { Layout } from "./Layout";
-import { Post } from "../../libs/post";
+import { Post, genPostDateAndPath } from "../../libs/post";
 import PostLink from "../molecules/PostLink";
+import { ArchiveMonthPageQuery } from "../../../types/graphqlTypes";
 
 export type ArchiveMonthPageContenxt = {
   month: string;
   posts: Post[];
+  startDate: string;
+  endDate: string;
 };
-export type ArchiveMonthPageProps = PageProps<{}, ArchiveMonthPageContenxt>;
+export type ArchiveMonthPageProps = PageProps<
+  ArchiveMonthPageQuery,
+  ArchiveMonthPageContenxt
+>;
 
 export const ArchiveMonthPage: React.FC<ArchiveMonthPageProps> = ({
-  pageContext: { month, posts },
+  pageContext: { month, endDate, startDate },
+  data: {
+    allMdx: { edges },
+  },
 }) => (
   <Layout title={month}>
+    {console.log({ endDate, startDate })}
     <div>
-      {posts.map(p => (
-        <PostLink {...p} />
+      {edges.map(({ node: { fileAbsolutePath, frontmatter, excerpt } }) => (
+        <PostLink
+          {...{
+            excerpt,
+            title: frontmatter?.title ?? "UNTITLED",
+            path: genPostDateAndPath(fileAbsolutePath).path,
+          }}
+        />
       ))}
     </div>
   </Layout>
 );
+
+export const pageQuery = graphql`
+  query ArchiveMonthPage($startDate: Date, $endDate: Date) {
+    allMdx(
+      filter: { frontmatter: { date: { gt: $startDate, lt: $endDate } } }
+    ) {
+      edges {
+        node {
+          frontmatter {
+            title
+            date
+          }
+          excerpt
+          fileAbsolutePath
+        }
+      }
+    }
+  }
+`;
 
 export default ArchiveMonthPage;
