@@ -2460,7 +2460,7 @@ export type ArchiveMonthPageQueryVariables = {
 
 
 export type ArchiveMonthPageQuery = { allMdx: { edges: Array<{ node: (
-        Pick<Mdx, 'excerpt' | 'fileAbsolutePath'>
+        Pick<Mdx, 'excerpt' | 'fileAbsolutePath' | 'id'>
         & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'title' | 'date'>> }
       ) }> } };
 

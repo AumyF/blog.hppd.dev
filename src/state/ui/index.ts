@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import store from "../store";
 import { RootState, Thunk, Dispatch } from "../store";
+import { TOC } from "../../libs/toc";
 
 export enum ThemeMode {
   LIGHT = "light",
@@ -9,10 +10,12 @@ export enum ThemeMode {
 
 interface UIState {
   themeMode: ThemeMode;
+  tableOfContents: TOC | null;
 }
 
 const initialState: UIState = {
   themeMode: ThemeMode.LIGHT,
+  tableOfContents: null,
 };
 
 // Slice

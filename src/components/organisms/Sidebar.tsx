@@ -6,6 +6,7 @@ import { SidebarButton } from "../atoms/SidebarButton";
 import SidebarButtonsGroup from "../molecules/SidebarButtonsGroup";
 import { readFileSync } from "fs";
 import { styleValues } from "../../styles/styleValues";
+import TableOfContents from "../molecules/TableOfContents";
 
 export type SidebarProps = {};
 
