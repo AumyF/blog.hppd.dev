@@ -10,9 +10,9 @@ export const Main: React.FC<MainProps> = ({ children, title, date }) => (
   <div
     css={css`
       margin: 0;
-      margin-left: 200px;
+      margin-left: 20px;
       margin-right: 20px;
-      background-color: #ddd6;
+      background-color: ${styleValues.main.background};
       border-radius: ${styleValues.main.borderRadius};
       overflow: hidden;
     `}
@@ -23,6 +23,7 @@ export const Main: React.FC<MainProps> = ({ children, title, date }) => (
       css={css`
         padding: 20px;
         background-color: ${styleValues.main.background};
+        letter-spacing: 0.09em;
       `}
     >
       {children}

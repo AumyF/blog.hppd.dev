@@ -2,17 +2,18 @@ import scheme from "./colorScheme";
 
 export const styleValues = {
   global: {
-    text: scheme.gray,
+    text: scheme.silver,
     primaryAccent: scheme.blue,
     secondaryAccent: scheme.yellow,
-    border: scheme.stone,
-    scrollbar: scheme.stone + scheme.dark,
+    border: scheme.light,
+    scrollbar: scheme.light + scheme.dark,
   },
+  ContentHeader: { background: scheme.jet },
   main: {
     background: scheme.dark,
     borderRadius: "16px",
   },
   Card: {
-    background: scheme.shadow,
+    background: scheme.jet,
   },
 } as const;

@@ -1,23 +1,24 @@
 type colors =
   | "dark"
-  | "shadow"
-  | "stone"
-  | "gray"
+  | "jet"
+  | "light"
+  | "silver"
+  | "snow"
   | "red"
   | "blue"
   | "green"
-  | "yellow"
-  | "gray";
+  | "yellow";
 type Scheme = { [index in colors]: string } & { name: string };
 
 const homura: Scheme = {
   name: "A timetraveler girl",
-  dark: "#1e1e20",
-  shadow: "#303032",
-  stone: "#404040",
+  dark: "#1e1e21",
+  jet: "#303033",
+  light: "#404040",
+  silver: "#d0d0d0",
+  snow: "#eee",
   blue: "#63b3ed",
   yellow: "#f6e05e",
-  gray: "#d0d0d0",
   green: "#43B581",
   red: "#F04747",
 };

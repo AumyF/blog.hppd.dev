@@ -1,6 +1,9 @@
 import React from "react";
 import { css } from "@emotion/core";
 import { PostDate, PostDateToString } from "../../libs/date";
+import { styleValues } from "../../styles/styleValues";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCross, faHome } from "@fortawesome/free-solid-svg-icons";
 
 export type MainHeaderProps = { title: string; date?: PostDate };
 
@@ -8,12 +11,21 @@ export const MainHeader: React.FC<MainHeaderProps> = ({ title, date }) => {
   return (
     <header
       css={css`
-        padding-left: 20px;
-        color: #1a1a1a;
+        background-color: ${styleValues.ContentHeader.background};
+        padding: 0 2rem;
+
+        h1 {
+          text-align: center;
+          font-size: 1.5em;
+          margin: 0;
+        }
+        div {
+          text-align: center;
+        }
       `}
     >
-      <h1>{title}</h1>
       <div>{PostDateToString(date)}</div>
+      <h1>{title}</h1>
     </header>
   );
 };

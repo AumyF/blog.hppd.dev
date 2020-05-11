@@ -17,6 +17,7 @@ export const Layout: React.FC<LayoutProps> = ({ title, children, date }) => (
   <div
     id="Layout"
     css={css`
+      display: grid;
       font-size: 20px;
       min-height: 100vh;
       background-image: url(${s});
@@ -45,7 +46,9 @@ export const Layout: React.FC<LayoutProps> = ({ title, children, date }) => (
     <Helmet>
       <title>{title}</title>
     </Helmet>
-    <Sidebar />
+    <div>
+      <Sidebar />
+    </div>
     <Main title={title} date={date}>
       {children}
     </Main>
