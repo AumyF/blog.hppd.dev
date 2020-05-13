@@ -1,4 +1,4 @@
-import { SidebarButtonProps } from "./Button";
+import { SidebarButtonProps, SidebarButton } from "./Button";
 import { css } from "@emotion/core";
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -20,16 +20,7 @@ export const SidebarButtonsGroup: React.FC<SidebarButtonsGroupProps> = ({
     `}
   >
     {buttons.map(c => (
-      <li key={c.to}>
-        <Link
-          to={c.to}
-          css={css`
-            padding: 4px;
-          `}
-        >
-          <FontAwesomeIcon icon={c.icon} />
-        </Link>
-      </li>
+      <SidebarButton {...c} />
     ))}
   </ul>
 );
