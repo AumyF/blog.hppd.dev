@@ -40,6 +40,7 @@ export const PostLink: React.FC<PostLinkProps> = ({
         text-decoration: none;
         padding: 1rem;
         width: 100%;
+        height: 100%;
         box-shadow: 10px 10px 20px #0009;
         ${cssProp}
       `}

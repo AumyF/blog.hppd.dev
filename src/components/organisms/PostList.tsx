@@ -11,28 +11,19 @@ export type PostListProps = {
 export const PostList: React.FC<PostListProps> = ({ posts }) => (
   <ul
     css={css`
+      list-style: none;
       padding: 0;
       display: grid;
-      grid-row-gap: 4%;
-      grid-template-columns: 1fr;
-      ${mq.medium} {
-        grid-template-columns: repeat(2, 49%);
-      }
-      ${mq.large} {
-        grid-template-columns: repeat(3, 30%);
-      }
       justify-content: space-between;
+      row-gap: 1.5rem;
+      column-gap: 1.5rem;
+      grid-template-columns: repeat(auto-fill, minmax(256px, 1fr));
     `}
   >
     {posts.map(({ title, path }, i) => (
-      <PostLink
-        key={title ?? path}
-        css={css`
-          grid-row: i;
-        `}
-        path={path}
-        title={title}
-      />
+      <li key={title ?? path}>
+        <PostLink path={path} title={title} />
+      </li>
     ))}
   </ul>
 );
