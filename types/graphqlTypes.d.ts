@@ -596,9 +596,11 @@ export type FileFieldsEnum =
   'childMdx___rawBody' |
   'childMdx___fileAbsolutePath' |
   'childMdx___frontmatter___title' |
+  'childMdx___frontmatter___path' |
+  'childMdx___frontmatter___date' |
+  'childMdx___frontmatter___description' |
   'childMdx___frontmatter___status' |
   'childMdx___frontmatter___tags' |
-  'childMdx___frontmatter___date' |
   'childMdx___body' |
   'childMdx___excerpt' |
   'childMdx___headings' |
@@ -833,9 +835,11 @@ export type MdxFieldsEnum =
   'rawBody' |
   'fileAbsolutePath' |
   'frontmatter___title' |
+  'frontmatter___path' |
+  'frontmatter___date' |
+  'frontmatter___description' |
   'frontmatter___status' |
   'frontmatter___tags' |
-  'frontmatter___date' |
   'body' |
   'excerpt' |
   'headings' |
@@ -955,9 +959,11 @@ export type MdxFilterInput = {
 
 export type MdxFrontmatter = {
   title: Scalars['String'];
+  path?: Maybe<Scalars['String']>;
+  date?: Maybe<Scalars['Date']>;
+  description?: Maybe<Scalars['String']>;
   status?: Maybe<Scalars['String']>;
   tags?: Maybe<Array<Maybe<Scalars['String']>>>;
-  date?: Maybe<Scalars['Date']>;
 };
 
 
@@ -970,9 +976,11 @@ export type MdxFrontmatterDateArgs = {
 
 export type MdxFrontmatterFilterInput = {
   title?: Maybe<StringQueryOperatorInput>;
+  path?: Maybe<StringQueryOperatorInput>;
+  date?: Maybe<DateQueryOperatorInput>;
+  description?: Maybe<StringQueryOperatorInput>;
   status?: Maybe<StringQueryOperatorInput>;
   tags?: Maybe<StringQueryOperatorInput>;
-  date?: Maybe<DateQueryOperatorInput>;
 };
 
 export type MdxGroupConnection = {
