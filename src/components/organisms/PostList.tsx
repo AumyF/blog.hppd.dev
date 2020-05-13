@@ -13,7 +13,7 @@ export const PostList: React.FC<PostListProps> = ({ posts }) => (
     css={css`
       padding: 0;
       display: grid;
-      grid-row-gap: 10px;
+      grid-row-gap: 4%;
       grid-template-columns: 1fr;
       ${mq.medium} {
         grid-template-columns: repeat(2, 49%);
