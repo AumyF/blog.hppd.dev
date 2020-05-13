@@ -1,12 +1,12 @@
 import React from "react";
 import { css } from "@emotion/core";
-import scheme from "../../styles/colorScheme";
+import scheme, { colors } from "../../styles/colorScheme";
 
-export type ColorizedProps = { color: keyof typeof scheme };
+export type ColorrizedProps = {
+  color: colors;
+};
 
-export const Colorized: (color: keyof typeof scheme) => React.FC = color => ({
-  children,
-}) => (
+export const Colorized: React.FC<ColorrizedProps> = ({ children, color }) => (
   <span
     css={css`
       color: ${scheme[color]};
@@ -17,6 +17,3 @@ export const Colorized: (color: keyof typeof scheme) => React.FC = color => ({
 );
 
 export default Colorized;
-
-export const Red = Colorized("red"),
-  Blue = Colorized("blue");

@@ -1,10 +1,11 @@
-import React from "react";
+import React, { MouseEventHandler, useState } from "react";
 import { css, Interpolation } from "@emotion/core";
 import { useStaticQuery, graphql, Link } from "gatsby";
 import { Mdx } from "../../../types/graphqlTypes";
 import { Post } from "../../libs/post";
 import {} from "ts-essentials";
 import { styleValues } from "../../styles/styleValues";
+import { useSpring, animated } from "react-spring";
 
 export type PostLinkProps = Readonly<{
   path: string;
@@ -16,32 +17,45 @@ export const PostLink: React.FC<PostLinkProps> = ({
   path,
   title,
   css: cssProp,
-}) => (
-  <Link
-    to={path}
-    css={css`
-      display: block;
-      color: ${styleValues.global.text};
-      background-color: ${styleValues.Card.background};
-      text-decoration: none;
-      padding: 1rem;
-      width: 100%;
-      box-shadow: 10px 10px 20px #0009;
-      ${cssProp}
-    `}
-  >
-    <div>
-      <div></div>
-      <span
-        css={css`
-          font-size: 1.5rem;
-        `}
-      >
-        {title}
-      </span>
-    </div>
-  </Link>
-);
+}) => {
+  const [hover, setHover] = useState<boolean>(false);
+  const spring = useSpring({
+    transform: hover ? "scale(105%)" : "scale(100%)",
+  });
+
+  const onMouseEnter: MouseEventHandler = e => setHover(true),
+    onMouseLeave: MouseEventHandler = e => setHover(false),
+    AnimatedLink = animated(Link);
+  return (
+    <AnimatedLink
+      css={css`
+        display: block;
+        color: ${styleValues.global.text};
+        background-color: ${styleValues.Card.background};
+        text-decoration: none;
+        padding: 1rem;
+        width: 100%;
+        box-shadow: 10px 10px 20px #0009;
+        ${cssProp}
+      `}
+      to={path}
+      style={spring}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
+      <div>
+        <span
+          css={css`
+            font-size: 1.5rem;
+            text-decoration: none;
+          `}
+        >
+          {title}
+        </span>
+      </div>
+    </AnimatedLink>
+  );
+};
 
 export default PostLink;
 

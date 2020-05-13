@@ -1,4 +1,4 @@
-type colors =
+export type colors =
   | "dark"
   | "jet"
   | "light"

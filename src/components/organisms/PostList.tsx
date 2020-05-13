@@ -26,6 +26,7 @@ export const PostList: React.FC<PostListProps> = ({ posts }) => (
   >
     {posts.map(({ title, path }, i) => (
       <PostLink
+        key={title ?? path}
         css={css`
           grid-row: i;
         `}

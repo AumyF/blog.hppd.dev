@@ -6,6 +6,7 @@ import { TagsPageQuery } from "../../types/graphqlTypes";
 import PostLink from "../components/molecules/PostLink";
 import { nage } from "../utils/nage";
 import { genPostDateAndPath } from "../libs/post";
+import PostList from "../components/organisms/PostList";
 
 export type TagsPageProps = PageProps<TagsPageQuery>;
 
@@ -27,18 +28,23 @@ export const TagsPage: (props: TagsPageProps) => React.ReactElement = ({
       <section key={tag.fieldValue ?? ""}>
         <h1 id={`${tag.fieldValue}`}>
           <Link to={"/tags/" + tag.fieldValue ?? "#"}>{tag.fieldValue}</Link>
+          <span
+            css={css`
+              font-size: 0.6em;
+              margin-left: 0.5em;
+            `}
+          >
+            記事数: {tag.totalCount}
+          </span>
         </h1>
-        <p>記事数: {tag.totalCount}</p>
-        {tag.edges.map(({ node: post }) => {
-          const { path } = genPostDateAndPath(post.fileAbsolutePath);
-          return (
-            <PostLink
-              key={post.frontmatter?.title}
-              path={`/${path}`}
-              title={post.frontmatter?.title!}
-            />
-          );
-        })}
+        <PostList
+          posts={tag.edges.map(
+            ({ node: { frontmatter, fileAbsolutePath } }) => ({
+              path: genPostDateAndPath(fileAbsolutePath).path,
+              title: frontmatter?.title ?? "",
+            })
+          )}
+        />
       </section>
     ))}
   </Layout>
