@@ -28,6 +28,17 @@ module.exports = {
     },
     {
       resolve: `gatsby-plugin-mdx`,
+      options: {
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-autolink-headers`,
+            options: {
+              offsetY: `400`,
+              className: `autolink-headers`,
+            },
+          },
+        ],
+      },
     },
     `gatsby-plugin-emotion`,
     {

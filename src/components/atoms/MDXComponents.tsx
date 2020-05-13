@@ -36,19 +36,18 @@ export const MDXComponents: Readonly<Required<Components>> = {
     padding-right: 0.5rem;
   `,
   a: (props: Elm["a"]) =>
-    props.className?.includes(`header-autolink`) ? (
+    props.className?.includes(`autolink-headers`) ? (
       <a
         {...props}
         css={css`
-          background-color: #eee;
-          border-radius: 3px;
+          border-left: 3px solid ${styleValues.global.primaryAccent};
           transition: 300ms all ease-in;
+          padding-left: 0.1rem;
           margin-right: 0.25rem;
-          &:hover {
-            background-color: ${styleValues.global.primaryAccent};
-          }
+          color: ${styleValues.global.text};
           svg {
             display: inline;
+            transform: scale(1.2);
           }
         `}
       >

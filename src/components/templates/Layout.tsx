@@ -48,6 +48,8 @@ export const Layout: React.FC<LayoutProps> = ({
         a {
           color: ${styleValues.global.primaryAccent};
         }
+        .autolink-headers {
+        }
       `}
     />
     <Helmet>

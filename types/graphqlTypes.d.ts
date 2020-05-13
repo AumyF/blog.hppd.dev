@@ -2119,6 +2119,8 @@ export type SitePageFieldsEnum =
   'pluginCreator___pluginOptions___allExtensions' |
   'pluginCreator___pluginOptions___name' |
   'pluginCreator___pluginOptions___path' |
+  'pluginCreator___pluginOptions___gatsbyRemarkPlugins' |
+  'pluginCreator___pluginOptions___gatsbyRemarkPlugins___resolve' |
   'pluginCreator___pluginOptions___fileName' |
   'pluginCreator___pluginOptions___pathCheck' |
   'pluginCreator___nodeAPIs' |
@@ -2311,6 +2313,10 @@ export type SitePluginFieldsEnum =
   'pluginOptions___allExtensions' |
   'pluginOptions___name' |
   'pluginOptions___path' |
+  'pluginOptions___gatsbyRemarkPlugins' |
+  'pluginOptions___gatsbyRemarkPlugins___resolve' |
+  'pluginOptions___gatsbyRemarkPlugins___options___offsetY' |
+  'pluginOptions___gatsbyRemarkPlugins___options___className' |
   'pluginOptions___fileName' |
   'pluginOptions___pathCheck' |
   'nodeAPIs' |
@@ -2429,6 +2435,7 @@ export type SitePluginPluginOptions = {
   allExtensions?: Maybe<Scalars['Boolean']>;
   name?: Maybe<Scalars['String']>;
   path?: Maybe<Scalars['String']>;
+  gatsbyRemarkPlugins?: Maybe<Array<Maybe<SitePluginPluginOptionsGatsbyRemarkPlugins>>>;
   fileName?: Maybe<Scalars['String']>;
   pathCheck?: Maybe<Scalars['Boolean']>;
 };
@@ -2438,8 +2445,33 @@ export type SitePluginPluginOptionsFilterInput = {
   allExtensions?: Maybe<BooleanQueryOperatorInput>;
   name?: Maybe<StringQueryOperatorInput>;
   path?: Maybe<StringQueryOperatorInput>;
+  gatsbyRemarkPlugins?: Maybe<SitePluginPluginOptionsGatsbyRemarkPluginsFilterListInput>;
   fileName?: Maybe<StringQueryOperatorInput>;
   pathCheck?: Maybe<BooleanQueryOperatorInput>;
+};
+
+export type SitePluginPluginOptionsGatsbyRemarkPlugins = {
+  resolve?: Maybe<Scalars['String']>;
+  options?: Maybe<SitePluginPluginOptionsGatsbyRemarkPluginsOptions>;
+};
+
+export type SitePluginPluginOptionsGatsbyRemarkPluginsFilterInput = {
+  resolve?: Maybe<StringQueryOperatorInput>;
+  options?: Maybe<SitePluginPluginOptionsGatsbyRemarkPluginsOptionsFilterInput>;
+};
+
+export type SitePluginPluginOptionsGatsbyRemarkPluginsFilterListInput = {
+  elemMatch?: Maybe<SitePluginPluginOptionsGatsbyRemarkPluginsFilterInput>;
+};
+
+export type SitePluginPluginOptionsGatsbyRemarkPluginsOptions = {
+  offsetY?: Maybe<Scalars['String']>;
+  className?: Maybe<Scalars['String']>;
+};
+
+export type SitePluginPluginOptionsGatsbyRemarkPluginsOptionsFilterInput = {
+  offsetY?: Maybe<StringQueryOperatorInput>;
+  className?: Maybe<StringQueryOperatorInput>;
 };
 
 export type SitePluginSortInput = {
