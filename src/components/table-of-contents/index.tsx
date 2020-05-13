@@ -5,9 +5,14 @@ import { styleValues } from "../../styles/styleValues";
 import { TOC } from "../../libs/toc";
 
 const TOCItemComponent: React.FC<TOC> = ({ items }) => (
-  <ul>
+  <ul
+    css={css`
+      margin: 0;
+      padding: 0.5rem 0;
+    `}
+  >
     {items.map(i => (
-      <li key={i.title} className="ml-1">
+      <li key={i.title} css={css``}>
         <SwipingAnchor to={i.url}>{i.title}</SwipingAnchor>
         {i.items ? <TOCItemComponent items={i.items} /> : null}
       </li>
@@ -22,13 +27,21 @@ export type TableOfContentsProps = {
 export const TableOfContents: React.FC<TableOfContentsProps> = ({ TOC }) => (
   <nav
     css={css`
-      font-size: 0.9rem;
-      background-color: #222;
-      border: 1px solid ${styleValues.global.border};
-      border-radius: 0.25rem;
-      padding: 0.5rem;
+      ${styleValues.TableOfContents}
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
     `}
   >
+    <div
+      css={css`
+        text-align: center;
+        margin: auto 1rem;
+        padding-bottom: 0.3rem;
+        border-bottom: 1px solid ${styleValues.global.text};
+      `}
+    >
+      Table of Contents
+    </div>
     <TOCItemComponent items={TOC.items} />
   </nav>
 );

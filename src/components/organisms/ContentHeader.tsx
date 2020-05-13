@@ -2,8 +2,6 @@ import React from "react";
 import { css } from "@emotion/core";
 import { PostDate, PostDateToString } from "../../libs/date";
 import { styleValues } from "../../styles/styleValues";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCross, faHome } from "@fortawesome/free-solid-svg-icons";
 
 export type MainHeaderProps = { title: string; date?: PostDate };
 

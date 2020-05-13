@@ -1,14 +1,15 @@
-import React from "react";
-import { css } from "@emotion/core";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
-import AnchorOrLink from "./AnchorOrLink";
+import { css } from "@emotion/core";
+import AnchorOrLink from "../atoms/AnchorOrLink";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
 
 export type SidebarButtonProps = {
   icon: IconProp;
   to: string;
   children: string;
 };
+
 export const SidebarButton: React.FC<SidebarButtonProps> = ({
   icon,
   children,

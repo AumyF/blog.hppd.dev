@@ -3,7 +3,6 @@ import { Post } from "../../libs/post";
 import { MDXProvider } from "@mdx-js/react";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import { MDXComponents } from "../atoms/MDXComponents";
-import _ from "lodash";
 import { Layout } from "./Layout";
 
 export type BlogPostProps = {
@@ -12,10 +11,10 @@ export type BlogPostProps = {
 
 export const BlogPost: React.FC<BlogPostProps> = ({
   pageContext: {
-    post: { title, date, body },
+    post: { title, date, body, toc },
   },
 }) => (
-  <Layout title={title} date={date}>
+  <Layout title={title} date={date} toc={toc}>
     <MDXProvider components={MDXComponents}>
       <MDXRenderer>{body}</MDXRenderer>
     </MDXProvider>

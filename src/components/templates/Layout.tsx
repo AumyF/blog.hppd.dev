@@ -1,5 +1,5 @@
 import React from "react";
-import { Sidebar } from "../organisms/Sidebar";
+import { Sidebar } from "../Sidebar";
 import { Helmet } from "react-helmet";
 import { Main } from "./Main";
 import "sanitize.css";
@@ -7,24 +7,31 @@ import { css, Global } from "@emotion/core";
 import s from "../../images/dark.svg";
 import { styleValues } from "../../styles/styleValues";
 import { PostDate } from "../../libs/date";
+import { TOC } from "../../libs/toc";
 
 export type LayoutProps = {
   date?: PostDate;
   title: string;
+  toc?: TOC;
 };
 
-export const Layout: React.FC<LayoutProps> = ({ title, children, date }) => (
+export const Layout: React.FC<LayoutProps> = ({
+  title,
+  children,
+  date,
+  toc,
+}) => (
   <div
     id="Layout"
     css={css`
       display: grid;
+      grid-template-columns: ${styleValues.SideBar.width} 1fr;
       font-size: 20px;
       min-height: 100vh;
       background-image: url(${s});
       background-attachment: fixed;
       background-size: cover;
       cursor: auto;
-      a {
         text-decoration: none;
       }
     `}
@@ -47,7 +54,7 @@ export const Layout: React.FC<LayoutProps> = ({ title, children, date }) => (
       <title>{title}</title>
     </Helmet>
     <div>
-      <Sidebar />
+      <Sidebar toc={toc} />
     </div>
     <Main title={title} date={date}>
       {children}

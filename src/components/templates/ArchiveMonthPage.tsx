@@ -26,10 +26,9 @@ export const ArchiveMonthPage: React.FC<ArchiveMonthPageProps> = ({
   <Layout title={month}>
     {console.log({ endDate, startDate })}
     <div>
-      {edges.map(({ node: { fileAbsolutePath, frontmatter, excerpt, id } }) => (
+      {edges.map(({ node: { fileAbsolutePath, frontmatter, id } }) => (
         <PostLink
           {...{
-            excerpt,
             title: frontmatter?.title ?? "UNTITLED",
             path: genPostDateAndPath(fileAbsolutePath).path,
             key: id,

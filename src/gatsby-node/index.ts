@@ -1,9 +1,4 @@
-import {
-  GatsbyNode,
-  CreateSchemaCustomizationArgs,
-  GatsbyBrowser,
-  CreateNodeArgs,
-} from "gatsby";
+import { GatsbyNode } from "gatsby";
 import {
   //GatsbyNodeQuery,
   Mdx,
@@ -14,7 +9,6 @@ import {
 } from "../../types/graphqlTypes";
 import Path from "path";
 import { Post } from "../libs/post";
-import _ from "lodash";
 import { IndividualTagPageContext } from "../components/templates/IndividualTagPage";
 import { ArchiveMonthPageContenxt } from "../components/templates/ArchiveMonthPage";
 import { ArchiveYearPageContext } from "../components/templates/ArchiveYearPage";

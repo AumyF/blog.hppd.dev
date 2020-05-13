@@ -14,19 +14,27 @@ export const TagsPage: (props: TagsPageProps) => React.ReactElement = ({
     allMdx: { group },
   },
 }) => (
-  <Layout title="TAGS">
+  <Layout
+    title="TAGS"
+    toc={{
+      items: group.map(({ edges, fieldValue }) => ({
+        title: fieldValue ?? "",
+        url: `./#${fieldValue}`,
+      })),
+    }}
+  >
     {group.map(tag => (
-      <section>
-        <h1>
-          <Link to={"tags/" + tag.fieldValue ?? "#"}>{tag.fieldValue}</Link>
+      <section key={tag.fieldValue ?? ""}>
+        <h1 id={`${tag.fieldValue}`}>
+          <Link to={"/tags/" + tag.fieldValue ?? "#"}>{tag.fieldValue}</Link>
         </h1>
         <p>記事数: {tag.totalCount}</p>
         {tag.edges.map(({ node: post }) => {
-          const pathAndTitle = genPostDateAndPath(post.fileAbsolutePath);
+          const { path } = genPostDateAndPath(post.fileAbsolutePath);
           return (
             <PostLink
-              {...pathAndTitle}
-              excerpt={post.excerpt}
+              key={post.frontmatter?.title}
+              path={`/${path}`}
               title={post.frontmatter?.title!}
             />
           );

@@ -1,5 +1,5 @@
 import React from "react";
-import { css } from "@emotion/core";
+import { css, Interpolation } from "@emotion/core";
 import { useStaticQuery, graphql, Link } from "gatsby";
 import { Mdx } from "../../../types/graphqlTypes";
 import { Post } from "../../libs/post";
@@ -7,25 +7,39 @@ import {} from "ts-essentials";
 import { styleValues } from "../../styles/styleValues";
 
 export type PostLinkProps = Readonly<{
-  excerpt: string;
   path: string;
   title: string;
+  css?: Interpolation;
 }>;
 
-export const PostLink: React.FC<PostLinkProps> = ({ excerpt, path, title }) => (
+export const PostLink: React.FC<PostLinkProps> = ({
+  path,
+  title,
+  css: cssProp,
+}) => (
   <Link
     to={path}
     css={css`
       display: block;
-      border: 1px solid ${styleValues.global.border};
+      color: ${styleValues.global.text};
+      background-color: ${styleValues.Card.background};
+      text-decoration: none;
+      padding: 1rem;
+      width: 100%;
+      box-shadow: 10px 10px 20px #0009;
+      ${cssProp}
     `}
   >
     <div>
-      <h2>
-        <span>{title}</span>
-      </h2>
+      <div></div>
+      <span
+        css={css`
+          font-size: 1.5rem;
+        `}
+      >
+        {title}
+      </span>
     </div>
-    <p>{excerpt}</p>
   </Link>
 );
 

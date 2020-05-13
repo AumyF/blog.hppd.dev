@@ -3,6 +3,7 @@ import { css } from "@emotion/core";
 import MainHeader from "../organisms/ContentHeader";
 import { styleValues } from "../../styles/styleValues";
 import { PostDate } from "../../libs/date";
+import Footer from "../organisms/Footer";
 
 export type MainProps = { title: string; date?: PostDate };
 
@@ -10,10 +11,7 @@ export const Main: React.FC<MainProps> = ({ children, title, date }) => (
   <div
     css={css`
       margin: 0;
-      margin-left: 20px;
-      margin-right: 20px;
       background-color: ${styleValues.main.background};
-      border-radius: ${styleValues.main.borderRadius};
       overflow: hidden;
     `}
   >
@@ -21,12 +19,36 @@ export const Main: React.FC<MainProps> = ({ children, title, date }) => (
     <main
       id="main"
       css={css`
-        padding: 20px;
+        max-width: 1024px;
+        margin: 0 auto;
+        padding: 2rem;
         background-color: ${styleValues.main.background};
         letter-spacing: 0.09em;
+        h1 {
+          border-bottom: 1px solid ${styleValues.global.border};
+          font-size: 2rem;
+          margin-top: 1rem;
+          margin-bottom: 0.5rem;
+        }
+        h2 {
+          border-bottom: 1px solid ${styleValues.global.border};
+          font-weight: medium;
+          font-size: 1.2rem;
+          padding-left: 0.25rem;
+          padding-right: 0.25rem;
+          padding-top: 0.5rem;
+          margin-top: 0.5rem;
+          margin-bottom: 0.5rem;
+        }
+        hr {
+          margin-top: 0.75rem;
+          margin-bottom: 0.75rem;
+          border: 1px solid ${styleValues.global.border};
+        }
       `}
     >
       {children}
     </main>
+    <Footer />
   </div>
 );

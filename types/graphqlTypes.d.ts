@@ -1189,6 +1189,7 @@ export type QueryAllSitePageArgs = {
 
 export type QuerySiteArgs = {
   buildTime?: Maybe<DateQueryOperatorInput>;
+  siteMetadata?: Maybe<SiteSiteMetadataFilterInput>;
   port?: Maybe<IntQueryOperatorInput>;
   host?: Maybe<StringQueryOperatorInput>;
   polyfill?: Maybe<BooleanQueryOperatorInput>;
@@ -1278,6 +1279,7 @@ export type QueryAllSitePluginArgs = {
 
 export type Site = Node & {
   buildTime?: Maybe<Scalars['Date']>;
+  siteMetadata?: Maybe<SiteSiteMetadata>;
   port?: Maybe<Scalars['Int']>;
   host?: Maybe<Scalars['String']>;
   polyfill?: Maybe<Scalars['Boolean']>;
@@ -1479,6 +1481,7 @@ export type SiteEdge = {
 
 export type SiteFieldsEnum = 
   'buildTime' |
+  'siteMetadata___title' |
   'port' |
   'host' |
   'polyfill' |
@@ -1572,6 +1575,7 @@ export type SiteFieldsEnum =
 
 export type SiteFilterInput = {
   buildTime?: Maybe<DateQueryOperatorInput>;
+  siteMetadata?: Maybe<SiteSiteMetadataFilterInput>;
   port?: Maybe<IntQueryOperatorInput>;
   host?: Maybe<StringQueryOperatorInput>;
   polyfill?: Maybe<BooleanQueryOperatorInput>;
@@ -2435,6 +2439,14 @@ export type SitePluginSortInput = {
   order?: Maybe<Array<Maybe<SortOrderEnum>>>;
 };
 
+export type SiteSiteMetadata = {
+  title?: Maybe<Scalars['String']>;
+};
+
+export type SiteSiteMetadataFilterInput = {
+  title?: Maybe<StringQueryOperatorInput>;
+};
+
 export type SiteSortInput = {
   fields?: Maybe<Array<Maybe<SiteFieldsEnum>>>;
   order?: Maybe<Array<Maybe<SortOrderEnum>>>;
@@ -2485,6 +2497,14 @@ export type GatsbyNodeQuery = { allMdx: { edges: Array<{ node: (
       Pick<DirectoryGroupConnection, 'fieldValue'>
       & { edges: Array<{ node: Pick<Directory, 'name'> }> }
     )> } };
+
+export type IndexQueryVariables = {};
+
+
+export type IndexQuery = { allMdx: { edges: Array<{ node: (
+        Pick<Mdx, 'id' | 'fileAbsolutePath'>
+        & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'title' | 'date'>> }
+      ) }> } };
 
 export type TagsPageQueryVariables = {};
 
