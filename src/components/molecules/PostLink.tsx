@@ -20,7 +20,7 @@ export const PostLink: React.FC<PostLinkProps> = ({
 }) => {
   const [hover, setHover] = useState<boolean>(false);
   const spring = useSpring({
-    transform: hover ? "scale(115%)" : "scale(100%)",
+    transform: hover ? "scale(110%)" : "scale(100%)",
     config: {
       tension: 200,
       friction: 15,
