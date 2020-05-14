@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import { faHome, faTags } from "@fortawesome/free-solid-svg-icons";
+import {
+  faTwitter,
+  faGithub,
+  faGithubAlt,
+} from "@fortawesome/free-brands-svg-icons";
 import { css } from "@emotion/core";
 import { mq } from "../../styles/mediaQueries";
 import { styleValues } from "../../styles/styleValues";
 import TableOfContents from "../table-of-contents";
 import { TOC } from "../../libs/toc";
 import { SidebarButtonsGroup } from "./ButtonsGroup";
-import onFirstRender from "../../hooks/on-first-render";
 
 export type SidebarProps = { toc?: TOC };
 
@@ -25,7 +29,6 @@ export const Sidebar: React.FC<SidebarProps> = ({ toc }) => {
         }
       `}
     >
-      <div>MOMIREPO</div>
       <div
         css={css`
           position: sticky;
@@ -34,8 +37,10 @@ export const Sidebar: React.FC<SidebarProps> = ({ toc }) => {
       >
         <SidebarButtonsGroup
           buttons={[
-            { icon: faHome, to: "/", children: "HOME" },
-            { icon: faTags, to: "/tags/", children: "TAGS" },
+            { icon: faHome, to: "/" },
+            { icon: faTags, to: "/tags/" },
+            { icon: faTwitter, to: "https://twitter.com/mominisj" },
+            { icon: faGithub, to: "https://github.com/kkrnme" },
           ]}
         />
         {toc ? <TableOfContents TOC={toc} /> : null}
