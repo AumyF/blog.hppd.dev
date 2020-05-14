@@ -6,10 +6,13 @@ import { Post } from "../../libs/post";
 import {} from "ts-essentials";
 import { styleValues } from "../../styles/styleValues";
 import { useSpring, animated } from "react-spring";
+import TagList from "../tag-list/tag-list";
+import TagsPage from "../../pages/tags";
 
 export type PostLinkProps = Readonly<{
   path: string;
   title: string;
+  tags?: string[];
   css?: Interpolation;
 }>;
 
@@ -17,6 +20,7 @@ export const PostLink: React.FC<PostLinkProps> = ({
   path,
   title,
   css: cssProp,
+  tags,
 }) => {
   const [hover, setHover] = useState<boolean>(false);
   const spring = useSpring({
@@ -44,7 +48,7 @@ export const PostLink: React.FC<PostLinkProps> = ({
         box-shadow: 10px 10px 20px #0009;
         ${cssProp}
       `}
-      to={path}
+      to={`/${path}`}
       style={spring}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
@@ -58,6 +62,7 @@ export const PostLink: React.FC<PostLinkProps> = ({
         >
           {title}
         </span>
+        {tags && <TagList tags={tags} />}
       </div>
     </AnimatedLink>
   );

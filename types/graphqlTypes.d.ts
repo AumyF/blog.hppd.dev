@@ -2543,7 +2543,7 @@ export type IndexQueryVariables = {};
 
 export type IndexQuery = { allMdx: { edges: Array<{ node: (
         Pick<Mdx, 'id' | 'fileAbsolutePath'>
-        & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'title' | 'date'>> }
+        & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'title' | 'date' | 'tags'>> }
       ) }> } };
 
 export type TagsPageQueryVariables = {};

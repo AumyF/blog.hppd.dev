@@ -3,7 +3,7 @@ import { css } from "@emotion/core";
 import { PageProps, graphql } from "gatsby";
 import { Layout } from "./Layout";
 import { Post, genPostDateAndPath } from "../../libs/post";
-import PostLink from "../molecules/PostLink";
+import PostLink from "../post-link";
 import { ArchiveMonthPageQuery } from "../../../types/graphqlTypes";
 
 export type ArchiveMonthPageContenxt = {

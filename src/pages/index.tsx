@@ -5,9 +5,10 @@ import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { Layout } from "../components/templates/Layout";
 import { graphql, PageProps } from "gatsby";
 import { IndexQuery } from "../../types/graphqlTypes";
-import PostLink from "../components/molecules/PostLink";
+import PostLink from "../components/post-link";
 import { genPostDateAndPath, Post } from "../libs/post";
 import PostList from "../components/organisms/PostList";
+import _ from "lodash";
 
 export const IndexPage: React.FC<PageProps<IndexQuery>> = ({
   data: {
@@ -19,6 +20,7 @@ export const IndexPage: React.FC<PageProps<IndexQuery>> = ({
       posts={edges.map(e => ({
         path: genPostDateAndPath(e.node.fileAbsolutePath).path,
         title: e.node.frontmatter?.title ?? "",
+        tags: _.compact(e.node.frontmatter?.tags),
       }))}
     />
   </Layout>
@@ -35,6 +37,7 @@ export const pageQuery = graphql`
           frontmatter {
             title
             date(formatString: "YYYY-MM-DD")
+            tags
           }
           fileAbsolutePath
         }

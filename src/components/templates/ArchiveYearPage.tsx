@@ -2,7 +2,7 @@ import React from "react";
 import { PageProps, graphql } from "gatsby";
 import { Layout } from "./Layout";
 import { Post, genPostDateAndPath } from "../../libs/post";
-import PostLink from "../molecules/PostLink";
+import PostLink from "../post-link";
 import { ArchiveYearPageQuery } from "../../../types/graphqlTypes";
 
 export type ArchiveYearPageContext = {
