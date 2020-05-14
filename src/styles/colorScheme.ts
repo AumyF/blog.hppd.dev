@@ -1,3 +1,5 @@
+import { Sidebar } from "../components/Sidebar";
+
 export type colors =
   | "dark"
   | "jet"
@@ -31,6 +33,39 @@ const Abyss: Scheme = {
   green: "#43B581",
   blue: "#7289DA",
   red: "#F04747",
+};
+
+const Fiber: Scheme = {
+  ...homura,
+  name: "Fiberboard",
+  dark: "#21374b",
+  jet: "#314d66",
+  silver: "#e7dacb",
+  blue: "#27ae60",
+};
+
+type colorScheme = {
+  name: string;
+  main: {
+    background: string;
+    foreground: string;
+  };
+  sidebar: {
+    background: string;
+    foreground: string;
+  };
+};
+
+const Dark: colorScheme = {
+  name: "Dark",
+  main: {
+    background: "#1e1e21",
+    foreground: "#d0d0d0",
+  },
+  sidebar: {
+    background: "#0000",
+    foreground: "#d0d0d0",
+  },
 };
 
 export default homura;
