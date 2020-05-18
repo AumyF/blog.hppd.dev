@@ -4,6 +4,7 @@ import { PageProps } from "gatsby";
 import { Layout } from "./Layout";
 import { Post } from "../../libs/post";
 import PostLink from "../post-link";
+import PostList from "../organisms/PostList";
 
 export type IndividualTagPageContext = { tag: string; posts: Post[] };
 export type IndividualTagPageProps = PageProps<{}, IndividualTagPageContext>;
@@ -13,9 +14,7 @@ export const IndividualTagPage: React.FC<IndividualTagPageProps> = ({
 }) => (
   <Layout title={`tag: ${tag}`}>
     <div>
-      {posts.map(p => (
-        <PostLink key={p.id} path={p.path} title={p.title} />
-      ))}
+      <PostList posts={posts} />
     </div>
   </Layout>
 );
