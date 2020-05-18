@@ -14,7 +14,7 @@ export const IndividualTagPage: React.FC<IndividualTagPageProps> = ({
   <Layout title={`tag: ${tag}`}>
     <div>
       {posts.map(p => (
-        <PostLink path={p.path} title={p.title} />
+        <PostLink key={p.id} path={p.path} title={p.title} />
       ))}
     </div>
   </Layout>
