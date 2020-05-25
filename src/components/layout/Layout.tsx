@@ -29,7 +29,7 @@ export const Layout: React.FC<LayoutProps> = ({
         styles={css`
           html {
             background-color: #000;
-            color: ${styleValues.global.text};
+            color: var(--global-text);
             scrollbar-color: ${styleValues.global.scrollbar};
             ${Variables}
           }
@@ -68,6 +68,9 @@ const layoutStyle = css`
     nav div nav {
       display: block;
     }
+  }
+  a {
+    color: var(--global-text);
   }
   display: block;
 `;

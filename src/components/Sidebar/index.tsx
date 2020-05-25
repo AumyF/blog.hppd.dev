@@ -24,9 +24,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ toc }) => {
         ${mq.large} {
           width: 200px;
         }
-        a {
-          color: ${styleValues.global.text};
-        }
+        background-color: var(--color-sidebar-background);
       `}
     >
       <div
