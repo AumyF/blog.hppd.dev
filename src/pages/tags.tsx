@@ -1,6 +1,6 @@
 import React from "react";
 import { css } from "@emotion/core";
-import { Layout } from "../components/templates/Layout";
+import { Layout } from "../components/layout/Layout";
 import { PageProps, graphql, Link } from "gatsby";
 import { TagsPageQuery } from "../../types/graphqlTypes";
 import PostLink from "../components/post-link";

@@ -3,7 +3,7 @@ import { Post } from "../../libs/post";
 import { MDXProvider } from "@mdx-js/react";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import { MDXComponents } from "../atoms/MDXComponents";
-import { Layout } from "./Layout";
+import { Layout } from "../layout/Layout";
 import { css } from "@emotion/core";
 import { styleValues } from "../../styles/styleValues";
 import colorScheme from "../../styles/colorScheme";
