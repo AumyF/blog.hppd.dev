@@ -1,6 +1,6 @@
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { css } from "@emotion/core";
-import AnchorOrLink from "../atoms/AnchorOrLink";
+import { AnchorOrLink } from "../atoms/AnchorOrLink";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { useSpring, animated } from "react-spring";

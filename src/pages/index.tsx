@@ -5,7 +5,7 @@ import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { Layout } from "../components/layout/Layout";
 import { graphql, PageProps } from "gatsby";
 import { IndexQuery } from "../../types/graphqlTypes";
-import PostLink from "../components/post-link";
+import PostLink from "../components/post-link/post-link";
 import { genPostDateAndPath, Post } from "../libs/post";
 import PostList from "../components/organisms/PostList";
 import _ from "lodash";

@@ -27,4 +27,3 @@ export const AnchorOrLink: React.FC<GatsbyLinkProps<unknown>> = ({
     </a>
   );
 };
-export default AnchorOrLink;
