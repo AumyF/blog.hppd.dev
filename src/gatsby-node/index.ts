@@ -9,9 +9,9 @@ import {
 } from "../../types/graphqlTypes";
 import Path from "path";
 import { Post } from "../libs/post";
-import { IndividualTagPageContext } from "../components/templates/IndividualTagPage";
-import { ArchiveMonthPageContenxt } from "../components/templates/ArchiveMonthPage";
-import { ArchiveYearPageContext } from "../components/templates/ArchiveYearPage";
+import { IndividualTagPageContext } from "../templates/IndividualTagPage";
+import { ArchiveMonthPageContenxt } from "../templates/ArchiveMonthPage";
+import { ArchiveYearPageContext } from "../templates/ArchiveYearPage";
 
 type GatsbyNodeQuery = {
   allMdx: {
@@ -98,7 +98,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
     const post = Post(edge);
     createPage({
       path: post.path ?? post.id,
-      component: Path.resolve("./src/components/templates/BlogPost.tsx"),
+      component: Path.resolve("./src/templates/BlogPost.tsx"),
       context: { post: post },
     });
     post.tags.forEach(t => {
@@ -113,9 +113,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
   tagTmpArray.forEach(tag =>
     createPage<IndividualTagPageContext>({
       path: "/tags/" + tag,
-      component: Path.resolve(
-        "./src/components/templates/IndividualTagPage.tsx"
-      ),
+      component: Path.resolve("./src/templates/IndividualTagPage.tsx"),
       context: { tag: tag, posts: classifiedPosts[tag] },
     })
   );
@@ -125,9 +123,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
         return;
       } else if (fieldValue === "") {
         createPage<ArchiveYearPageContext>({
-          component: Path.resolve(
-            "./src/components/templates/ArchiveYearPage.tsx"
-          ),
+          component: Path.resolve("./src/templates/ArchiveYearPage.tsx"),
           context: {
             year: name,
             posts: [],
@@ -138,9 +134,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
         });
       } else {
         createPage<ArchiveMonthPageContenxt>({
-          component: Path.resolve(
-            "./src/components/templates/ArchiveMonthPage.tsx"
-          ),
+          component: Path.resolve("./src/templates/ArchiveMonthPage.tsx"),
           context: {
             month: name,
             posts: [],

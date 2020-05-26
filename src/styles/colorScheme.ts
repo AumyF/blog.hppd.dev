@@ -1,4 +1,4 @@
-import { Sidebar } from "../components/Sidebar";
+import { Sidebar } from "../components/sidebar/sidebar";
 
 export type colors =
   | "dark"

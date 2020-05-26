@@ -1,4 +1,4 @@
-import { SidebarButtonProps, SidebarButton } from "./Button";
+import { SidebarButtonProps, SidebarButton } from "./button";
 import { css } from "@emotion/core";
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

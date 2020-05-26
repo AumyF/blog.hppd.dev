@@ -2,7 +2,7 @@ import React from "react";
 import { css } from "@emotion/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
-import { Layout } from "../components/layout/Layout";
+import { Layout } from "../components/layout/layout";
 import { graphql, PageProps } from "gatsby";
 import { IndexQuery } from "../../types/graphqlTypes";
 import PostLink from "../components/post-link/post-link";

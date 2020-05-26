@@ -6,6 +6,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
+    "depgraph": "depcruise --include-only \"^src\" --output-type dot src | dot -T svg > dependencygraph.svg",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md,ts,tsx,mdx}\"",
     "lint": "eslint \"src/**/*.tsx\" && tsc",
@@ -55,6 +56,7 @@
     "@types/react-dom": "^16.9.8",
     "@types/react-helmet": "^5.0.16",
     "@types/react-redux": "^7.1.9",
+    "dependency-cruiser": "^9.3.0",
     "jsonc-parser": "^2.2.1",
     "prettier": "^2.0.4",
     "ts-node": "^8.10.1",

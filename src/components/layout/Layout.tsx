@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Sidebar } from "../Sidebar";
+import { Sidebar } from "../sidebar/sidebar";
 import { Helmet } from "react-helmet";
-import { Main } from "../content/Content";
+import { Main } from "../content";
 import "sanitize.css";
 import { css, Global } from "@emotion/core";
 import s from "../../images/dark.svg";

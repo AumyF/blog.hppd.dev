@@ -1,10 +1,10 @@
 import React from "react";
 import { css } from "@emotion/core";
 import { PageProps } from "gatsby";
-import { Layout } from "../layout/Layout";
-import { Post } from "../../libs/post";
-import PostLink from "../post-link/post-link";
-import PostList from "../organisms/PostList";
+import { Layout } from "../components/layout/layout";
+import { Post } from "../libs/post";
+import PostLink from "../components/post-link/post-link";
+import PostList from "../components/organisms/PostList";
 
 export type IndividualTagPageContext = { tag: string; posts: Post[] };
 export type IndividualTagPageProps = PageProps<{}, IndividualTagPageContext>;

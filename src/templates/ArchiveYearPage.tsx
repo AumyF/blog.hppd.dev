@@ -1,9 +1,10 @@
 import React from "react";
 import { PageProps, graphql } from "gatsby";
-import { Layout } from "../layout/Layout";
-import { Post, genPostDateAndPath } from "../../libs/post";
-import PostLink from "../post-link/post-link";
-import { ArchiveYearPageQuery } from "../../../types/graphqlTypes";
+import { Layout } from "../components/layout/layout";
+import { Post, genPostDateAndPath } from "../libs/post";
+import PostLink from "../components/post-link/post-link";
+import { ArchiveYearPageQuery } from "../../types/graphqlTypes";
+import PostList from "../components/organisms/PostList";
 
 export type ArchiveYearPageContext = {
   year: string;
@@ -24,14 +25,13 @@ export const ArchiveYearPage: React.FC<ArchiveYearPageProps> = ({
 }) => (
   <Layout title={year}>
     <div>
-      {edges.map(({ node: { fileAbsolutePath, frontmatter } }) => (
-        <PostLink
-          {...{
-            title: frontmatter?.title ?? "UNTITLED",
-            path: genPostDateAndPath(fileAbsolutePath).path,
-          }}
-        />
-      ))}
+      <PostList
+        posts={edges.map(({ node: { frontmatter, fileAbsolutePath } }) => {
+          const { title } = frontmatter ?? { title: "" };
+          const { path } = genPostDateAndPath(fileAbsolutePath);
+          return { path, title };
+        })}
+      />
     </div>
   </Layout>
 );

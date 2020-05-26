@@ -10,7 +10,7 @@ import { mq } from "../../styles/mediaQueries";
 import { styleValues } from "../../styles/styleValues";
 import TableOfContents from "../table-of-contents";
 import { TOC } from "../../libs/toc";
-import { SidebarButtonsGroup } from "./ButtonsGroup";
+import { SidebarButtonsGroup } from "./buttons-group";
 
 export type SidebarProps = { toc?: TOC };
 

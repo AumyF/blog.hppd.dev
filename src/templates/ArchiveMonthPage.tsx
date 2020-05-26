@@ -1,10 +1,14 @@
 import React from "react";
 import { css } from "@emotion/core";
 import { PageProps, graphql } from "gatsby";
-import { Layout } from "../layout/Layout";
-import { Post, genPostDateAndPath } from "../../libs/post";
-import PostLink from "../post-link/post-link";
-import { ArchiveMonthPageQuery } from "../../../types/graphqlTypes";
+import { Layout } from "../components/layout/layout";
+import { Post, genPostDateAndPath } from "../libs/post";
+import PostLink from "../components/post-link/post-link";
+import {
+  ArchiveMonthPageQuery,
+  MdxFrontmatter,
+} from "../../types/graphqlTypes";
+import PostList from "../components/organisms/PostList";
 
 export type ArchiveMonthPageContenxt = {
   month: string;
@@ -18,24 +22,19 @@ export type ArchiveMonthPageProps = PageProps<
 >;
 
 export const ArchiveMonthPage: React.FC<ArchiveMonthPageProps> = ({
-  pageContext: { month, endDate, startDate },
+  pageContext: { month, endDate, startDate, posts },
   data: {
     allMdx: { edges },
   },
 }) => (
   <Layout title={month}>
-    {console.log({ endDate, startDate })}
-    <div>
-      {edges.map(({ node: { fileAbsolutePath, frontmatter, id } }) => (
-        <PostLink
-          {...{
-            title: frontmatter?.title ?? "UNTITLED",
-            path: genPostDateAndPath(fileAbsolutePath).path,
-            key: id,
-          }}
-        />
-      ))}
-    </div>
+    <PostList
+      posts={edges.map(({ node: { frontmatter, fileAbsolutePath } }) => {
+        const { title } = frontmatter ?? { title: "" };
+        const { path } = genPostDateAndPath(fileAbsolutePath);
+        return { path, title };
+      })}
+    />
   </Layout>
 );
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { css } from "@emotion/core";
 import { PageProps } from "gatsby";
-import { Layout } from "../components/layout/Layout";
+import { Layout } from "../components/layout/layout";
 
 export type NotFoundPageProps = PageProps<{}>;
 
