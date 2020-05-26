@@ -35,7 +35,7 @@ export const useScheme = (colorName: keyof Variables["scheme"]) =>
 type Variables = {
   scheme: {
     dark: string;
-    white: string;
+    lightgray: string;
   };
 };
 

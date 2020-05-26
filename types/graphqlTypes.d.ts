@@ -2514,3 +2514,54 @@ export type StringQueryOperatorInput = {
   glob?: Maybe<Scalars['String']>;
 };
 
+export type GatsbyNodeQueryVariables = {};
+
+
+export type GatsbyNodeQuery = { allMdx: { edges: Array<{ node: (
+        Pick<Mdx, 'id' | 'tableOfContents' | 'fileAbsolutePath' | 'body' | 'excerpt'>
+        & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'status' | 'tags' | 'title'>> }
+      ), next?: Maybe<{ frontmatter?: Maybe<Pick<MdxFrontmatter, 'title'>> }>, previous?: Maybe<{ frontmatter?: Maybe<Pick<MdxFrontmatter, 'title'>> }> }> }, allDirectory: { group: Array<(
+      Pick<DirectoryGroupConnection, 'fieldValue'>
+      & { edges: Array<{ node: Pick<Directory, 'name'> }> }
+    )> } };
+
+export type IndexQueryVariables = {};
+
+
+export type IndexQuery = { allMdx: { edges: Array<{ node: (
+        Pick<Mdx, 'id' | 'fileAbsolutePath'>
+        & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'title' | 'date' | 'tags'>> }
+      ) }> } };
+
+export type TagsPageQueryVariables = {};
+
+
+export type TagsPageQuery = { allMdx: { group: Array<(
+      Pick<MdxGroupConnection, 'totalCount' | 'fieldValue'>
+      & { edges: Array<{ node: (
+          Pick<Mdx, 'excerpt' | 'fileAbsolutePath'>
+          & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'title'>> }
+        ) }> }
+    )> } };
+
+export type ArchiveMonthPageQueryVariables = {
+  startDate?: Maybe<Scalars['Date']>;
+  endDate?: Maybe<Scalars['Date']>;
+};
+
+
+export type ArchiveMonthPageQuery = { allMdx: { edges: Array<{ node: (
+        Pick<Mdx, 'excerpt' | 'fileAbsolutePath' | 'id'>
+        & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'title' | 'date'>> }
+      ) }> } };
+
+export type ArchiveYearPageQueryVariables = {
+  startDate?: Maybe<Scalars['Date']>;
+  endDate?: Maybe<Scalars['Date']>;
+};
+
+
+export type ArchiveYearPageQuery = { allMdx: { edges: Array<{ node: (
+        Pick<Mdx, 'excerpt' | 'fileAbsolutePath'>
+        & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'title' | 'date'>> }
+      ) }> } };

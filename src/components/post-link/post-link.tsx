@@ -8,6 +8,7 @@ import { styleValues } from "../../styles/styleValues";
 import { useSpring, animated } from "react-spring";
 import TagList from "./tag-list";
 import TagsPage from "../../pages/tags";
+import styled from "@emotion/styled";
 
 export type PostLinkProps = Readonly<{
   path: string;
@@ -16,10 +17,10 @@ export type PostLinkProps = Readonly<{
   css?: Interpolation;
 }>;
 
-export const PostLink: React.FC<PostLinkProps> = ({
+export const PostLink: React.FCX<PostLinkProps> = ({
   path,
   title,
-  css: cssProp,
+  className,
   tags,
 }) => {
   const [hover, setHover] = useState<boolean>(false);
@@ -46,7 +47,6 @@ export const PostLink: React.FC<PostLinkProps> = ({
         width: 100%;
         height: 100%;
         box-shadow: 10px 10px 20px #0009;
-        ${cssProp}
       `}
       to={`/${path}`}
       style={spring}
@@ -67,8 +67,6 @@ export const PostLink: React.FC<PostLinkProps> = ({
     </AnimatedLink>
   );
 };
-
-export default PostLink;
 
 /**
 const Styled = styled(Plain)`
