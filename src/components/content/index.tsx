@@ -24,9 +24,10 @@ export const Main: React.FC<MainProps> = ({ children, title, date }) => (
         padding: 2rem;
         background-color: ${styleValues.main.background};
         letter-spacing: 0.09em;
+        font-feature-settings: "palt";
         h1 {
           border-bottom: 1px solid ${styleValues.global.border};
-          font-size: 2rem;
+          font-size: 1.5rem;
           margin-top: 1rem;
           margin-bottom: 0.5rem;
         }

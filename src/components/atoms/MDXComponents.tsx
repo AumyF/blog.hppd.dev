@@ -8,12 +8,7 @@ import { styleValues } from "../../styles/styleValues";
 type Elm = JSX.IntrinsicElements;
 
 export const MDXComponents: Readonly<Required<Components>> = {
-  h1: styled.h1`
-    border-bottom: 1px solid ${styleValues.global.border};
-    font-size: 1.5rem;
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
-  `,
+  h1: styled.h1``,
   h2: styled.h2`
     border-bottom: 1px solid ${styleValues.global.border};
     font-weight: medium;

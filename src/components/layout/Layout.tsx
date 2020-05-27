@@ -52,7 +52,7 @@ export const Layout: React.FC<LayoutProps> = ({
 };
 
 const layoutStyle = css`
-  font-size: 20px;
+  font-size: 18px;
   min-height: 100vh;
   background-image: url(${s});
   background-attachment: fixed;
