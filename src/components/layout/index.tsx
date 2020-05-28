@@ -70,7 +70,4 @@ const layoutStyle = css`
     }
   }
   display: block;
-  a {
-    color: var(--global-text);
-  }
 `;

@@ -25,6 +25,9 @@ export const Sidebar: React.FC<SidebarProps> = ({ toc }) => {
           width: 200px;
         }
         background-color: var(--color-sidebar-background);
+        a {
+          color: var(--global-text);
+        }
       `}
     >
       <div

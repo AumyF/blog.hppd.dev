@@ -1,6 +1,6 @@
 import { css } from "@emotion/core";
 import React from "react";
-import { AnchorOrLink } from "./AnchorOrLink";
+import { AnchorOrLink } from "./anchor-or-link";
 import { GatsbyLinkProps } from "gatsby";
 import { styleValues } from "../../styles/styleValues";
 
