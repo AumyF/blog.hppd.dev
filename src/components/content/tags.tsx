@@ -65,8 +65,8 @@ export const PostTags: React.FC<PostTagsProps> = ({ tags }) => (
       >
         <Link
           css={css`
-            color: ${colorScheme.dark};
             text-decoration: none;
+            color: var(--scheme-dark);
           `}
           to={`/tags/${tag}/`}
         >

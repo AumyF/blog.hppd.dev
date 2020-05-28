@@ -69,8 +69,8 @@ const layoutStyle = css`
       display: block;
     }
   }
+  display: block;
   a {
     color: var(--global-text);
   }
-  display: block;
 `;
