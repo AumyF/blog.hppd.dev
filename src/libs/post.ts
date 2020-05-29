@@ -12,7 +12,7 @@ export type Post = {
   status: string;
   tags: readonly string[];
   title: string;
-  date: PostDate;
+  date: string;
 };
 
 export const Post: (e: {
@@ -31,7 +31,8 @@ export const Post: (e: {
   node: { body, excerpt, id, tableOfContents, frontmatter, fileAbsolutePath },
 }) => {
   return {
-    ...genPostDateAndPath(fileAbsolutePath),
+    path: genPostPath(fileAbsolutePath),
+    date: frontmatter?.date ?? "2000-01-01",
     body,
     id,
     toc: tableOfContents,
@@ -39,8 +40,17 @@ export const Post: (e: {
     excerpt: excerpt,
     status: frontmatter?.status ?? "public",
     title: frontmatter?.title ?? "UNTITLED",
-    tags: compact(frontmatter?.tags),
+    tags: compact(frontmatter?.tags) ?? ["UNTAGGED"],
   };
+};
+
+const genPostPath: (fileAbsolutePath: string) => string = fileAbsolutePath => {
+  const splitted = fileAbsolutePath.split("/"),
+    fileName = splitted.pop()?.split(".")[0],
+    [day, ...title] = fileName?.split("-") ?? ["01", "untitled"],
+    month = splitted.pop() ?? "01",
+    year = splitted.pop() ?? "2000";
+  return [year, month, [day, ...title].join("-")].join("/");
 };
 
 /**

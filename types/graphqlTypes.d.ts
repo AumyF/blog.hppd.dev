@@ -596,11 +596,11 @@ export type FileFieldsEnum =
   'childMdx___rawBody' |
   'childMdx___fileAbsolutePath' |
   'childMdx___frontmatter___title' |
-  'childMdx___frontmatter___path' |
-  'childMdx___frontmatter___date' |
-  'childMdx___frontmatter___description' |
   'childMdx___frontmatter___status' |
   'childMdx___frontmatter___tags' |
+  'childMdx___frontmatter___date' |
+  'childMdx___frontmatter___path' |
+  'childMdx___frontmatter___description' |
   'childMdx___body' |
   'childMdx___excerpt' |
   'childMdx___headings' |
@@ -841,11 +841,11 @@ export type MdxFieldsEnum =
   'rawBody' |
   'fileAbsolutePath' |
   'frontmatter___title' |
-  'frontmatter___path' |
-  'frontmatter___date' |
-  'frontmatter___description' |
   'frontmatter___status' |
   'frontmatter___tags' |
+  'frontmatter___date' |
+  'frontmatter___path' |
+  'frontmatter___description' |
   'body' |
   'excerpt' |
   'headings' |
@@ -971,11 +971,11 @@ export type MdxFilterInput = {
 
 export type MdxFrontmatter = {
   title: Scalars['String'];
-  path?: Maybe<Scalars['String']>;
-  date?: Maybe<Scalars['Date']>;
-  description?: Maybe<Scalars['String']>;
   status?: Maybe<Scalars['String']>;
   tags?: Maybe<Array<Maybe<Scalars['String']>>>;
+  date?: Maybe<Scalars['Date']>;
+  path?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
 };
 
 
@@ -988,11 +988,11 @@ export type MdxFrontmatterDateArgs = {
 
 export type MdxFrontmatterFilterInput = {
   title?: Maybe<StringQueryOperatorInput>;
-  path?: Maybe<StringQueryOperatorInput>;
-  date?: Maybe<DateQueryOperatorInput>;
-  description?: Maybe<StringQueryOperatorInput>;
   status?: Maybe<StringQueryOperatorInput>;
   tags?: Maybe<StringQueryOperatorInput>;
+  date?: Maybe<DateQueryOperatorInput>;
+  path?: Maybe<StringQueryOperatorInput>;
+  description?: Maybe<StringQueryOperatorInput>;
 };
 
 export type MdxGroupConnection = {
@@ -1078,6 +1078,14 @@ export type Post = Node & {
   parent?: Maybe<Node>;
   children: Array<Node>;
   internal: Internal;
+};
+
+
+export type PostDateArgs = {
+  formatString?: Maybe<Scalars['String']>;
+  fromNow?: Maybe<Scalars['Boolean']>;
+  difference?: Maybe<Scalars['String']>;
+  locale?: Maybe<Scalars['String']>;
 };
 
 export type PostConnection = {
@@ -1881,8 +1889,8 @@ export type SitePageContextFilterInput = {
 };
 
 export type SitePageContextPost = {
-  date?: Maybe<SitePageContextPostDate>;
   path?: Maybe<Scalars['String']>;
+  date?: Maybe<Scalars['Date']>;
   body?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   toc?: Maybe<SitePageContextPostToc>;
@@ -1893,21 +1901,9 @@ export type SitePageContextPost = {
   tags?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
-export type SitePageContextPostDate = {
-  year?: Maybe<Scalars['Int']>;
-  month?: Maybe<Scalars['Int']>;
-  day?: Maybe<Scalars['Int']>;
-};
-
-export type SitePageContextPostDateFilterInput = {
-  year?: Maybe<IntQueryOperatorInput>;
-  month?: Maybe<IntQueryOperatorInput>;
-  day?: Maybe<IntQueryOperatorInput>;
-};
-
 export type SitePageContextPostFilterInput = {
-  date?: Maybe<SitePageContextPostDateFilterInput>;
   path?: Maybe<StringQueryOperatorInput>;
+  date?: Maybe<DateQueryOperatorInput>;
   body?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
   toc?: Maybe<SitePageContextPostTocFilterInput>;
@@ -1919,8 +1915,8 @@ export type SitePageContextPostFilterInput = {
 };
 
 export type SitePageContextPosts = {
-  date?: Maybe<SitePageContextPostsDate>;
   path?: Maybe<Scalars['String']>;
+  date?: Maybe<Scalars['Date']>;
   body?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   toc?: Maybe<SitePageContextPostsToc>;
@@ -1931,21 +1927,9 @@ export type SitePageContextPosts = {
   tags?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
-export type SitePageContextPostsDate = {
-  year?: Maybe<Scalars['Int']>;
-  month?: Maybe<Scalars['Int']>;
-  day?: Maybe<Scalars['Int']>;
-};
-
-export type SitePageContextPostsDateFilterInput = {
-  year?: Maybe<IntQueryOperatorInput>;
-  month?: Maybe<IntQueryOperatorInput>;
-  day?: Maybe<IntQueryOperatorInput>;
-};
-
 export type SitePageContextPostsFilterInput = {
-  date?: Maybe<SitePageContextPostsDateFilterInput>;
   path?: Maybe<StringQueryOperatorInput>;
+  date?: Maybe<DateQueryOperatorInput>;
   body?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
   toc?: Maybe<SitePageContextPostsTocFilterInput>;
@@ -2263,10 +2247,8 @@ export type SitePageFieldsEnum =
   'internal___owner' |
   'internal___type' |
   'isCreatedByStatefulCreatePages' |
-  'context___post___date___year' |
-  'context___post___date___month' |
-  'context___post___date___day' |
   'context___post___path' |
+  'context___post___date' |
   'context___post___body' |
   'context___post___id' |
   'context___post___toc___items' |
@@ -2277,10 +2259,8 @@ export type SitePageFieldsEnum =
   'context___post___tags' |
   'context___tag' |
   'context___posts' |
-  'context___posts___date___year' |
-  'context___posts___date___month' |
-  'context___posts___date___day' |
   'context___posts___path' |
+  'context___posts___date' |
   'context___posts___body' |
   'context___posts___id' |
   'context___posts___toc___items' |
@@ -2725,9 +2705,13 @@ export type StringQueryOperatorInput = {
 };
 
 export type TableOfContents = {
-  year: Scalars['Int'];
-  month: Scalars['Int'];
-  day: Scalars['Int'];
+  items: Array<Maybe<TableOfContentsItem>>;
+};
+
+export type TableOfContentsItem = {
+  url: Scalars['String'];
+  title: Scalars['String'];
+  items?: Maybe<Array<Maybe<TableOfContentsItem>>>;
 };
 
 export type GatsbyNodeQueryVariables = {};

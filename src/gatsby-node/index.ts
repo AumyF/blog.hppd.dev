@@ -7,6 +7,7 @@ import {
   GatsbyGraphQLObjectType,
   Node,
   NodeInput,
+  CreateResolversArgs,
 } from "gatsby";
 import {
   //GatsbyNodeQuery,
@@ -203,8 +204,20 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
 }: CreateSchemaCustomizationArgs) => {
   createTypes(
     buildObjectType({
+      name: "TableOfContentsItem",
+      fields: {
+        url: "String!",
+        title: "String!",
+        items: "[TableOfContentsItem]",
+      },
+    })
+  );
+  createTypes(
+    buildObjectType({
       name: "TableOfContents",
-      fields: { year: "Int!", month: "Int!", day: "Int!" },
+      fields: {
+        items: "[TableOfContentsItem]!",
+      },
     })
   );
   createTypes(
@@ -214,23 +227,23 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
       fields: {
         title: "String!",
         body: "String!",
-        date: "Date!",
+        date: {
+          type: "Date!",
+          /* https://www.gatsbyjs.org/docs/schema-customization/#extensions-and-directives
+          Without this property, a warning occurs: "Deprecation warning - adding inferred resolver for field Post.date. In Gatsby v3, only fields with an explicit directive/extension will get a resolver."
+          */
+          extensions: {
+            dateformat: {},
+          },
+        },
         path: "String!",
         status: "String!",
         tags: "[String]!",
         toc: "JSON!",
       },
+      extensions: [],
     })
   );
-};
-
-export const onCreateNode: GatsbyNode["onCreateNode"] = ({
-  actions: { createNodeField, createNode },
-  node,
-}: CreateNodeArgs) => {
-  console.log(node.internal.type);
-  if (!isMdx(node)) return;
-  createNodeField({ node: node, fieldName: "PostDate", value: "" });
 };
 
 const isMdx = (node: { internal: { type: string } }): node is Mdx =>
