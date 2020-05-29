@@ -13,7 +13,7 @@ import styled from "@emotion/styled";
 export type PostLinkProps = Readonly<{
   path: string;
   title: string;
-  tags?: string[];
+  tags?: readonly string[];
   css?: Interpolation;
 }>;
 

@@ -1,4 +1,13 @@
-import { GatsbyNode } from "gatsby";
+import {
+  GatsbyNode,
+  CreateSchemaCustomizationArgs,
+  CreateNodeArgs,
+  SetFieldsOnGraphQLNodeTypeArgs,
+  PluginOptions,
+  GatsbyGraphQLObjectType,
+  Node,
+  NodeInput,
+} from "gatsby";
 import {
   //GatsbyNodeQuery,
   Mdx,
@@ -6,6 +15,7 @@ import {
   MdxFrontmatter,
   DirectoryGroupConnection,
   Directory,
+  MdxEdge,
 } from "../../types/graphqlTypes";
 import Path from "path";
 import { Post } from "../libs/post";
@@ -37,7 +47,10 @@ type GatsbyNodeQuery = {
 
 export const createPages: GatsbyNode["createPages"] = async ({
   graphql,
-  actions: { createPage },
+  actions: { createPage, createNode },
+  loadNodeContent,
+  createNodeId,
+  createContentDigest,
   reporter,
 }) => {
   console.log("хорошо!");
@@ -51,7 +64,12 @@ export const createPages: GatsbyNode["createPages"] = async ({
             fileAbsolutePath
             body
             excerpt
+            internal {
+              content
+              type
+            }
             frontmatter {
+              date
               status
               tags
               title
@@ -146,29 +164,84 @@ export const createPages: GatsbyNode["createPages"] = async ({
       }
     });
   });
+
+  const genPostNode = (
+    edge: Parameters<typeof Post>[0],
+    content: string
+  ): NodeInput & {
+    title: string;
+    body: string;
+    date: any;
+    path: string;
+    status: string;
+    tags: readonly string[];
+    toc: any;
+  } => {
+    const { node } = edge;
+    const p = Post({ node: node });
+    const pn: ReturnType<typeof genPostNode> = {
+      ...p,
+      id: createNodeId(`${node.id} WRYYYYY`),
+      parent: node.id,
+      internal: {
+        content,
+        type: `Post`,
+        contentDigest: createContentDigest(p),
+      },
+    };
+    return pn;
+  };
+  // Post
+  for (const edge of result.data.allMdx.edges) {
+    createNode(genPostNode(edge, await loadNodeContent(edge.node)));
+  }
 };
 
-/*
 export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] = async ({
   actions: { createTypes },
   schema: { buildObjectType },
 }: CreateSchemaCustomizationArgs) => {
   createTypes(
     buildObjectType({
-      name: "PostDate",
+      name: "TableOfContents",
       fields: { year: "Int!", month: "Int!", day: "Int!" },
+    })
+  );
+  createTypes(
+    buildObjectType({
+      interfaces: [`Node`],
+      name: "Post",
+      fields: {
+        title: "String!",
+        body: "String!",
+        date: "Date!",
+        path: "String!",
+        status: "String!",
+        tags: "[String]!",
+        toc: "JSON!",
+      },
     })
   );
 };
 
 export const onCreateNode: GatsbyNode["onCreateNode"] = ({
-  actions: { createNodeField },
+  actions: { createNodeField, createNode },
   node,
 }: CreateNodeArgs) => {
+  console.log(node.internal.type);
   if (!isMdx(node)) return;
-  createNodeField({node: node,fieldName: "PostDate",value: "" })
+  createNodeField({ node: node, fieldName: "PostDate", value: "" });
 };
 
 const isMdx = (node: { internal: { type: string } }): node is Mdx =>
   node.internal.type === "Mdx";
+
+/*
+export const setFieldsOnGraphQLNodeType: GatsbyNode["setFieldsOnGraphQLNodeType"] = async (
+  args: SetFieldsOnGraphQLNodeTypeArgs,
+  options: PluginOptions
+): Promise<GatsbyGraphQLObjectType> => {
+  const MdxNodes: Mdx[] = args.getNodesByType("Mdx");
+  return { kind: "OBJECT", config: { name: "Post" } };
+};
 */
