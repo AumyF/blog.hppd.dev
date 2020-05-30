@@ -20,6 +20,5 @@ export const PostDate: (
 export const PostDateToString: (d?: PostDate) => string | null = d => {
   if (d == null || Object.values(d).includes(null)) return null;
   const { year, month, day } = d;
-  console.log({ year, month, day });
   return [year, month, day].join("-");
 };

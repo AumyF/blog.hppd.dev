@@ -1877,17 +1877,157 @@ export type SitePageConnectionGroupArgs = {
 export type SitePageContext = {
   post?: Maybe<SitePageContextPost>;
   tag?: Maybe<Scalars['String']>;
-  posts?: Maybe<Array<Maybe<SitePageContextPosts>>>;
+  edges?: Maybe<Array<Maybe<SitePageContextEdges>>>;
   year?: Maybe<Scalars['Date']>;
   startDate?: Maybe<Scalars['Date']>;
   endDate?: Maybe<Scalars['String']>;
   month?: Maybe<Scalars['String']>;
 };
 
+export type SitePageContextEdges = {
+  node?: Maybe<SitePageContextEdgesNode>;
+};
+
+export type SitePageContextEdgesFilterInput = {
+  node?: Maybe<SitePageContextEdgesNodeFilterInput>;
+};
+
+export type SitePageContextEdgesFilterListInput = {
+  elemMatch?: Maybe<SitePageContextEdgesFilterInput>;
+};
+
+export type SitePageContextEdgesNode = {
+  path?: Maybe<Scalars['String']>;
+  date?: Maybe<Scalars['Date']>;
+  body?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  toc?: Maybe<SitePageContextEdgesNodeToc>;
+  description?: Maybe<Scalars['String']>;
+  excerpt?: Maybe<Scalars['String']>;
+  status?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  tags?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+export type SitePageContextEdgesNodeFilterInput = {
+  path?: Maybe<StringQueryOperatorInput>;
+  date?: Maybe<DateQueryOperatorInput>;
+  body?: Maybe<StringQueryOperatorInput>;
+  id?: Maybe<StringQueryOperatorInput>;
+  toc?: Maybe<SitePageContextEdgesNodeTocFilterInput>;
+  description?: Maybe<StringQueryOperatorInput>;
+  excerpt?: Maybe<StringQueryOperatorInput>;
+  status?: Maybe<StringQueryOperatorInput>;
+  title?: Maybe<StringQueryOperatorInput>;
+  tags?: Maybe<StringQueryOperatorInput>;
+};
+
+export type SitePageContextEdgesNodeToc = {
+  items?: Maybe<Array<Maybe<SitePageContextEdgesNodeTocItems>>>;
+};
+
+export type SitePageContextEdgesNodeTocFilterInput = {
+  items?: Maybe<SitePageContextEdgesNodeTocItemsFilterListInput>;
+};
+
+export type SitePageContextEdgesNodeTocItems = {
+  url?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  items?: Maybe<Array<Maybe<SitePageContextEdgesNodeTocItemsItems>>>;
+};
+
+export type SitePageContextEdgesNodeTocItemsFilterInput = {
+  url?: Maybe<StringQueryOperatorInput>;
+  title?: Maybe<StringQueryOperatorInput>;
+  items?: Maybe<SitePageContextEdgesNodeTocItemsItemsFilterListInput>;
+};
+
+export type SitePageContextEdgesNodeTocItemsFilterListInput = {
+  elemMatch?: Maybe<SitePageContextEdgesNodeTocItemsFilterInput>;
+};
+
+export type SitePageContextEdgesNodeTocItemsItems = {
+  url?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  items?: Maybe<Array<Maybe<SitePageContextEdgesNodeTocItemsItemsItems>>>;
+};
+
+export type SitePageContextEdgesNodeTocItemsItemsFilterInput = {
+  url?: Maybe<StringQueryOperatorInput>;
+  title?: Maybe<StringQueryOperatorInput>;
+  items?: Maybe<SitePageContextEdgesNodeTocItemsItemsItemsFilterListInput>;
+};
+
+export type SitePageContextEdgesNodeTocItemsItemsFilterListInput = {
+  elemMatch?: Maybe<SitePageContextEdgesNodeTocItemsItemsFilterInput>;
+};
+
+export type SitePageContextEdgesNodeTocItemsItemsItems = {
+  url?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  items?: Maybe<Array<Maybe<SitePageContextEdgesNodeTocItemsItemsItemsItems>>>;
+};
+
+export type SitePageContextEdgesNodeTocItemsItemsItemsFilterInput = {
+  url?: Maybe<StringQueryOperatorInput>;
+  title?: Maybe<StringQueryOperatorInput>;
+  items?: Maybe<SitePageContextEdgesNodeTocItemsItemsItemsItemsFilterListInput>;
+};
+
+export type SitePageContextEdgesNodeTocItemsItemsItemsFilterListInput = {
+  elemMatch?: Maybe<SitePageContextEdgesNodeTocItemsItemsItemsFilterInput>;
+};
+
+export type SitePageContextEdgesNodeTocItemsItemsItemsItems = {
+  url?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  items?: Maybe<Array<Maybe<SitePageContextEdgesNodeTocItemsItemsItemsItemsItems>>>;
+};
+
+export type SitePageContextEdgesNodeTocItemsItemsItemsItemsFilterInput = {
+  url?: Maybe<StringQueryOperatorInput>;
+  title?: Maybe<StringQueryOperatorInput>;
+  items?: Maybe<SitePageContextEdgesNodeTocItemsItemsItemsItemsItemsFilterListInput>;
+};
+
+export type SitePageContextEdgesNodeTocItemsItemsItemsItemsFilterListInput = {
+  elemMatch?: Maybe<SitePageContextEdgesNodeTocItemsItemsItemsItemsFilterInput>;
+};
+
+export type SitePageContextEdgesNodeTocItemsItemsItemsItemsItems = {
+  url?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  items?: Maybe<Array<Maybe<SitePageContextEdgesNodeTocItemsItemsItemsItemsItemsItems>>>;
+};
+
+export type SitePageContextEdgesNodeTocItemsItemsItemsItemsItemsFilterInput = {
+  url?: Maybe<StringQueryOperatorInput>;
+  title?: Maybe<StringQueryOperatorInput>;
+  items?: Maybe<SitePageContextEdgesNodeTocItemsItemsItemsItemsItemsItemsFilterListInput>;
+};
+
+export type SitePageContextEdgesNodeTocItemsItemsItemsItemsItemsFilterListInput = {
+  elemMatch?: Maybe<SitePageContextEdgesNodeTocItemsItemsItemsItemsItemsFilterInput>;
+};
+
+export type SitePageContextEdgesNodeTocItemsItemsItemsItemsItemsItems = {
+  url?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+};
+
+export type SitePageContextEdgesNodeTocItemsItemsItemsItemsItemsItemsFilterInput = {
+  url?: Maybe<StringQueryOperatorInput>;
+  title?: Maybe<StringQueryOperatorInput>;
+};
+
+export type SitePageContextEdgesNodeTocItemsItemsItemsItemsItemsItemsFilterListInput = {
+  elemMatch?: Maybe<SitePageContextEdgesNodeTocItemsItemsItemsItemsItemsItemsFilterInput>;
+};
+
 export type SitePageContextFilterInput = {
   post?: Maybe<SitePageContextPostFilterInput>;
   tag?: Maybe<StringQueryOperatorInput>;
-  posts?: Maybe<SitePageContextPostsFilterListInput>;
+  edges?: Maybe<SitePageContextEdgesFilterListInput>;
   year?: Maybe<DateQueryOperatorInput>;
   startDate?: Maybe<DateQueryOperatorInput>;
   endDate?: Maybe<StringQueryOperatorInput>;
@@ -1918,138 +2058,6 @@ export type SitePageContextPostFilterInput = {
   status?: Maybe<StringQueryOperatorInput>;
   title?: Maybe<StringQueryOperatorInput>;
   tags?: Maybe<StringQueryOperatorInput>;
-};
-
-export type SitePageContextPosts = {
-  path?: Maybe<Scalars['String']>;
-  date?: Maybe<Scalars['Date']>;
-  body?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['String']>;
-  toc?: Maybe<SitePageContextPostsToc>;
-  description?: Maybe<Scalars['String']>;
-  excerpt?: Maybe<Scalars['String']>;
-  status?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
-  tags?: Maybe<Array<Maybe<Scalars['String']>>>;
-};
-
-export type SitePageContextPostsFilterInput = {
-  path?: Maybe<StringQueryOperatorInput>;
-  date?: Maybe<DateQueryOperatorInput>;
-  body?: Maybe<StringQueryOperatorInput>;
-  id?: Maybe<StringQueryOperatorInput>;
-  toc?: Maybe<SitePageContextPostsTocFilterInput>;
-  description?: Maybe<StringQueryOperatorInput>;
-  excerpt?: Maybe<StringQueryOperatorInput>;
-  status?: Maybe<StringQueryOperatorInput>;
-  title?: Maybe<StringQueryOperatorInput>;
-  tags?: Maybe<StringQueryOperatorInput>;
-};
-
-export type SitePageContextPostsFilterListInput = {
-  elemMatch?: Maybe<SitePageContextPostsFilterInput>;
-};
-
-export type SitePageContextPostsToc = {
-  items?: Maybe<Array<Maybe<SitePageContextPostsTocItems>>>;
-};
-
-export type SitePageContextPostsTocFilterInput = {
-  items?: Maybe<SitePageContextPostsTocItemsFilterListInput>;
-};
-
-export type SitePageContextPostsTocItems = {
-  url?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
-  items?: Maybe<Array<Maybe<SitePageContextPostsTocItemsItems>>>;
-};
-
-export type SitePageContextPostsTocItemsFilterInput = {
-  url?: Maybe<StringQueryOperatorInput>;
-  title?: Maybe<StringQueryOperatorInput>;
-  items?: Maybe<SitePageContextPostsTocItemsItemsFilterListInput>;
-};
-
-export type SitePageContextPostsTocItemsFilterListInput = {
-  elemMatch?: Maybe<SitePageContextPostsTocItemsFilterInput>;
-};
-
-export type SitePageContextPostsTocItemsItems = {
-  url?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
-  items?: Maybe<Array<Maybe<SitePageContextPostsTocItemsItemsItems>>>;
-};
-
-export type SitePageContextPostsTocItemsItemsFilterInput = {
-  url?: Maybe<StringQueryOperatorInput>;
-  title?: Maybe<StringQueryOperatorInput>;
-  items?: Maybe<SitePageContextPostsTocItemsItemsItemsFilterListInput>;
-};
-
-export type SitePageContextPostsTocItemsItemsFilterListInput = {
-  elemMatch?: Maybe<SitePageContextPostsTocItemsItemsFilterInput>;
-};
-
-export type SitePageContextPostsTocItemsItemsItems = {
-  url?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
-  items?: Maybe<Array<Maybe<SitePageContextPostsTocItemsItemsItemsItems>>>;
-};
-
-export type SitePageContextPostsTocItemsItemsItemsFilterInput = {
-  url?: Maybe<StringQueryOperatorInput>;
-  title?: Maybe<StringQueryOperatorInput>;
-  items?: Maybe<SitePageContextPostsTocItemsItemsItemsItemsFilterListInput>;
-};
-
-export type SitePageContextPostsTocItemsItemsItemsFilterListInput = {
-  elemMatch?: Maybe<SitePageContextPostsTocItemsItemsItemsFilterInput>;
-};
-
-export type SitePageContextPostsTocItemsItemsItemsItems = {
-  url?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
-  items?: Maybe<Array<Maybe<SitePageContextPostsTocItemsItemsItemsItemsItems>>>;
-};
-
-export type SitePageContextPostsTocItemsItemsItemsItemsFilterInput = {
-  url?: Maybe<StringQueryOperatorInput>;
-  title?: Maybe<StringQueryOperatorInput>;
-  items?: Maybe<SitePageContextPostsTocItemsItemsItemsItemsItemsFilterListInput>;
-};
-
-export type SitePageContextPostsTocItemsItemsItemsItemsFilterListInput = {
-  elemMatch?: Maybe<SitePageContextPostsTocItemsItemsItemsItemsFilterInput>;
-};
-
-export type SitePageContextPostsTocItemsItemsItemsItemsItems = {
-  url?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
-  items?: Maybe<Array<Maybe<SitePageContextPostsTocItemsItemsItemsItemsItemsItems>>>;
-};
-
-export type SitePageContextPostsTocItemsItemsItemsItemsItemsFilterInput = {
-  url?: Maybe<StringQueryOperatorInput>;
-  title?: Maybe<StringQueryOperatorInput>;
-  items?: Maybe<SitePageContextPostsTocItemsItemsItemsItemsItemsItemsFilterListInput>;
-};
-
-export type SitePageContextPostsTocItemsItemsItemsItemsItemsFilterListInput = {
-  elemMatch?: Maybe<SitePageContextPostsTocItemsItemsItemsItemsItemsFilterInput>;
-};
-
-export type SitePageContextPostsTocItemsItemsItemsItemsItemsItems = {
-  url?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
-};
-
-export type SitePageContextPostsTocItemsItemsItemsItemsItemsItemsFilterInput = {
-  url?: Maybe<StringQueryOperatorInput>;
-  title?: Maybe<StringQueryOperatorInput>;
-};
-
-export type SitePageContextPostsTocItemsItemsItemsItemsItemsItemsFilterListInput = {
-  elemMatch?: Maybe<SitePageContextPostsTocItemsItemsItemsItemsItemsItemsFilterInput>;
 };
 
 export type SitePageContextPostToc = {
@@ -2264,17 +2272,16 @@ export type SitePageFieldsEnum =
   'context___post___title' |
   'context___post___tags' |
   'context___tag' |
-  'context___posts' |
-  'context___posts___path' |
-  'context___posts___date' |
-  'context___posts___body' |
-  'context___posts___id' |
-  'context___posts___toc___items' |
-  'context___posts___description' |
-  'context___posts___excerpt' |
-  'context___posts___status' |
-  'context___posts___title' |
-  'context___posts___tags' |
+  'context___edges' |
+  'context___edges___node___path' |
+  'context___edges___node___date' |
+  'context___edges___node___body' |
+  'context___edges___node___id' |
+  'context___edges___node___description' |
+  'context___edges___node___excerpt' |
+  'context___edges___node___status' |
+  'context___edges___node___title' |
+  'context___edges___node___tags' |
   'context___year' |
   'context___startDate' |
   'context___endDate' |
