@@ -1,4 +1,4 @@
-import SwipingAnchor from "../atoms/swiping-anchor";
+import { SwipingAnchor } from "../atoms/swiping-anchor";
 import React from "react";
 import { css } from "@emotion/core";
 import { styleValues } from "../../styles/styleValues";

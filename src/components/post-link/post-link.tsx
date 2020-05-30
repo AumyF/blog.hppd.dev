@@ -6,9 +6,7 @@ import { Post } from "../../libs/post";
 import {} from "ts-essentials";
 import { styleValues } from "../../styles/styleValues";
 import { useSpring, animated } from "react-spring";
-import TagList from "./tag-list";
-import TagsPage from "../../pages/tags";
-import styled from "@emotion/styled";
+import { TagList } from "./tag-list";
 
 export type PostLinkProps = Readonly<{
   path: string;

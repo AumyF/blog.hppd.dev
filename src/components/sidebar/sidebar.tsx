@@ -8,7 +8,7 @@ import {
 import { css } from "@emotion/core";
 import { mq } from "../../styles/mediaQueries";
 import { styleValues } from "../../styles/styleValues";
-import TableOfContents from "../table-of-contents";
+import { TableOfContents } from "../table-of-contents";
 import { TOC } from "../../libs/toc";
 import { SidebarButtonsGroup } from "./buttons-group";
 

@@ -7,7 +7,7 @@ import { Layout } from "../components/layout";
 import { css } from "@emotion/core";
 import { styleValues } from "../styles/styleValues";
 import colorScheme from "../styles/colorScheme";
-import PostTags from "../components/content/tags";
+import { PostTags } from "../components/content/tags";
 
 export type BlogPostProps = {
   pageContext: { post: Post };

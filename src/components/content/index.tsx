@@ -1,6 +1,6 @@
 import React from "react";
 import { css } from "@emotion/core";
-import MainHeader from "./header";
+import { MainHeader } from "./header";
 import { styleValues } from "../../styles/styleValues";
 import { PostDate } from "../../libs/date";
 import Footer from "./footer";
