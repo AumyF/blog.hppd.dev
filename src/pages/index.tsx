@@ -11,17 +11,11 @@ import _ from "lodash";
 
 export const IndexPage: React.FC<PageProps<IndexQuery>> = ({
   data: {
-    allMdx: { edges },
+    allPost: { edges },
   },
 }) => (
   <Layout title="MOMIREPO">
-    <PostList
-      posts={edges.map(e => ({
-        path: genPostDateAndPath(e.node.fileAbsolutePath).path,
-        title: e.node.frontmatter?.title ?? "",
-        tags: _.compact(e.node.frontmatter?.tags),
-      }))}
-    />
+    <PostList posts={edges.map(e => e.node)} />
   </Layout>
 );
 
@@ -29,16 +23,14 @@ export default IndexPage;
 
 export const pageQuery = graphql`
   query Index {
-    allMdx(sort: { order: DESC, fields: frontmatter___date }) {
+    allPost(sort: { order: DESC, fields: date }) {
       edges {
         node {
           id
-          frontmatter {
-            title
-            date(formatString: "YYYY-MM-DD")
-            tags
-          }
-          fileAbsolutePath
+          title
+          tags
+          date
+          path
         }
       }
     }

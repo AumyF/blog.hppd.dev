@@ -10,7 +10,7 @@ export type Post = {
   excerpt: string;
   path: string;
   status: string;
-  tags: readonly string[];
+  tags: string[];
   title: string;
   date: string;
 };
@@ -40,7 +40,7 @@ export const Post: (e: {
     excerpt: excerpt,
     status: frontmatter?.status ?? "public",
     title: frontmatter?.title ?? "UNTITLED",
-    tags: compact(frontmatter?.tags) ?? ["UNTAGGED"],
+    tags: compact(frontmatter?.tags ?? ["UNTAGGED"]),
   };
 };
 

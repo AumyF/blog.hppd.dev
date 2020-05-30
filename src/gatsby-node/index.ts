@@ -238,8 +238,8 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
         },
         path: "String!",
         status: "String!",
-        tags: "[String]!",
-        toc: "JSON!",
+        tags: "[String!]!",
+        toc: "TableOfContents!",
       },
       extensions: [],
     })

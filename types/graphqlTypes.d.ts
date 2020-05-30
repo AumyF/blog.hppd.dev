@@ -1070,8 +1070,8 @@ export type Post = Node & {
   date: Scalars['Date'];
   path: Scalars['String'];
   status: Scalars['String'];
-  tags: Array<Maybe<Scalars['String']>>;
-  toc: Scalars['JSON'];
+  tags: Array<Scalars['String']>;
+  toc: TableOfContents;
   description?: Maybe<Scalars['String']>;
   excerpt?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
@@ -1122,7 +1122,13 @@ export type PostFieldsEnum =
   'path' |
   'status' |
   'tags' |
-  'toc' |
+  'toc___items' |
+  'toc___items___url' |
+  'toc___items___title' |
+  'toc___items___items' |
+  'toc___items___items___url' |
+  'toc___items___items___title' |
+  'toc___items___items___items' |
   'description' |
   'excerpt' |
   'id' |
@@ -1219,7 +1225,7 @@ export type PostFilterInput = {
   path?: Maybe<StringQueryOperatorInput>;
   status?: Maybe<StringQueryOperatorInput>;
   tags?: Maybe<StringQueryOperatorInput>;
-  toc?: Maybe<JsonQueryOperatorInput>;
+  toc?: Maybe<TableOfContentsFilterInput>;
   description?: Maybe<StringQueryOperatorInput>;
   excerpt?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
@@ -1445,7 +1451,7 @@ export type QueryPostArgs = {
   path?: Maybe<StringQueryOperatorInput>;
   status?: Maybe<StringQueryOperatorInput>;
   tags?: Maybe<StringQueryOperatorInput>;
-  toc?: Maybe<JsonQueryOperatorInput>;
+  toc?: Maybe<TableOfContentsFilterInput>;
   description?: Maybe<StringQueryOperatorInput>;
   excerpt?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
@@ -2708,10 +2714,24 @@ export type TableOfContents = {
   items: Array<Maybe<TableOfContentsItem>>;
 };
 
+export type TableOfContentsFilterInput = {
+  items?: Maybe<TableOfContentsItemFilterListInput>;
+};
+
 export type TableOfContentsItem = {
   url: Scalars['String'];
   title: Scalars['String'];
   items?: Maybe<Array<Maybe<TableOfContentsItem>>>;
+};
+
+export type TableOfContentsItemFilterInput = {
+  url?: Maybe<StringQueryOperatorInput>;
+  title?: Maybe<StringQueryOperatorInput>;
+  items?: Maybe<TableOfContentsItemFilterListInput>;
+};
+
+export type TableOfContentsItemFilterListInput = {
+  elemMatch?: Maybe<TableOfContentsItemFilterInput>;
 };
 
 export type GatsbyNodeQueryVariables = {};
@@ -2728,10 +2748,7 @@ export type GatsbyNodeQuery = { allMdx: { edges: Array<{ node: (
 export type IndexQueryVariables = {};
 
 
-export type IndexQuery = { allMdx: { edges: Array<{ node: (
-        Pick<Mdx, 'id' | 'fileAbsolutePath'>
-        & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'title' | 'date' | 'tags'>> }
-      ) }> } };
+export type IndexQuery = { allPost: { edges: Array<{ node: Pick<Post, 'id' | 'title' | 'tags' | 'date' | 'path'> }> } };
 
 export type TagsPageQueryVariables = {};
 
