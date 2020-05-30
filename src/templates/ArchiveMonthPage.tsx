@@ -7,7 +7,7 @@ import {
   ArchiveMonthPageQuery,
   MdxFrontmatter,
 } from "../../types/graphqlTypes";
-import { PostList } from "../components/organisms/PostList";
+import { PostList } from "../components/post-link/post-list";
 
 export type ArchiveMonthPageContenxt = {
   month: string;

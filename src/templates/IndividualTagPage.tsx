@@ -3,7 +3,7 @@ import { css } from "@emotion/core";
 import { PageProps } from "gatsby";
 import { Layout } from "../components/layout";
 import { Post } from "../libs/post";
-import { PostList } from "../components/organisms/PostList";
+import { PostList } from "../components/post-link/post-list";
 
 export type IndividualTagPageContext = {
   tag: string;

@@ -6,7 +6,7 @@ import { Layout } from "../components/layout";
 import { graphql, PageProps } from "gatsby";
 import { IndexQuery } from "../../types/graphqlTypes";
 import { genPostDateAndPath, Post } from "../libs/post";
-import { PostList } from "../components/organisms/PostList";
+import { PostList } from "../components/post-link/post-list";
 import _ from "lodash";
 
 export const IndexPage: React.FC<PageProps<IndexQuery>> = ({

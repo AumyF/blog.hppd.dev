@@ -1,6 +1,6 @@
 import React, { useLayoutEffect } from "react";
 import { css } from "@emotion/core";
-import { PostLink } from "../post-link/post-link";
+import { PostLink } from "./post-link";
 import { mq } from "../../styles/mediaQueries";
 import _ from "lodash";
 import { Post } from "../../../types/graphqlTypes";
