@@ -3,7 +3,7 @@ import { css } from "@emotion/core";
 import { PostDate, PostDateToString } from "../../libs/date";
 import { styleValues } from "../../styles/styleValues";
 
-export type MainHeaderProps = { title: string; date?: PostDate };
+export type MainHeaderProps = { title: string; date?: string };
 
 export const MainHeader: React.FC<MainHeaderProps> = ({ title, date }) => {
   return (
@@ -22,7 +22,7 @@ export const MainHeader: React.FC<MainHeaderProps> = ({ title, date }) => {
         }
       `}
     >
-      <div>{PostDateToString(date)}</div>
+      <div>{date}</div>
       <h1>{title}</h1>
     </header>
   );

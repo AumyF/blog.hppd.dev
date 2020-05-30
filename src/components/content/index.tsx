@@ -5,7 +5,7 @@ import { styleValues } from "../../styles/styleValues";
 import { PostDate } from "../../libs/date";
 import Footer from "./footer";
 
-export type MainProps = { title: string; date?: PostDate };
+export type MainProps = { title: string; date?: string };
 
 export const Main: React.FC<MainProps> = ({ children, title, date }) => (
   <div

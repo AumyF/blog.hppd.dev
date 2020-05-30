@@ -12,7 +12,7 @@ import { mq } from "../../styles/mediaQueries";
 import { Variables } from "../../styles/variables";
 
 export type LayoutProps = {
-  date?: PostDate;
+  date?: string;
   title: string;
   toc?: TOC;
 };
