@@ -5,45 +5,38 @@ import { PageProps, graphql, Link } from "gatsby";
 import { TagsPageQuery } from "../../types/graphqlTypes";
 import { nage } from "../utils/nage";
 import { genPostDateAndPath } from "../libs/post";
-import PostList from "../components/organisms/PostList";
+import { PostList } from "../components/organisms/PostList";
 
 export type TagsPageProps = PageProps<TagsPageQuery>;
 
 export const TagsPage: (props: TagsPageProps) => React.ReactElement = ({
   data: {
-    allMdx: { group },
+    allPost: { group },
   },
 }) => (
   <Layout
     title="TAGS"
     toc={{
-      items: group.map(({ edges, fieldValue }) => ({
+      items: group.map(({ fieldValue }) => ({
         title: fieldValue ?? "",
         url: `./#${fieldValue}`,
       })),
     }}
   >
-    {group.map(tag => (
-      <section key={tag.fieldValue ?? ""}>
-        <h1 id={`${tag.fieldValue}`}>
-          <Link to={"/tags/" + tag.fieldValue ?? "#"}>{tag.fieldValue}</Link>
+    {group.map(({ fieldValue, totalCount, edges }) => (
+      <section key={fieldValue ?? ""}>
+        <h1 id={`${fieldValue}`}>
+          <Link to={"/tags/" + fieldValue ?? "#"}>{fieldValue}</Link>
           <span
             css={css`
-              font-size: 0.6em;
+              font-size: 1rem;
               margin-left: 0.5em;
             `}
           >
-            記事数: {tag.totalCount}
+            記事数: {totalCount}
           </span>
         </h1>
-        <PostList
-          posts={tag.edges.map(
-            ({ node: { frontmatter, fileAbsolutePath } }) => ({
-              path: genPostDateAndPath(fileAbsolutePath).path,
-              title: frontmatter?.title ?? "",
-            })
-          )}
-        />
+        <PostList edges={edges} />
       </section>
     ))}
   </Layout>
@@ -51,17 +44,16 @@ export const TagsPage: (props: TagsPageProps) => React.ReactElement = ({
 
 export const pageQuery = graphql`
   query TagsPage {
-    allMdx {
-      group(field: frontmatter___tags) {
-        totalCount
+    allPost {
+      group(field: tags) {
         fieldValue
+        totalCount
         edges {
           node {
-            excerpt
-            fileAbsolutePath
-            frontmatter {
-              title
-            }
+            id
+            path
+            tags
+            title
           }
         }
       }

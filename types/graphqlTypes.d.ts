@@ -2753,12 +2753,9 @@ export type IndexQuery = { allPost: { edges: Array<{ node: Pick<Post, 'id' | 'ti
 export type TagsPageQueryVariables = {};
 
 
-export type TagsPageQuery = { allMdx: { group: Array<(
-      Pick<MdxGroupConnection, 'totalCount' | 'fieldValue'>
-      & { edges: Array<{ node: (
-          Pick<Mdx, 'excerpt' | 'fileAbsolutePath'>
-          & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'title'>> }
-        ) }> }
+export type TagsPageQuery = { allPost: { group: Array<(
+      Pick<PostGroupConnection, 'fieldValue' | 'totalCount'>
+      & { edges: Array<{ node: Pick<Post, 'id' | 'path' | 'tags' | 'title'> }> }
     )> } };
 
 export type ArchiveMonthPageQueryVariables = {
@@ -2767,10 +2764,7 @@ export type ArchiveMonthPageQueryVariables = {
 };
 
 
-export type ArchiveMonthPageQuery = { allMdx: { edges: Array<{ node: (
-        Pick<Mdx, 'excerpt' | 'fileAbsolutePath' | 'id'>
-        & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'title' | 'date'>> }
-      ) }> } };
+export type ArchiveMonthPageQuery = { allPost: { edges: Array<{ node: Pick<Post, 'title' | 'date' | 'path' | 'id' | 'tags'> }> } };
 
 export type ArchiveYearPageQueryVariables = {
   startDate?: Maybe<Scalars['Date']>;
@@ -2778,7 +2772,4 @@ export type ArchiveYearPageQueryVariables = {
 };
 
 
-export type ArchiveYearPageQuery = { allMdx: { edges: Array<{ node: (
-        Pick<Mdx, 'excerpt' | 'fileAbsolutePath'>
-        & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'title' | 'date'>> }
-      ) }> } };
+export type ArchiveYearPageQuery = { allPost: { edges: Array<{ node: Pick<Post, 'title' | 'date' | 'path' | 'id' | 'tags'> }> } };

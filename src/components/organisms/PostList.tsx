@@ -1,15 +1,17 @@
 import React, { useLayoutEffect } from "react";
 import { css } from "@emotion/core";
-import { Post } from "../../libs/post";
 import { PostLink } from "../post-link/post-link";
 import { mq } from "../../styles/mediaQueries";
 import _ from "lodash";
+import { Post } from "../../../types/graphqlTypes";
 
 export type PostListProps = {
-  posts: Array<Pick<Post, "title" | "path"> & Partial<Pick<Post, "tags">>>;
+  edges: {
+    node: Pick<Post, "title" | "path"> & Partial<Pick<Post, "tags">>;
+  }[];
 };
 
-export const PostList: React.FC<PostListProps> = ({ posts }) => (
+export const PostList: React.FC<PostListProps> = ({ edges }) => (
   <ul
     css={css`
       list-style: none;
@@ -21,12 +23,10 @@ export const PostList: React.FC<PostListProps> = ({ posts }) => (
       grid-template-columns: repeat(auto-fill, minmax(256px, 1fr));
     `}
   >
-    {posts.map(({ title, path, tags }, i) => (
+    {edges.map(({ node: { title, path, tags } }) => (
       <li key={title ?? path}>
         <PostLink path={path} title={title} tags={tags} />
       </li>
     ))}
   </ul>
 );
-
-export default PostList;

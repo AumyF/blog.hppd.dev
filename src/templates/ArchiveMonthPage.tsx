@@ -7,11 +7,10 @@ import {
   ArchiveMonthPageQuery,
   MdxFrontmatter,
 } from "../../types/graphqlTypes";
-import PostList from "../components/organisms/PostList";
+import { PostList } from "../components/organisms/PostList";
 
 export type ArchiveMonthPageContenxt = {
   month: string;
-  posts: Post[];
   startDate: string;
   endDate: string;
 };
@@ -21,36 +20,26 @@ export type ArchiveMonthPageProps = PageProps<
 >;
 
 export const ArchiveMonthPage: React.FC<ArchiveMonthPageProps> = ({
-  pageContext: { month, endDate, startDate, posts },
+  pageContext: { month },
   data: {
-    allMdx: { edges },
+    allPost: { edges },
   },
 }) => (
   <Layout title={month}>
-    <PostList
-      posts={edges.map(({ node: { frontmatter, fileAbsolutePath } }) => {
-        const { title } = frontmatter ?? { title: "" };
-        const { path } = genPostDateAndPath(fileAbsolutePath);
-        return { path, title };
-      })}
-    />
+    <PostList edges={edges} />
   </Layout>
 );
 
 export const pageQuery = graphql`
   query ArchiveMonthPage($startDate: Date, $endDate: Date) {
-    allMdx(
-      filter: { frontmatter: { date: { gt: $startDate, lt: $endDate } } }
-    ) {
+    allPost(filter: { date: { gt: $startDate, lt: $endDate } }) {
       edges {
         node {
-          frontmatter {
-            title
-            date
-          }
-          excerpt
-          fileAbsolutePath
+          title
+          date
+          path
           id
+          tags
         }
       }
     }

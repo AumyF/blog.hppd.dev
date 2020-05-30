@@ -6,7 +6,7 @@ import { Layout } from "../components/layout";
 import { graphql, PageProps } from "gatsby";
 import { IndexQuery } from "../../types/graphqlTypes";
 import { genPostDateAndPath, Post } from "../libs/post";
-import PostList from "../components/organisms/PostList";
+import { PostList } from "../components/organisms/PostList";
 import _ from "lodash";
 
 export const IndexPage: React.FC<PageProps<IndexQuery>> = ({
@@ -15,7 +15,7 @@ export const IndexPage: React.FC<PageProps<IndexQuery>> = ({
   },
 }) => (
   <Layout title="MOMIREPO">
-    <PostList posts={edges.map(e => e.node)} />
+    <PostList edges={edges} />
   </Layout>
 );
 

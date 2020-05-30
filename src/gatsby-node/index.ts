@@ -133,7 +133,10 @@ export const createPages: GatsbyNode["createPages"] = async ({
     createPage<IndividualTagPageContext>({
       path: "/tags/" + tag,
       component: Path.resolve("./src/templates/IndividualTagPage.tsx"),
-      context: { tag: tag, posts: classifiedPosts[tag] },
+      context: {
+        tag: tag,
+        edges: classifiedPosts[tag].map(node => ({ node })),
+      },
     })
   );
   result.data.allDirectory.group.forEach(({ edges, fieldValue }) => {
@@ -145,7 +148,6 @@ export const createPages: GatsbyNode["createPages"] = async ({
           component: Path.resolve("./src/templates/ArchiveYearPage.tsx"),
           context: {
             year: name,
-            posts: [],
             startDate: `${name}-01-01`,
             endDate: `${parseInt(name) + 1}-01-01`,
           },
@@ -156,7 +158,6 @@ export const createPages: GatsbyNode["createPages"] = async ({
           component: Path.resolve("./src/templates/ArchiveMonthPage.tsx"),
           context: {
             month: name,
-            posts: [],
             startDate: `${fieldValue}-${name}-01`,
             endDate: `${fieldValue}-${parseInt(name) + 1}-01`,
           },
