@@ -10,6 +10,7 @@ import { PostDate } from "../../libs/date";
 import { TOC } from "../../libs/toc";
 import { mq } from "../../styles/mediaQueries";
 import { Variables } from "../../styles/variables";
+import Header from "../header";
 
 export type LayoutProps = {
   date?: string;
@@ -43,10 +44,42 @@ export const Layout: React.FC<LayoutProps> = ({
       <Helmet>
         <title>{title}</title>
       </Helmet>
-      <Sidebar toc={toc} />
-      <Main title={title} date={date}>
-        {children}
-      </Main>
+      <Header date={date} title={title} />
+      <main
+        css={css`
+          display: block;
+          margin: 0 auto;
+          transition: max-width 1000ms cubic-bezier(0.19, 1, 0.22, 1);
+          ${mq.small} {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            column-gap: 1rem;
+            grid-template-areas: "sidebar content";
+            max-width: 640px;
+            width: calc(100vw - 64px);
+          }
+          /**128 */
+          ${mq.medium} {
+            max-width: 768px;
+            width: calc(100vw - 128px);
+          }
+          /**256 */
+          ${mq.large} {
+            max-width: 1024px;
+            width: calc(100vw - 128px);
+          }
+          /** 256 */
+          ${mq.huge} {
+            max-width: 1280px;
+            width: calc(100vw - 128px);
+          }
+        `}
+      >
+        <Sidebar toc={toc} />
+        <Main title={title} date={date}>
+          {children}
+        </Main>
+      </main>
     </div>
   );
 };
@@ -54,7 +87,7 @@ export const Layout: React.FC<LayoutProps> = ({
 const layoutStyle = css`
   font-size: 18px;
   min-height: 100vh;
-  background-image: url(${s});
+  background-color: ${styleValues.main.background};
   background-attachment: fixed;
   background-size: cover;
   cursor: auto;
@@ -62,12 +95,22 @@ const layoutStyle = css`
   nav div nav {
     display: none;
   }
-  ${mq.medium} {
-    display: grid;
-    grid-template-columns: ${styleValues.SideBar.width} 1fr;
+
+  ${mq.small} {
+    grid-template-areas:
+      "header  header"
+      "main main";
+    nav {
+      grid-area: sidebar;
+    }
+    header {
+      grid-area: header;
+    }
+    main {
+      grid-area: main;
+    }
     nav div nav {
       display: block;
     }
   }
-  display: block;
 `;

@@ -20,10 +20,10 @@ export const Sidebar: React.FC<SidebarProps> = ({ toc }) => {
       id="sidebar"
       css={css`
         /*position: fixed;*/
+        margin: 0 auto;
         height: 100%;
-        ${mq.large} {
-          width: 200px;
-        }
+        max-width: 200px;
+        min-width: 150px;
         background-color: var(--color-sidebar-background);
         a {
           color: var(--global-text);
@@ -36,14 +36,6 @@ export const Sidebar: React.FC<SidebarProps> = ({ toc }) => {
           top: 2px;
         `}
       >
-        <SidebarButtonsGroup
-          buttons={[
-            { icon: faHome, to: "/" },
-            { icon: faTags, to: "/tags/" },
-            { icon: faTwitter, to: "https://twitter.com/mominisj" },
-            { icon: faGithub, to: "https://github.com/kkrnme" },
-          ]}
-        />
         {toc ? <TableOfContents TOC={toc} /> : null}
       </div>
     </nav>

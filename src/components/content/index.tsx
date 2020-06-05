@@ -4,24 +4,21 @@ import { MainHeader } from "./header";
 import { styleValues } from "../../styles/styleValues";
 import { PostDate } from "../../libs/date";
 import Footer from "./footer";
+import { mq } from "../../styles/mediaQueries";
 
 export type MainProps = { title: string; date?: string };
 
 export const Main: React.FC<MainProps> = ({ children, title, date }) => (
   <div
     css={css`
-      margin: 0;
+      margin: 0 auto;
       background-color: ${styleValues.main.background};
-      overflow: hidden;
+      max-width: 100%;
     `}
   >
-    <MainHeader title={title} date={date} />
     <main
       id="main"
       css={css`
-        max-width: 1024px;
-        margin: 0 auto;
-        padding: 2rem;
         background-color: ${styleValues.main.background};
         letter-spacing: 0.09em;
         font-feature-settings: "palt";
