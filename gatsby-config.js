@@ -13,6 +13,13 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: `gatsby-plugin-graphql-codegen`,
+      options: {
+        codegen: false,
+        fileName: `types/graphqlTypes.d.ts`,
+      },
+    },
+    {
       resolve: `gatsby-plugin-typescript`,
       options: {
         isTSX: true,
@@ -41,11 +48,5 @@ module.exports = {
       },
     },
     `gatsby-plugin-emotion`,
-    {
-      resolve: `gatsby-plugin-graphql-codegen`,
-      options: {
-        fileName: `types/graphqlTypes.d.ts`,
-      },
-    },
   ],
 };

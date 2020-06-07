@@ -596,11 +596,11 @@ export type FileFieldsEnum =
   'childMdx___rawBody' |
   'childMdx___fileAbsolutePath' |
   'childMdx___frontmatter___title' |
+  'childMdx___frontmatter___path' |
+  'childMdx___frontmatter___date' |
+  'childMdx___frontmatter___description' |
   'childMdx___frontmatter___status' |
   'childMdx___frontmatter___tags' |
-  'childMdx___frontmatter___date' |
-  'childMdx___frontmatter___path' |
-  'childMdx___frontmatter___description' |
   'childMdx___body' |
   'childMdx___excerpt' |
   'childMdx___headings' |
@@ -613,7 +613,6 @@ export type FileFieldsEnum =
   'childMdx___wordCount___paragraphs' |
   'childMdx___wordCount___sentences' |
   'childMdx___wordCount___words' |
-  'childMdx___fields___PostDate' |
   'childMdx___id' |
   'childMdx___parent___id' |
   'childMdx___parent___parent___id' |
@@ -783,7 +782,6 @@ export type Mdx = Node & {
   tableOfContents?: Maybe<Scalars['JSON']>;
   timeToRead?: Maybe<Scalars['Int']>;
   wordCount?: Maybe<MdxWordCount>;
-  fields?: Maybe<MdxFields>;
   id: Scalars['ID'];
   parent?: Maybe<Node>;
   children: Array<Node>;
@@ -833,19 +831,15 @@ export type MdxEdge = {
   previous?: Maybe<Mdx>;
 };
 
-export type MdxFields = {
-  PostDate?: Maybe<Scalars['String']>;
-};
-
 export type MdxFieldsEnum = 
   'rawBody' |
   'fileAbsolutePath' |
   'frontmatter___title' |
+  'frontmatter___path' |
+  'frontmatter___date' |
+  'frontmatter___description' |
   'frontmatter___status' |
   'frontmatter___tags' |
-  'frontmatter___date' |
-  'frontmatter___path' |
-  'frontmatter___description' |
   'body' |
   'excerpt' |
   'headings' |
@@ -858,7 +852,6 @@ export type MdxFieldsEnum =
   'wordCount___paragraphs' |
   'wordCount___sentences' |
   'wordCount___words' |
-  'fields___PostDate' |
   'id' |
   'parent___id' |
   'parent___parent___id' |
@@ -946,10 +939,6 @@ export type MdxFieldsEnum =
   'internal___owner' |
   'internal___type';
 
-export type MdxFieldsFilterInput = {
-  PostDate?: Maybe<StringQueryOperatorInput>;
-};
-
 export type MdxFilterInput = {
   rawBody?: Maybe<StringQueryOperatorInput>;
   fileAbsolutePath?: Maybe<StringQueryOperatorInput>;
@@ -962,7 +951,6 @@ export type MdxFilterInput = {
   tableOfContents?: Maybe<JsonQueryOperatorInput>;
   timeToRead?: Maybe<IntQueryOperatorInput>;
   wordCount?: Maybe<MdxWordCountFilterInput>;
-  fields?: Maybe<MdxFieldsFilterInput>;
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
@@ -971,11 +959,11 @@ export type MdxFilterInput = {
 
 export type MdxFrontmatter = {
   title: Scalars['String'];
+  path?: Maybe<Scalars['String']>;
+  date?: Maybe<Scalars['Date']>;
+  description?: Maybe<Scalars['String']>;
   status?: Maybe<Scalars['String']>;
   tags?: Maybe<Array<Maybe<Scalars['String']>>>;
-  date?: Maybe<Scalars['Date']>;
-  path?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
 };
 
 
@@ -988,11 +976,11 @@ export type MdxFrontmatterDateArgs = {
 
 export type MdxFrontmatterFilterInput = {
   title?: Maybe<StringQueryOperatorInput>;
+  path?: Maybe<StringQueryOperatorInput>;
+  date?: Maybe<DateQueryOperatorInput>;
+  description?: Maybe<StringQueryOperatorInput>;
   status?: Maybe<StringQueryOperatorInput>;
   tags?: Maybe<StringQueryOperatorInput>;
-  date?: Maybe<DateQueryOperatorInput>;
-  path?: Maybe<StringQueryOperatorInput>;
-  description?: Maybe<StringQueryOperatorInput>;
 };
 
 export type MdxGroupConnection = {
@@ -1072,8 +1060,6 @@ export type Post = Node & {
   status: Scalars['String'];
   tags: Array<Scalars['String']>;
   toc: TableOfContents;
-  description?: Maybe<Scalars['String']>;
-  excerpt?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   parent?: Maybe<Node>;
   children: Array<Node>;
@@ -1129,8 +1115,6 @@ export type PostFieldsEnum =
   'toc___items___items___url' |
   'toc___items___items___title' |
   'toc___items___items___items' |
-  'description' |
-  'excerpt' |
   'id' |
   'parent___id' |
   'parent___parent___id' |
@@ -1226,8 +1210,6 @@ export type PostFilterInput = {
   status?: Maybe<StringQueryOperatorInput>;
   tags?: Maybe<StringQueryOperatorInput>;
   toc?: Maybe<TableOfContentsFilterInput>;
-  description?: Maybe<StringQueryOperatorInput>;
-  excerpt?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
@@ -1428,7 +1410,6 @@ export type QueryMdxArgs = {
   tableOfContents?: Maybe<JsonQueryOperatorInput>;
   timeToRead?: Maybe<IntQueryOperatorInput>;
   wordCount?: Maybe<MdxWordCountFilterInput>;
-  fields?: Maybe<MdxFieldsFilterInput>;
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
@@ -1452,8 +1433,6 @@ export type QueryPostArgs = {
   status?: Maybe<StringQueryOperatorInput>;
   tags?: Maybe<StringQueryOperatorInput>;
   toc?: Maybe<TableOfContentsFilterInput>;
-  description?: Maybe<StringQueryOperatorInput>;
-  excerpt?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
@@ -2327,13 +2306,14 @@ export type SitePageFieldsEnum =
   'pluginCreator___resolve' |
   'pluginCreator___name' |
   'pluginCreator___version' |
+  'pluginCreator___pluginOptions___codeGen' |
+  'pluginCreator___pluginOptions___fileName' |
   'pluginCreator___pluginOptions___isTSX' |
   'pluginCreator___pluginOptions___allExtensions' |
   'pluginCreator___pluginOptions___name' |
   'pluginCreator___pluginOptions___path' |
   'pluginCreator___pluginOptions___gatsbyRemarkPlugins' |
   'pluginCreator___pluginOptions___gatsbyRemarkPlugins___resolve' |
-  'pluginCreator___pluginOptions___fileName' |
   'pluginCreator___pluginOptions___pathCheck' |
   'pluginCreator___nodeAPIs' |
   'pluginCreator___browserAPIs' |
@@ -2521,6 +2501,8 @@ export type SitePluginFieldsEnum =
   'resolve' |
   'name' |
   'version' |
+  'pluginOptions___codeGen' |
+  'pluginOptions___fileName' |
   'pluginOptions___isTSX' |
   'pluginOptions___allExtensions' |
   'pluginOptions___name' |
@@ -2529,7 +2511,6 @@ export type SitePluginFieldsEnum =
   'pluginOptions___gatsbyRemarkPlugins___resolve' |
   'pluginOptions___gatsbyRemarkPlugins___options___offsetY' |
   'pluginOptions___gatsbyRemarkPlugins___options___className' |
-  'pluginOptions___fileName' |
   'pluginOptions___pathCheck' |
   'nodeAPIs' |
   'browserAPIs' |
@@ -2643,22 +2624,24 @@ export type SitePluginPackageJsonPeerDependenciesFilterListInput = {
 };
 
 export type SitePluginPluginOptions = {
+  codeGen?: Maybe<Scalars['Boolean']>;
+  fileName?: Maybe<Scalars['String']>;
   isTSX?: Maybe<Scalars['Boolean']>;
   allExtensions?: Maybe<Scalars['Boolean']>;
   name?: Maybe<Scalars['String']>;
   path?: Maybe<Scalars['String']>;
   gatsbyRemarkPlugins?: Maybe<Array<Maybe<SitePluginPluginOptionsGatsbyRemarkPlugins>>>;
-  fileName?: Maybe<Scalars['String']>;
   pathCheck?: Maybe<Scalars['Boolean']>;
 };
 
 export type SitePluginPluginOptionsFilterInput = {
+  codeGen?: Maybe<BooleanQueryOperatorInput>;
+  fileName?: Maybe<StringQueryOperatorInput>;
   isTSX?: Maybe<BooleanQueryOperatorInput>;
   allExtensions?: Maybe<BooleanQueryOperatorInput>;
   name?: Maybe<StringQueryOperatorInput>;
   path?: Maybe<StringQueryOperatorInput>;
   gatsbyRemarkPlugins?: Maybe<SitePluginPluginOptionsGatsbyRemarkPluginsFilterListInput>;
-  fileName?: Maybe<StringQueryOperatorInput>;
   pathCheck?: Maybe<BooleanQueryOperatorInput>;
 };
 

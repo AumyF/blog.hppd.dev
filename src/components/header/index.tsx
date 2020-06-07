@@ -1,26 +1,28 @@
 import React from "react";
-import { css } from "@emotion/core";
+import styled from "@emotion/styled";
+import { mq } from "../../styles/mediaQueries";
 
 export type HeaderProps = { date?: string; title: string };
 
-export const Header: React.FC<HeaderProps> = ({ date, title }) => (
-  <header
-    css={css`
-      padding: 0 2rem;
-
-      h1 {
-        text-align: center;
-        font-size: 2.5em;
-        margin: 0;
-      }
-      div {
-        text-align: center;
-      }
-    `}
-  >
+export const Plain: React.FCX<HeaderProps> = ({ date, title, className }) => (
+  <header className={className}>
     <h1>{title}</h1>
     <div>{date}</div>
   </header>
 );
 
-export default Header;
+export const Header = styled(Plain)`
+  padding: 0 2rem;
+  & > h1 {
+    transition: 100ms font-size ease;
+    text-align: center;
+    font-size: 7vw;
+    ${mq.tab} {
+      font-size: 2em;
+    }
+    margin: 0;
+  }
+  & > div {
+    text-align: center;
+  }
+`;

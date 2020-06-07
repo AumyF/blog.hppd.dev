@@ -11,33 +11,25 @@ import { styleValues } from "../../styles/styleValues";
 import { TableOfContents } from "../table-of-contents";
 import { TOC } from "../../libs/toc";
 import { SidebarButtonsGroup } from "./buttons-group";
+import styled from "@emotion/styled";
 
 export type SidebarProps = { toc?: TOC };
 
-export const Sidebar: React.FC<SidebarProps> = ({ toc }) => {
-  return (
-    <nav
-      id="sidebar"
-      css={css`
-        /*position: fixed;*/
-        margin: 0 auto;
-        height: 100%;
-        max-width: 200px;
-        min-width: 150px;
-        background-color: var(--color-sidebar-background);
-        a {
-          color: var(--global-text);
-        }
-      `}
-    >
-      <div
-        css={css`
-          position: sticky;
-          top: 2px;
-        `}
-      >
-        {toc ? <TableOfContents TOC={toc} /> : null}
-      </div>
-    </nav>
-  );
-};
+export const PlainComponent: React.FCX<SidebarProps> = ({ toc, className }) => (
+  <nav id="sidebar" className={className}>
+    {toc ? <TableOfContents TOC={toc} /> : null}
+  </nav>
+);
+
+export const Sidebar = styled(PlainComponent)`
+  & > ${TableOfContents} {
+    position: sticky;
+    margin: 0 auto;
+    width: 230px;
+    background-color: var(--color-sidebar-background);
+    top: 2px;
+    a {
+      color: var(--global-text);
+    }
+  }
+`;

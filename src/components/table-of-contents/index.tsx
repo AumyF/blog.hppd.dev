@@ -3,6 +3,7 @@ import React from "react";
 import { css } from "@emotion/core";
 import { styleValues } from "../../styles/styleValues";
 import { TOC } from "../../libs/toc";
+import styled from "@emotion/styled";
 
 const TOCItemComponent: React.FC<TOC> = ({ items }) => (
   <ul
@@ -24,26 +25,24 @@ export type TableOfContentsProps = {
   TOC: TOC;
 };
 
-export const TableOfContents: React.FC<TableOfContentsProps> = ({ TOC }) => (
-  <nav
-    css={css`
-      ${styleValues.TableOfContents}
-      font-size: 1rem;
-      padding: 0.5rem 1rem;
-    `}
-  >
-    <div
-      css={css`
-        text-align: center;
-        margin: auto 1rem;
-        padding-bottom: 0.3rem;
-        border-bottom: 1px solid ${styleValues.global.text};
-      `}
-    >
-      Table of Contents
-    </div>
+const PlainComponent: React.FCX<TableOfContentsProps> = ({
+  TOC,
+  className,
+}) => (
+  <div className={className}>
+    <div>Table of Contents</div>
     <TOCItemComponent items={TOC.items} />
-  </nav>
+  </div>
 );
 
-export default TableOfContents;
+export const TableOfContents = styled(PlainComponent)`
+  ${styleValues.TableOfContents}
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  & > div {
+    text-align: center;
+    margin: auto 1rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid ${styleValues.global.text};
+  }
+`;
