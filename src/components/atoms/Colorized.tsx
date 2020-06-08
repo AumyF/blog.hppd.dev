@@ -6,7 +6,7 @@ export type ColorrizedProps = {
   color: colors;
 };
 
-export const Colorized: React.FC<ColorrizedProps> = ({ children, color }) => (
+export const Colored: React.FC<ColorrizedProps> = ({ children, color }) => (
   <span
     css={css`
       color: ${scheme[color]};
@@ -15,5 +15,3 @@ export const Colorized: React.FC<ColorrizedProps> = ({ children, color }) => (
     {children}
   </span>
 );
-
-export default Colorized;

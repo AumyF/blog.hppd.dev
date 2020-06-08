@@ -8,6 +8,8 @@ import { mq } from "../../styles/mediaQueries";
 import styled from "@emotion/styled";
 import { Sidebar } from "../sidebar/sidebar";
 import { TOC } from "../../libs/toc";
+import { Breadcrumbs } from "./breadcrumbs";
+import { DateTime } from "luxon";
 
 export type MainProps = { title: string; date?: string; toc?: TOC };
 
@@ -21,6 +23,7 @@ const PlainComponent: React.FCX<MainProps> = ({
   <main className={className}>
     <Sidebar toc={toc} />
     <article>
+      <Breadcrumbs year="2020" month="04" path="ubuntu-focal" />
       {children}
       <Footer />
     </article>
