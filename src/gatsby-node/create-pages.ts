@@ -5,6 +5,9 @@ import { IndividualTagPageContext } from "../templates/IndividualTagPage";
 import { ArchiveYearPageContext } from "../templates/ArchiveYearPage";
 import { ArchiveMonthPageContenxt } from "../templates/ArchiveMonthPage";
 import Path from "path";
+import { nage } from "../utils/nage";
+import { assertsNonNull } from "../libs/asserts-non-null";
+import { BlogPostContext } from "../templates/BlogPost";
 
 export const createPages: GatsbyNode["createPages"] = async ({
   graphql,
@@ -36,16 +39,6 @@ export const createPages: GatsbyNode["createPages"] = async ({
               title
             }
           }
-          next {
-            frontmatter {
-              title
-            }
-          }
-          previous {
-            frontmatter {
-              title
-            }
-          }
         }
       }
       allDirectory {
@@ -70,40 +63,12 @@ export const createPages: GatsbyNode["createPages"] = async ({
     return;
   }
 
-  const tagTmpArray: string[] = [];
-  const classifiedPosts: { [index: string]: Post[] } = {};
-
-  result.data.allMdx.edges.forEach(edge => {
-    const post = Post(edge);
-    createPage({
-      path: post.path ?? post.id,
-      component: Path.resolve("./src/templates/BlogPost.tsx"),
-      context: { post: post },
-    });
-    post.tags.forEach(t => {
-      if (classifiedPosts[t] == null) {
-        classifiedPosts[t] = [];
-      }
-      classifiedPosts[t].push(post);
-    });
-    tagTmpArray.push(...post.tags);
-  });
-
-  tagTmpArray.forEach(tag =>
-    createPage<IndividualTagPageContext>({
-      path: "/tags/" + tag,
-      component: Path.resolve("./src/templates/IndividualTagPage.tsx"),
-      context: {
-        tag: tag,
-        edges: classifiedPosts[tag].map(node => ({ node })),
-      },
-    })
-  );
   result.data.allDirectory.group.forEach(({ edges, fieldValue }) => {
     edges.forEach(({ node: { name } }) => {
       if (fieldValue === "..") {
         return;
       } else if (fieldValue === "") {
+        console.log(`  ArchiveYearPage: ${name}`);
         createPage<ArchiveYearPageContext>({
           component: Path.resolve("./src/templates/ArchiveYearPage.tsx"),
           context: {
@@ -114,9 +79,11 @@ export const createPages: GatsbyNode["createPages"] = async ({
           path: `/${name}/`,
         });
       } else {
+        console.log(`  ArchiveMonthPage: ${fieldValue}-${name}`);
         createPage<ArchiveMonthPageContenxt>({
           component: Path.resolve("./src/templates/ArchiveMonthPage.tsx"),
           context: {
+            year: assertsNonNull(fieldValue),
             month: name,
             startDate: `${fieldValue}-${name}-01`,
             endDate: `${fieldValue}-${parseInt(name) + 1}-01`,
@@ -136,11 +103,11 @@ export const createPages: GatsbyNode["createPages"] = async ({
     date: any;
     path: string;
     status: string;
-    tags: readonly string[];
+    tags: string[];
     toc: any;
   } => {
     const { node } = edge;
-    const p = Post({ node: node });
+    const p = Post({ node });
     const pn: ReturnType<typeof genPostNode> = {
       ...p,
       id: createNodeId(`${node.id} WRYYYYY`),
@@ -153,8 +120,35 @@ export const createPages: GatsbyNode["createPages"] = async ({
     };
     return pn;
   };
+
   // Post
+  const allTags = new Set<string>();
+
+  // Postを生成してGraphQLに突っ込み、ついでにcreatePage
   for (const edge of result.data.allMdx.edges) {
-    createNode(genPostNode(edge, await loadNodeContent(edge.node)));
+    const post = genPostNode(edge, await loadNodeContent(edge.node));
+    createNode(post);
+
+    createPage<BlogPostContext>({
+      path: post.path,
+      component: Path.resolve("./src/templates/BlogPost.tsx"),
+      context: { id: post.id },
+    });
+
+    for (const tag of post.tags) {
+      allTags.add(tag);
+    }
+  }
+
+  // 各タグのページ
+  for (const tag of allTags) {
+    console.log(`createPages > IndividualTagPage: ${tag}`);
+    createPage<IndividualTagPageContext>({
+      path: "/tags/" + tag,
+      component: Path.resolve("./src/templates/IndividualTagPage.tsx"),
+      context: {
+        tag,
+      },
+    });
   }
 };

@@ -7,7 +7,6 @@ export type Post = {
   id: string;
   toc: TOC;
   body: string;
-  excerpt: string;
   path: string;
   status: string;
   tags: string[];

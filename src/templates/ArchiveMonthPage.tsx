@@ -10,6 +10,7 @@ import {
 import { PostList } from "../components/post-link/post-list";
 
 export type ArchiveMonthPageContenxt = {
+  year: string;
   month: string;
   startDate: string;
   endDate: string;
@@ -20,12 +21,12 @@ export type ArchiveMonthPageProps = PageProps<
 >;
 
 export const ArchiveMonthPage: React.FC<ArchiveMonthPageProps> = ({
-  pageContext: { month },
+  pageContext: { month, year },
   data: {
     allPost: { edges },
   },
 }) => (
-  <Layout title={month}>
+  <Layout title={`${year}/${month}`}>
     <PostList edges={edges} />
   </Layout>
 );

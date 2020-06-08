@@ -1059,7 +1059,9 @@ export type Post = Node & {
   path: Scalars['String'];
   status: Scalars['String'];
   tags: Array<Scalars['String']>;
-  toc: TableOfContents;
+  toc: Scalars['JSON'];
+  description?: Maybe<Scalars['String']>;
+  excerpt?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   parent?: Maybe<Node>;
   children: Array<Node>;
@@ -1108,13 +1110,9 @@ export type PostFieldsEnum =
   'path' |
   'status' |
   'tags' |
-  'toc___items' |
-  'toc___items___url' |
-  'toc___items___title' |
-  'toc___items___items' |
-  'toc___items___items___url' |
-  'toc___items___items___title' |
-  'toc___items___items___items' |
+  'toc' |
+  'description' |
+  'excerpt' |
   'id' |
   'parent___id' |
   'parent___parent___id' |
@@ -1209,7 +1207,9 @@ export type PostFilterInput = {
   path?: Maybe<StringQueryOperatorInput>;
   status?: Maybe<StringQueryOperatorInput>;
   tags?: Maybe<StringQueryOperatorInput>;
-  toc?: Maybe<TableOfContentsFilterInput>;
+  toc?: Maybe<JsonQueryOperatorInput>;
+  description?: Maybe<StringQueryOperatorInput>;
+  excerpt?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
@@ -1432,7 +1432,9 @@ export type QueryPostArgs = {
   path?: Maybe<StringQueryOperatorInput>;
   status?: Maybe<StringQueryOperatorInput>;
   tags?: Maybe<StringQueryOperatorInput>;
-  toc?: Maybe<TableOfContentsFilterInput>;
+  toc?: Maybe<JsonQueryOperatorInput>;
+  description?: Maybe<StringQueryOperatorInput>;
+  excerpt?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
@@ -1854,291 +1856,21 @@ export type SitePageConnectionGroupArgs = {
 };
 
 export type SitePageContext = {
-  post?: Maybe<SitePageContextPost>;
-  tag?: Maybe<Scalars['String']>;
-  edges?: Maybe<Array<Maybe<SitePageContextEdges>>>;
   year?: Maybe<Scalars['Date']>;
   startDate?: Maybe<Scalars['Date']>;
   endDate?: Maybe<Scalars['String']>;
   month?: Maybe<Scalars['String']>;
-};
-
-export type SitePageContextEdges = {
-  node?: Maybe<SitePageContextEdgesNode>;
-};
-
-export type SitePageContextEdgesFilterInput = {
-  node?: Maybe<SitePageContextEdgesNodeFilterInput>;
-};
-
-export type SitePageContextEdgesFilterListInput = {
-  elemMatch?: Maybe<SitePageContextEdgesFilterInput>;
-};
-
-export type SitePageContextEdgesNode = {
-  path?: Maybe<Scalars['String']>;
-  date?: Maybe<Scalars['Date']>;
-  body?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
-  toc?: Maybe<SitePageContextEdgesNodeToc>;
-  description?: Maybe<Scalars['String']>;
-  excerpt?: Maybe<Scalars['String']>;
-  status?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
-  tags?: Maybe<Array<Maybe<Scalars['String']>>>;
-};
-
-export type SitePageContextEdgesNodeFilterInput = {
-  path?: Maybe<StringQueryOperatorInput>;
-  date?: Maybe<DateQueryOperatorInput>;
-  body?: Maybe<StringQueryOperatorInput>;
-  id?: Maybe<StringQueryOperatorInput>;
-  toc?: Maybe<SitePageContextEdgesNodeTocFilterInput>;
-  description?: Maybe<StringQueryOperatorInput>;
-  excerpt?: Maybe<StringQueryOperatorInput>;
-  status?: Maybe<StringQueryOperatorInput>;
-  title?: Maybe<StringQueryOperatorInput>;
-  tags?: Maybe<StringQueryOperatorInput>;
-};
-
-export type SitePageContextEdgesNodeToc = {
-  items?: Maybe<Array<Maybe<SitePageContextEdgesNodeTocItems>>>;
-};
-
-export type SitePageContextEdgesNodeTocFilterInput = {
-  items?: Maybe<SitePageContextEdgesNodeTocItemsFilterListInput>;
-};
-
-export type SitePageContextEdgesNodeTocItems = {
-  url?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
-  items?: Maybe<Array<Maybe<SitePageContextEdgesNodeTocItemsItems>>>;
-};
-
-export type SitePageContextEdgesNodeTocItemsFilterInput = {
-  url?: Maybe<StringQueryOperatorInput>;
-  title?: Maybe<StringQueryOperatorInput>;
-  items?: Maybe<SitePageContextEdgesNodeTocItemsItemsFilterListInput>;
-};
-
-export type SitePageContextEdgesNodeTocItemsFilterListInput = {
-  elemMatch?: Maybe<SitePageContextEdgesNodeTocItemsFilterInput>;
-};
-
-export type SitePageContextEdgesNodeTocItemsItems = {
-  url?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
-  items?: Maybe<Array<Maybe<SitePageContextEdgesNodeTocItemsItemsItems>>>;
-};
-
-export type SitePageContextEdgesNodeTocItemsItemsFilterInput = {
-  url?: Maybe<StringQueryOperatorInput>;
-  title?: Maybe<StringQueryOperatorInput>;
-  items?: Maybe<SitePageContextEdgesNodeTocItemsItemsItemsFilterListInput>;
-};
-
-export type SitePageContextEdgesNodeTocItemsItemsFilterListInput = {
-  elemMatch?: Maybe<SitePageContextEdgesNodeTocItemsItemsFilterInput>;
-};
-
-export type SitePageContextEdgesNodeTocItemsItemsItems = {
-  url?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
-  items?: Maybe<Array<Maybe<SitePageContextEdgesNodeTocItemsItemsItemsItems>>>;
-};
-
-export type SitePageContextEdgesNodeTocItemsItemsItemsFilterInput = {
-  url?: Maybe<StringQueryOperatorInput>;
-  title?: Maybe<StringQueryOperatorInput>;
-  items?: Maybe<SitePageContextEdgesNodeTocItemsItemsItemsItemsFilterListInput>;
-};
-
-export type SitePageContextEdgesNodeTocItemsItemsItemsFilterListInput = {
-  elemMatch?: Maybe<SitePageContextEdgesNodeTocItemsItemsItemsFilterInput>;
-};
-
-export type SitePageContextEdgesNodeTocItemsItemsItemsItems = {
-  url?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
-  items?: Maybe<Array<Maybe<SitePageContextEdgesNodeTocItemsItemsItemsItemsItems>>>;
-};
-
-export type SitePageContextEdgesNodeTocItemsItemsItemsItemsFilterInput = {
-  url?: Maybe<StringQueryOperatorInput>;
-  title?: Maybe<StringQueryOperatorInput>;
-  items?: Maybe<SitePageContextEdgesNodeTocItemsItemsItemsItemsItemsFilterListInput>;
-};
-
-export type SitePageContextEdgesNodeTocItemsItemsItemsItemsFilterListInput = {
-  elemMatch?: Maybe<SitePageContextEdgesNodeTocItemsItemsItemsItemsFilterInput>;
-};
-
-export type SitePageContextEdgesNodeTocItemsItemsItemsItemsItems = {
-  url?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
-  items?: Maybe<Array<Maybe<SitePageContextEdgesNodeTocItemsItemsItemsItemsItemsItems>>>;
-};
-
-export type SitePageContextEdgesNodeTocItemsItemsItemsItemsItemsFilterInput = {
-  url?: Maybe<StringQueryOperatorInput>;
-  title?: Maybe<StringQueryOperatorInput>;
-  items?: Maybe<SitePageContextEdgesNodeTocItemsItemsItemsItemsItemsItemsFilterListInput>;
-};
-
-export type SitePageContextEdgesNodeTocItemsItemsItemsItemsItemsFilterListInput = {
-  elemMatch?: Maybe<SitePageContextEdgesNodeTocItemsItemsItemsItemsItemsFilterInput>;
-};
-
-export type SitePageContextEdgesNodeTocItemsItemsItemsItemsItemsItems = {
-  url?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
-};
-
-export type SitePageContextEdgesNodeTocItemsItemsItemsItemsItemsItemsFilterInput = {
-  url?: Maybe<StringQueryOperatorInput>;
-  title?: Maybe<StringQueryOperatorInput>;
-};
-
-export type SitePageContextEdgesNodeTocItemsItemsItemsItemsItemsItemsFilterListInput = {
-  elemMatch?: Maybe<SitePageContextEdgesNodeTocItemsItemsItemsItemsItemsItemsFilterInput>;
+  tag?: Maybe<Scalars['String']>;
 };
 
 export type SitePageContextFilterInput = {
-  post?: Maybe<SitePageContextPostFilterInput>;
-  tag?: Maybe<StringQueryOperatorInput>;
-  edges?: Maybe<SitePageContextEdgesFilterListInput>;
   year?: Maybe<DateQueryOperatorInput>;
   startDate?: Maybe<DateQueryOperatorInput>;
   endDate?: Maybe<StringQueryOperatorInput>;
   month?: Maybe<StringQueryOperatorInput>;
-};
-
-export type SitePageContextPost = {
-  path?: Maybe<Scalars['String']>;
-  date?: Maybe<Scalars['Date']>;
-  body?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['String']>;
-  toc?: Maybe<SitePageContextPostToc>;
-  description?: Maybe<Scalars['String']>;
-  excerpt?: Maybe<Scalars['String']>;
-  status?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
-  tags?: Maybe<Array<Maybe<Scalars['String']>>>;
-};
-
-export type SitePageContextPostFilterInput = {
-  path?: Maybe<StringQueryOperatorInput>;
-  date?: Maybe<DateQueryOperatorInput>;
-  body?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
-  toc?: Maybe<SitePageContextPostTocFilterInput>;
-  description?: Maybe<StringQueryOperatorInput>;
-  excerpt?: Maybe<StringQueryOperatorInput>;
-  status?: Maybe<StringQueryOperatorInput>;
-  title?: Maybe<StringQueryOperatorInput>;
-  tags?: Maybe<StringQueryOperatorInput>;
-};
-
-export type SitePageContextPostToc = {
-  items?: Maybe<Array<Maybe<SitePageContextPostTocItems>>>;
-};
-
-export type SitePageContextPostTocFilterInput = {
-  items?: Maybe<SitePageContextPostTocItemsFilterListInput>;
-};
-
-export type SitePageContextPostTocItems = {
-  url?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
-  items?: Maybe<Array<Maybe<SitePageContextPostTocItemsItems>>>;
-};
-
-export type SitePageContextPostTocItemsFilterInput = {
-  url?: Maybe<StringQueryOperatorInput>;
-  title?: Maybe<StringQueryOperatorInput>;
-  items?: Maybe<SitePageContextPostTocItemsItemsFilterListInput>;
-};
-
-export type SitePageContextPostTocItemsFilterListInput = {
-  elemMatch?: Maybe<SitePageContextPostTocItemsFilterInput>;
-};
-
-export type SitePageContextPostTocItemsItems = {
-  url?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
-  items?: Maybe<Array<Maybe<SitePageContextPostTocItemsItemsItems>>>;
-};
-
-export type SitePageContextPostTocItemsItemsFilterInput = {
-  url?: Maybe<StringQueryOperatorInput>;
-  title?: Maybe<StringQueryOperatorInput>;
-  items?: Maybe<SitePageContextPostTocItemsItemsItemsFilterListInput>;
-};
-
-export type SitePageContextPostTocItemsItemsFilterListInput = {
-  elemMatch?: Maybe<SitePageContextPostTocItemsItemsFilterInput>;
-};
-
-export type SitePageContextPostTocItemsItemsItems = {
-  url?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
-  items?: Maybe<Array<Maybe<SitePageContextPostTocItemsItemsItemsItems>>>;
-};
-
-export type SitePageContextPostTocItemsItemsItemsFilterInput = {
-  url?: Maybe<StringQueryOperatorInput>;
-  title?: Maybe<StringQueryOperatorInput>;
-  items?: Maybe<SitePageContextPostTocItemsItemsItemsItemsFilterListInput>;
-};
-
-export type SitePageContextPostTocItemsItemsItemsFilterListInput = {
-  elemMatch?: Maybe<SitePageContextPostTocItemsItemsItemsFilterInput>;
-};
-
-export type SitePageContextPostTocItemsItemsItemsItems = {
-  url?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
-  items?: Maybe<Array<Maybe<SitePageContextPostTocItemsItemsItemsItemsItems>>>;
-};
-
-export type SitePageContextPostTocItemsItemsItemsItemsFilterInput = {
-  url?: Maybe<StringQueryOperatorInput>;
-  title?: Maybe<StringQueryOperatorInput>;
-  items?: Maybe<SitePageContextPostTocItemsItemsItemsItemsItemsFilterListInput>;
-};
-
-export type SitePageContextPostTocItemsItemsItemsItemsFilterListInput = {
-  elemMatch?: Maybe<SitePageContextPostTocItemsItemsItemsItemsFilterInput>;
-};
-
-export type SitePageContextPostTocItemsItemsItemsItemsItems = {
-  url?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
-  items?: Maybe<Array<Maybe<SitePageContextPostTocItemsItemsItemsItemsItemsItems>>>;
-};
-
-export type SitePageContextPostTocItemsItemsItemsItemsItemsFilterInput = {
-  url?: Maybe<StringQueryOperatorInput>;
-  title?: Maybe<StringQueryOperatorInput>;
-  items?: Maybe<SitePageContextPostTocItemsItemsItemsItemsItemsItemsFilterListInput>;
-};
-
-export type SitePageContextPostTocItemsItemsItemsItemsItemsFilterListInput = {
-  elemMatch?: Maybe<SitePageContextPostTocItemsItemsItemsItemsItemsFilterInput>;
-};
-
-export type SitePageContextPostTocItemsItemsItemsItemsItemsItems = {
-  url?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
-};
-
-export type SitePageContextPostTocItemsItemsItemsItemsItemsItemsFilterInput = {
-  url?: Maybe<StringQueryOperatorInput>;
-  title?: Maybe<StringQueryOperatorInput>;
-};
-
-export type SitePageContextPostTocItemsItemsItemsItemsItemsItemsFilterListInput = {
-  elemMatch?: Maybe<SitePageContextPostTocItemsItemsItemsItemsItemsItemsFilterInput>;
+  tag?: Maybe<StringQueryOperatorInput>;
 };
 
 export type SitePageEdge = {
@@ -2240,31 +1972,12 @@ export type SitePageFieldsEnum =
   'internal___owner' |
   'internal___type' |
   'isCreatedByStatefulCreatePages' |
-  'context___post___path' |
-  'context___post___date' |
-  'context___post___body' |
-  'context___post___id' |
-  'context___post___toc___items' |
-  'context___post___description' |
-  'context___post___excerpt' |
-  'context___post___status' |
-  'context___post___title' |
-  'context___post___tags' |
-  'context___tag' |
-  'context___edges' |
-  'context___edges___node___path' |
-  'context___edges___node___date' |
-  'context___edges___node___body' |
-  'context___edges___node___id' |
-  'context___edges___node___description' |
-  'context___edges___node___excerpt' |
-  'context___edges___node___status' |
-  'context___edges___node___title' |
-  'context___edges___node___tags' |
   'context___year' |
   'context___startDate' |
   'context___endDate' |
   'context___month' |
+  'context___id' |
+  'context___tag' |
   'pluginCreator___id' |
   'pluginCreator___parent___id' |
   'pluginCreator___parent___parent___id' |
@@ -2306,7 +2019,7 @@ export type SitePageFieldsEnum =
   'pluginCreator___resolve' |
   'pluginCreator___name' |
   'pluginCreator___version' |
-  'pluginCreator___pluginOptions___codeGen' |
+  'pluginCreator___pluginOptions___codegen' |
   'pluginCreator___pluginOptions___fileName' |
   'pluginCreator___pluginOptions___isTSX' |
   'pluginCreator___pluginOptions___allExtensions' |
@@ -2501,7 +2214,7 @@ export type SitePluginFieldsEnum =
   'resolve' |
   'name' |
   'version' |
-  'pluginOptions___codeGen' |
+  'pluginOptions___codegen' |
   'pluginOptions___fileName' |
   'pluginOptions___isTSX' |
   'pluginOptions___allExtensions' |
@@ -2624,7 +2337,7 @@ export type SitePluginPackageJsonPeerDependenciesFilterListInput = {
 };
 
 export type SitePluginPluginOptions = {
-  codeGen?: Maybe<Scalars['Boolean']>;
+  codegen?: Maybe<Scalars['Boolean']>;
   fileName?: Maybe<Scalars['String']>;
   isTSX?: Maybe<Scalars['Boolean']>;
   allExtensions?: Maybe<Scalars['Boolean']>;
@@ -2635,7 +2348,7 @@ export type SitePluginPluginOptions = {
 };
 
 export type SitePluginPluginOptionsFilterInput = {
-  codeGen?: Maybe<BooleanQueryOperatorInput>;
+  codegen?: Maybe<BooleanQueryOperatorInput>;
   fileName?: Maybe<StringQueryOperatorInput>;
   isTSX?: Maybe<BooleanQueryOperatorInput>;
   allExtensions?: Maybe<BooleanQueryOperatorInput>;
@@ -2704,24 +2417,10 @@ export type TableOfContents = {
   items: Array<Maybe<TableOfContentsItem>>;
 };
 
-export type TableOfContentsFilterInput = {
-  items?: Maybe<TableOfContentsItemFilterListInput>;
-};
-
 export type TableOfContentsItem = {
   url: Scalars['String'];
   title: Scalars['String'];
   items?: Maybe<Array<Maybe<TableOfContentsItem>>>;
-};
-
-export type TableOfContentsItemFilterInput = {
-  url?: Maybe<StringQueryOperatorInput>;
-  title?: Maybe<StringQueryOperatorInput>;
-  items?: Maybe<TableOfContentsItemFilterListInput>;
-};
-
-export type TableOfContentsItemFilterListInput = {
-  elemMatch?: Maybe<TableOfContentsItemFilterInput>;
 };
 
 export type GatsbyNodeQueryVariables = {};
@@ -2730,7 +2429,7 @@ export type GatsbyNodeQueryVariables = {};
 export type GatsbyNodeQuery = { allMdx: { edges: Array<{ node: (
         Pick<Mdx, 'id' | 'tableOfContents' | 'fileAbsolutePath' | 'body' | 'excerpt'>
         & { internal: Pick<Internal, 'content' | 'type'>, frontmatter?: Maybe<Pick<MdxFrontmatter, 'date' | 'status' | 'tags' | 'title'>> }
-      ), next?: Maybe<{ frontmatter?: Maybe<Pick<MdxFrontmatter, 'title'>> }>, previous?: Maybe<{ frontmatter?: Maybe<Pick<MdxFrontmatter, 'title'>> }> }> }, allDirectory: { group: Array<(
+      ) }> }, allDirectory: { group: Array<(
       Pick<DirectoryGroupConnection, 'fieldValue'>
       & { edges: Array<{ node: Pick<Directory, 'name'> }> }
     )> } };
@@ -2763,3 +2462,17 @@ export type ArchiveYearPageQueryVariables = {
 
 
 export type ArchiveYearPageQuery = { allPost: { edges: Array<{ node: Pick<Post, 'title' | 'date' | 'path' | 'id' | 'tags'> }> } };
+
+export type BlogPostQueryVariables = {
+  id?: Maybe<Scalars['String']>;
+};
+
+
+export type BlogPostQuery = { post?: Maybe<Pick<Post, 'title' | 'date' | 'body' | 'toc' | 'tags'>> };
+
+export type IndividualTagPageQueryVariables = {
+  tag?: Maybe<Scalars['String']>;
+};
+
+
+export type IndividualTagPageQuery = { allPost: { edges: Array<{ node: Pick<Post, 'title' | 'path' | 'tags'> }> } };

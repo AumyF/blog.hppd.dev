@@ -41,7 +41,7 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
         path: "String!",
         status: "String!",
         tags: "[String!]!",
-        toc: "TableOfContents!",
+        toc: "JSON!",
       },
       extensions: [],
     })
