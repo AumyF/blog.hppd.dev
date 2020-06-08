@@ -22,9 +22,9 @@ export const BlogPost: React.FC<BlogPostProps> = ({
   pageContext: { id },
   data: { post },
 }) => {
-  const { body, date, tags, title, toc } = assertsNonNull(post);
+  const { body, date, tags, title, toc, path } = assertsNonNull(post);
   return (
-    <Layout title={title} date={date} toc={toc}>
+    <Layout title={title} date={date} toc={toc} path={path}>
       <PostTags tags={tags} />
 
       <MDXProvider components={MDXComponents}>
@@ -39,10 +39,11 @@ export const pageQuery = graphql`
   query BlogPost($id: String) {
     post(id: { eq: $id }) {
       title
-      date
+      date(formatString: "yy-MM-DD")
       body
       toc
       tags
+      path
     }
   }
 `;

@@ -18,6 +18,7 @@ export type LayoutProps = {
   date?: string;
   title: string;
   toc?: TOC;
+  path?: string;
 };
 
 const Plain: React.FCX<LayoutProps> = ({
@@ -25,6 +26,7 @@ const Plain: React.FCX<LayoutProps> = ({
   children,
   date,
   toc,
+  path,
   className,
 }) => (
   <div className={className}>
@@ -47,7 +49,7 @@ const Plain: React.FCX<LayoutProps> = ({
       <title>{title}</title>
     </Helmet>
     <Header date={date} title={title} />
-    <Main title={title} date={date} toc={toc}>
+    <Main title={title} toc={toc} path={path}>
       {children}
     </Main>
   </div>

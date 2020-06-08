@@ -10,20 +10,26 @@ import { Sidebar } from "../sidebar/sidebar";
 import { TOC } from "../../libs/toc";
 import { Breadcrumbs } from "./breadcrumbs";
 import { DateTime } from "luxon";
+import { callOptionalUndefined } from "../../libs/call-optional";
+import { Post } from "../../libs/post";
 
-export type MainProps = { title: string; date?: string; toc?: TOC };
+export type MainProps = { title: string } & Partial<
+  Pick<Post, "date" | "toc" | "path">
+>;
 
 const PlainComponent: React.FCX<MainProps> = ({
   children,
   title,
   date,
   toc,
+  path,
   className,
 }) => (
   <main className={className}>
     <Sidebar toc={toc} />
     <article>
-      <Breadcrumbs year="2020" month="04" path="ubuntu-focal" />
+      <span>{path}</span>
+      <Breadcrumbs date={path?.split("/")} path="ubuntu-focal" />
       {children}
       <Footer />
     </article>

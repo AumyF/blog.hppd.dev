@@ -20,7 +20,7 @@ export const IndividualTagPage: React.FC<IndividualTagPageProps> = ({
     allPost: { edges },
   },
 }) => (
-  <Layout title={`tag: ${tag}`}>
+  <Layout title={`tag: ${tag}`} path={tag}>
     <div>
       <PostList edges={edges} />
     </div>

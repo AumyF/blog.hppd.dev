@@ -26,7 +26,7 @@ export const ArchiveMonthPage: React.FC<ArchiveMonthPageProps> = ({
     allPost: { edges },
   },
 }) => (
-  <Layout title={`${year}/${month}`}>
+  <Layout title={`${year}/${month}`} path={`${year}/${month}`}>
     <PostList edges={edges} />
   </Layout>
 );
