@@ -22,11 +22,11 @@ const TOCItemComponent: React.FC<TOC> = ({ items }) => (
 );
 
 export type TableOfContentsProps = {
-  TOC: TOC;
+  toc: TOC;
 };
 
 const PlainComponent: React.FCX<TableOfContentsProps> = ({
-  TOC,
+  toc: TOC,
   className,
 }) => (
   <div className={className}>

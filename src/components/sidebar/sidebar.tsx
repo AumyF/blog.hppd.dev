@@ -17,7 +17,7 @@ export type SidebarProps = { toc?: TOC };
 
 export const PlainComponent: React.FCX<SidebarProps> = ({ toc, className }) => (
   <nav id="sidebar" className={className}>
-    {toc ? <TableOfContents TOC={toc} /> : null}
+    {toc ? <TableOfContents toc={toc} /> : null}
   </nav>
 );
 
