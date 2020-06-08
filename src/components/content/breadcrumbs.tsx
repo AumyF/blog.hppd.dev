@@ -19,6 +19,7 @@ const Slash = (
   <span
     css={css`
       margin: 0 4px;
+      color: var(--global-text);
       user-select: none;
     `}
   >
@@ -32,28 +33,38 @@ export const Breadcrumbs: React.FCX<BreadcrumbsProps> = ({ date }) => {
     <nav>
       <span
         css={css`
-          background-image: linear-gradient(0.25turn, #082424, #0068a6);
+          background-image: linear-gradient(0.25turn, #c49131, #ca32c0);
+          background-clip: text;
+          color: transparent;
+          a {
+            color: transparent;
+          }
         `}
       >
         <Link to="/">blog.momini.space</Link>
-        {Slash}
         {year && (
           <>
-            <Link to={`/${year}/`}>{year}</Link>
             {Slash}
+            <Link to={`/${year}/`}>{year}</Link>
           </>
         )}
         {month && (
           <>
-            <Link to={`/${year}/${month}/`}>{month}</Link>
             {Slash}
+            <Link to={`/${year}/${month}/`}>{month}</Link>
           </>
         )}
-        <Link to={`/${year}/${month}/${dayPath}/`}>{dayPath}</Link>
+        {dayPath && (
+          <>
+            {Slash}
+            <Link to={`/${year}/${month}/${dayPath}/`}>{dayPath}</Link>
+          </>
+        )}
         <FontAwesomeIcon
           icon={faChevronRight}
           css={css`
             margin-left: 4px;
+            color: var(--global-text);
           `}
         />
       </span>
