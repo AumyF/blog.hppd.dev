@@ -27,5 +27,3 @@ export const MainHeader: React.FC<MainHeaderProps> = ({ title, date }) => {
     </header>
   );
 };
-
-export default MainHeader;

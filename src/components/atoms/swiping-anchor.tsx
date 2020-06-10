@@ -43,5 +43,3 @@ export const SwipingAnchor: React.FC<GatsbyLinkProps<unknown>> = props => (
     />
   </span>
 );
-
-export default SwipingAnchor;

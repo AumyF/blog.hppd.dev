@@ -35,5 +35,3 @@ export const TagList: React.FC<TagListProps> = ({ tags }) => (
     </ul>
   </div>
 );
-
-export default TagList;

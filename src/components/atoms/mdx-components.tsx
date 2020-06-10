@@ -75,5 +75,3 @@ export const MDXComponents: Readonly<Required<Components>> = {
   table: styled.table``,
   td: styled.td``,
 };
-
-export default MDXComponents;

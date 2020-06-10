@@ -42,8 +42,6 @@ export const PostTags: React.FC<PostTagsProps> = ({ tags }) => (
   </ul>
 );
 
-export default PostTags;
-
 /**<li
         key={tag}
         css={css`

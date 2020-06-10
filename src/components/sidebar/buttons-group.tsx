@@ -24,5 +24,3 @@ export const SidebarButtonsGroup: React.FC<SidebarButtonsGroupProps> = ({
     ))}
   </ul>
 );
-
-export default SidebarButtonsGroup;
