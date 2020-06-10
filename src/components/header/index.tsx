@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { mq } from "../../styles/mediaQueries";
+import { styleValues } from "../../styles/styleValues";
 
 export type HeaderProps = { title: string };
 
@@ -11,6 +12,10 @@ export const Plain: React.FCX<HeaderProps> = ({ title, className }) => (
 );
 
 export const Header = styled(Plain)`
+  position: sticky;
+  top: 0rem;
+  z-index: 10;
+  background-color: ${styleValues.main.background};
   padding: 0 2rem;
   & > h1 {
     transition: 100ms font-size ease;
