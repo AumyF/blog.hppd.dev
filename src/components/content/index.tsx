@@ -30,15 +30,12 @@ const Plain: React.FCX<MainProps> = ({
     <Sidebar toc={toc} />
     <article
       css={css`
-        & > article {
-          overflow-wrap: break-word;
-          min-width: 0;
-        }
+        overflow-wrap: break-word;
+        min-width: 0;
       `}
     >
       <Breadcrumbs date={path?.split("/")} path="ubuntu-focal" />
       {children}
-      <Footer />
     </article>
   </main>
 );

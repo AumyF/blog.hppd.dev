@@ -13,6 +13,7 @@ import { Variables } from "../../styles/variables";
 import { Header } from "../header";
 import styled from "@emotion/styled";
 import { tap } from "lodash";
+import { Footer } from "../content/footer";
 
 export type LayoutProps = {
   date?: string;
@@ -52,6 +53,7 @@ const Plain: React.FCX<LayoutProps> = ({
     <Main title={title} toc={toc} path={path}>
       {children}
     </Main>
+    <Footer />
   </div>
 );
 

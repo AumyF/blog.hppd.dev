@@ -2019,8 +2019,6 @@ export type SitePageFieldsEnum =
   'pluginCreator___resolve' |
   'pluginCreator___name' |
   'pluginCreator___version' |
-  'pluginCreator___pluginOptions___codegen' |
-  'pluginCreator___pluginOptions___fileName' |
   'pluginCreator___pluginOptions___isTSX' |
   'pluginCreator___pluginOptions___allExtensions' |
   'pluginCreator___pluginOptions___name' |
@@ -2028,6 +2026,8 @@ export type SitePageFieldsEnum =
   'pluginCreator___pluginOptions___gatsbyRemarkPlugins' |
   'pluginCreator___pluginOptions___gatsbyRemarkPlugins___resolve' |
   'pluginCreator___pluginOptions___pathCheck' |
+  'pluginCreator___pluginOptions___codegen' |
+  'pluginCreator___pluginOptions___fileName' |
   'pluginCreator___nodeAPIs' |
   'pluginCreator___browserAPIs' |
   'pluginCreator___ssrAPIs' |
@@ -2214,8 +2214,6 @@ export type SitePluginFieldsEnum =
   'resolve' |
   'name' |
   'version' |
-  'pluginOptions___codegen' |
-  'pluginOptions___fileName' |
   'pluginOptions___isTSX' |
   'pluginOptions___allExtensions' |
   'pluginOptions___name' |
@@ -2225,6 +2223,8 @@ export type SitePluginFieldsEnum =
   'pluginOptions___gatsbyRemarkPlugins___options___offsetY' |
   'pluginOptions___gatsbyRemarkPlugins___options___className' |
   'pluginOptions___pathCheck' |
+  'pluginOptions___codegen' |
+  'pluginOptions___fileName' |
   'nodeAPIs' |
   'browserAPIs' |
   'ssrAPIs' |
@@ -2337,25 +2337,25 @@ export type SitePluginPackageJsonPeerDependenciesFilterListInput = {
 };
 
 export type SitePluginPluginOptions = {
-  codegen?: Maybe<Scalars['Boolean']>;
-  fileName?: Maybe<Scalars['String']>;
   isTSX?: Maybe<Scalars['Boolean']>;
   allExtensions?: Maybe<Scalars['Boolean']>;
   name?: Maybe<Scalars['String']>;
   path?: Maybe<Scalars['String']>;
   gatsbyRemarkPlugins?: Maybe<Array<Maybe<SitePluginPluginOptionsGatsbyRemarkPlugins>>>;
   pathCheck?: Maybe<Scalars['Boolean']>;
+  codegen?: Maybe<Scalars['Int']>;
+  fileName?: Maybe<Scalars['String']>;
 };
 
 export type SitePluginPluginOptionsFilterInput = {
-  codegen?: Maybe<BooleanQueryOperatorInput>;
-  fileName?: Maybe<StringQueryOperatorInput>;
   isTSX?: Maybe<BooleanQueryOperatorInput>;
   allExtensions?: Maybe<BooleanQueryOperatorInput>;
   name?: Maybe<StringQueryOperatorInput>;
   path?: Maybe<StringQueryOperatorInput>;
   gatsbyRemarkPlugins?: Maybe<SitePluginPluginOptionsGatsbyRemarkPluginsFilterListInput>;
   pathCheck?: Maybe<BooleanQueryOperatorInput>;
+  codegen?: Maybe<IntQueryOperatorInput>;
+  fileName?: Maybe<StringQueryOperatorInput>;
 };
 
 export type SitePluginPluginOptionsGatsbyRemarkPlugins = {
@@ -2433,6 +2433,14 @@ export type GatsbyNodeQuery = { allMdx: { edges: Array<{ node: (
       Pick<DirectoryGroupConnection, 'fieldValue'>
       & { edges: Array<{ node: Pick<Directory, 'name'> }> }
     )> } };
+
+export type UseStaticQueryQueryVariables = {};
+
+
+export type UseStaticQueryQuery = { site?: Maybe<(
+    Pick<Site, 'buildTime'>
+    & { siteMetadata?: Maybe<Pick<SiteSiteMetadata, 'title'>> }
+  )> };
 
 export type IndexQueryVariables = {};
 

@@ -8,16 +8,21 @@ import { IndexQuery } from "../../types/graphqlTypes";
 import { genPostDateAndPath, Post } from "../libs/post";
 import { PostList } from "../components/post-link/post-list";
 import _ from "lodash";
+import { useSite } from "../hooks/use-site";
+import { assertsNonNull } from "../libs/asserts-non-null";
 
 export const IndexPage: React.FC<PageProps<IndexQuery>> = ({
   data: {
     allPost: { edges },
   },
-}) => (
-  <Layout title="MOMIREPO">
-    <PostList edges={edges} />
-  </Layout>
-);
+}) => {
+  const { siteMetadata } = useSite();
+  return (
+    <Layout title={assertsNonNull(siteMetadata?.title)}>
+      <PostList edges={edges} />
+    </Layout>
+  );
+};
 
 export default IndexPage;
 
