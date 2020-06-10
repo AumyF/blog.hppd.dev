@@ -28,7 +28,14 @@ const Plain: React.FCX<MainProps> = ({
 }) => (
   <main className={className}>
     <Sidebar toc={toc} />
-    <article>
+    <article
+      css={css`
+        & > article {
+          overflow-wrap: break-word;
+          min-width: 0;
+        }
+      `}
+    >
       <Breadcrumbs date={path?.split("/")} path="ubuntu-focal" />
       {children}
       <Footer />
@@ -38,11 +45,11 @@ const Plain: React.FCX<MainProps> = ({
 
 export const Main = styled<React.FCX<MainProps>>(Plain)`
   ${ArticleStyles};
-  transition: max-width 1000ms cubic-bezier(0.19, 1, 0.22, 1);
   margin: 0 auto;
-
   display: flex;
   justify-content: center;
+
+  transition: max-width 1000ms cubic-bezier(0.19, 1, 0.22, 1);
   & > ${Sidebar} {
     display: none;
   }
@@ -64,10 +71,5 @@ export const Main = styled<React.FCX<MainProps>>(Plain)`
   /** 256 */
   ${mq.huge} {
     max-width: 1124px;
-  }
-
-  & > article {
-    overflow-wrap: break-word;
-    min-width: 0;
   }
 `;
