@@ -4,6 +4,8 @@
  * See: https://www.gatsbyjs.org/docs/gatsby-config/
  */
 
+console.log(parseInt(process.env.GATSBY_CODEGEN));
+
 /** @type import('gatsby').GatsbyConfig */
 
 module.exports = {
@@ -15,7 +17,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-graphql-codegen`,
       options: {
-        codegen: false,
+        codegen: parseInt(process.env.GATSBY_CODEGEN),
         fileName: `types/graphqlTypes.d.ts`,
       },
     },
