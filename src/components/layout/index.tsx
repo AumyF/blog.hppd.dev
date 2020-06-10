@@ -48,7 +48,7 @@ const Plain: React.FCX<LayoutProps> = ({
     <Helmet>
       <title>{title}</title>
     </Helmet>
-    <Header date={date} title={title} />
+    <Header title={title} />
     <Main title={title} toc={toc} path={path}>
       {children}
     </Main>

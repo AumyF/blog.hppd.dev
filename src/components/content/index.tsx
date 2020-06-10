@@ -28,7 +28,6 @@ const PlainComponent: React.FCX<MainProps> = ({
   <main className={className}>
     <Sidebar toc={toc} />
     <article>
-      <span>{path}</span>
       <Breadcrumbs date={path?.split("/")} path="ubuntu-focal" />
       {children}
       <Footer />

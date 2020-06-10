@@ -28,8 +28,5 @@ export const Sidebar = styled(PlainComponent)`
     width: 230px;
     background-color: var(--color-sidebar-background);
     top: 2px;
-    a {
-      color: var(--global-text);
-    }
   }
 `;

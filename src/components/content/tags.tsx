@@ -3,6 +3,8 @@ import { css } from "@emotion/core";
 import { styleValues } from "../../styles/styleValues";
 import colorScheme from "../../styles/colorScheme";
 import { Link } from "gatsby";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTag } from "@fortawesome/free-solid-svg-icons";
 
 export type PostTagsProps = { tags: readonly string[] };
 
@@ -15,6 +17,34 @@ export const PostTags: React.FC<PostTagsProps> = ({ tags }) => (
   >
     {tags.map(tag => (
       <li
+        css={css`
+          list-style: none;
+          display: inline;
+        `}
+        key={tag}
+      >
+        <Link
+          css={css`
+            text-decoration: none;
+          `}
+          to={`/tags/${tag}/`}
+        >
+          <FontAwesomeIcon
+            icon={faTag}
+            css={css`
+              margin: 0 4px;
+            `}
+          />
+          {tag}
+        </Link>
+      </li>
+    ))}
+  </ul>
+);
+
+export default PostTags;
+
+/**<li
         key={tag}
         css={css`
           background-color: ${styleValues.global.primaryAccent};
@@ -72,9 +102,4 @@ export const PostTags: React.FC<PostTagsProps> = ({ tags }) => (
         >
           {tag}
         </Link>
-      </li>
-    ))}
-  </ul>
-);
-
-export default PostTags;
+      </li> */

@@ -2,12 +2,11 @@ import React from "react";
 import styled from "@emotion/styled";
 import { mq } from "../../styles/mediaQueries";
 
-export type HeaderProps = { date?: string; title: string };
+export type HeaderProps = { title: string };
 
-export const Plain: React.FCX<HeaderProps> = ({ date, title, className }) => (
+export const Plain: React.FCX<HeaderProps> = ({ title, className }) => (
   <header className={className}>
     <h1>{title}</h1>
-    <div>{date}</div>
   </header>
 );
 
