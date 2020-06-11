@@ -39,11 +39,18 @@ module.exports = {
       resolve: `gatsby-plugin-mdx`,
       options: {
         gatsbyRemarkPlugins: [
+          `gatsby-remark-code-titles`,
           {
             resolve: `gatsby-remark-autolink-headers`,
             options: {
               offsetY: `400`,
               className: `autolink-headers`,
+            },
+          },
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              //showLineNumbers: true,
             },
           },
         ],

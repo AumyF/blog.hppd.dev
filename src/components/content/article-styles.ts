@@ -26,6 +26,6 @@ export const ArticleStyles = css`
     border: 1px solid ${styleValues.global.border};
   }
   pre {
-    overflow: scroll;
+    overflow-x: scroll;
   }
 `;

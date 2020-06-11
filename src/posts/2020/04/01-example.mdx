@@ -19,6 +19,10 @@ import { Colored } from "../../../components/atoms/Colorized.tsx";
 
 ###### h6
 
-サンプル段落
+GatsbyはReactを利用した静的サイトジェネレータ (Static Site Generator, SSG) です。あらゆるデータを “Transformer” というタイプのプラグインで変換し、GraphQLという形でコンポーネントから利用できることが大きな特徴です。
 
-<Colored color="red">Red</Colored>
+```tsx{2}:title=button.tsx
+export const Button: React.FC = ({ children }) => (
+    <button>{children}</button>
+)
+```

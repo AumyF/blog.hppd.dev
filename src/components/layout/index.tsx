@@ -14,6 +14,8 @@ import { Header } from "../header";
 import styled from "@emotion/styled";
 import { tap } from "lodash";
 import { Footer } from "../content/footer";
+import "prismjs/plugins/line-numbers/prism-line-numbers.css";
+import { prismStyles } from "./prism-styles";
 
 export type LayoutProps = {
   date?: string;
@@ -44,6 +46,7 @@ const Plain: React.FCX<LayoutProps> = ({
         a {
           color: ${styleValues.global.primaryAccent};
         }
+        ${prismStyles}
       `}
     />
     <Helmet>
