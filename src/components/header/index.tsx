@@ -5,6 +5,7 @@ import { styleValues } from "../../styles/styleValues";
 import { useSpring, animated } from "react-spring";
 import { useScroll } from "react-use-gesture";
 import { assertsNonNull } from "../../libs/asserts-non-null";
+import { ThemeSwitcher } from "../theme-switcher";
 
 export type HeaderProps = { title: string };
 

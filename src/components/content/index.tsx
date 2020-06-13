@@ -13,6 +13,7 @@ import { DateTime } from "luxon";
 import { callOptionalUndefined } from "../../libs/call-optional";
 import { Post } from "../../libs/post";
 import { ArticleStyles } from "./article-styles";
+import { ThemeSwitcher } from "../theme-switcher";
 
 export type MainProps = { title: string } & Partial<
   Pick<Post, "date" | "toc" | "path">
@@ -35,6 +36,7 @@ const Plain: React.FCX<MainProps> = ({
       `}
     >
       <Breadcrumbs date={path?.split("/")} path="ubuntu-focal" />
+      <ThemeSwitcher />
       {children}
     </article>
   </main>

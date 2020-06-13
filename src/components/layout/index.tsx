@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Sidebar } from "../sidebar/sidebar";
 import { Helmet } from "react-helmet";
 import { Main } from "../content";
@@ -11,11 +11,11 @@ import { TOC } from "../../libs/toc";
 import { mq } from "../../styles/mediaQueries";
 import { Variables } from "../../styles/variables";
 import { Header } from "../header";
-import styled from "@emotion/styled";
 import { tap } from "lodash";
 import { Footer } from "../content/footer";
 import "prismjs/plugins/line-numbers/prism-line-numbers.css";
 import { prismStyles } from "./prism-styles";
+import { useTheme, ThemeStore, ThemeContext, styled } from "../../styles/theme";
 
 export type LayoutProps = {
   date?: string;
@@ -31,43 +31,45 @@ const Plain: React.FCX<LayoutProps> = ({
   toc,
   path,
   className,
-}) => (
-  <div className={className}>
-    <Global
-      styles={css`
-        html {
-          background-color: #000;
-          color: var(--global-text);
-          scrollbar-color: ${styleValues.global.scrollbar};
-          ${Variables}
-        }
-        body {
-        }
-        a {
-          color: ${styleValues.global.primaryAccent};
-        }
-        ${prismStyles}
-      `}
-    />
-    <Helmet>
-      <title>{title}</title>
-    </Helmet>
-    <Header title={title} />
-    <Main title={title} toc={toc} path={path}>
-      {children}
-    </Main>
-    <Footer />
-  </div>
-);
-
-const baseStyle = css`
-  font-size: 18px;
-  min-height: 100vh;
-  background-color: ${styleValues.main.background};
-  cursor: auto;
-  text-decoration: none;
-`;
+}) => {
+  const { theme } = useContext(ThemeContext);
+  return (
+    <div css={css``} className={className}>
+      <Global
+        styles={css`
+          * {
+            transition: 200ms background-color ease;
+          }
+          html {
+            background-color: #000;
+            color: ${theme.colors.foreground};
+            scrollbar-color: ${styleValues.global.scrollbar};
+            ${Variables}
+          }
+          body {
+          }
+          a {
+            color: ${theme.colors.primary};
+          }
+          ${prismStyles}
+        `}
+      />
+      <Helmet>
+        <title>{title}</title>
+      </Helmet>
+      <Header title={title} />
+      <Main title={title} toc={toc} path={path}>
+        {children}
+      </Main>
+      <Footer />
+    </div>
+  );
+};
 
 export const Layout = styled(Plain)`
-  ${baseStyle};
+  font-size: 18px;
+  min-height: 100vh;
+  background-color: ${props => props.theme.colors.backround};
+  cursor: auto;
+  text-decoration: none;
 `;

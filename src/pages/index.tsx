@@ -10,6 +10,7 @@ import { PostList } from "../components/post-link/post-list";
 import _ from "lodash";
 import { useSite } from "../hooks/use-site";
 import { assertsNonNull } from "../libs/asserts-non-null";
+import { ThemeSwitcher } from "../components/theme-switcher";
 
 export const IndexPage: React.FC<PageProps<IndexQuery>> = ({
   data: {
