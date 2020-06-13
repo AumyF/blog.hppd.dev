@@ -50,6 +50,7 @@
     "react-helmet": "^6.0.0",
     "react-redux": "^7.2.0",
     "react-spring": "^9.0.0-rc.3",
+    "react-use-gesture": "^7.0.15",
     "sanitize.css": "^11.0.1",
     "ts-essentials": "^6.0.5",
     "ts-jest": "^25.5.1"

@@ -27,6 +27,6 @@ export const Sidebar = styled(PlainComponent)`
     margin: 0 auto;
     width: 230px;
     background-color: var(--color-sidebar-background);
-    top: 2px;
+    top: 3rem;
   }
 `;
