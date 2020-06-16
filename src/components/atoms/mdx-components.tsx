@@ -1,13 +1,14 @@
 import { css } from "@emotion/core";
-import { Components } from "@mdx-js/react";
+import { MDXProviderComponentsProp } from "@mdx-js/react";
 import React from "react";
 import { SwipingAnchor } from "./swiping-anchor";
 import styled from "@emotion/styled";
 import { styleValues } from "../../styles/styleValues";
+import { useTheme } from "../../styles/theme";
 
 type Elm = JSX.IntrinsicElements;
 
-export const MDXComponents: Readonly<Required<Components>> = {
+export const MDXComponents: MDXProviderComponentsProp = {
   h1: styled.h1``,
   h2: styled.h2`
     border-bottom: 1px solid ${styleValues.global.border};
@@ -30,16 +31,21 @@ export const MDXComponents: Readonly<Required<Components>> = {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
   `,
-  a: (props: Elm["a"]) =>
-    props.className?.includes(`autolink-headers`) ? (
+  a: (props: Elm["a"]) => {
+    const {
+      theme: {
+        colors: { primary, foreground },
+      },
+    } = useTheme();
+    return props.className?.includes(`autolink-headers`) ? (
       <a
         {...props}
         css={css`
-          border-left: 3px solid ${styleValues.global.primaryAccent};
+          border-left: 3px solid ${primary};
           transition: 300ms all ease-in;
           padding-left: 0.1rem;
           margin-right: 0.25rem;
-          color: ${styleValues.global.text};
+          color: ${foreground};
           svg {
             display: inline;
             transform: scale(1.2);
@@ -50,10 +56,17 @@ export const MDXComponents: Readonly<Required<Components>> = {
       </a>
     ) : (
       <SwipingAnchor to={props.href!} {...props} />
-    ),
+    );
+  },
   strong: styled.strong``,
   ul: (props: Elm["ul"]) => (
-    <ul className="list-disc py-1 px-2 pl-8" {...props} />
+    <ul
+      css={css`
+        list-style: disc;
+      `}
+      className="list-disc py-1 px-2 pl-8"
+      {...props}
+    />
   ),
   ol: (props: Elm["ol"]) => (
     <ol className="list-decimal py-1 px-2 pl-8" {...props}></ol>

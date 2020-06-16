@@ -7,9 +7,13 @@ import { createContext, useContext, useState } from "react";
 import { ValueOf } from "ts-essentials";
 import EmotionStyled, { CreateStyled } from "@emotion/styled";
 import React from "react";
+import * as LocalStorage from "../libs/local-storage";
 
 export const themes = {
   cyan: {
+    palette: {
+      silver: "#d0d0d0",
+    },
     colors: {
       primary: "#63b3ed",
       backround: "#1e1e21",
@@ -18,6 +22,9 @@ export const themes = {
     },
   },
   pink: {
+    palette: {
+      silver: "#d0d0d0",
+    },
     colors: {
       primary: "#ed63b3",
       backround: "#1e1e21",
@@ -26,6 +33,9 @@ export const themes = {
     },
   },
   light: {
+    palette: {
+      silver: "#d0d0d0",
+    },
     colors: {
       primary: "#63b3ed",
       backround: "#fafafa",
@@ -35,7 +45,7 @@ export const themes = {
   },
 } as const;
 
-type ThemeValues = ValueOf<typeof themes>;
+export type ThemeValues = ValueOf<typeof themes>;
 type ThemeNames = keyof typeof themes;
 
 export const ThemeContext = createContext<{
@@ -53,11 +63,17 @@ export const useTheme = () => {
 };
 
 export const ThemeStore: React.FC = ({ children }) => {
-  const [theme, setTheme] = useState<ThemeValues>(themes.cyan);
+  const [theme, setTheme] = useState<ThemeValues>(
+    themes[(LocalStorage.get("theme") as ThemeNames) ?? "cyan"]
+  );
+  const setLocalStorage = LocalStorage.set<"theme", ThemeNames>("theme");
   return (
     <ThemeContext.Provider
       value={{
-        changeTheme: (name: ThemeNames) => setTheme(themes[name]),
+        changeTheme: (name: ThemeNames) => {
+          setTheme(themes[name]);
+          setLocalStorage(name);
+        },
         theme,
       }}
     >
