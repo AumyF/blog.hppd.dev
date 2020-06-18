@@ -15,13 +15,13 @@ import { tap } from "lodash";
 import { Footer } from "../content/footer";
 import "prismjs/plugins/line-numbers/prism-line-numbers.css";
 import { prismStyles } from "./prism-styles";
-import { useTheme, ThemeStore, ThemeContext, styled } from "../../styles/theme";
+import { ThemeContext, styled } from "../../styles/theme";
 
 export type LayoutProps = {
   date?: string;
   title: string;
   toc?: TOC;
-  path?: string;
+  path: string;
 };
 
 const Plain: React.FCX<LayoutProps> = ({
@@ -44,6 +44,7 @@ const Plain: React.FCX<LayoutProps> = ({
             background-color: #000;
             color: ${theme.foreground};
             scrollbar-color: ${styleValues.global.scrollbar};
+            overflow-y: scroll;
             ${Variables}
           }
           body {
@@ -57,8 +58,7 @@ const Plain: React.FCX<LayoutProps> = ({
       <Helmet>
         <title>{title}</title>
       </Helmet>
-      <Header title={title} />
-      <Main title={title} toc={toc} path={path}>
+      <Main title={title} path={path}>
         {children}
       </Main>
       <Footer />

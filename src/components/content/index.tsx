@@ -1,63 +1,48 @@
 import React from "react";
 import { css } from "@emotion/core";
-import { MainHeader } from "./header";
-import { styleValues } from "../../styles/styleValues";
-import { PostDate } from "../../libs/date";
-import Footer from "./footer";
 import { mq } from "../../styles/mediaQueries";
 import styled from "@emotion/styled";
-import { Sidebar } from "../sidebar/sidebar";
-import { TOC } from "../../libs/toc";
 import { Breadcrumbs } from "./breadcrumbs";
-import { DateTime } from "luxon";
-import { callOptionalUndefined } from "../../libs/call-optional";
-import { Post } from "../../libs/post";
 import { ArticleStyles } from "./article-styles";
 import { ThemeSwitcher } from "../theme-switcher";
 
-export type MainProps = { title: string } & Partial<
-  Pick<Post, "date" | "toc" | "path">
->;
+export type MainProps = { title: string; date?: string; path: string };
 
 const Plain: React.FCX<MainProps> = ({
   children,
   title,
   date,
-  toc,
   path,
   className,
 }) => (
-  <main className={className}>
-    <Sidebar toc={toc} />
-    <article
+  <main
+    className={className}
+    css={css`
+      margin: 0 auto;
+      overflow-wrap: break-word;
+      min-width: 0;
+    `}
+  >
+    <h1
       css={css`
-        overflow-wrap: break-word;
-        min-width: 0;
+        text-align: center;
+        font-size: 3em;
+        margin: 0;
       `}
     >
-      <Breadcrumbs date={path?.split("/")} path="ubuntu-focal" />
-      <ThemeSwitcher />
-      {children}
-    </article>
+      {title}
+    </h1>
+    <Breadcrumbs date={path?.split("/")} path={path} />
+    <ThemeSwitcher />
+    <article css={ArticleStyles}>{children}</article>
   </main>
 );
 
 export const Main = styled<React.FCX<MainProps>>(Plain)`
-  ${ArticleStyles};
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-
   transition: max-width 1000ms cubic-bezier(0.19, 1, 0.22, 1);
-  & > ${Sidebar} {
-    display: none;
-  }
   max-width: 95%;
   ${mq.small} {
     max-width: 560px;
-    & > ${Sidebar} {
-      display: block;
-    }
   }
   /**128 */
   ${mq.medium} {
