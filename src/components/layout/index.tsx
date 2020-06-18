@@ -42,14 +42,14 @@ const Plain: React.FCX<LayoutProps> = ({
           }
           html {
             background-color: #000;
-            color: ${theme.colors.foreground};
+            color: ${theme.foreground};
             scrollbar-color: ${styleValues.global.scrollbar};
             ${Variables}
           }
           body {
           }
           a {
-            color: ${theme.colors.primary};
+            color: ${theme.primary};
           }
           ${prismStyles}
         `}
@@ -69,7 +69,8 @@ const Plain: React.FCX<LayoutProps> = ({
 export const Layout = styled(Plain)`
   font-size: 18px;
   min-height: 100vh;
-  background-color: ${props => props.theme.colors.backround};
+  background-color: ${props => props.theme.background};
+  color: ${props => props.theme.foreground};
   cursor: auto;
   text-decoration: none;
 `;

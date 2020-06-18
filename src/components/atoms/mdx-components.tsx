@@ -33,9 +33,7 @@ export const MDXComponents: MDXProviderComponentsProp = {
   `,
   a: (props: Elm["a"]) => {
     const {
-      theme: {
-        colors: { primary, foreground },
-      },
+      theme: { primary, foreground },
     } = useTheme();
     return props.className?.includes(`autolink-headers`) ? (
       <a

@@ -7,9 +7,7 @@ import { useTheme } from "../../styles/theme";
 
 export const SwipingAnchor: React.FC<GatsbyLinkProps<unknown>> = props => {
   const {
-    theme: {
-      colors: { primary },
-    },
+    theme: { primary },
   } = useTheme();
   return (
     <span
