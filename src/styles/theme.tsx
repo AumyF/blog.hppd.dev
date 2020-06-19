@@ -9,39 +9,50 @@ import EmotionStyled, { CreateStyled } from "@emotion/styled";
 import React from "react";
 import * as LocalStorage from "../libs/local-storage";
 
+const palettes = {
+  vividDark: {
+    mono: ["1e1e21", "#404040", "#d0d0d0"],
+  },
+} as const;
+
+const defaultTheme = {
+  primary: "#63b3ed",
+  background: "#1e1e21",
+  foreground: "#d0d0d0",
+  border: palettes.vividDark.mono[1],
+  postLink: {
+    bg: "#1e1e21",
+  },
+};
+
 export const themes = {
   cyan: {
-    palette: {
-      silver: "#d0d0d0",
-    },
-    colors: {
-      primary: "#63b3ed",
-      backround: "#1e1e21",
-      foreground: "#d0d0d0",
-      silver: "#d0d0d0",
-    },
+    ...defaultTheme,
   },
-  pink: {
-    palette: {
-      silver: "#d0d0d0",
-    },
-    colors: {
-      primary: "#ed63b3",
-      backround: "#1e1e21",
-      foreground: "#d0d0d0",
-      silver: "#d0d0d0",
+  mint: {
+    ...defaultTheme,
+    background: "#002b23",
+    primary: "#37e5ee", // #22d7b5
+    foreground: "#bed5d0",
+    border: "#2a4a43",
+    postLink: {
+      bg: "#002b23",
     },
   },
   light: {
-    palette: {
-      silver: "#d0d0d0",
+    primary: "#63b3ed",
+    background: "#fafafa",
+    foreground: "#595988",
+    border: palettes.vividDark.mono[1],
+    postLink: {
+      bg: "#fafafa",
     },
-    colors: {
-      primary: "#63b3ed",
-      backround: "#fafafa",
-      foreground: "#595988",
-      silver: "#d0d0d0",
-    },
+  },
+  note: {
+    ...defaultTheme,
+    primary: "#f00",
+    background: "#000",
+    foreground: "#fff",
   },
 } as const;
 

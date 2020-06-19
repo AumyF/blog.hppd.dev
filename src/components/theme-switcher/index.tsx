@@ -3,25 +3,17 @@ import { useContext } from "react";
 import React from "react";
 import { css } from "@emotion/core";
 import * as LocalStorage from "../../libs/local-storage";
+import { Select } from "../sidebar/typesafe-select";
 
 const keys = <T,>(o: T): (keyof T)[] => Object.keys(o) as any;
 
 export const ThemeSwitcher: React.FCX = () => {
   const { changeTheme, theme } = useContext(ThemeContext);
   return (
-    <select
-      name=""
-      id=""
+    <Select
       defaultValue={LocalStorage.get("theme") ?? "cyan"}
-      onChange={({ currentTarget: { value } }) => {
-        changeTheme(value as any);
-      }}
-    >
-      {keys(themes).map(k => (
-        <option key={k} value={k}>
-          {k}
-        </option>
-      ))}
-    </select>
+      onChangeHandler={changeTheme}
+      options={keys(themes)}
+    />
   );
 };
