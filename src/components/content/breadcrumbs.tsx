@@ -20,7 +20,6 @@ const Slash = (
   <span
     css={css`
       margin: 0 4px;
-      color: var(--global-text);
       user-select: none;
     `}
   >
@@ -35,6 +34,7 @@ export const Breadcrumbs: React.FCX<BreadcrumbsProps> = ({ date }) => {
     <nav>
       <span
         css={css`
+          color: ${theme.foreground};
           a {
             text-decoration: none;
             &:hover {
@@ -66,7 +66,7 @@ export const Breadcrumbs: React.FCX<BreadcrumbsProps> = ({ date }) => {
           icon={faChevronRight}
           css={css`
             margin-left: 4px;
-            color: var(--global-text);
+            color: ${theme.foreground};
           `}
         />
       </span>
