@@ -75,7 +75,8 @@ export const useTheme = () => {
 
 export const ThemeStore: React.FC = ({ children }) => {
   const [theme, setTheme] = useState<ThemeValues>(
-    themes[(LocalStorage.get("theme") as ThemeNames) ?? "cyan"]
+    themes[(LocalStorage.get("theme") as ThemeNames) ?? "cyan"] ??
+      themes["cyan"]
   );
   const setLocalStorage = LocalStorage.set<"theme", ThemeNames>("theme");
   return (
