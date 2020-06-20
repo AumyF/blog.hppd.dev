@@ -46,7 +46,7 @@ export const PostLink: React.FCX<PostLinkProps> = ({
         padding: 1rem;
         width: 100%;
         height: 100%;
-        box-shadow: 10px 10px 20px #0009;
+        box-shadow: 10px 10px 0px #0009;
       `}
       to={`/${path}`}
       style={spring}

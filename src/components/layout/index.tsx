@@ -24,7 +24,7 @@ export type LayoutProps = {
   path: string;
 };
 
-const Plain: React.FCX<LayoutProps> = ({
+export const Layout: React.FCX<LayoutProps> = ({
   title,
   children,
   date,
@@ -34,7 +34,17 @@ const Plain: React.FCX<LayoutProps> = ({
 }) => {
   const { theme } = useContext(ThemeContext);
   return (
-    <div css={css``} className={className}>
+    <div
+      css={css`
+        font-size: 18px;
+        min-height: 100vh;
+        background-color: ${theme.background};
+        color: ${theme.foreground};
+        cursor: auto;
+        text-decoration: none;
+      `}
+      className={className}
+    >
       <Global
         styles={css`
           * {
@@ -43,7 +53,7 @@ const Plain: React.FCX<LayoutProps> = ({
           html {
             background-color: #000;
             color: ${theme.foreground};
-            scrollbar-color: ${styleValues.global.scrollbar};
+            scrollbar-color: ${theme.background};
             overflow-y: scroll;
             ${Variables}
           }
@@ -51,6 +61,11 @@ const Plain: React.FCX<LayoutProps> = ({
           }
           a {
             color: ${theme.primary};
+            text-decoration: underline dotted ${theme.foreground};
+            text-decoration-thickness: 2px;
+            &:hover {
+              text-decoration-style: solid;
+            }
           }
           ${prismStyles}
         `}
@@ -65,12 +80,3 @@ const Plain: React.FCX<LayoutProps> = ({
     </div>
   );
 };
-
-export const Layout = styled(Plain)`
-  font-size: 18px;
-  min-height: 100vh;
-  background-color: ${props => props.theme.background};
-  color: ${props => props.theme.foreground};
-  cursor: auto;
-  text-decoration: none;
-`;

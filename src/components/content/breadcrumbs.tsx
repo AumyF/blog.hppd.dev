@@ -9,6 +9,7 @@ import styled from "@emotion/styled";
 import { DateTime } from "luxon";
 import { assertsNonNull } from "../../libs/asserts-non-null";
 import { callOptionalUndefined } from "../../libs/call-optional";
+import { useTheme } from "../../styles/theme";
 
 export type BreadcrumbsProps = {
   date?: string[];
@@ -29,15 +30,16 @@ const Slash = (
 
 export const Breadcrumbs: React.FCX<BreadcrumbsProps> = ({ date }) => {
   const [year, month, dayPath] = date ?? [undefined, undefined, undefined];
+  const { theme } = useTheme();
   return (
     <nav>
       <span
         css={css`
-          background-image: linear-gradient(0.25turn, #c49131, #ca32c0);
-          background-clip: text;
-          color: transparent;
           a {
-            color: transparent;
+            text-decoration: none;
+            &:hover {
+              text-decoration: solid ${theme.foreground};
+            }
           }
         `}
       >

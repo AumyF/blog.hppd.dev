@@ -32,8 +32,8 @@ const Plain: React.FCX<MainProps> = ({
     >
       {title}
     </h1>
-    <Breadcrumbs date={path?.split("/")} path={path} />
     <ThemeSwitcher />
+    <Breadcrumbs date={path?.split("/")} path={path} />
     <article css={ArticleStyles}>{children}</article>
   </main>
 );

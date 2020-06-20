@@ -29,6 +29,21 @@ export const themes = {
   cyan: {
     ...defaultTheme,
   },
+  dark: {
+    ...defaultTheme,
+    primary: "#73e135",
+    background: "#222",
+  },
+  light: {
+    ...defaultTheme,
+    background: "#f0f0f0",
+    primary: "#00a0a8",
+    foreground: "#333",
+    border: "#ddd",
+    postLink: {
+      bg: "#f0f0f0",
+    },
+  },
   mint: {
     ...defaultTheme,
     background: "#002b23",
@@ -39,7 +54,7 @@ export const themes = {
       bg: "#002b23",
     },
   },
-  light: {
+  white: {
     primary: "#63b3ed",
     background: "#fafafa",
     foreground: "#595988",
