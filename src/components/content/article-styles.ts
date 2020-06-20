@@ -28,4 +28,8 @@ export const ArticleStyles = css`
   pre {
     overflow-x: scroll;
   }
+  p,
+  li {
+    line-height: 1.75;
+  }
 `;
