@@ -8,6 +8,11 @@ import { ValueOf } from "ts-essentials";
 import EmotionStyled, { CreateStyled } from "@emotion/styled";
 import React from "react";
 import * as LocalStorage from "../libs/local-storage";
+import { Global, css } from "@emotion/core";
+import { prismStyles } from "../components/layout/prism-styles";
+import { createContainer } from "unstated-next";
+import { generateVariables } from "./variables";
+import { assertsNonNull } from "../libs/asserts-non-null";
 
 const palettes = {
   vividDark: {
@@ -25,88 +30,107 @@ const defaultTheme = {
   },
 };
 
-export const themes = {
-  cyan: {
-    ...defaultTheme,
-  },
-  dark: {
-    ...defaultTheme,
+const d: typeof themes["dark"] = {
+  global: {
+    background: "#222",
     primary: "#73e135",
+    foreground: "#d0d0d0",
+    border: "border",
+  },
+  postLink: {
     background: "#222",
   },
+};
+
+type a = keyof typeof themes["dark"]["global"];
+
+const themes: {
+  [index in ThemeName]: {
+    global: {
+      [index in "primary" | "background" | "foreground" | "border"]: string;
+    };
+    postLink: {
+      background: string;
+    };
+  };
+} = {
+  dark: d,
   light: {
-    ...defaultTheme,
-    background: "#f0f0f0",
-    primary: "#00a0a8",
-    foreground: "#333",
-    border: "#ddd",
-    postLink: {
-      bg: "#f0f0f0",
+    ...d,
+    global: {
+      primary: "#00a0a8",
+      background: "#f0f0f0",
+      foreground: "#333",
+      border: "#ddd",
     },
+    postLink: { background: "#f0f0f0" },
   },
-  mint: {
-    ...defaultTheme,
-    background: "#002b23",
-    primary: "#37e5ee", // #22d7b5
-    foreground: "#bed5d0",
-    border: "#2a4a43",
-    postLink: {
-      bg: "#002b23",
-    },
-  },
-  white: {
-    primary: "#63b3ed",
-    background: "#fafafa",
-    foreground: "#595988",
-    border: palettes.vividDark.mono[1],
-    postLink: {
-      bg: "#fafafa",
-    },
-  },
-  note: {
-    ...defaultTheme,
-    primary: "#f00",
-    background: "#000",
-    foreground: "#fff",
-  },
-} as const;
-
-export type ThemeValues = ValueOf<typeof themes>;
-type ThemeNames = keyof typeof themes;
-
-export const ThemeContext = createContext<{
-  changeTheme: (name: ThemeNames) => void;
-  theme: ThemeValues;
-}>({
-  changeTheme: () => {
-    console.log("noop");
-  },
-  theme: themes.cyan,
-});
-
-export const useTheme = () => {
-  return useContext(ThemeContext);
 };
 
-export const ThemeStore: React.FC = ({ children }) => {
-  const [theme, setTheme] = useState<ThemeValues>(
-    themes[(LocalStorage.get("theme") as ThemeNames) ?? "cyan"] ??
-      themes["cyan"]
-  );
-  const setLocalStorage = LocalStorage.set<"theme", ThemeNames>("theme");
+export type ThemeName = "dark" | "light";
+
+const useTheme = () => {
+  const [themeName, setName] = useState<keyof typeof themes>("dark");
+
+  const toggleTheme = () => {
+    setName(name => (name === "dark" ? "light" : "dark"));
+  };
+  console.log(generateVariables(themes[themeName]));
+
+  //const local = LocalStorage.get("theme");
+  // const theme = ["dark", "light"].includes(String(local)) ? local : "dark";
+  // setName(prev =>
+  //   prev === assertsNonNull(theme)
+  //     ? prev
+  //     : (assertsNonNull(theme) as "dark" | "light")
+  // );
+  //LocalStorage.set("theme")(theme!);
+  //console.log(theme);
+
+  return {
+    theme: generateVariables(themes[themeName]),
+    themeName,
+    toggleTheme,
+    setTheme: setName,
+  };
+};
+
+export const ThemeContainer = createContainer(useTheme);
+
+const ThemeStoreInner: React.FC = ({ children }) => {
+  const { theme, toggleTheme } = ThemeContainer.useContainer();
   return (
-    <ThemeContext.Provider
-      value={{
-        changeTheme: (name: ThemeNames) => {
-          setTheme(themes[name]);
-          setLocalStorage(name);
-        },
-        theme,
-      }}
-    >
-      <ThemeProvider theme={theme as any}>{children}</ThemeProvider>
-    </ThemeContext.Provider>
+    <Global
+      styles={css`
+        * {
+          transition: 200ms background-color ease;
+        }
+        html {
+          background-color: #000;
+          scrollbar-color: var(--background);
+          overflow-y: scroll;
+          ${theme}
+        }
+        body {
+        }
+        a {
+          color: var(--primary);
+          text-decoration: underline dotted var(--foreground);
+          text-decoration-thickness: 2px;
+          &:hover {
+            text-decoration-style: solid;
+          }
+        }
+        ${prismStyles}
+      `}
+    />
   );
 };
-
-export const styled = EmotionStyled as CreateStyled<ThemeValues>;
+export const ThemeStore: React.FC = ({ children }) => {
+  return (
+    <ThemeContainer.Provider>
+      <ThemeStoreInner />
+      {children}
+    </ThemeContainer.Provider>
+  );
+};

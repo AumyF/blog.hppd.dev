@@ -1,4 +1,3 @@
-//import { wrapRootElement } from "./ssr/wrap-root-element";
 import { ThemeStore } from "./src/styles/theme";
 import React from "react";
 

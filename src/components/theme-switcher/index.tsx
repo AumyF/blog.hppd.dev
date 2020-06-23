@@ -1,4 +1,4 @@
-import { ThemeContext, themes } from "../../styles/theme";
+import { ThemeContainer } from "../../styles/theme";
 import { useContext } from "react";
 import React from "react";
 import { css } from "@emotion/core";
@@ -9,17 +9,22 @@ import { assertsNonNull } from "../../libs/asserts-non-null";
 
 const keys = <T,>(o: T): (keyof T)[] => Object.keys(o) as any;
 
-export const ThemeSwitcher: React.FCX = () => {
-  const { changeTheme, theme } = useContext(ThemeContext);
-  const t = (LocalStorage.get("theme") as keyof typeof themes) ?? "cyan";
+export const ThemeSwitcher: React.FC = () => {
+  const { themeName, toggleTheme } = ThemeContainer.useContainer();
+  return <button onClick={toggleTheme}>{themeName}</button>;
+};
+
+export const _ThemeSwitcher: React.FCX = () => {
+  const { toggleTheme, setTheme, theme } = ThemeContainer.useContainer();
   return (
     <RSelect
       styles={{
         container: provided => ({ ...provided, width: "200px" }),
         option: (provided, { value }) => {
-          const { background, foreground } = themes[
-            value as keyof typeof themes
-          ];
+          const { background, foreground } = {
+            background: "var(--global-background)",
+            foreground: "var(--global-foreground)",
+          };
           return {
             ...provided,
             backgroundColor: background,
@@ -28,16 +33,25 @@ export const ThemeSwitcher: React.FCX = () => {
         },
         menu: provided => ({
           ...provided,
-          backgroundColor: theme.postLink.bg,
-          border: `2px solid ${theme.border}`,
+          backgroundColor: `var(--global-background)`,
+          border: `2px solid var(--global-border)`,
         }),
       }}
       defaultValue={{
-        value: t,
-        label: t,
+        value: theme,
+        label: theme,
       }}
-      onChange={e => changeTheme(assertsNonNull([e].flat()[0]?.value))}
-      options={keys(themes).map(key => ({ value: key, label: key }))}
+      onChange={v => setTheme(v)}
+      options={[
+        {
+          label: "dark",
+          value: "dark",
+        },
+        {
+          label: "light",
+          value: "light",
+        },
+      ]}
     />
   );
 };

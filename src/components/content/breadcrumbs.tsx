@@ -9,7 +9,6 @@ import styled from "@emotion/styled";
 import { DateTime } from "luxon";
 import { assertsNonNull } from "../../libs/asserts-non-null";
 import { callOptionalUndefined } from "../../libs/call-optional";
-import { useTheme } from "../../styles/theme";
 
 export type BreadcrumbsProps = {
   date?: string[];
@@ -29,16 +28,15 @@ const Slash = (
 
 export const Breadcrumbs: React.FCX<BreadcrumbsProps> = ({ date }) => {
   const [year, month, dayPath] = date ?? [undefined, undefined, undefined];
-  const { theme } = useTheme();
   return (
     <nav>
       <span
         css={css`
-          color: ${theme.foreground};
+          color: var(--foreground);
           a {
             text-decoration: none;
             &:hover {
-              text-decoration: solid ${theme.foreground};
+              text-decoration: solid var(--foreground);
             }
           }
         `}
@@ -66,7 +64,7 @@ export const Breadcrumbs: React.FCX<BreadcrumbsProps> = ({ date }) => {
           icon={faChevronRight}
           css={css`
             margin-left: 4px;
-            color: ${theme.foreground};
+            color: var(--foreground);
           `}
         />
       </span>
