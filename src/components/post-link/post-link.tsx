@@ -21,21 +21,8 @@ export const PostLink: React.FCX<PostLinkProps> = ({
   className,
   tags,
 }) => {
-  const [hover, setHover] = useState<boolean>(false);
-  const spring = useSpring({
-    transform: hover ? "scale(110%)" : "scale(100%)",
-    config: {
-      tension: 200,
-      friction: 15,
-      clamp: false,
-    },
-  });
-
-  const onMouseEnter: MouseEventHandler = e => setHover(true),
-    onMouseLeave: MouseEventHandler = e => setHover(false),
-    AnimatedLink = animated(Link);
   return (
-    <AnimatedLink
+    <Link
       css={css`
         display: block;
         color: var(--foreground);
@@ -44,13 +31,16 @@ export const PostLink: React.FCX<PostLinkProps> = ({
         padding: 1rem;
         width: 100%;
         height: 100%;
-        box-shadow: 10px 10px 0px #0009;
+        transition: 200ms box-shadow ease;
+        box-shadow: 0px 0px 0px var(--foreground);
+        &:hover {
+          box-shadow: 10px 10px 0px var(--foreground);
+        }
       `}
       to={`/${path}`}
-      style={spring}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
     >
+      {path && <div>{path}</div>}
+      {tags && <TagList tags={tags} />}
       <div>
         <span
           css={css`
@@ -60,47 +50,7 @@ export const PostLink: React.FCX<PostLinkProps> = ({
         >
           {title}
         </span>
-        {tags && <TagList tags={tags} />}
       </div>
-    </AnimatedLink>
+    </Link>
   );
 };
-
-/**
-const Styled = styled(Plain)`
-  display: block;
-  ${ss.boxShadowMedium};
-  ${ss.rounded};
-  border-top-left-radius: 0;
-  ${ss.hidden};
-  height: 100%;
-  background-color: ${cs.cardBackground};
-  transition: 150ms filter ease-in-out;
-  &:hover {
-    filter: brightness(1.1);
-  }
-  div {
-    text-decoration: none;
-    flex-wrap: wrap;
-    padding: 0.25rem;
-    ${ss.transition};
-    color: ${cs.border};
-
-    background-color: ${cs.primaryAccent};
-    background-size: contain;
-    background-attachment: fixed;
-    border-left: 1px solid ${cs.secondaryAccent};
-    border-left-width: 4px;
-    filter: saturate(180%);
-    h2 {
-      span {
-        ${ss.textShadow}
-        color: white;
-      }
-    }
-  }
-  p {
-    text-align: left;
-    padding: 0.5rem;
-  }
-`*/
