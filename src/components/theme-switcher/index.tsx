@@ -14,51 +14,16 @@ const keys = <T,>(o: T): (keyof T)[] => Object.keys(o) as any;
 export const ThemeSwitcher: React.FC = () => {
   const { themeName, toggleTheme } = ThemeContainer.useContainer();
   return (
-    <FontAwesomeIcon
-      onClick={toggleTheme}
-      icon={themeName === "dark" ? faMoon : faSun}
-    />
-  );
-};
-
-export const _ThemeSwitcher: React.FCX = () => {
-  const { toggleTheme, setTheme, theme } = ThemeContainer.useContainer();
-  return (
-    <RSelect
-      styles={{
-        container: provided => ({ ...provided, width: "200px" }),
-        option: (provided, { value }) => {
-          const { background, foreground } = {
-            background: "var(--background)",
-            foreground: "var(--foreground)",
-          };
-          return {
-            ...provided,
-            backgroundColor: background,
-            color: foreground,
-          };
-        },
-        menu: provided => ({
-          ...provided,
-          backgroundColor: `var(--background)`,
-          border: `2px solid var(--border)`,
-        }),
-      }}
-      defaultValue={{
-        value: theme,
-        label: theme,
-      }}
-      onChange={v => setTheme(v)}
-      options={[
-        {
-          label: "dark",
-          value: "dark",
-        },
-        {
-          label: "light",
-          value: "light",
-        },
-      ]}
-    />
+    <button
+      css={css`
+        background-color: var(--background);
+      `}
+    >
+      <FontAwesomeIcon
+        role="button"
+        onClick={toggleTheme}
+        icon={themeName === "dark" ? faMoon : faSun}
+      />
+    </button>
   );
 };
