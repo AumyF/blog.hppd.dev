@@ -1,18 +1,10 @@
-import {
-  useTheme as EMOTION_USE_THEME,
-  ThemeProvider as EMOTION_THEME_PROVIDER,
-  ThemeProvider,
-} from "emotion-theming";
-import { createContext, useContext, useState } from "react";
-import { ValueOf } from "ts-essentials";
-import EmotionStyled, { CreateStyled } from "@emotion/styled";
+import { useState } from "react";
 import React from "react";
 import * as LocalStorage from "../libs/local-storage";
 import { Global, css } from "@emotion/core";
 import { prismStyles } from "../components/layout/prism-styles";
 import { createContainer } from "unstated-next";
 import { generateVariables } from "./variables";
-import { assertsNonNull } from "../libs/asserts-non-null";
 
 const palettes = {
   vividDark: {
@@ -20,7 +12,7 @@ const palettes = {
   },
 } as const;
 
-const d: typeof themes["dark"] = {
+const defaultTheme: typeof themes["dark"] = {
   background: "#222",
   primary: "#73e135",
   foreground: "#d0d0d0",
@@ -41,9 +33,9 @@ const themes: {
     };
   };
 } = {
-  dark: d,
+  dark: defaultTheme,
   light: {
-    ...d,
+    ...defaultTheme,
     primary: "#00a0a8",
     background: "#f0f0f0",
     foreground: "#333",
@@ -55,35 +47,33 @@ const themes: {
 export type ThemeName = "dark" | "light";
 
 const useTheme = () => {
-  const [themeName, setName] = useState<keyof typeof themes>("dark");
+  const local = LocalStorage.get("theme");
+  const initialTheme =
+    local !== null && ["dark", "light"].includes(local) ? local : "dark";
+  LocalStorage.set("theme")(initialTheme);
+  const [themeName, setName] = useState<keyof typeof themes>(
+    initialTheme as "dark" | "light"
+  );
 
   const toggleTheme = () => {
-    setName(name => (name === "dark" ? "light" : "dark"));
+    setName(name => {
+      const newName = name === "dark" ? "light" : "dark";
+      LocalStorage.set("theme")(newName);
+      return newName;
+    });
   };
-  console.log(generateVariables(themes[themeName]));
-
-  //const local = LocalStorage.get("theme");
-  // const theme = ["dark", "light"].includes(String(local)) ? local : "dark";
-  // setName(prev =>
-  //   prev === assertsNonNull(theme)
-  //     ? prev
-  //     : (assertsNonNull(theme) as "dark" | "light")
-  // );
-  //LocalStorage.set("theme")(theme!);
-  //console.log(theme);
 
   return {
-    theme: generateVariables(themes[themeName]),
+    variables: generateVariables(themes[themeName]),
     themeName,
     toggleTheme,
-    setTheme: setName,
   };
 };
 
 export const ThemeContainer = createContainer(useTheme);
 
-const ThemeStoreInner: React.FC = ({ children }) => {
-  const { theme, toggleTheme } = ThemeContainer.useContainer();
+const ThemeStoreInner: React.FC = () => {
+  const { variables } = ThemeContainer.useContainer();
   return (
     <Global
       styles={css`
@@ -94,7 +84,7 @@ const ThemeStoreInner: React.FC = ({ children }) => {
           background-color: #000;
           scrollbar-color: var(--background);
           overflow-y: scroll;
-          ${theme}
+          ${variables}
         }
         body {
         }
