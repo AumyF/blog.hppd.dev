@@ -9,21 +9,22 @@ import { assertsNonNull } from "../../libs/asserts-non-null";
 import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const keys = <T,>(o: T): (keyof T)[] => Object.keys(o) as any;
-
-export const ThemeSwitcher: React.FC = () => {
+export const ThemeSwitcher: React.FCX = ({ className }) => {
   const { themeName, toggleTheme } = ThemeContainer.useContainer();
   return (
     <button
+      className={className}
+      onClick={toggleTheme}
       css={css`
         background-color: var(--background);
+        border: none;
+        padding: 0;
+        font-size: 2em;
+        height: 48px;
+        color: var(--foreground);
       `}
     >
-      <FontAwesomeIcon
-        role="button"
-        onClick={toggleTheme}
-        icon={themeName === "dark" ? faMoon : faSun}
-      />
+      <FontAwesomeIcon icon={themeName === "dark" ? faMoon : faSun} />
     </button>
   );
 };
