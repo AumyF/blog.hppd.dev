@@ -1,2 +1,8 @@
+const { stubTrue } = require("lodash");
+
 /** @type import('webpack').Configuration */
-module.exports = {};
+module.exports = {
+  devServer: {
+    disableHostCheck: true,
+  },
+};
