@@ -26,7 +26,7 @@ export const TagList: React.FC<TagListProps> = ({ tags }) => (
           css={css`
             font-size: 1em;
             margin-left: 0.3rem;
-            color: var(--primary);
+            color: var(--secondary);
           `}
         >
           {tag}

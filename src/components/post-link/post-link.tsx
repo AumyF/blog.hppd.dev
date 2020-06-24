@@ -7,6 +7,9 @@ import {} from "ts-essentials";
 import { styleValues } from "../../styles/styleValues";
 import { useSpring, animated } from "react-spring";
 import { TagList } from "./tag-list";
+import { faCalendarDay } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { PostDate } from "./post-date";
 
 export type PostLinkProps = Readonly<{
   path: string;
@@ -39,7 +42,7 @@ export const PostLink: React.FCX<PostLinkProps> = ({
       `}
       to={`/${path}`}
     >
-      {path && <div>{path}</div>}
+      {path && <PostDate {...{ path }} />}
       {tags && <TagList tags={tags} />}
       <div>
         <span
