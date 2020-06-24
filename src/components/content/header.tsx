@@ -8,6 +8,7 @@ export const Header: React.FCX = ({ className, children }) => (
       text-align: center;
       font-size: 3em;
       margin: 0;
+      font-feature-settings: "palt";
     `}
   >
     {children}
