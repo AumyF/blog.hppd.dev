@@ -4,6 +4,7 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
   actions: { createTypes },
   schema: { buildObjectType },
 }: CreateSchemaCustomizationArgs) => {
+  console.log("ciao!");
   createTypes(
     buildObjectType({
       name: "TableOfContentsItem",

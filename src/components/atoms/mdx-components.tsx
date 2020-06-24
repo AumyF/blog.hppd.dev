@@ -4,7 +4,7 @@ import React from "react";
 import { SwipingAnchor } from "./swiping-anchor";
 import styled from "@emotion/styled";
 import { styleValues } from "../../styles/styleValues";
-import { useTheme } from "../../styles/theme";
+import { ThemeContainer } from "../../styles/theme";
 
 type Elm = JSX.IntrinsicElements;
 
@@ -32,18 +32,15 @@ export const MDXComponents: MDXProviderComponentsProp = {
     padding-right: 0.5rem;
   `,
   a: (props: Elm["a"]) => {
-    const {
-      theme: { primary, foreground },
-    } = useTheme();
     return props.className?.includes(`autolink-headers`) ? (
       <a
         {...props}
         css={css`
-          border-left: 3px solid ${primary};
+          border-left: 3px solid var(--primary);
           transition: 300ms all ease-in;
           padding-left: 0.1rem;
           margin-right: 0.25rem;
-          color: ${foreground};
+          color: var(--foreground);
           svg {
             display: inline;
             transform: scale(1.2);

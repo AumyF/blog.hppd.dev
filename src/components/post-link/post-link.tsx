@@ -7,7 +7,6 @@ import {} from "ts-essentials";
 import { styleValues } from "../../styles/styleValues";
 import { useSpring, animated } from "react-spring";
 import { TagList } from "./tag-list";
-import { useTheme } from "../../styles/theme";
 
 export type PostLinkProps = Readonly<{
   path: string;
@@ -35,18 +34,17 @@ export const PostLink: React.FCX<PostLinkProps> = ({
   const onMouseEnter: MouseEventHandler = e => setHover(true),
     onMouseLeave: MouseEventHandler = e => setHover(false),
     AnimatedLink = animated(Link);
-  const { foreground, postLink: theme } = useTheme().theme;
   return (
     <AnimatedLink
       css={css`
         display: block;
-        color: ${foreground};
-        background-color: ${theme.bg};
+        color: var(--foreground);
+        background-color: var(--postlink-background);
         text-decoration: none;
         padding: 1rem;
         width: 100%;
         height: 100%;
-        box-shadow: 10px 10px 20px #0009;
+        box-shadow: 10px 10px 0px #0009;
       `}
       to={`/${path}`}
       style={spring}

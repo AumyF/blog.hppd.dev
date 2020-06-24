@@ -19,12 +19,14 @@ import { Colored } from "../../../components/atoms/Colorized.tsx";
 
 ###### h6
 
-GitHubへのリンクは[こちら](https://github.com)
+hr(水平線)
 
-GatsbyはReactを利用した静的サイトジェネレータ (Static Site Generator, SSG) です。あらゆるデータを “Transformer” というタイプのプラグインで変換し、GraphQLという形でコンポーネントから利用できることが大きな特徴です。
+---
+
+GitHub へのリンクは[こちら](https://github.com)
+
+Gatsby は React を利用した静的サイトジェネレータ (Static Site Generator, SSG) です。あらゆるデータを “Transformer” というタイプのプラグインで変換し、GraphQL という形でコンポーネントから利用できることが大きな特徴です。
 
 ```tsx{2}:title=button.tsx
-export const Button: React.FC = ({ children }) => (
-    <button>{children}</button>
-)
+export const Button: React.FC = ({ children }) => <button>{children}</button>;
 ```

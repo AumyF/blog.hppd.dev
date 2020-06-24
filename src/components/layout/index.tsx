@@ -15,7 +15,6 @@ import { tap } from "lodash";
 import { Footer } from "../content/footer";
 import "prismjs/plugins/line-numbers/prism-line-numbers.css";
 import { prismStyles } from "./prism-styles";
-import { ThemeContext, styled } from "../../styles/theme";
 
 export type LayoutProps = {
   date?: string;
@@ -24,7 +23,7 @@ export type LayoutProps = {
   path: string;
 };
 
-const Plain: React.FCX<LayoutProps> = ({
+export const Layout: React.FCX<LayoutProps> = ({
   title,
   children,
   date,
@@ -32,29 +31,18 @@ const Plain: React.FCX<LayoutProps> = ({
   path,
   className,
 }) => {
-  const { theme } = useContext(ThemeContext);
   return (
-    <div css={css``} className={className}>
-      <Global
-        styles={css`
-          * {
-            transition: 200ms background-color ease;
-          }
-          html {
-            background-color: #000;
-            color: ${theme.foreground};
-            scrollbar-color: ${styleValues.global.scrollbar};
-            overflow-y: scroll;
-            ${Variables}
-          }
-          body {
-          }
-          a {
-            color: ${theme.primary};
-          }
-          ${prismStyles}
-        `}
-      />
+    <div
+      css={css`
+        color: var(--foreground);
+        background-color: var(--background);
+        font-size: 18px;
+        min-height: 100vh;
+        cursor: auto;
+        text-decoration: none;
+      `}
+      className={className}
+    >
       <Helmet>
         <title>{title}</title>
       </Helmet>
@@ -65,12 +53,3 @@ const Plain: React.FCX<LayoutProps> = ({
     </div>
   );
 };
-
-export const Layout = styled(Plain)`
-  font-size: 18px;
-  min-height: 100vh;
-  background-color: ${props => props.theme.background};
-  color: ${props => props.theme.foreground};
-  cursor: auto;
-  text-decoration: none;
-`;

@@ -596,11 +596,11 @@ export type FileFieldsEnum =
   'childMdx___rawBody' |
   'childMdx___fileAbsolutePath' |
   'childMdx___frontmatter___title' |
-  'childMdx___frontmatter___path' |
   'childMdx___frontmatter___date' |
-  'childMdx___frontmatter___description' |
-  'childMdx___frontmatter___status' |
   'childMdx___frontmatter___tags' |
+  'childMdx___frontmatter___status' |
+  'childMdx___frontmatter___path' |
+  'childMdx___frontmatter___description' |
   'childMdx___body' |
   'childMdx___excerpt' |
   'childMdx___headings' |
@@ -835,11 +835,11 @@ export type MdxFieldsEnum =
   'rawBody' |
   'fileAbsolutePath' |
   'frontmatter___title' |
-  'frontmatter___path' |
   'frontmatter___date' |
-  'frontmatter___description' |
-  'frontmatter___status' |
   'frontmatter___tags' |
+  'frontmatter___status' |
+  'frontmatter___path' |
+  'frontmatter___description' |
   'body' |
   'excerpt' |
   'headings' |
@@ -959,11 +959,11 @@ export type MdxFilterInput = {
 
 export type MdxFrontmatter = {
   title: Scalars['String'];
-  path?: Maybe<Scalars['String']>;
   date?: Maybe<Scalars['Date']>;
-  description?: Maybe<Scalars['String']>;
-  status?: Maybe<Scalars['String']>;
   tags?: Maybe<Array<Maybe<Scalars['String']>>>;
+  status?: Maybe<Scalars['String']>;
+  path?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
 };
 
 
@@ -976,11 +976,11 @@ export type MdxFrontmatterDateArgs = {
 
 export type MdxFrontmatterFilterInput = {
   title?: Maybe<StringQueryOperatorInput>;
-  path?: Maybe<StringQueryOperatorInput>;
   date?: Maybe<DateQueryOperatorInput>;
-  description?: Maybe<StringQueryOperatorInput>;
-  status?: Maybe<StringQueryOperatorInput>;
   tags?: Maybe<StringQueryOperatorInput>;
+  status?: Maybe<StringQueryOperatorInput>;
+  path?: Maybe<StringQueryOperatorInput>;
+  description?: Maybe<StringQueryOperatorInput>;
 };
 
 export type MdxGroupConnection = {
@@ -1239,10 +1239,10 @@ export type Query = {
   allSitePage: SitePageConnection;
   site?: Maybe<Site>;
   allSite: SiteConnection;
-  mdx?: Maybe<Mdx>;
-  allMdx: MdxConnection;
   post?: Maybe<Post>;
   allPost: PostConnection;
+  mdx?: Maybe<Mdx>;
+  allMdx: MdxConnection;
   siteBuildMetadata?: Maybe<SiteBuildMetadata>;
   allSiteBuildMetadata: SiteBuildMetadataConnection;
   sitePlugin?: Maybe<SitePlugin>;
@@ -1398,6 +1398,31 @@ export type QueryAllSiteArgs = {
 };
 
 
+export type QueryPostArgs = {
+  title?: Maybe<StringQueryOperatorInput>;
+  body?: Maybe<StringQueryOperatorInput>;
+  date?: Maybe<DateQueryOperatorInput>;
+  path?: Maybe<StringQueryOperatorInput>;
+  status?: Maybe<StringQueryOperatorInput>;
+  tags?: Maybe<StringQueryOperatorInput>;
+  toc?: Maybe<JsonQueryOperatorInput>;
+  description?: Maybe<StringQueryOperatorInput>;
+  excerpt?: Maybe<StringQueryOperatorInput>;
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+};
+
+
+export type QueryAllPostArgs = {
+  filter?: Maybe<PostFilterInput>;
+  sort?: Maybe<PostSortInput>;
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+};
+
+
 export type QueryMdxArgs = {
   rawBody?: Maybe<StringQueryOperatorInput>;
   fileAbsolutePath?: Maybe<StringQueryOperatorInput>;
@@ -1420,31 +1445,6 @@ export type QueryMdxArgs = {
 export type QueryAllMdxArgs = {
   filter?: Maybe<MdxFilterInput>;
   sort?: Maybe<MdxSortInput>;
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-};
-
-
-export type QueryPostArgs = {
-  title?: Maybe<StringQueryOperatorInput>;
-  body?: Maybe<StringQueryOperatorInput>;
-  date?: Maybe<DateQueryOperatorInput>;
-  path?: Maybe<StringQueryOperatorInput>;
-  status?: Maybe<StringQueryOperatorInput>;
-  tags?: Maybe<StringQueryOperatorInput>;
-  toc?: Maybe<JsonQueryOperatorInput>;
-  description?: Maybe<StringQueryOperatorInput>;
-  excerpt?: Maybe<StringQueryOperatorInput>;
-  id?: Maybe<StringQueryOperatorInput>;
-  parent?: Maybe<NodeFilterInput>;
-  children?: Maybe<NodeFilterListInput>;
-  internal?: Maybe<InternalFilterInput>;
-};
-
-
-export type QueryAllPostArgs = {
-  filter?: Maybe<PostFilterInput>;
-  sort?: Maybe<PostSortInput>;
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
 };
@@ -2023,8 +2023,7 @@ export type SitePageFieldsEnum =
   'pluginCreator___pluginOptions___allExtensions' |
   'pluginCreator___pluginOptions___name' |
   'pluginCreator___pluginOptions___path' |
-  'pluginCreator___pluginOptions___gatsbyRemarkPlugins' |
-  'pluginCreator___pluginOptions___gatsbyRemarkPlugins___resolve' |
+  'pluginCreator___pluginOptions___projectRoot' |
   'pluginCreator___pluginOptions___pathCheck' |
   'pluginCreator___pluginOptions___codegen' |
   'pluginCreator___pluginOptions___fileName' |
@@ -2218,10 +2217,7 @@ export type SitePluginFieldsEnum =
   'pluginOptions___allExtensions' |
   'pluginOptions___name' |
   'pluginOptions___path' |
-  'pluginOptions___gatsbyRemarkPlugins' |
-  'pluginOptions___gatsbyRemarkPlugins___resolve' |
-  'pluginOptions___gatsbyRemarkPlugins___options___offsetY' |
-  'pluginOptions___gatsbyRemarkPlugins___options___className' |
+  'pluginOptions___projectRoot' |
   'pluginOptions___pathCheck' |
   'pluginOptions___codegen' |
   'pluginOptions___fileName' |
@@ -2341,9 +2337,9 @@ export type SitePluginPluginOptions = {
   allExtensions?: Maybe<Scalars['Boolean']>;
   name?: Maybe<Scalars['String']>;
   path?: Maybe<Scalars['String']>;
-  gatsbyRemarkPlugins?: Maybe<Array<Maybe<SitePluginPluginOptionsGatsbyRemarkPlugins>>>;
+  projectRoot?: Maybe<Scalars['String']>;
   pathCheck?: Maybe<Scalars['Boolean']>;
-  codegen?: Maybe<Scalars['Int']>;
+  codegen?: Maybe<Scalars['Boolean']>;
   fileName?: Maybe<Scalars['String']>;
 };
 
@@ -2352,34 +2348,10 @@ export type SitePluginPluginOptionsFilterInput = {
   allExtensions?: Maybe<BooleanQueryOperatorInput>;
   name?: Maybe<StringQueryOperatorInput>;
   path?: Maybe<StringQueryOperatorInput>;
-  gatsbyRemarkPlugins?: Maybe<SitePluginPluginOptionsGatsbyRemarkPluginsFilterListInput>;
+  projectRoot?: Maybe<StringQueryOperatorInput>;
   pathCheck?: Maybe<BooleanQueryOperatorInput>;
-  codegen?: Maybe<IntQueryOperatorInput>;
+  codegen?: Maybe<BooleanQueryOperatorInput>;
   fileName?: Maybe<StringQueryOperatorInput>;
-};
-
-export type SitePluginPluginOptionsGatsbyRemarkPlugins = {
-  resolve?: Maybe<Scalars['String']>;
-  options?: Maybe<SitePluginPluginOptionsGatsbyRemarkPluginsOptions>;
-};
-
-export type SitePluginPluginOptionsGatsbyRemarkPluginsFilterInput = {
-  resolve?: Maybe<StringQueryOperatorInput>;
-  options?: Maybe<SitePluginPluginOptionsGatsbyRemarkPluginsOptionsFilterInput>;
-};
-
-export type SitePluginPluginOptionsGatsbyRemarkPluginsFilterListInput = {
-  elemMatch?: Maybe<SitePluginPluginOptionsGatsbyRemarkPluginsFilterInput>;
-};
-
-export type SitePluginPluginOptionsGatsbyRemarkPluginsOptions = {
-  offsetY?: Maybe<Scalars['String']>;
-  className?: Maybe<Scalars['String']>;
-};
-
-export type SitePluginPluginOptionsGatsbyRemarkPluginsOptionsFilterInput = {
-  offsetY?: Maybe<StringQueryOperatorInput>;
-  className?: Maybe<StringQueryOperatorInput>;
 };
 
 export type SitePluginSortInput = {
