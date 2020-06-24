@@ -36,11 +36,11 @@ export const MDXComponents: MDXProviderComponentsProp = {
       <a
         {...props}
         css={css`
-          border-left: 3px solid var(--global-primary);
+          border-left: 3px solid var(--primary);
           transition: 300ms all ease-in;
           padding-left: 0.1rem;
           margin-right: 0.25rem;
-          color: var(--global-foreground);
+          color: var(--foreground);
           svg {
             display: inline;
             transform: scale(1.2);

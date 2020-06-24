@@ -20,35 +20,22 @@ const palettes = {
   },
 } as const;
 
-const defaultTheme = {
-  primary: "#63b3ed",
-  background: "#1e1e21",
-  foreground: "#d0d0d0",
-  border: palettes.vividDark.mono[1],
-  postLink: {
-    bg: "#1e1e21",
-  },
-};
-
 const d: typeof themes["dark"] = {
-  global: {
-    background: "#222",
-    primary: "#73e135",
-    foreground: "#d0d0d0",
-    border: "border",
-  },
+  background: "#222",
+  primary: "#73e135",
+  foreground: "#d0d0d0",
+  border: "border",
   postLink: {
     background: "#222",
   },
 };
-
-type a = keyof typeof themes["dark"]["global"];
 
 const themes: {
   [index in ThemeName]: {
-    global: {
-      [index in "primary" | "background" | "foreground" | "border"]: string;
-    };
+    primary: string;
+    background: string;
+    foreground: string;
+    border: string;
     postLink: {
       background: string;
     };
@@ -57,12 +44,10 @@ const themes: {
   dark: d,
   light: {
     ...d,
-    global: {
-      primary: "#00a0a8",
-      background: "#f0f0f0",
-      foreground: "#333",
-      border: "#ddd",
-    },
+    primary: "#00a0a8",
+    background: "#f0f0f0",
+    foreground: "#333",
+    border: "#ddd",
     postLink: { background: "#f0f0f0" },
   },
 };

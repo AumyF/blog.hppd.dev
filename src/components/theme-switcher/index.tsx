@@ -6,12 +6,19 @@ import * as LocalStorage from "../../libs/local-storage";
 import { Select } from "../sidebar/typesafe-select";
 import RSelect from "react-select";
 import { assertsNonNull } from "../../libs/asserts-non-null";
+import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const keys = <T,>(o: T): (keyof T)[] => Object.keys(o) as any;
 
 export const ThemeSwitcher: React.FC = () => {
   const { themeName, toggleTheme } = ThemeContainer.useContainer();
-  return <button onClick={toggleTheme}>{themeName}</button>;
+  return (
+    <FontAwesomeIcon
+      onClick={toggleTheme}
+      icon={themeName === "dark" ? faMoon : faSun}
+    />
+  );
 };
 
 export const _ThemeSwitcher: React.FCX = () => {
@@ -22,8 +29,8 @@ export const _ThemeSwitcher: React.FCX = () => {
         container: provided => ({ ...provided, width: "200px" }),
         option: (provided, { value }) => {
           const { background, foreground } = {
-            background: "var(--global-background)",
-            foreground: "var(--global-foreground)",
+            background: "var(--background)",
+            foreground: "var(--foreground)",
           };
           return {
             ...provided,
@@ -33,8 +40,8 @@ export const _ThemeSwitcher: React.FCX = () => {
         },
         menu: provided => ({
           ...provided,
-          backgroundColor: `var(--global-background)`,
-          border: `2px solid var(--global-border)`,
+          backgroundColor: `var(--background)`,
+          border: `2px solid var(--border)`,
         }),
       }}
       defaultValue={{

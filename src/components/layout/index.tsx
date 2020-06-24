@@ -34,8 +34,8 @@ export const Layout: React.FCX<LayoutProps> = ({
   return (
     <div
       css={css`
-        color: var(--global-foreground);
-        background-color: var(--global-background);
+        color: var(--foreground);
+        background-color: var(--background);
         font-size: 18px;
         min-height: 100vh;
         cursor: auto;
