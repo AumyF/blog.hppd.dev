@@ -39,6 +39,7 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
             dateformat: {},
           },
         },
+        excerpt: "String!",
         path: "String!",
         status: "String!",
         tags: "[String!]!",

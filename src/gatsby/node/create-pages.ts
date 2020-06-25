@@ -101,6 +101,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
     title: string;
     body: string;
     date: any;
+    excerpt: string;
     path: string;
     status: string;
     tags: string[];
@@ -110,6 +111,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
     const p = Post({ node });
     const pn: ReturnType<typeof genPostNode> = {
       ...p,
+      excerpt: node.excerpt,
       id: createNodeId(`${node.id} WRYYYYY`),
       parent: node.id,
       internal: {
