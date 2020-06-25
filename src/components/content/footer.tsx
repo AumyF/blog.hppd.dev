@@ -18,7 +18,7 @@ export const Footer: React.FC<FooterProps> = () => {
       Built with <a href="https://gatsbyjs.org/">Gatsby</a>, hosted on{" "}
       <a href="https://netlify.com">Netlify</a>.
       <br />
-      Build time: {buildTime}
+      Build date: {buildTime}
     </footer>
   );
 };
