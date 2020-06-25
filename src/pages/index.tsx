@@ -19,7 +19,7 @@ export const IndexPage: React.FC<PageProps<IndexQuery>> = ({
 }) => {
   const { siteMetadata } = useSite();
   return (
-    <Layout title={assertsNonNull(siteMetadata?.title)}>
+    <Layout path="" title={assertsNonNull(siteMetadata?.title)}>
       <PostList edges={edges} />
     </Layout>
   );
