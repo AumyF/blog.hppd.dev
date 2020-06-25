@@ -36,12 +36,15 @@ export const Layout: React.FCX<LayoutProps> = ({
       css={css`
         color: var(--foreground);
         background-color: var(--background);
-        font-family: Helvetica, "Hiragino Sans", "Noto Sans CJK JP", "Meiryo",
-          sans-serif;
-        font-size: 18px;
+        font-family: "Helvetica Neue", "Hiragino Kaku Gothic ProN",
+          "Noto Sans CJK JP", "Meiryo", sans-serif;
         min-height: 100vh;
         cursor: auto;
         text-decoration: none;
+        font-size: 16px;
+        ${mq.tab} {
+          font-size: 18px;
+        }
       `}
       className={className}
     >
