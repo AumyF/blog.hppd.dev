@@ -1056,12 +1056,12 @@ export type Post = Node & {
   title: Scalars['String'];
   body: Scalars['String'];
   date: Scalars['Date'];
+  excerpt: Scalars['String'];
   path: Scalars['String'];
   status: Scalars['String'];
   tags: Array<Scalars['String']>;
   toc: Scalars['JSON'];
   description?: Maybe<Scalars['String']>;
-  excerpt?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   parent?: Maybe<Node>;
   children: Array<Node>;
@@ -1107,12 +1107,12 @@ export type PostFieldsEnum =
   'title' |
   'body' |
   'date' |
+  'excerpt' |
   'path' |
   'status' |
   'tags' |
   'toc' |
   'description' |
-  'excerpt' |
   'id' |
   'parent___id' |
   'parent___parent___id' |
@@ -1204,12 +1204,12 @@ export type PostFilterInput = {
   title?: Maybe<StringQueryOperatorInput>;
   body?: Maybe<StringQueryOperatorInput>;
   date?: Maybe<DateQueryOperatorInput>;
+  excerpt?: Maybe<StringQueryOperatorInput>;
   path?: Maybe<StringQueryOperatorInput>;
   status?: Maybe<StringQueryOperatorInput>;
   tags?: Maybe<StringQueryOperatorInput>;
   toc?: Maybe<JsonQueryOperatorInput>;
   description?: Maybe<StringQueryOperatorInput>;
-  excerpt?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
@@ -1402,12 +1402,12 @@ export type QueryPostArgs = {
   title?: Maybe<StringQueryOperatorInput>;
   body?: Maybe<StringQueryOperatorInput>;
   date?: Maybe<DateQueryOperatorInput>;
+  excerpt?: Maybe<StringQueryOperatorInput>;
   path?: Maybe<StringQueryOperatorInput>;
   status?: Maybe<StringQueryOperatorInput>;
   tags?: Maybe<StringQueryOperatorInput>;
   toc?: Maybe<JsonQueryOperatorInput>;
   description?: Maybe<StringQueryOperatorInput>;
-  excerpt?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
@@ -2417,7 +2417,7 @@ export type UseStaticQueryQuery = { site?: Maybe<(
 export type IndexQueryVariables = {};
 
 
-export type IndexQuery = { allPost: { edges: Array<{ node: Pick<Post, 'id' | 'title' | 'tags' | 'date' | 'path'> }> } };
+export type IndexQuery = { allPost: { edges: Array<{ node: Pick<Post, 'id' | 'title' | 'tags' | 'date' | 'path' | 'excerpt'> }> } };
 
 export type TagsPageQueryVariables = {};
 

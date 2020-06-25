@@ -3,10 +3,9 @@ import { css } from "@emotion/core";
 import { faTags } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { styleValues } from "../../styles/styleValues";
+import { Post } from "../../../types/graphqlTypes";
 
-export type TagListProps = {
-  tags: readonly string[];
-};
+export type TagListProps = Pick<Post, "tags">;
 
 export const TagList: React.FC<TagListProps> = ({ tags }) => (
   <div css={css``}>

@@ -14,10 +14,10 @@ const palettes = {
 
 const defaultTheme: typeof themes["dark"] = {
   background: "#1c1c1c",
-  primary: "#73e135",
+  primary: "#66d8fb",
   secondary: "#f77253",
   foreground: "#d0d0d0",
-  border: "border",
+  border: "#404040",
   postLink: {
     background: "#222",
   },

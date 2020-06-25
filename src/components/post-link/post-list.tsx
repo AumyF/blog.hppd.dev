@@ -7,7 +7,8 @@ import { Post } from "../../../types/graphqlTypes";
 
 export type PostListProps = {
   edges: {
-    node: Pick<Post, "title" | "path"> & Partial<Pick<Post, "tags">>;
+    node: Pick<Post, "title" | "path" | "excerpt"> &
+      Partial<Pick<Post, "tags">>;
   }[];
 };
 
@@ -23,9 +24,9 @@ export const PostList: React.FC<PostListProps> = ({ edges }) => (
       grid-template-columns: repeat(auto-fill, minmax(256px, 1fr));
     `}
   >
-    {edges.map(({ node: { title, path, tags } }) => (
+    {edges.map(({ node: { title, path, tags, excerpt } }) => (
       <li key={title ?? path}>
-        <PostLink {...{ path, title, tags }} />
+        <PostLink {...{ path, title, tags, excerpt }} />
       </li>
     ))}
   </ul>
