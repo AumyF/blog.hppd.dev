@@ -5,23 +5,21 @@ import { SwipingAnchor } from "./swiping-anchor";
 import styled from "@emotion/styled";
 import { styleValues } from "../../styles/styleValues";
 import { ThemeContainer } from "../../styles/theme";
+import {
+  Heading1,
+  Heading2,
+  Heading3,
+  Heading4,
+} from "../article-elements/headings";
+import { Strong } from "../article-elements/strong";
 
 type Elm = JSX.IntrinsicElements;
 
 export const MDXComponents: MDXProviderComponentsProp = {
-  h1: styled.h1``,
-  h2: styled.h2`
-    border-bottom: 1px solid ${styleValues.global.border};
-    font-weight: medium;
-    font-size: 1.2rem;
-    padding-left: 0.25rem;
-    padding-right: 0.25rem;
-    padding-top: 0.5rem;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-  `,
-  h3: styled.h3``,
-  h4: styled.h4``,
+  h1: Heading1,
+  h2: Heading2,
+  h3: Heading3,
+  h4: Heading4,
   h5: styled.h5``,
   h6: styled.h6``,
   blockquote: styled.blockquote``,
@@ -53,7 +51,7 @@ export const MDXComponents: MDXProviderComponentsProp = {
       <SwipingAnchor to={props.href!} {...props} />
     );
   },
-  strong: styled.strong``,
+  strong: Strong,
   ul: (props: Elm["ul"]) => (
     <ul
       css={css`

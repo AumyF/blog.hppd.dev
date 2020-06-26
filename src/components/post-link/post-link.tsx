@@ -29,31 +29,42 @@ export const PostLink: React.FCX<PostLinkProps> = ({
       {...{ className }}
       css={css`
         display: block;
+        transition: 200ms border-color ease;
+        border: 1px solid var(--border);
+        &:hover {
+          border-color: var(--foreground);
+        }
+        border-radius: 1rem;
         color: var(--foreground);
         background-color: var(--postlink-background);
         text-decoration: none;
         padding: 1rem;
         width: 100%;
         height: 100%;
-        transition: 200ms border-top ease;
-        border-top: 00px solid var(--secondary);
-        &:hover {
-          border-top: 10px solid var(--secondary);
-        }
       `}
       to={`/${path}`}
     >
-      {path && <PostDate {...{ path }} />}
-      {tags && <TagList tags={tags} />}
+      <h2
+        css={css`
+          font-size: 1.25em;
+          text-decoration: none;
+          color: var(--strong);
+        `}
+      >
+        {title}
+      </h2>
+      <div
+        css={css`
+          background-color: var(--secondary);
+          color: var(--background);
+          padding: 0 4px;
+          border-radius: 10px;
+        `}
+      >
+        {path && <PostDate {...{ path }} />}
+        {tags && <TagList tags={tags} css={css``} childrenStyle={css``} />}
+      </div>
       <div>
-        <span
-          css={css`
-            font-size: 1.25em;
-            text-decoration: none;
-          `}
-        >
-          {title}
-        </span>
         <span
           css={css`
             font-size: 0.9em;

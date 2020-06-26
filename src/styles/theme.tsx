@@ -13,10 +13,11 @@ const palettes = {
 } as const;
 
 const defaultTheme: typeof themes["dark"] = {
-  background: "#1c1c1c",
-  primary: "#66d8fb",
-  secondary: "#f77253",
+  background: "#1a1a1a",
+  primary: "#8094ff",
+  secondary: "#fd468a",
   foreground: "#d0d0d0",
+  strong: "#f0f0f0",
   border: "#404040",
   postLink: {
     background: "#222",
@@ -29,6 +30,7 @@ const themes: {
     secondary: string;
     background: string;
     foreground: string;
+    strong: string;
     border: string;
     postLink: {
       background: string;
@@ -39,8 +41,10 @@ const themes: {
   light: {
     ...defaultTheme,
     primary: "#00a0a8",
+    secondary: "#f77253",
     background: "#f0f0f0",
     foreground: "#333",
+    strong: "#202020",
     border: "#ddd",
     postLink: { background: "#f0f0f0" },
   },

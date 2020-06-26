@@ -21,7 +21,7 @@ export const ThemeSwitcher: React.FCX = ({ className }) => {
         padding: 0;
         font-size: 2em;
         height: 48px;
-        color: var(--foreground);
+        color: var(--secondary);
       `}
     >
       <FontAwesomeIcon icon={themeName === "dark" ? faMoon : faSun} />

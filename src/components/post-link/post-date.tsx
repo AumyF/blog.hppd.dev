@@ -11,7 +11,6 @@ export const PostDate: React.FCX<PostDateProps> = ({ path }) => (
     <FontAwesomeIcon icon={faCalendarDay} />
     <span
       css={css`
-        color: var(--secondary);
         margin-left: 0.5rem;
       `}
     >
