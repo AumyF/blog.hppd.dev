@@ -15,6 +15,7 @@ export const TagsPage: (props: TagsPageProps) => React.ReactElement = ({
   },
 }) => (
   <Layout
+    path="tags"
     title="TAGS"
     toc={{
       items: group.map(({ fieldValue }) => ({
