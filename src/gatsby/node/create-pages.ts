@@ -21,6 +21,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
   const result = await graphql<GatsbyNodeQuery>(`
     query gatsbyNode {
       allMdx(filter: { frontmatter: { status: { ne: "private" } } }) {
+        distinct(field: frontmatter___tags)
         edges {
           node {
             id

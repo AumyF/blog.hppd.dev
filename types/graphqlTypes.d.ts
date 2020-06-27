@@ -2398,10 +2398,13 @@ export type TableOfContentsItem = {
 export type GatsbyNodeQueryVariables = {};
 
 
-export type GatsbyNodeQuery = { allMdx: { edges: Array<{ node: (
+export type GatsbyNodeQuery = { allMdx: (
+    Pick<MdxConnection, 'distinct'>
+    & { edges: Array<{ node: (
         Pick<Mdx, 'id' | 'tableOfContents' | 'fileAbsolutePath' | 'body' | 'excerpt'>
         & { internal: Pick<Internal, 'content' | 'type'>, frontmatter?: Maybe<Pick<MdxFrontmatter, 'date' | 'status' | 'tags' | 'title'>> }
-      ) }> }, allDirectory: { group: Array<(
+      ) }> }
+  ), allDirectory: { group: Array<(
       Pick<DirectoryGroupConnection, 'fieldValue'>
       & { edges: Array<{ node: Pick<Directory, 'name'> }> }
     )> } };
