@@ -16,7 +16,7 @@ export const ArticleStyles = css`
     margin-top: 0.75rem;
     margin-bottom: 0.75rem;
     border: none;
-    border-bottom: 1px solid ${styleValues.global.border};
+    border-bottom: 1px solid var(--border);
   }
   pre {
     overflow-x: scroll;
