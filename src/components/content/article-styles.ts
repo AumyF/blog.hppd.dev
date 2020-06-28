@@ -1,8 +1,9 @@
 import { css } from "@emotion/core";
 import { styleValues } from "../../styles/styleValues";
+import { letterSpacing } from "../../libs/styleFn/text";
 
 export const ArticleStyles = css`
-  letter-spacing: 0.09em;
+  ${letterSpacing([0.09, "em"])}
   h1,
   h2,
   h3,
