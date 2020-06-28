@@ -1,12 +1,7 @@
 import React from "react";
-import { css } from "@emotion/core";
 import { PageProps, graphql } from "gatsby";
 import { Layout } from "../components/layout";
-import { Post, genPostDateAndPath } from "../libs/post";
-import {
-  ArchiveMonthPageQuery,
-  MdxFrontmatter,
-} from "../../types/graphqlTypes";
+import { ArchiveMonthPageQuery } from "../../types/graphqlTypes";
 import { PostList } from "../components/post-link/post-list";
 
 export type ArchiveMonthPageContenxt = {

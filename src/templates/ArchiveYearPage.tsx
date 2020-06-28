@@ -1,7 +1,6 @@
 import React from "react";
 import { PageProps, graphql } from "gatsby";
 import { Layout } from "../components/layout";
-import { Post, genPostDateAndPath } from "../libs/post";
 import { ArchiveYearPageQuery } from "../../types/graphqlTypes";
 import { PostList } from "../components/post-link/post-list";
 

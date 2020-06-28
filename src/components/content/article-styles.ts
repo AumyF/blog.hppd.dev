@@ -25,4 +25,10 @@ export const ArticleStyles = css`
   li {
     line-height: 1.75;
   }
+  p {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
 `;

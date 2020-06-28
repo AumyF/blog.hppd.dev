@@ -1,5 +1,4 @@
 import React from "react";
-import { css } from "@emotion/core";
 import { PageProps } from "gatsby";
 import { Layout } from "../components/layout";
 

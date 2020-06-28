@@ -1,8 +1,6 @@
-import React, { ComponentProps } from "react";
-import { css } from "@emotion/core";
+import React from "react";
 import { PageProps, graphql } from "gatsby";
 import { Layout } from "../components/layout";
-import { Post } from "../libs/post";
 import { PostList } from "../components/post-link/post-list";
 import { IndividualTagPageQuery } from "../../types/graphqlTypes";
 

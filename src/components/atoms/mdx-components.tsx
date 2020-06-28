@@ -4,7 +4,6 @@ import React from "react";
 import { SwipingAnchor } from "./swiping-anchor";
 import styled from "@emotion/styled";
 import { styleValues } from "../../styles/styleValues";
-import { ThemeContainer } from "../../styles/theme";
 import {
   Heading1,
   Heading2,
@@ -23,12 +22,7 @@ export const MDXComponents: MDXProviderComponentsProp = {
   h5: styled.h5``,
   h6: styled.h6``,
   blockquote: styled.blockquote``,
-  p: styled.p`
-    padding-top: 0.25rem;
-    padding-bottom: 0.25rem;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-  `,
+  p: styled.p``,
   a: (props: Elm["a"]) => {
     return props.className?.includes(`autolink-headers`) ? (
       <a

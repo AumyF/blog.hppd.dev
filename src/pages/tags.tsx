@@ -3,8 +3,6 @@ import { css } from "@emotion/core";
 import { Layout } from "../components/layout";
 import { PageProps, graphql, Link } from "gatsby";
 import { TagsPageQuery } from "../../types/graphqlTypes";
-import { nage } from "../utils/nage";
-import { genPostDateAndPath } from "../libs/post";
 import { PostList } from "../components/post-link/post-list";
 
 export type TagsPageProps = PageProps<TagsPageQuery>;

@@ -1,11 +1,10 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "@emotion/styled";
 import { mq } from "../../styles/mediaQueries";
 import { styleValues } from "../../styles/styleValues";
 import { useSpring, animated } from "react-spring";
 import { useScroll } from "react-use-gesture";
 import { assertsNonNull } from "../../libs/asserts-non-null";
-import { ThemeSwitcher } from "../theme-switcher";
 
 export type HeaderProps = { title: string };
 

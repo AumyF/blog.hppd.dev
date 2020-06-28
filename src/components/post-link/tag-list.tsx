@@ -1,8 +1,7 @@
-import React, { Component, FCX, ReactNode } from "react";
-import { css, InterpolationWithTheme, Interpolation } from "@emotion/core";
+import React, { ReactNode } from "react";
+import { css, Interpolation } from "@emotion/core";
 import { faTags } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { styleValues } from "../../styles/styleValues";
 import { Post } from "../../../types/graphqlTypes";
 import { ElementOf } from "ts-essentials";
 
@@ -13,7 +12,6 @@ export type TagListProps = Pick<Post, "tags"> & {
 
 export const TagList: React.FCX<TagListProps> = ({
   tags,
-  childrenStyle,
   className,
   children,
 }) => (
