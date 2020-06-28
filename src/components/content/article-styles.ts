@@ -3,6 +3,14 @@ import { styleValues } from "../../styles/styleValues";
 
 export const ArticleStyles = css`
   letter-spacing: 0.09em;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-feature-settings: "palt";
+  }
   hr {
     margin-top: 0.75rem;
     margin-bottom: 0.75rem;
