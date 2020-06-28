@@ -96,10 +96,10 @@ const ThemeStoreInner: React.FC = () => {
         }
         a {
           color: var(--primary);
-          text-decoration: underline dotted var(--foreground);
-          text-decoration-thickness: 2px;
+          text-decoration: underline var(--primary);
+          text-decoration-thickness: 1px;
           &:hover {
-            text-decoration-style: solid;
+            text-decoration-thickness: 2px;
           }
         }
         ${prismStyles}

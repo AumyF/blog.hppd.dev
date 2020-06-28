@@ -1,13 +1,8 @@
-import React, { MouseEventHandler, useState } from "react";
-import { css, Interpolation } from "@emotion/core";
-import { useStaticQuery, graphql, Link } from "gatsby";
+import React from "react";
+import { css } from "@emotion/core";
+import { Link } from "gatsby";
 import { Post } from "../../../types/graphqlTypes";
-import {} from "ts-essentials";
-import { styleValues } from "../../styles/styleValues";
-import { useSpring, animated } from "react-spring";
 import { TagList } from "./tag-list";
-import { faCalendarDay } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { PostDate } from "./post-date";
 import { PickAndPartialPick } from "../../libs/type-utils";
 
@@ -25,15 +20,10 @@ export const PostLink: React.FCX<PostLinkProps> = ({
   excerpt,
 }) => {
   return (
-    <Link
+    <article
       {...{ className }}
       css={css`
         display: block;
-        transition: 200ms border-color ease;
-        border: 1px solid var(--border);
-        &:hover {
-          border-color: var(--foreground);
-        }
         border-radius: 1rem;
         color: var(--foreground);
         background-color: var(--postlink-background);
@@ -42,28 +32,49 @@ export const PostLink: React.FCX<PostLinkProps> = ({
         width: 100%;
         height: 100%;
       `}
-      to={`/${path}`}
     >
-      <h2
+      <Link
+        to={`/${path}`}
         css={css`
-          font-size: 1.25em;
           text-decoration: none;
-          color: var(--strong);
+          &:hover {
+            text-decoration: underline var(--primary);
+          }
         `}
       >
-        {title}
-      </h2>
-      <div
-        css={css`
-          background-color: var(--secondary);
-          color: var(--background);
-          padding: 0 4px;
-          border-radius: 10px;
-        `}
-      >
-        {path && <PostDate {...{ path }} />}
-        {tags && <TagList tags={tags} css={css``} childrenStyle={css``} />}
-      </div>
+        <h2
+          css={css`
+            font-size: 1.25em;
+            margin: 0;
+            line-height: 1.25;
+          `}
+        >
+          {title}
+        </h2>
+      </Link>
+      {path && <PostDate {...{ path }} />}
+      {tags && (
+        <TagList tags={tags} css={css``} childrenStyle={css``}>
+          {tag => (
+            <Link to={`/tags/${tag}`}>
+              <li
+                key={tag}
+                css={css`
+                  font-size: 1em;
+                  margin-left: 0.3rem;
+                  background-color: var(--primary);
+                  color: var(--background);
+                  padding: 0 4px;
+                  border-radius: 5px;
+                  margin-bottom: 4px;
+                `}
+              >
+                {tag}
+              </li>
+            </Link>
+          )}
+        </TagList>
+      )}
       <div>
         <span
           css={css`
@@ -75,6 +86,6 @@ export const PostLink: React.FCX<PostLinkProps> = ({
           {excerpt}
         </span>
       </div>
-    </Link>
+    </article>
   );
 };
