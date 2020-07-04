@@ -31,4 +31,19 @@ export const ArticleStyles = css`
     padding-left: 0.5rem;
     padding-right: 0.5rem;
   }
+  table {
+    > thead {
+      border-bottom: 1px solid var(--foreground);
+    }
+    > tbody {
+      > tr {
+        > td {
+          padding: 0.2rem 1rem;
+          &:not(:last-child) {
+            border-right: 1px solid var(--border);
+          }
+        }
+      }
+    }
+  }
 `;

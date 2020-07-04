@@ -59,14 +59,6 @@ export const MDXComponents: MDXProviderComponentsProp = {
     <ol className="list-decimal py-1 px-2 pl-8" {...props}></ol>
   ),
   code: (props: Elm["code"]) => <code {...props}></code>,
-  delete: styled.del``,
-  em: styled.em``,
-  hr: styled.hr`
-    margin-top: 0.75rem;
-    margin-bottom: 0.75rem;
-    border: 1px solid ${styleValues.global.border};
-  `,
-  img: styled.img``,
   inlineCode: styled.code``,
   li: styled.li``,
   pre: styled.pre``,
