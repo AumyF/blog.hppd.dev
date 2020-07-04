@@ -1,11 +1,6 @@
 import { ThemeContainer } from "../../styles/theme";
-import { useContext } from "react";
 import React from "react";
 import { css } from "@emotion/core";
-import * as LocalStorage from "../../libs/local-storage";
-import { Select } from "../sidebar/typesafe-select";
-import RSelect from "react-select";
-import { assertsNonNull } from "../../libs/asserts-non-null";
 import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -13,9 +8,12 @@ export const ThemeSwitcher: React.FCX = ({ className }) => {
   const { themeName, toggleTheme } = ThemeContainer.useContainer();
   return (
     <button
+      name="テーマを変更"
+      type="button"
       className={className}
       onClick={toggleTheme}
       css={css`
+        cursor: pointer;
         background-color: var(--background);
         border: none;
         padding: 0;
