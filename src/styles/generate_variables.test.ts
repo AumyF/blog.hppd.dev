@@ -1,4 +1,4 @@
-import { generateVariables, callVar } from "../../styles/variables";
+import { generateVariables, callVar } from "./variables";
 import { css } from "@emotion/core";
 
 describe("buildvar", (): void => {

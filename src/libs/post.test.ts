@@ -1,5 +1,4 @@
-import { Post } from "../../libs/post";
-import { PostDate } from "../../libs/date";
+import { Post } from "./post";
 
 describe("Post", (): void => {
   test("Postが正しく生成されるか", () => {
