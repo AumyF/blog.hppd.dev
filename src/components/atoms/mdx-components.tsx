@@ -11,6 +11,7 @@ import {
   Heading4,
 } from "../article-elements/headings";
 import { Strong } from "../article-elements/strong";
+import { HeaderAutoLink } from "./autolink-header";
 
 type Elm = JSX.IntrinsicElements;
 
@@ -25,22 +26,7 @@ export const MDXComponents: MDXProviderComponentsProp = {
   p: styled.p``,
   a: (props: Elm["a"]) => {
     return props.className?.includes(`autolink-headers`) ? (
-      <a
-        {...props}
-        css={css`
-          border-left: 3px solid var(--primary);
-          transition: 300ms all ease-in;
-          padding-left: 0.1rem;
-          margin-right: 0.25rem;
-          color: var(--foreground);
-          svg {
-            display: inline;
-            transform: scale(1.2);
-          }
-        `}
-      >
-        {props.children}
-      </a>
+      <HeaderAutoLink>{props.children}</HeaderAutoLink>
     ) : (
       <SwipingAnchor to={props.href!} {...props} />
     );
