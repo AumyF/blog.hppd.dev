@@ -41,7 +41,7 @@ export const Breadcrumbs: React.FCX<BreadcrumbsProps> = ({ date }) => {
           }
         `}
       >
-        <Link to="/">blog.momini.space</Link>
+        <Link to="/">miseruyo-blog.netlify.app</Link>
         {year && (
           <>
             {Slash}

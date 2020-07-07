@@ -1,6 +1,5 @@
 import { useState } from "react";
 import React from "react";
-import * as LocalStorage from "../libs/local-storage";
 import { Global, css } from "@emotion/core";
 import { prismStyles } from "../components/layout/prism-styles";
 import { createContainer } from "unstated-next";
@@ -62,10 +61,7 @@ const themes: {
 export type ThemeName = "dark" | "light";
 
 const useTheme = () => {
-  const local = LocalStorage.get("theme");
-  const initialTheme =
-    local !== null && ["dark", "light"].includes(local) ? local : "dark";
-  LocalStorage.set("theme")(initialTheme);
+  const initialTheme = "dark";
   const [themeName, setName] = useState<keyof typeof themes>(
     initialTheme as "dark" | "light"
   );
@@ -73,7 +69,6 @@ const useTheme = () => {
   const toggleTheme = () => {
     setName(name => {
       const newName = name === "dark" ? "light" : "dark";
-      LocalStorage.set("theme")(newName);
       return newName;
     });
   };
