@@ -13,7 +13,7 @@ export const Footer: React.FC<FooterProps> = () => {
         padding: 2rem;
       `}
     >
-      © 2020 Mominis
+      © 2020 Aumy
       <br />
       Built with <a href="https://gatsbyjs.org/">Gatsby</a>, hosted on{" "}
       <a href="https://netlify.com">Netlify</a>.

@@ -4,7 +4,7 @@ console.log(`Codegen: ${codegen}`);
 module.exports = {
   /* Your site config here */
   siteMetadata: {
-    title: "MOMIREPO",
+    title: "TEST",
   },
   plugins: [
     {
