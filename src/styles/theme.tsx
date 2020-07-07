@@ -5,15 +5,24 @@ import { Global, css } from "@emotion/core";
 import { prismStyles } from "../components/layout/prism-styles";
 import { createContainer } from "unstated-next";
 import { generateVariables } from "./variables";
+import { hsl } from "../libs/styleFn/color";
+import { ElementOf } from "ts-essentials";
 
+const lightnessList = [0, 10, 25, 50, 75, 90, 100] as const;
+
+type tmp = (arg: number[]) => { [index in ElementOf<typeof arg>]: string };
 const palettes = {
-  vividDark: {
-    mono: ["1e1e21", "#404040", "#d0d0d0"],
+  mono: Object.fromEntries(lightnessList.map(n => [n, hsl(0, 0, n)])) as {
+    [index in typeof lightnessList extends readonly (infer R)[]
+      ? R
+      : never]: string;
   },
-} as const;
+};
+
+const tuple = ["Banagher" | "Audrey" | ""];
 
 const defaultTheme: typeof themes["dark"] = {
-  background: "#1a1a1a",
+  background: palettes.mono[10],
   primary: "#8094ff",
   secondary: "#fd468a",
   foreground: "#d0d0d0",
