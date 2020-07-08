@@ -1,16 +1,6 @@
-import React, { useState } from "react";
-import { faHome, faTags } from "@fortawesome/free-solid-svg-icons";
-import {
-  faTwitter,
-  faGithub,
-  faGithubAlt,
-} from "@fortawesome/free-brands-svg-icons";
-import { css } from "@emotion/core";
-import { mq } from "../../styles/mediaQueries";
-import { styleValues } from "../../styles/styleValues";
+import React from "react";
 import { TableOfContents } from "../table-of-contents";
 import { TOC } from "../../libs/toc";
-import { SidebarButtonsGroup } from "./buttons-group";
 import styled from "@emotion/styled";
 
 export type SidebarProps = { toc?: TOC };

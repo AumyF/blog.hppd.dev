@@ -1,6 +1,6 @@
 import React from "react";
 import { css } from "@emotion/core";
-import { tap } from "lodash";
+
 export type EmbeddedNiconicoPlayerProps = {
   src: string;
   from: number;

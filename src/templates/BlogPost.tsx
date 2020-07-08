@@ -1,12 +1,8 @@
 import React from "react";
-import { Post } from "../libs/post";
 import { MDXProvider } from "@mdx-js/react";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import { MDXComponents } from "../components/atoms/mdx-components";
 import { Layout } from "../components/layout";
-import { css } from "@emotion/core";
-import { styleValues } from "../styles/styleValues";
-import colorScheme from "../styles/colorScheme";
 import { PostTags } from "../components/content/tags";
 import { graphql, PageProps } from "gatsby";
 import { BlogPostQuery } from "../../types/graphqlTypes";

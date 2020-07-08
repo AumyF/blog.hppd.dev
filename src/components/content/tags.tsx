@@ -1,7 +1,5 @@
 import React from "react";
 import { css } from "@emotion/core";
-import { styleValues } from "../../styles/styleValues";
-import colorScheme from "../../styles/colorScheme";
 import { Link } from "gatsby";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTag } from "@fortawesome/free-solid-svg-icons";

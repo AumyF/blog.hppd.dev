@@ -1,4 +1,4 @@
-import React, { DOMAttributes, HTMLAttributes } from "react";
+import React, { HTMLAttributes } from "react";
 
 type htmlSelect = HTMLAttributes<HTMLSelectElement>;
 

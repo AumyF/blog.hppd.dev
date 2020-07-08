@@ -1,14 +1,8 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import { css } from "@emotion/core";
-import { styleValues } from "../../styles/styleValues";
-import colorScheme from "../../styles/colorScheme";
 import { Link } from "gatsby";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import styled from "@emotion/styled";
-import { DateTime } from "luxon";
-import { assertsNonNull } from "../../libs/asserts-non-null";
-import { callOptionalUndefined } from "../../libs/call-optional";
 
 export type BreadcrumbsProps = {
   date?: string[];

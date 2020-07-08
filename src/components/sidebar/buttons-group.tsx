@@ -1,8 +1,6 @@
 import { SidebarButtonProps, SidebarButton } from "./button";
 import { css } from "@emotion/core";
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "gatsby";
 
 export type SidebarButtonsGroupProps = {
   buttons: SidebarButtonProps[];

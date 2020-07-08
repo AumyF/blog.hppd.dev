@@ -2,8 +2,6 @@ import { css } from "@emotion/core";
 import React from "react";
 import { AnchorOrLink } from "./anchor-or-link";
 import { GatsbyLinkProps } from "gatsby";
-import { styleValues } from "../../styles/styleValues";
-import { ThemeContainer } from "../../styles/theme";
 
 export const SwipingAnchor: React.FC<GatsbyLinkProps<unknown>> = props => (
   <span

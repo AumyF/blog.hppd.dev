@@ -3,7 +3,6 @@ import { MDXProviderComponentsProp } from "@mdx-js/react";
 import React from "react";
 import { SwipingAnchor } from "./swiping-anchor";
 import styled from "@emotion/styled";
-import { styleValues } from "../../styles/styleValues";
 import {
   Heading1,
   Heading2,

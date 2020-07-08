@@ -1,5 +1,4 @@
 import { css } from "@emotion/core";
-import { styleValues } from "../../styles/styleValues";
 import { letterSpacing } from "../../libs/styleFn/text";
 
 export const ArticleStyles = css`
