@@ -1,12 +1,14 @@
-import { useState } from "react";
 import React from "react";
-import * as LocalStorage from "../libs/local-storage";
 import { Global, css } from "@emotion/core";
 import { prismStyles } from "../components/layout/prism-styles";
 import { createContainer } from "unstated-next";
 import { generateVariables } from "./variables";
 import { hsl } from "../libs/styleFn/color";
 import { ElementOf } from "ts-essentials";
+import { useLocalStorageState } from "../hooks/use-local-storage-state";
+import { config } from "@fortawesome/fontawesome-svg-core";
+
+config.autoAddCss = false;
 
 const lightnessList = [0, 10, 25, 50, 75, 90, 100] as const;
 
@@ -18,8 +20,6 @@ const palettes = {
       : never]: string;
   },
 };
-
-const tuple = ["Banagher" | "Audrey" | ""];
 
 const defaultTheme: typeof themes["dark"] = {
   background: palettes.mono[10],
@@ -62,20 +62,13 @@ const themes: {
 export type ThemeName = "dark" | "light";
 
 const useTheme = () => {
-  const local = LocalStorage.get("theme");
-  const initialTheme =
-    local !== null && ["dark", "light"].includes(local) ? local : "dark";
-  LocalStorage.set("theme")(initialTheme);
-  const [themeName, setName] = useState<keyof typeof themes>(
-    initialTheme as "dark" | "light"
+  const [themeName, setThemeName] = useLocalStorageState<ThemeName>(
+    "theme",
+    "dark"
   );
 
   const toggleTheme = () => {
-    setName(name => {
-      const newName = name === "dark" ? "light" : "dark";
-      LocalStorage.set("theme")(newName);
-      return newName;
-    });
+    setThemeName(name => (name === "dark" ? "light" : "dark"));
   };
 
   return {
@@ -116,6 +109,7 @@ const ThemeStoreInner: React.FC = () => {
     />
   );
 };
+
 export const ThemeStore: React.FC = ({ children }) => {
   return (
     <ThemeContainer.Provider>
