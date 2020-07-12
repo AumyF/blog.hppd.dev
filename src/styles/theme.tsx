@@ -13,7 +13,8 @@ config.autoAddCss = false;
 const lightnessList = [0, 10, 25, 50, 75, 90, 100] as const;
 
 type tmp = (arg: number[]) => { [index in ElementOf<typeof arg>]: string };
-const palettes = {
+
+export const palettes = {
   mono: Object.fromEntries(lightnessList.map(n => [n, hsl(0, 0, n)])) as {
     [index in typeof lightnessList extends readonly (infer R)[]
       ? R
@@ -51,7 +52,7 @@ const themes: {
     ...defaultTheme,
     primary: "#00a0a8",
     secondary: "#f77253",
-    background: "#f0f0f0",
+    background: palettes.mono[90],
     foreground: "#333",
     strong: "#202020",
     border: "#ddd",
