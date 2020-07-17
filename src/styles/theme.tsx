@@ -25,6 +25,12 @@ const defaultTheme: typeof themes["dark"] = {
   postLink: {
     background: "#222",
   },
+  font: {
+    regular: `"Helvetica Neue", "Hiragino Sans", "Noto Sans CJK JP",
+"Meiryo", sans-serif`,
+    light: `"Hiragino Sans", "Noto Sans CJK JP Thin", "Yu Gothic",
+    sans-serif;`,
+  },
 };
 
 const themes: {
@@ -37,6 +43,10 @@ const themes: {
     border: string;
     postLink: {
       background: string;
+    };
+    font: {
+      light: string;
+      regular: string;
     };
   };
 } = {

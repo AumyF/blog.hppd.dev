@@ -46,6 +46,7 @@ export const PostLink: React.FCX<PostLinkProps> = ({
       >
         <h2
           css={css`
+            font-weight: 600;
             font-size: 1.25em;
             margin: 0;
             line-height: 1.25;

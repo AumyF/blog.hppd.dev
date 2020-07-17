@@ -10,6 +10,9 @@ export const ArticleStyles = css`
   h5,
   h6 {
     font-feature-settings: "palt";
+    font-weight: 200;
+    font-family: "Hiragino Sans", "Noto Sans CJK JP Thin", "Yu Gothic",
+      sans-serif;
   }
   hr {
     margin-top: 0.75rem;

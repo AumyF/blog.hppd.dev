@@ -26,8 +26,8 @@ export const Layout: React.FCX<LayoutProps> = ({
       css={css`
         color: var(--foreground);
         background-color: var(--background);
-        font-family: "Helvetica Neue", "Hiragino Kaku Gothic ProN",
-          "Noto Sans CJK JP", "Meiryo", sans-serif;
+        font-family: "Helvetica Neue", "Hiragino Sans", "Noto Sans CJK JP",
+          "Meiryo", sans-serif;
         min-height: 100vh;
         cursor: auto;
         text-decoration: none;
