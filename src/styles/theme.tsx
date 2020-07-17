@@ -3,27 +3,20 @@ import { Global, css } from "@emotion/core";
 import { prismStyles } from "../components/layout/prism-styles";
 import { createContainer } from "unstated-next";
 import { generateVariables } from "./variables";
-import { hsl } from "../libs/styleFn/color";
-import { ElementOf } from "ts-essentials";
+import { hsla } from "../libs/styleFn/color";
 import { useLocalStorageState } from "../hooks/use-local-storage-state";
 import { config } from "@fortawesome/fontawesome-svg-core";
 
 config.autoAddCss = false;
 
-const lightnessList = [0, 10, 25, 50, 75, 90, 100] as const;
-
-type tmp = (arg: number[]) => { [index in ElementOf<typeof arg>]: string };
+const mono = (l: number) => (a: number = 1) => hsla(0, 0, l, a);
 
 export const palettes = {
-  mono: Object.fromEntries(lightnessList.map(n => [n, hsl(0, 0, n)])) as {
-    [index in typeof lightnessList extends readonly (infer R)[]
-      ? R
-      : never]: string;
-  },
+  mono,
 };
 
 const defaultTheme: typeof themes["dark"] = {
-  background: palettes.mono[10],
+  background: palettes.mono(10)(),
   primary: "#8094ff",
   secondary: "#fd468a",
   foreground: "#d0d0d0",
@@ -35,7 +28,7 @@ const defaultTheme: typeof themes["dark"] = {
 };
 
 const themes: {
-  [index in ThemeName]: {
+  [index in ColorMode]: {
     primary: string;
     secondary: string;
     background: string;
@@ -52,7 +45,7 @@ const themes: {
     ...defaultTheme,
     primary: "#00a0a8",
     secondary: "#f77253",
-    background: palettes.mono[90],
+    background: palettes.mono(95)(),
     foreground: "#333",
     strong: "#202020",
     border: "#ddd",
@@ -60,21 +53,21 @@ const themes: {
   },
 };
 
-export type ThemeName = "dark" | "light";
+export type ColorMode = "dark" | "light";
 
 const useTheme = () => {
-  const [themeName, setThemeName] = useLocalStorageState<ThemeName>(
+  const [colorMode, setColorMode] = useLocalStorageState<ColorMode>(
     "theme",
     "dark"
   );
 
   const toggleTheme = () => {
-    setThemeName(name => (name === "dark" ? "light" : "dark"));
+    setColorMode(name => (name === "dark" ? "light" : "dark"));
   };
 
   return {
-    variables: generateVariables(themes[themeName]),
-    themeName,
+    variables: generateVariables(themes[colorMode]),
+    colorMode,
     toggleTheme,
   };
 };

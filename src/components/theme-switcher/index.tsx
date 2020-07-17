@@ -5,7 +5,7 @@ import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const ThemeSwitcher: React.FCX = ({ className }) => {
-  const { themeName, toggleTheme } = ThemeContainer.useContainer();
+  const { colorMode, toggleTheme } = ThemeContainer.useContainer();
   return (
     <button
       name="テーマを変更"
@@ -22,7 +22,7 @@ export const ThemeSwitcher: React.FCX = ({ className }) => {
         color: var(--secondary);
       `}
     >
-      <FontAwesomeIcon icon={themeName === "dark" ? faMoon : faSun} />
+      <FontAwesomeIcon icon={colorMode === "dark" ? faMoon : faSun} />
     </button>
   );
 };
