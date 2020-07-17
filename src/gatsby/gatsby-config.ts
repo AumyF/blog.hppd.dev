@@ -4,7 +4,8 @@ console.log(`Codegen: ${codegen}`);
 module.exports = {
   /* Your site config here */
   siteMetadata: {
-    title: "MOMIREPO",
+    title: "快速急行明朝行",
+    description: "規則正しい生活は、永久にこれを放棄しようかと",
   },
   plugins: [
     {

@@ -1704,6 +1704,7 @@ export type SiteEdge = {
 export type SiteFieldsEnum = 
   'buildTime' |
   'siteMetadata___title' |
+  'siteMetadata___description' |
   'port' |
   'host' |
   'polyfill' |
@@ -2361,10 +2362,12 @@ export type SitePluginSortInput = {
 
 export type SiteSiteMetadata = {
   title?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
 };
 
 export type SiteSiteMetadataFilterInput = {
   title?: Maybe<StringQueryOperatorInput>;
+  description?: Maybe<StringQueryOperatorInput>;
 };
 
 export type SiteSortInput = {
