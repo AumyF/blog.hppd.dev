@@ -1,4 +1,4 @@
-import { css, SerializedStyles } from "@emotion/core";
+import { css } from "@emotion/core";
 
 export const colors = {};
 

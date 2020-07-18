@@ -1,8 +1,7 @@
 import React from "react";
 import { PageProps, graphql } from "gatsby";
-import { Layout } from "../components/layout";
-import { PostList } from "../components/post-link/post-list";
 import { IndividualTagPageQuery } from "../../types/graphqlTypes";
+import { PostListPage } from "./post-list-page";
 
 export type IndividualTagPageContext = {
   tag: string;
@@ -17,13 +16,7 @@ export const IndividualTagPage: React.FC<IndividualTagPageProps> = ({
   data: {
     allPost: { edges },
   },
-}) => (
-  <Layout title={`tag: ${tag}`} path={`tags/${tag}`}>
-    <div>
-      <PostList edges={edges} />
-    </div>
-  </Layout>
-);
+}) => <PostListPage title={`tag: ${tag}`} path={`tags/${tag}`} edges={edges} />;
 
 export default IndividualTagPage;
 
@@ -35,6 +28,7 @@ export const pageQuery = graphql`
           title
           path
           tags
+          excerpt
         }
       }
     }

@@ -1,5 +1,5 @@
 import { TOC } from "./toc";
-import { Mdx, MdxFrontmatter, MdxEdge } from "../../types/graphqlTypes";
+import { Mdx } from "../../types/graphqlTypes";
 import { compact } from "lodash";
 import { PostDate } from "./date";
 

@@ -1,22 +1,17 @@
 import React from "react";
-import { Layout } from "../components/layout";
 import { graphql, PageProps } from "gatsby";
 import { IndexQuery } from "../../types/graphqlTypes";
-import { PostList } from "../components/post-link/post-list";
 import { useSite } from "../hooks/use-site";
 import { assertsNonNull } from "../libs/asserts-non-null";
+import { PostListPage } from "../templates/post-list-page";
 
 export const IndexPage: React.FC<PageProps<IndexQuery>> = ({
   data: {
     allPost: { edges },
   },
 }) => {
-  const { siteMetadata } = useSite();
-  return (
-    <Layout path="" title={assertsNonNull(siteMetadata?.title)}>
-      <PostList edges={edges} />
-    </Layout>
-  );
+  const { title } = assertsNonNull(useSite().siteMetadata);
+  return <PostListPage path="" {...{ title: assertsNonNull(title), edges }} />;
 };
 
 export default IndexPage;

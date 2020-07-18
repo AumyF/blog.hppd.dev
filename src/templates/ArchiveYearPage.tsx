@@ -1,8 +1,7 @@
 import React from "react";
 import { PageProps, graphql } from "gatsby";
-import { Layout } from "../components/layout";
 import { ArchiveYearPageQuery } from "../../types/graphqlTypes";
-import { PostList } from "../components/post-link/post-list";
+import { PostListPage } from "./post-list-page";
 
 export type ArchiveYearPageContext = {
   year: string;
@@ -19,13 +18,7 @@ export const ArchiveYearPage: React.FC<ArchiveYearPageProps> = ({
   data: {
     allPost: { edges },
   },
-}) => (
-  <Layout title={year} path={year}>
-    <div>
-      <PostList edges={edges} />
-    </div>
-  </Layout>
-);
+}) => <PostListPage edges={edges} title={year} path={year} />;
 
 export default ArchiveYearPage;
 
@@ -39,6 +32,7 @@ export const pageQuery = graphql`
           path
           id
           tags
+          excerpt
         }
       }
     }

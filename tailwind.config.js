@@ -1,7 +1,11 @@
 module.exports = {
   purge: [],
   theme: {
-    extend: {},
+    extend: {
+      lineHeight: {
+        relaxed: "1.75",
+      },
+    },
   },
   variants: {},
   plugins: [],

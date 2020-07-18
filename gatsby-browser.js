@@ -3,6 +3,7 @@ import { ThemeStore } from "./src/styles/theme";
 import React from "react";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import "tailwindcss/dist/base.min.css";
+import "./src/styles/init.css";
 
 export const wrapRootElement = ({ element }) => (
   <ThemeStore>{element}</ThemeStore>

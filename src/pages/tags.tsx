@@ -4,6 +4,7 @@ import { Layout } from "../components/layout";
 import { PageProps, graphql, Link } from "gatsby";
 import { TagsPageQuery } from "../../types/graphqlTypes";
 import { PostList } from "../components/post-link/post-list";
+import { Heading2 } from "../components/article-elements/headings";
 
 export type TagsPageProps = PageProps<TagsPageQuery>;
 
@@ -24,7 +25,7 @@ export const TagsPage: (props: TagsPageProps) => React.ReactElement = ({
   >
     {group.map(({ fieldValue, totalCount, edges }) => (
       <section key={fieldValue ?? ""}>
-        <h1 id={`${fieldValue}`}>
+        <Heading2 id={`${fieldValue}`}>
           <Link to={"/tags/" + fieldValue ?? "#"}>{fieldValue}</Link>
           <span
             css={css`
@@ -34,7 +35,7 @@ export const TagsPage: (props: TagsPageProps) => React.ReactElement = ({
           >
             記事数: {totalCount}
           </span>
-        </h1>
+        </Heading2>
         <PostList edges={edges} />
       </section>
     ))}
@@ -50,6 +51,7 @@ export const pageQuery = graphql`
         edges {
           node {
             id
+            excerpt
             path
             tags
             title
