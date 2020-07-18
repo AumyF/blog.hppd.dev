@@ -5,8 +5,7 @@ import { Post } from "../../../types/graphqlTypes";
 import { TagList } from "./tag-list";
 import { PostDate } from "./post-date";
 import { PickAndPartialPick } from "../../libs/type-utils";
-import { spawnSync } from "child_process";
-import { endianness } from "os";
+import styled from "@emotion/styled";
 
 export type PostLinkProps = PickAndPartialPick<
   Post,
@@ -14,99 +13,74 @@ export type PostLinkProps = PickAndPartialPick<
   "tags" | "excerpt"
 >;
 
-export const PostLink: React.FCX<PostLinkProps> = ({
-  path,
-  title,
-  className,
-  tags,
-  excerpt,
-}) => {
-  return (
-    <article
-      {...{ className }}
-      css={css`
-        display: block;
-        border-radius: 1rem;
-        color: var(--foreground);
-        background-color: var(--postlink-background);
-        text-decoration: none;
-        padding: 1rem;
-        width: 100%;
-        height: 100%;
-      `}
-    >
-      <Link
-        to={`/${path}`}
-        css={css`
-          text-decoration: none;
-          &:hover {
-            text-decoration: underline var(--primary);
-          }
-        `}
-      >
-        <h2
+export module PostLink {
+  export const Plain: React.FCX<PostLinkProps> = ({
+    path,
+    title,
+    className,
+    tags,
+    excerpt,
+  }) => {
+    return (
+      <article {...{ className }}>
+        <Link to={`/${path}`}>
+          <h2>{title}</h2>
+        </Link>
+        {path && <PostDate {...{ path }} />}
+        {tags && <TagList.Styled {...{ tags }} />}
+        <div
           css={css`
-            font-weight: 600;
-            font-size: 1.25em;
-            margin: 0;
-            line-height: 1.25;
+            font-size: 0.9em;
+            color: var(--foreground);
+            /*
+            position: relative;
+            &::after {
+              width: 100%;
+              height: 100%;
+              background-image: linear-gradient(
+                to bottom,
+                ${cube(0, 1)
+                  .map(([i, p]) => `hsla(0, 0%, 10%, ${p * 95}%) ${i * 100}%`)
+                  .join(", ")}
+              );
+              content: "";
+              z-index: 100000;
+              position: absolute;
+              top: 0;
+              left: 0;
+              pointer-events: none;
+            }*/
           `}
         >
-          {title}
-        </h2>
-      </Link>
-      {path && <PostDate {...{ path }} />}
-      {tags && (
-        <TagList tags={tags} css={css``} childrenStyle={css``}>
-          {tag => (
-            <Link to={`/tags/${tag}`}>
-              <li
-                key={tag}
-                css={css`
-                  font-size: 1em;
-                  margin-left: 0.3rem;
-                  background-color: var(--primary);
-                  color: var(--background);
-                  padding: 0 4px;
-                  border-radius: 5px;
-                  margin-bottom: 4px;
-                `}
-              >
-                {tag}
-              </li>
-            </Link>
-          )}
-        </TagList>
-      )}
-      <div
-        css={css`
-          font-size: 0.9em;
-          color: var(--foreground);
-          /*
-          position: relative;
-          &::after {
-            width: 100%;
-            height: 100%;
-            background-image: linear-gradient(
-              to bottom,
-              ${cube(0, 1)
-                .map(([i, p]) => `hsla(0, 0%, 10%, ${p * 95}%) ${i * 100}%`)
-                .join(", ")}
-            );
-            content: "";
-            z-index: 100000;
-            position: absolute;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-          }*/
-        `}
-      >
-        {excerpt}
-      </div>
-    </article>
-  );
-};
+          {excerpt}
+        </div>
+      </article>
+    );
+  };
+
+  export const Styled = styled(Plain)`
+    display: block;
+    border-radius: 1rem;
+    color: var(--foreground);
+    background-color: var(--postlink-background);
+    text-decoration: none;
+    padding: 1rem;
+    width: 100%;
+    height: 100%;
+    > a {
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline var(--primary);
+      }
+      h2 {
+        font-weight: 600;
+        font-size: 1.5em;
+        margin: 0;
+        line-height: 1.25;
+      }
+    }
+  `;
+}
 
 const cube = (
   start: number,

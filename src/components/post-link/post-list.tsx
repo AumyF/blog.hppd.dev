@@ -24,7 +24,7 @@ export const PostList: React.FC<PostListProps> = ({ edges }) => (
   >
     {edges.map(({ node: { title, path, tags, excerpt } }) => (
       <li key={title ?? path}>
-        <PostLink {...{ path, title, tags, excerpt }} />
+        <PostLink.Styled {...{ path, title, tags, excerpt }} />
       </li>
     ))}
   </ul>

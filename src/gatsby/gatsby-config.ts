@@ -20,6 +20,7 @@ module.exports = {
       options: {
         isTSX: true,
         allExtensions: true,
+        allowNamespaces: true,
       },
     },
     {
