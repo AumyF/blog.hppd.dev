@@ -5,6 +5,11 @@ module.exports = {
       lineHeight: {
         relaxed: "1.75",
       },
+      colors: {
+        foreground: "var(--foreground)",
+        background: "var(--background)",
+        secondary: "var(--secondary)",
+      },
     },
   },
   variants: {},

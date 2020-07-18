@@ -11,7 +11,7 @@ export const IndexPage: React.FC<PageProps<IndexQuery>> = ({
   },
 }) => {
   const { title } = assertsNonNull(useSite().siteMetadata);
-  return <PostListPage path="" {...{ title: assertsNonNull(title), edges }} />;
+  return <PostListPage path="" {...{ title: "Index", edges }} />;
 };
 
 export default IndexPage;

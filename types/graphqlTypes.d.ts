@@ -2421,7 +2421,7 @@ export type UseStaticQueryQueryVariables = {};
 
 export type UseStaticQueryQuery = { site?: Maybe<(
     Pick<Site, 'buildTime'>
-    & { siteMetadata?: Maybe<Pick<SiteSiteMetadata, 'title'>> }
+    & { siteMetadata?: Maybe<Pick<SiteSiteMetadata, 'title' | 'description'>> }
   )> };
 
 export type IndexQueryVariables = {};

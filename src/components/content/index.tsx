@@ -17,7 +17,6 @@ export const Main: React.FCX<MainProps> = ({
   className,
 }) => (
   <main className="container mx-auto leading-relaxed">
-    <ThemeSwitcher />
     <Breadcrumbs date={path?.split("/")} path={path} />
     <Header>{title}</Header>
     {children}

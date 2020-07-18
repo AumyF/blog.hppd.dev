@@ -56,7 +56,7 @@ const themes: {
     primary: "#00a0a8",
     secondary: "#f77253",
     background: palettes.mono(95)(),
-    foreground: "#333",
+    foreground: palettes.mono(15)(),
     strong: "#202020",
     border: "#ddd",
     postLink: { background: "#f0f0f0" },

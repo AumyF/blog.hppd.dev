@@ -10,6 +10,7 @@ export const useSite = () =>
           buildTime(formatString: "yyyy-MM-DD")
           siteMetadata {
             title
+            description
           }
         }
       }

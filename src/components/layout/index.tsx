@@ -6,6 +6,7 @@ import { TOC } from "../../libs/toc";
 import { mq } from "../../styles/mediaQueries";
 import { Footer } from "../content/footer";
 import "prismjs/plugins/line-numbers/prism-line-numbers.css";
+import { SiteHeader } from "../header";
 
 export type LayoutProps = {
   date?: string;
@@ -40,6 +41,7 @@ export const Layout: React.FCX<LayoutProps> = ({
       <Helmet>
         <title>{title}</title>
       </Helmet>
+      <SiteHeader />
       <Main title={title} path={path}>
         {children}
       </Main>

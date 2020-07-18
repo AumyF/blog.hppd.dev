@@ -1,67 +1,37 @@
-import React, { useEffect, useRef } from "react";
-import styled from "@emotion/styled";
-import { mq } from "../../styles/mediaQueries";
-import { styleValues } from "../../styles/styleValues";
-import { useSpring, animated } from "react-spring";
-import { useScroll } from "react-use-gesture";
-import { assertsNonNull } from "../../libs/asserts-non-null";
+import React from "react";
+import { useSite } from "../../hooks/use-site";
+import { css } from "@emotion/core";
+import { Link } from "gatsby";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTags, faTag } from "@fortawesome/free-solid-svg-icons";
+import { ThemeSwitcher } from "../theme-switcher";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import tw from "twin.macro";
 
-export type HeaderProps = { title: string };
+export type SiteHeaderProps = {};
 
-const minmax = (...[x, n, v]: number[]) => (v < n ? n : v > x ? x : v);
-
-export const Plain: React.FCX<HeaderProps> = ({ title, className }) => {
-  const ref = useRef<HTMLHeadingElement>(null);
-  const [{ x, fontSize, backgroundColor }, setX] = useSpring(() => ({
-    fontSize: `2em`,
-    backgroundColor: `rgba(30, 30, 33, 1)`,
-    x: 0,
-  }));
-  const bind = useScroll(
-    ({ xy: [, y] }) => {
-      const windowWidth = window.innerWidth,
-        scrollPercentage = minmax(
-          0.5,
-          0,
-          (window.scrollY * 2) / window.innerHeight
-        ),
-        xScroll = scrollPercentage * windowWidth * -1,
-        h1Width = assertsNonNull(ref.current?.clientWidth);
-
-      setX({
-        x: xScroll + h1Width * scrollPercentage * 1.2,
-        fontSize: `${2 - scrollPercentage}em`,
-        backgroundColor: `rgba(30, 30, 33, ${scrollPercentage * 2})`,
-      });
-    },
-    { domTarget: window }
-  );
-
-  useEffect(() => {
-    bind();
-  }, [bind]);
+export const SiteHeader: React.FCX<SiteHeaderProps> = ({ children }) => {
+  const { siteMetadata } = useSite();
   return (
-    <animated.header style={{ backgroundColor }} className={className}>
-      <animated.h1 ref={ref} style={{ x, fontSize }}>
-        {title}
-      </animated.h1>
-    </animated.header>
+    <>
+      <header className="leading-tight text-center text-background bg-foreground">
+        <h1 className="text-5xl font-thin top-0 ">{siteMetadata?.title}</h1>
+        <p>{siteMetadata?.description}</p>
+      </header>
+      <nav className="sticky text-center bg-foreground top-0">
+        <Icon to="/tags" icon={faTag} />
+        <ThemeSwitcher className="text-5xl text-foreground" />
+      </nav>
+    </>
   );
 };
 
-export const Header = styled(Plain)`
-  position: sticky;
-  top: 0rem;
-  z-index: 10;
-  padding: 0 2rem;
-  text-align: center;
-  & > h1 {
-    display: inline-block;
-    background-color: ${styleValues.main.background};
-    font-size: 7vw;
-    ${mq.tab} {
-      font-size: 2em;
-    }
-    margin: 0;
-  }
-`;
+const Icon: React.FCX<{ icon: IconProp; to: string }> = ({
+  icon,
+  to,
+  className,
+}) => (
+  <Link {...{ to }}>
+    <FontAwesomeIcon {...{ icon }} className="text-5xl" />
+  </Link>
+);
