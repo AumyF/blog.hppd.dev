@@ -36,6 +36,7 @@
     "gatsby-plugin-emotion": "^4.3.10",
     "gatsby-plugin-graphql-codegen": "^2.7.1",
     "gatsby-plugin-mdx": "^1.2.26",
+    "gatsby-plugin-postcss": "^2.3.11",
     "gatsby-plugin-react-helmet": "^3.3.10",
     "gatsby-plugin-ts-config": "^0.2.3",
     "gatsby-plugin-typescript": "^2.4.15",
@@ -68,7 +69,9 @@
     "dependency-cruiser": "^9.9.2",
     "jsonc-parser": "^2.3.0",
     "prettier": "^2.0.5",
+    "tailwindcss": "^1.5.1",
     "ts-node": "^8.10.2",
+    "twin.macro": "^1.5.0",
     "typescript": "^3.9.7"
   }
 }
