@@ -1,18 +1,21 @@
 import { css } from "@emotion/core";
 import { letterSpacing } from "../../libs/styleFn/text";
+import { headingStyle, Heading1 } from "../article-elements/headings";
+import tw from "twin.macro";
 
 export const ArticleStyles = css`
-  ${letterSpacing([0.09, "em"])}
+  ${letterSpacing([0.05, "em"])}
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    font-feature-settings: "palt";
-    font-weight: 200;
-    font-family: "Hiragino Sans", "Noto Sans CJK JP Thin", "Yu Gothic",
-      sans-serif;
+    ${headingStyle};
+  }
+  > h2 {
+    ${tw`leading-snug my-5 text-4xl`};
+    border-bottom: 1px solid var(--border);
   }
   hr {
     margin-top: 0.75rem;
@@ -39,6 +42,9 @@ export const ArticleStyles = css`
     }
     > tbody {
       > tr {
+        &:nth-of-type(2n) {
+          background-color: #fff1;
+        }
         > td {
           padding: 0.2rem 1rem;
           &:not(:last-child) {

@@ -18,23 +18,8 @@ export const Main: React.FCX<MainProps> = ({
 }) => (
   <main className="container mx-auto leading-relaxed">
     <ThemeSwitcher />
-    <Breadcrumbs date={path.split("/")} path={path} />
-    <Header>{title}</Header>
-    <article>{children}</article>
-  </main>
-);
-
-const Plain: React.FCX<MainProps> = ({
-  children,
-  title,
-  date,
-  path,
-  className,
-}) => (
-  <main className={`container ${className}`} css={css``}>
-    <ThemeSwitcher />
     <Breadcrumbs date={path?.split("/")} path={path} />
     <Header>{title}</Header>
-    <article css={ArticleStyles}>{children}</article>
+    {children}
   </main>
 );

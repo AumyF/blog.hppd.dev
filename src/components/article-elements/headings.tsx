@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { css } from "@emotion/core";
 import tw from "twin.macro";
 
-const headingStyle = css`
+export const headingStyle = css`
   font-feature-settings: "palt";
   font-weight: 200;
   font-family: "Hiragino Sans", "Noto Sans CJK JP Thin", "Yu Gothic", sans-serif;

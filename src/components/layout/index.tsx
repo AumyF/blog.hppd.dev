@@ -1,7 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import { Main } from "../content";
-import "sanitize.css";
 import { css } from "@emotion/core";
 import { TOC } from "../../libs/toc";
 import { mq } from "../../styles/mediaQueries";
