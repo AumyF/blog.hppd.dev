@@ -3,7 +3,8 @@ import { useSite } from "../../hooks/use-site";
 import { css } from "@emotion/core";
 import { Link } from "gatsby";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTags, faTag } from "@fortawesome/free-solid-svg-icons";
+import { faTag, faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
+import { faTwitter, faGithub } from "@fortawesome/free-brands-svg-icons";
 import { ThemeSwitcher } from "../theme-switcher";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import tw from "twin.macro";
@@ -18,9 +19,12 @@ export const SiteHeader: React.FCX<SiteHeaderProps> = ({ children }) => {
         <h1 className="text-5xl font-thin top-0 ">{siteMetadata?.title}</h1>
         <p>{siteMetadata?.description}</p>
       </header>
-      <nav className="sticky text-center bg-foreground top-0">
+      <nav className="sticky text-center bg-foreground top-0 py-2">
         <Icon to="/tags" icon={faTag} />
-        <ThemeSwitcher className="text-5xl text-foreground" />
+        <Icon to="/archives" icon={faCalendarAlt} />
+        <Icon to="https://twitter.com/MominisJ" icon={faTwitter} />
+        <Icon to="https://github.com/AumyF" icon={faGithub} />
+        <ThemeSwitcher className="text-5xl text-foreground mx-1" />
       </nav>
     </>
   );
@@ -31,7 +35,10 @@ const Icon: React.FCX<{ icon: IconProp; to: string }> = ({
   to,
   className,
 }) => (
-  <Link {...{ to }}>
-    <FontAwesomeIcon {...{ icon }} className="text-5xl" />
+  <Link {...{ to, alt: "icon" }}>
+    <FontAwesomeIcon
+      {...{ icon }}
+      className="text-background transition-colors hover:text-primary text-5xl mx-1"
+    />
   </Link>
 );
