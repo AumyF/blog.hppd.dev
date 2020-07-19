@@ -1,21 +1,10 @@
 import React from "react";
-import { css } from "@emotion/core";
-import { mq } from "../../styles/mediaQueries";
-import styled from "@emotion/styled";
 import { Breadcrumbs } from "./breadcrumbs";
-import { ArticleStyles } from "./article-styles";
-import { ThemeSwitcher } from "../theme-switcher";
 import { Header } from "./header";
 
 export type MainProps = { title: string; date?: string; path: string };
 
-export const Main: React.FCX<MainProps> = ({
-  children,
-  title,
-  date,
-  path,
-  className,
-}) => (
+export const Main: React.FCX<MainProps> = ({ children, title, path }) => (
   <main className="container mx-auto leading-relaxed">
     <Breadcrumbs date={path?.split("/")} path={path} />
     <Header>{title}</Header>

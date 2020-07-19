@@ -1,6 +1,5 @@
 import { Length, Percentage } from "./length";
-import { format, formatProptery } from "./general";
-import { css } from "@emotion/core";
+import { formatProptery } from "./general";
 
 export const fontSize = (value: Length | Percentage) =>
   formatProptery("font-size", value);
