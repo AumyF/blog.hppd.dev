@@ -12,10 +12,12 @@ const TOCItemComponent: React.FC<TOC> = ({ items }) => (
       padding: 0.5rem 0;
     `}
   >
-    {items.map(i => (
-      <li key={i.title} css={css``}>
-        <SwipingAnchor to={i.url}>{i.title}</SwipingAnchor>
-        {i.items ? <TOCItemComponent items={i.items} /> : null}
+    {items.map(items => (
+      <li key={items.title} className="leading-normal">
+        <a className="no-underline hover:underline" href={items.url}>
+          {items.title}
+        </a>
+        {items.items ? <TOCItemComponent items={items.items} /> : null}
       </li>
     ))}
   </ul>
@@ -36,7 +38,6 @@ const PlainComponent: React.FCX<TableOfContentsProps> = ({
 );
 
 export const TableOfContents = styled(PlainComponent)`
-  ${styleValues.TableOfContents}
   font-size: 1rem;
   padding: 0.5rem 1rem;
   & > div {

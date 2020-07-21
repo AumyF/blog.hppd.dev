@@ -20,10 +20,13 @@ const Slash = (
   </span>
 );
 
-export const Breadcrumbs: React.FCX<BreadcrumbsProps> = ({ date }) => {
+export const Breadcrumbs: React.FCX<BreadcrumbsProps> = ({
+  date,
+  className,
+}) => {
   const [year, month, dayPath] = date ?? [undefined, undefined, undefined];
   return (
-    <nav>
+    <nav {...{ className }}>
       <span
         css={css`
           color: var(--foreground);
