@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import styled from "@emotion/styled";
 import { mq } from "../../styles/mediaQueries";
-import { styleValues } from "../../styles/styleValues";
 import { useSpring, animated } from "react-spring";
 import { useScroll } from "react-use-gesture";
 import { assertsNonNull } from "../../libs/asserts-non-null";
@@ -57,7 +56,7 @@ export const Header = styled(Plain)`
   text-align: center;
   & > h1 {
     display: inline-block;
-    background-color: ${styleValues.main.background};
+    background-color: var(--background);
     font-size: 7vw;
     ${mq.tab} {
       font-size: 2em;

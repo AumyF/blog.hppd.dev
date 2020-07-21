@@ -16,6 +16,7 @@ export const palettes = {
 };
 
 const defaultTheme: typeof themes["dark"] = {
+  white: palettes.mono(95)(),
   background: palettes.mono(10)(),
   primary: "#8094ff",
   secondary: "#fd468a",
@@ -35,6 +36,7 @@ const defaultTheme: typeof themes["dark"] = {
 
 const themes: {
   [index in ColorMode]: {
+    white: string;
     primary: string;
     secondary: string;
     background: string;

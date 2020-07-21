@@ -18,8 +18,8 @@ export type LayoutProps = {
   path: string;
 };
 
-const media = (size: "md" | "lg" | "xl") =>
-  `@media (min-width: ${{ md: 560, lg: 960, xl: 1024 }[size]})`;
+const media = (size: "sm" | "md" | "lg" | "xl") =>
+  `@media (min-width: ${{ sm: 560, md: 768, lg: 960, xl: 1024 }[size]})`;
 
 export const Layout: React.FCX<LayoutProps> = ({
   title,
@@ -53,17 +53,17 @@ export const Layout: React.FCX<LayoutProps> = ({
       <div className="container mx-auto flex gap-2">
         {toc && (
           <TableOfContents
-            className="flex-shrink-0 hidden md:block sticky h-min-content top-0"
+            className="flex-shrink-0 hidden sm:block sticky h-min-content top-0"
             css={css`
               flex-basis: 192px;
-              @media (min-width: 1024px) {
+              @media ${media("xl")} {
                 flex-basis: 255px;
               }
             `}
             toc={toc}
           />
         )}
-        <main className="leading-relaxed p-4 flex-grow">
+        <main className="leading-relaxed p-4 flex-grow min-w-0">
           <Header>{title}</Header>
           {children}
         </main>

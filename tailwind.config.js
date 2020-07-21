@@ -3,7 +3,8 @@ module.exports = {
   purge: [],
   theme: {
     screens: {
-      md: "560px",
+      sm: "560px",
+      md: "768px",
       lg: "960px",
       xl: "1024px",
     },
@@ -16,6 +17,9 @@ module.exports = {
       },
       width: {
         "min-content": "min-content",
+      },
+      minWidth: {
+        "0": "0",
       },
       colors: {
         foreground: "var(--foreground)",

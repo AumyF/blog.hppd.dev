@@ -1,7 +1,5 @@
-import { SwipingAnchor } from "../atoms/swiping-anchor";
 import React from "react";
 import { css } from "@emotion/core";
-import { styleValues } from "../../styles/styleValues";
 import { TOC } from "../../libs/toc";
 import styled from "@emotion/styled";
 
@@ -44,6 +42,6 @@ export const TableOfContents = styled(PlainComponent)`
     text-align: center;
     margin: auto 1rem;
     padding-bottom: 0.3rem;
-    border-bottom: 1px solid ${styleValues.global.text};
+    border-bottom: 1px solid var(--border);
   }
 `;
