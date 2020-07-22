@@ -56,7 +56,7 @@ export const Layout: React.FCX<LayoutProps> = ({
             className="flex-shrink-0 hidden sm:block sticky h-min-content top-0"
             css={css`
               flex-basis: 192px;
-              @media ${media("xl")} {
+              ${media("xl")} {
                 flex-basis: 255px;
               }
             `}

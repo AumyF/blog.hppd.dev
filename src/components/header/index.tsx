@@ -17,7 +17,7 @@ export const SiteHeader: React.FCX<SiteHeaderProps> = ({ children }) => {
     <>
       <header className="leading-tight text-center text-background bg-foreground">
         <div className="flex items-center justify-center gap-4">
-          <h1 className="text-3xl font-thin top-0 ">{siteMetadata?.title}</h1>
+          <h1 className="text-3xl font-thin top-0">{siteMetadata?.title}</h1>
           <nav className="top-0 py-2">
             <Icon to="/tags" icon={faTag} />
             <Icon to="/archives" icon={faCalendarAlt} />

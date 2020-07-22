@@ -11,6 +11,8 @@ import { Anchor } from "../article-elements/anchor";
 import { OrderedList, UnorderedList } from "../article-elements/list";
 import { HorizontalLine } from "../article-elements/horizontal-line";
 import { Paragraph } from "../article-elements/paragraph";
+import React from "react";
+import { css } from "@emotion/core";
 
 type Elm = JSX.IntrinsicElements;
 
@@ -21,7 +23,9 @@ export const MDXComponents: MDXProviderComponentsProp = {
   h4: Heading4,
   h5: styled.h5``,
   h6: styled.h6``,
-  blockquote: styled.blockquote``,
+  blockquote: (props: JSX.IntrinsicElements["blockquote"]) => (
+    <blockquote {...props} className="pl-6 border-l-2 border-foreground" />
+  ),
   p: Paragraph,
   a: Anchor,
   strong: Strong,
