@@ -56,7 +56,7 @@
     "react-spring": "^9.0.0-rc.3",
     "react-use-gesture": "^7.0.15",
     "sanitize.css": "^11.0.1",
-    "ts-essentials": "^6.0.7",
+    "ts-essentials": "^7.0.0",
     "ts-jest": "^25.5.1",
     "unstated-next": "^1.1.0"
   },
