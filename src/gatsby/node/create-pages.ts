@@ -128,7 +128,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
 
   // Postを生成してGraphQLに突っ込み、ついでにcreatePage
   for (const edge of result.data.allMdx.edges) {
-    const post = genPostNode(edge, await loadNodeContent(edge.node));
+    const post = genPostNode(edge, await loadNodeContent(edge.node as any));
     createNode(post);
 
     createPage<BlogPostContext>({
