@@ -3,6 +3,7 @@ import { PageProps, graphql } from "gatsby";
 import { Layout } from "../components/layout";
 import { ArchiveMonthPageQuery } from "../../types/graphqlTypes";
 import { PostList } from "../components/post-link/post-list";
+import { PostListPage } from "./post-list-page";
 
 export type ArchiveMonthPageContenxt = {
   year: string;
@@ -21,9 +22,11 @@ export const ArchiveMonthPage: React.FC<ArchiveMonthPageProps> = ({
     allPost: { edges },
   },
 }) => (
-  <Layout title={`${year}/${month}`} path={`${year}/${month}`}>
-    <PostList edges={edges} />
-  </Layout>
+  <PostListPage
+    {...{ edges }}
+    title={`${year}/${month}`}
+    path={`${year}/${month}`}
+  />
 );
 
 export const pageQuery = graphql`
@@ -36,6 +39,7 @@ export const pageQuery = graphql`
           path
           id
           tags
+          excerpt
         }
       }
     }

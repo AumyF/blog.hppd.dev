@@ -3,12 +3,8 @@ import { css } from "@emotion/core";
 
 export const Header: React.FCX = ({ className, children }) => (
   <h1
-    className={className}
+    className="text-center text-5xl font-thin m-0 leading-tight"
     css={css`
-      text-align: center;
-      font-size: 3em;
-      font-weight: 200;
-      margin: 0;
       font-feature-settings: "palt";
     `}
   >

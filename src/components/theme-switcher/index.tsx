@@ -14,15 +14,13 @@ export const ThemeSwitcher: React.FCX = ({ className }) => {
       onClick={toggleTheme}
       css={css`
         cursor: pointer;
-        background-color: var(--background);
-        border: none;
-        padding: 0;
-        font-size: 2em;
-        height: 48px;
-        color: var(--secondary);
+        display: contents;
       `}
     >
-      <FontAwesomeIcon icon={colorMode === "dark" ? faMoon : faSun} />
+      <FontAwesomeIcon
+        className="text-secondary"
+        icon={colorMode === "dark" ? faMoon : faSun}
+      />
     </button>
   );
 };

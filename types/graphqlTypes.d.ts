@@ -2020,11 +2020,12 @@ export type SitePageFieldsEnum =
   'pluginCreator___resolve' |
   'pluginCreator___name' |
   'pluginCreator___version' |
+  'pluginCreator___pluginOptions___configDir' |
   'pluginCreator___pluginOptions___isTSX' |
   'pluginCreator___pluginOptions___allExtensions' |
+  'pluginCreator___pluginOptions___allowNamespaces' |
   'pluginCreator___pluginOptions___name' |
   'pluginCreator___pluginOptions___path' |
-  'pluginCreator___pluginOptions___projectRoot' |
   'pluginCreator___pluginOptions___pathCheck' |
   'pluginCreator___pluginOptions___codegen' |
   'pluginCreator___pluginOptions___fileName' |
@@ -2214,11 +2215,12 @@ export type SitePluginFieldsEnum =
   'resolve' |
   'name' |
   'version' |
+  'pluginOptions___configDir' |
   'pluginOptions___isTSX' |
   'pluginOptions___allExtensions' |
+  'pluginOptions___allowNamespaces' |
   'pluginOptions___name' |
   'pluginOptions___path' |
-  'pluginOptions___projectRoot' |
   'pluginOptions___pathCheck' |
   'pluginOptions___codegen' |
   'pluginOptions___fileName' |
@@ -2334,22 +2336,24 @@ export type SitePluginPackageJsonPeerDependenciesFilterListInput = {
 };
 
 export type SitePluginPluginOptions = {
+  configDir?: Maybe<Scalars['String']>;
   isTSX?: Maybe<Scalars['Boolean']>;
   allExtensions?: Maybe<Scalars['Boolean']>;
+  allowNamespaces?: Maybe<Scalars['Boolean']>;
   name?: Maybe<Scalars['String']>;
   path?: Maybe<Scalars['String']>;
-  projectRoot?: Maybe<Scalars['String']>;
   pathCheck?: Maybe<Scalars['Boolean']>;
   codegen?: Maybe<Scalars['Boolean']>;
   fileName?: Maybe<Scalars['String']>;
 };
 
 export type SitePluginPluginOptionsFilterInput = {
+  configDir?: Maybe<StringQueryOperatorInput>;
   isTSX?: Maybe<BooleanQueryOperatorInput>;
   allExtensions?: Maybe<BooleanQueryOperatorInput>;
+  allowNamespaces?: Maybe<BooleanQueryOperatorInput>;
   name?: Maybe<StringQueryOperatorInput>;
   path?: Maybe<StringQueryOperatorInput>;
-  projectRoot?: Maybe<StringQueryOperatorInput>;
   pathCheck?: Maybe<BooleanQueryOperatorInput>;
   codegen?: Maybe<BooleanQueryOperatorInput>;
   fileName?: Maybe<StringQueryOperatorInput>;
@@ -2417,7 +2421,7 @@ export type UseStaticQueryQueryVariables = {};
 
 export type UseStaticQueryQuery = { site?: Maybe<(
     Pick<Site, 'buildTime'>
-    & { siteMetadata?: Maybe<Pick<SiteSiteMetadata, 'title'>> }
+    & { siteMetadata?: Maybe<Pick<SiteSiteMetadata, 'title' | 'description'>> }
   )> };
 
 export type IndexQueryVariables = {};
@@ -2430,7 +2434,7 @@ export type TagsPageQueryVariables = {};
 
 export type TagsPageQuery = { allPost: { group: Array<(
       Pick<PostGroupConnection, 'fieldValue' | 'totalCount'>
-      & { edges: Array<{ node: Pick<Post, 'id' | 'path' | 'tags' | 'title'> }> }
+      & { edges: Array<{ node: Pick<Post, 'id' | 'excerpt' | 'path' | 'tags' | 'title'> }> }
     )> } };
 
 export type ArchiveMonthPageQueryVariables = {
@@ -2439,7 +2443,7 @@ export type ArchiveMonthPageQueryVariables = {
 };
 
 
-export type ArchiveMonthPageQuery = { allPost: { edges: Array<{ node: Pick<Post, 'title' | 'date' | 'path' | 'id' | 'tags'> }> } };
+export type ArchiveMonthPageQuery = { allPost: { edges: Array<{ node: Pick<Post, 'title' | 'date' | 'path' | 'id' | 'tags' | 'excerpt'> }> } };
 
 export type ArchiveYearPageQueryVariables = {
   startDate?: Maybe<Scalars['Date']>;
@@ -2447,7 +2451,7 @@ export type ArchiveYearPageQueryVariables = {
 };
 
 
-export type ArchiveYearPageQuery = { allPost: { edges: Array<{ node: Pick<Post, 'title' | 'date' | 'path' | 'id' | 'tags'> }> } };
+export type ArchiveYearPageQuery = { allPost: { edges: Array<{ node: Pick<Post, 'title' | 'date' | 'path' | 'id' | 'tags' | 'excerpt'> }> } };
 
 export type BlogPostQueryVariables = {
   id?: Maybe<Scalars['String']>;
@@ -2461,4 +2465,4 @@ export type IndividualTagPageQueryVariables = {
 };
 
 
-export type IndividualTagPageQuery = { allPost: { edges: Array<{ node: Pick<Post, 'title' | 'path' | 'tags'> }> } };
+export type IndividualTagPageQuery = { allPost: { edges: Array<{ node: Pick<Post, 'title' | 'path' | 'tags' | 'excerpt'> }> } };

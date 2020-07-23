@@ -1,12 +1,15 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import { Main } from "../content";
-import "sanitize.css";
 import { css } from "@emotion/core";
 import { TOC } from "../../libs/toc";
 import { mq } from "../../styles/mediaQueries";
 import { Footer } from "../content/footer";
 import "prismjs/plugins/line-numbers/prism-line-numbers.css";
+import { SiteHeader } from "../header";
+import { TableOfContents } from "../table-of-contents";
+import { Breadcrumbs } from "../content/breadcrumbs";
+import { Header } from "../content/header";
 
 export type LayoutProps = {
   date?: string;
@@ -15,11 +18,15 @@ export type LayoutProps = {
   path: string;
 };
 
+const media = (size: "sm" | "md" | "lg" | "xl") =>
+  `@media (min-width: ${{ sm: 560, md: 768, lg: 960, xl: 1024 }[size]})`;
+
 export const Layout: React.FCX<LayoutProps> = ({
   title,
   children,
   path,
   className,
+  toc,
 }) => {
   return (
     <div
@@ -41,9 +48,26 @@ export const Layout: React.FCX<LayoutProps> = ({
       <Helmet>
         <title>{title}</title>
       </Helmet>
-      <Main title={title} path={path}>
-        {children}
-      </Main>
+      <SiteHeader />
+      <Breadcrumbs className="m-4" date={path?.split("/")} path={path} />
+      <div className="container mx-auto flex gap-2">
+        {toc && (
+          <TableOfContents
+            className="flex-shrink-0 hidden sm:block sticky h-min-content top-0"
+            css={css`
+              flex-basis: 192px;
+              ${media("xl")} {
+                flex-basis: 255px;
+              }
+            `}
+            toc={toc}
+          />
+        )}
+        <main className="leading-relaxed p-4 flex-grow min-w-0">
+          <Header>{title}</Header>
+          {children}
+        </main>
+      </div>
       <Footer />
     </div>
   );
