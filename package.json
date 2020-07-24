@@ -44,7 +44,7 @@
     "gatsby-remark-autolink-headers": "^2.3.11",
     "gatsby-remark-code-titles": "^1.1.0",
     "gatsby-remark-prismjs": "^3.5.10",
-    "gatsby-source-filesystem": "^2.3.22",
+    "gatsby-source-filesystem": "^2.3.23",
     "jest": "^25.5.4",
     "lodash": "^4.17.19",
     "luxon": "^1.24.1",
