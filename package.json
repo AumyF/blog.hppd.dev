@@ -33,7 +33,7 @@
     "@types/webpack": "^4.41.21",
     "emotion-theming": "^10.0.27",
     "eslint-config-react-app": "^5.2.1",
-    "gatsby": "^2.24.12",
+    "gatsby": "^2.24.13",
     "gatsby-plugin-emotion": "^4.3.10",
     "gatsby-plugin-graphql-codegen": "^2.7.1",
     "gatsby-plugin-mdx": "^1.2.30",
