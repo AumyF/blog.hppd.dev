@@ -31,9 +31,10 @@ export const Breadcrumbs: React.FCX<BreadcrumbsProps> = ({
         css={css`
           color: var(--foreground);
           a {
-            text-decoration: none;
+            text-decoration: underline solid #0000;
+            transition: text-decoration 100ms ease-in-out;
             &:hover {
-              text-decoration: solid var(--foreground);
+              text-decoration: underline solid var(--primary);
             }
           }
         `}

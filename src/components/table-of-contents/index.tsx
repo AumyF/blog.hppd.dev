@@ -3,19 +3,19 @@ import { css } from "@emotion/core";
 import { TOC } from "../../libs/toc";
 import styled from "@emotion/styled";
 
-const TOCItemComponent: React.FC<TOC> = ({ items }) => (
-  <ul
-    css={css`
-      margin: 0;
-      padding: 0.5rem 0;
-    `}
-  >
+const TOCItemComponent: React.FCX<TOC> = ({ items, className }) => (
+  <ul className={className}>
     {items.map(items => (
-      <li key={items.title} className="leading-normal">
-        <a className="no-underline hover:underline" href={items.url}>
+      <li key={items.title} className="leading-normal" css={css``}>
+        <a
+          className="block my-1 no-underline transition-all duration-75 hover:bg-border"
+          href={items.url}
+        >
           {items.title}
         </a>
-        {items.items ? <TOCItemComponent items={items.items} /> : null}
+        {items.items ? (
+          <TOCItemComponent className="ml-4" items={items.items} />
+        ) : null}
       </li>
     ))}
   </ul>

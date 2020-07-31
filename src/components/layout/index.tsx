@@ -19,7 +19,7 @@ export type LayoutProps = {
 };
 
 const media = (size: "sm" | "md" | "lg" | "xl") =>
-  `@media (min-width: ${{ sm: 560, md: 768, lg: 960, xl: 1024 }[size]})`;
+  `@media (min-width: ${{ sm: 560, md: 768, lg: 960, xl: 1024 }[size]}px)`;
 
 export const Layout: React.FCX<LayoutProps> = ({
   title,
