@@ -13,6 +13,14 @@ export const ArticleStyles = css`
   h6 {
     ${headingStyle};
   }
+
+  a {
+    text-decoration: underline solid #0000;
+    transition: text-decoration 100ms ease-in-out;
+    &:hover {
+      text-decoration: underline solid var(--primary);
+    }
+  }
   > h2 {
     ${tw`leading-snug my-5 text-4xl`};
     border-bottom: 1px solid var(--border);

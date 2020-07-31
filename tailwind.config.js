@@ -1,3 +1,5 @@
+const plugin = require("tailwindcss/plugin");
+
 /**@type import("gatsby").GatsbyConfig */
 module.exports = {
   purge: [],
@@ -11,6 +13,9 @@ module.exports = {
     extend: {
       lineHeight: {
         relaxed: "1.75",
+      },
+      transitionProperty: {
+        "text-decoration": "text-decoration",
       },
       height: {
         "min-content": "min-content",
@@ -26,6 +31,7 @@ module.exports = {
         background: "var(--background)",
         primary: "var(--primary)",
         secondary: "var(--secondary)",
+        border: "var(--border)",
       },
     },
   },
