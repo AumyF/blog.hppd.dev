@@ -8,14 +8,13 @@ export const HeaderAutoLink: React.FCX<HeaderAutoLinkProps> = props => (
     {...props}
     css={css`
       float: left;
-      margin-left: calc(-0.2em + -25px);
-      color: var(--foreground);
+      left: -20px;
+      position: absolute;
       svg {
+        fill: var(--foreground);
         display: inline;
         transform: scale(1.2);
       }
     `}
-  >
-    {props.children}
-  </a>
+  />
 );

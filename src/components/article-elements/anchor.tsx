@@ -4,7 +4,7 @@ import { Link } from "gatsby";
 
 export const Anchor = (props: JSX.IntrinsicElements["a"]) => {
   return props.className?.includes(`autolink-headers`) ? (
-    <HeaderAutoLink>{props.children}</HeaderAutoLink>
+    <HeaderAutoLink {...props} />
   ) : (
     <Link to={props.href!} {...(props as any)} />
   );
