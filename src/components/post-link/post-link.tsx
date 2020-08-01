@@ -4,7 +4,7 @@ import { Link } from "gatsby";
 import { Post } from "../../../types/graphqlTypes";
 import { TagList } from "./tag-list";
 import { PostDate } from "./post-date";
-import { PickAndPartialPick } from "../../libs/type-utils";
+import { PickAndPartialPick } from "../../utils/type-utils";
 import styled from "@emotion/styled";
 
 export type PostLinkProps = PickAndPartialPick<
