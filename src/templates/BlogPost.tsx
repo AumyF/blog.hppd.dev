@@ -5,7 +5,7 @@ import { MDXComponents } from "../components/article-elements/mdx-components";
 import { PostTags } from "../components/content/tags";
 import { graphql, PageProps } from "gatsby";
 import { BlogPostQuery } from "../../types/graphqlTypes";
-import { assertsNonNull } from "../libs/asserts-non-null";
+import { assertsNonNull } from "../utils/asserts-non-null";
 import { ArticlePage } from "./article-page";
 
 export type BlogPostContext = {

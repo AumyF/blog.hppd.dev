@@ -2,7 +2,7 @@ const plugin = require("tailwindcss/plugin");
 
 /**@type import("gatsby").GatsbyConfig */
 module.exports = {
-  purge: [],
+  purge: ["./src/**/*.tsx"],
   theme: {
     screens: {
       sm: "560px",

@@ -1,6 +1,6 @@
 import { useStaticQuery, graphql } from "gatsby";
 import { UseStaticQueryQuery } from "../../types/graphqlTypes";
-import { assertsNonNull } from "../libs/asserts-non-null";
+import { assertsNonNull } from "../utils/asserts-non-null";
 
 export const useSite = () =>
   assertsNonNull(

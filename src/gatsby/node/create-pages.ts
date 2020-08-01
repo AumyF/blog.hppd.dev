@@ -5,7 +5,7 @@ import { IndividualTagPageContext } from "../../templates/IndividualTagPage";
 import { ArchiveYearPageContext } from "../../templates/ArchiveYearPage";
 import { ArchiveMonthPageContenxt } from "../../templates/ArchiveMonthPage";
 import Path from "path";
-import { assertsNonNull } from "../../libs/asserts-non-null";
+import { assertsNonNull } from "../../utils/asserts-non-null";
 import { BlogPostContext } from "../../templates/BlogPost";
 
 export const createPages: GatsbyNode["createPages"] = async ({

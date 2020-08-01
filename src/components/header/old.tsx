@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { mq } from "../../styles/mediaQueries";
 import { useSpring, animated } from "react-spring";
 import { useScroll } from "react-use-gesture";
-import { assertsNonNull } from "../../libs/asserts-non-null";
+import { assertsNonNull } from "../../utils/asserts-non-null";
 
 export type HeaderProps = { title: string };
 
