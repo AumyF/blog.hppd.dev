@@ -1,7 +1,7 @@
 import React from "react";
 import { MDXProvider } from "@mdx-js/react";
 import { MDXRenderer } from "gatsby-plugin-mdx";
-import { MDXComponents } from "../components/atoms/mdx-components";
+import { MDXComponents } from "../components/article-elements/mdx-components";
 import { PostTags } from "../components/content/tags";
 import { graphql, PageProps } from "gatsby";
 import { BlogPostQuery } from "../../types/graphqlTypes";

@@ -1,16 +1,11 @@
 import { MDXProviderComponentsProp } from "@mdx-js/react";
 import styled from "@emotion/styled";
-import {
-  Heading1,
-  Heading2,
-  Heading3,
-  Heading4,
-} from "../article-elements/headings";
-import { Strong } from "../article-elements/strong";
-import { Anchor } from "../article-elements/anchor";
-import { OrderedList, UnorderedList } from "../article-elements/list";
-import { HorizontalLine } from "../article-elements/horizontal-line";
-import { Paragraph } from "../article-elements/paragraph";
+import { Heading1, Heading2, Heading3, Heading4 } from "./headings";
+import { Strong } from "./strong";
+import { Anchor } from "./anchor";
+import { OrderedList, UnorderedList } from "./list";
+import { HorizontalLine } from "./horizontal-line";
+import { Paragraph } from "./paragraph";
 import React from "react";
 import { css } from "@emotion/core";
 
