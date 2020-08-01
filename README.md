@@ -4,7 +4,7 @@
 
 ## 使ってるもの
 
-言語は100% TypeScript, フレームワークはGatsby, ブログの記事はMDX, スタイリングはEmotion, アイコン類は Font Awesome, アニメーションは React Spring！！！！その他はpackage.jsonを読め
+言語は100% TypeScript, フレームワークはGatsby, ブログの記事はMDX, スタイリングはEmotion, アイコン類は Font Awesome, その他はpackage.jsonを読め
 
 ## ライセンス
 
@@ -16,4 +16,6 @@ MITライセンス
 
 ## なんかこうファイル間の依存関係が見れるやつ
 
-`npm run depgraph` するとなんか出てくるのでそれを見るとよい
+`graphviz`を導入して `npm run depgraph` で出てくる `dependencygraph.svg`
+
+![image](dependencygraph.svg)
