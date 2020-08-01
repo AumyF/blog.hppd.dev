@@ -1,5 +1,4 @@
 import { css } from "@emotion/core";
-import { palettes } from "../../styles/theme";
 
 export const prismStyles = css`
   .gatsby-highlight {
