@@ -40,7 +40,7 @@
     "gatsby-plugin-postcss": "^2.3.11",
     "gatsby-plugin-react-helmet": "^3.3.10",
     "gatsby-plugin-ts-config": "^0.2.3",
-    "gatsby-plugin-typescript": "^2.4.16",
+    "gatsby-plugin-typescript": "^2.4.17",
     "gatsby-remark-autolink-headers": "^2.3.11",
     "gatsby-remark-code-titles": "^1.1.0",
     "gatsby-remark-prismjs": "^3.5.10",
