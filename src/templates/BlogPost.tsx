@@ -1,7 +1,7 @@
 import React from "react";
 import { MDXProvider } from "@mdx-js/react";
 import { MDXRenderer } from "gatsby-plugin-mdx";
-import { MDXComponents } from "../components/article-elements/mdx-components";
+import { ArticleElements } from "../components/article-elements";
 import { PostTags } from "../components/content/tags";
 import { graphql, PageProps } from "gatsby";
 import { BlogPostQuery } from "../../types/graphqlTypes";
@@ -20,7 +20,7 @@ export const BlogPost: React.FC<BlogPostProps> = ({ data: { post } }) => {
     <ArticlePage {...{ title, date, path, toc }}>
       <PostTags tags={tags} />
 
-      <MDXProvider components={MDXComponents}>
+      <MDXProvider components={ArticleElements}>
         <MDXRenderer>{body}</MDXRenderer>
       </MDXProvider>
     </ArticlePage>

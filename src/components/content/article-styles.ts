@@ -1,6 +1,6 @@
 import { css } from "@emotion/core";
 import { letterSpacing } from "../../libs/styleFn/text";
-import { headingStyle } from "../article-elements/headings";
+import { headingStyle } from "../article-elements/";
 import tw from "twin.macro";
 
 export const ArticleStyles = css`

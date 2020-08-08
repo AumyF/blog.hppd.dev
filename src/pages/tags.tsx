@@ -4,7 +4,7 @@ import { Layout } from "../components/layout";
 import { PageProps, graphql, Link } from "gatsby";
 import { TagsPageQuery } from "../../types/graphqlTypes";
 import { PostList } from "../components/post-link/post-list";
-import { Heading2 } from "../components/article-elements/headings";
+import { Heading2 } from "../components/article-elements";
 
 export type TagsPageProps = PageProps<TagsPageQuery>;
 
