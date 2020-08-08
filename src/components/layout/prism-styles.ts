@@ -12,7 +12,7 @@ export const prismStyles = css`
       margin-left: -1em;
       padding-right: 1em;
       padding-left: 0.75em;
-      border-left: 0.25em solid var(--secondary);
+      border-left: 0.25em solid var(--secondary-neutral);
     }
   }
   pre[class*="language-"].line-numbers {

@@ -29,12 +29,12 @@ export const Breadcrumbs: React.FCX<BreadcrumbsProps> = ({
     <nav {...{ className }}>
       <span
         css={css`
-          color: var(--foreground);
+          color: var(--foreground-neutral);
           a {
             text-decoration: underline solid #0000;
             transition: text-decoration 100ms ease-in-out;
             &:hover {
-              text-decoration: underline solid var(--primary);
+              text-decoration: underline solid var(--primary-neutral);
             }
           }
         `}
@@ -62,7 +62,7 @@ export const Breadcrumbs: React.FCX<BreadcrumbsProps> = ({
           icon={faChevronRight}
           css={css`
             margin-left: 4px;
-            color: var(--foreground);
+            color: var(--foreground-neutral);
           `}
         />
       </span>

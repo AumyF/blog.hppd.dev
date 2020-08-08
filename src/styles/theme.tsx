@@ -1,5 +1,5 @@
-import React from "react";
-import { Global, css } from "@emotion/core";
+import React, { ComponentType } from "react";
+import { Global, css, SerializedStyles } from "@emotion/core";
 import { prismStyles } from "../components/layout/prism-styles";
 import { createContainer } from "unstated-next";
 import { generateVariables } from "./variables";
@@ -15,12 +15,45 @@ export const palettes = {
   mono,
 };
 
-const defaultTheme: typeof themes["dark"] = {
+type Color = {
+  light: string;
+  neutral: string;
+  dark: string;
+};
+
+type Brightness = {
+  strong: string;
+  neutral: string;
+  weak: string;
+};
+
+type ColorMode = {
+  white: string;
+  primary: Color;
+  secondary: Color;
+  background: string;
+  foreground: Brightness;
+  strong: string;
+  border: string;
+  postLink: {
+    background: string;
+  };
+  font: {
+    light: string;
+    regular: string;
+  };
+};
+
+const defaultTheme: ColorMode = {
   white: palettes.mono(95)(),
   background: palettes.mono(10)(),
-  primary: "#8094ff",
-  secondary: "#fd468a",
-  foreground: "#d0d0d0",
+  primary: {
+    light: "hsl(230, 80%, 90%)",
+    neutral: "hsl(230, 80%, 75%)",
+    dark: "",
+  },
+  secondary: { dark: "", neutral: "#fd468a", light: "" },
+  foreground: { strong: "", neutral: "#d0d0d0", weak: "" },
   strong: "#f0f0f0",
   border: "#404040",
   postLink: {
@@ -28,47 +61,32 @@ const defaultTheme: typeof themes["dark"] = {
   },
   font: {
     regular: `"Helvetica Neue", "Hiragino Sans", "Noto Sans CJK JP",
-"Meiryo", sans-serif`,
+    "Meiryo", sans-serif`,
     light: `"Hiragino Sans", "Noto Sans CJK JP Thin", "Yu Gothic",
     sans-serif;`,
   },
 };
 
 const themes: {
-  [index in ColorMode]: {
-    white: string;
-    primary: string;
-    secondary: string;
-    background: string;
-    foreground: string;
-    strong: string;
-    border: string;
-    postLink: {
-      background: string;
-    };
-    font: {
-      light: string;
-      regular: string;
-    };
-  };
+  [index in ColorModeName]: ColorMode;
 } = {
   dark: defaultTheme,
   light: {
     ...defaultTheme,
-    primary: "#00a0a8",
-    secondary: "#f77253",
+    primary: { light: "", neutral: "#00a0a8", dark: "" },
+    secondary: { light: "", neutral: "#f77253", dark: "" },
     background: palettes.mono(95)(),
-    foreground: palettes.mono(15)(),
+    foreground: { neutral: palettes.mono(15)(), strong: "", weak: "" },
     strong: "#202020",
     border: "#ddd",
     postLink: { background: "#f0f0f0" },
   },
 };
 
-export type ColorMode = "dark" | "light";
+export type ColorModeName = "dark" | "light";
 
 const useTheme = () => {
-  const [colorMode, setColorMode] = useLocalStorageState<ColorMode>(
+  const [colorMode, setColorMode] = useLocalStorageState<ColorModeName>(
     "theme",
     "dark"
   );
@@ -103,8 +121,8 @@ const ThemeStoreInner: React.FC = () => {
         body {
         }
         a {
-          color: var(--primary);
-          text-decoration: underline var(--primary);
+          color: var(--primary-neutral);
+          text-decoration: underline var(--primary-neutral);
           text-decoration-thickness: 1px;
           &:hover {
             text-decoration-thickness: 2px;
@@ -123,4 +141,18 @@ export const ThemeStore: React.FC = ({ children }) => {
       {children}
     </ThemeContainer.Provider>
   );
+};
+
+export const withTheme = <P extends object>(
+  Component: ComponentType<P>,
+  style: {
+    [index in ColorModeName | "shared"]: SerializedStyles;
+  }
+) => {
+  const Themed: React.FCX<P> = props => {
+    const { colorMode } = ThemeContainer.useContainer();
+    return <Component {...props} css={[style[colorMode], style.shared]} />;
+  };
+
+  return Themed;
 };

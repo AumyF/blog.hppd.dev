@@ -27,7 +27,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
             tableOfContents(maxDepth: 10)
             fileAbsolutePath
             body
-            excerpt
+            excerpt(truncate: true)
             internal {
               content
               type

@@ -17,7 +17,7 @@ export module TagList {
           ${tw``}
           font-size: 1em;
           margin-left: 0.3rem;
-          background-color: var(--primary);
+          background-color: var(--primary-neutral);
           color: var(--background);
           padding: 0 4px;
           border-radius: 5px;

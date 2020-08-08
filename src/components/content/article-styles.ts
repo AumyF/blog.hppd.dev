@@ -15,10 +15,10 @@ export const ArticleStyles = css`
   }
 
   a {
-    text-decoration: underline solid #0000;
+    text-decoration: 1px solid #0000;
     transition: text-decoration 100ms ease-in-out;
     &:hover {
-      text-decoration: underline solid var(--primary);
+      ${tw`underline`}
     }
   }
   > h2 {
@@ -46,7 +46,7 @@ export const ArticleStyles = css`
   }
   table {
     > thead {
-      border-bottom: 1px solid var(--foreground);
+      border-bottom: 1px solid var(--foreground-neutral);
     }
     > tbody {
       > tr {

@@ -1,11 +1,11 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import { Main } from "../content";
 import { css } from "@emotion/core";
 import { TOC } from "../../libs/toc";
 import { mq } from "../../styles/mediaQueries";
 import { Footer } from "../content/footer";
 import "prismjs/plugins/line-numbers/prism-line-numbers.css";
+import "tailwindcss/dist/base.min.css";
 import { SiteHeader } from "../header";
 import { TableOfContents } from "../table-of-contents";
 import { Breadcrumbs } from "../content/breadcrumbs";
@@ -31,7 +31,7 @@ export const Layout: React.FCX<LayoutProps> = ({
   return (
     <div
       css={css`
-        color: var(--foreground);
+        color: var(--foreground-neutral);
         background-color: var(--background);
         font-family: "Helvetica Neue", "Hiragino Sans", "Noto Sans CJK JP",
           "Meiryo", sans-serif;

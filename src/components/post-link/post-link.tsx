@@ -31,7 +31,7 @@ export module PostLink {
         <div
           css={css`
             font-size: 0.9em;
-            color: var(--foreground);
+            color: var(--foreground-neutral);
             /*
             position: relative;
             &::after {
@@ -61,7 +61,7 @@ export module PostLink {
   export const Styled = styled(Plain)`
     display: block;
     border-radius: 1rem;
-    color: var(--foreground);
+    color: var(--foreground-neutral);
     background-color: var(--postlink-background);
     text-decoration: none;
     padding: 1rem;
@@ -70,7 +70,7 @@ export module PostLink {
     > a {
       text-decoration: none;
       &:hover {
-        text-decoration: underline var(--primary);
+        text-decoration: underline var(--primary-neutral);
       }
       h2 {
         font-weight: 600;

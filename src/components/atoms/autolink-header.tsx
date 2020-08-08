@@ -11,7 +11,7 @@ export const HeaderAutoLink: React.FCX<HeaderAutoLinkProps> = props => (
       left: -20px;
       position: absolute;
       svg {
-        fill: var(--foreground);
+        fill: var(--foreground-neutral);
         display: inline;
         transform: scale(1.2);
       }

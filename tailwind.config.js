@@ -27,10 +27,15 @@ module.exports = {
         "0": "0",
       },
       colors: {
-        foreground: "var(--foreground)",
+        white: "var(--white)",
+        foreground: {
+          dark: "var(--foreground-dark)",
+          neutral: "var(--foreground-neutral)",
+          light: "var(--foreground-weak)",
+        },
         background: "var(--background)",
-        primary: "var(--primary)",
-        secondary: "var(--secondary)",
+        primary: "var(--primary-neutral)",
+        secondary: "var(--secondary-neutral)",
         border: "var(--border)",
       },
     },

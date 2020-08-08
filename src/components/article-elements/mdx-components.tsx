@@ -19,7 +19,10 @@ export const MDXComponents: MDXProviderComponentsProp = {
   h5: styled.h5``,
   h6: styled.h6``,
   blockquote: (props: JSX.IntrinsicElements["blockquote"]) => (
-    <blockquote {...props} className="pl-6 border-l-2 border-foreground" />
+    <blockquote
+      {...props}
+      className="pl-6 border-l-2 border-foreground-neutral"
+    />
   ),
   p: Paragraph,
   a: Anchor,
