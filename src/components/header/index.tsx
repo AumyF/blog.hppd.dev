@@ -42,11 +42,23 @@ export const SiteHeader = withTheme(SiteHeaderInner, {
   `,
 });
 
-const Icon: React.FCX<{ icon: IconProp; to: string }> = ({ icon, to }) => (
-  <AnchorOrLink {...{ to, alt: "icon" }}>
-    <FontAwesomeIcon
-      {...{ icon }}
-      className="text-background transition-colors hover:text-primary text-3xl mx-1"
-    />
-  </AnchorOrLink>
+type HeaderIconProps = { icon: IconProp; to: string };
+
+const Icon = withTheme<HeaderIconProps>(
+  ({ icon, to, className }) => (
+    <AnchorOrLink {...{ to, className, alt: "icon" }}>
+      <FontAwesomeIcon {...{ icon }} />
+    </AnchorOrLink>
+  ),
+  {
+    shared: css`
+      ${tw`transition-colors text-3xl mx-1`}
+    `,
+    light: css`
+      ${tw`text-gray-100 hover:text-teal-500`}
+    `,
+    dark: css`
+      ${tw`text-gray-900 hover:text-teal-500`}
+    `,
+  }
 );

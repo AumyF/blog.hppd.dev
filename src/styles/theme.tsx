@@ -144,10 +144,10 @@ export const ThemeStore: React.FC = ({ children }) => {
 };
 
 export const withTheme = <P extends object>(
-  Component: ComponentType<P>,
+  Component: ComponentType<P & { className?: string }>,
   style: {
-    [index in ColorModeName | "shared"]: SerializedStyles;
-  }
+    [index in ColorModeName]: SerializedStyles;
+  } & { shared?: SerializedStyles }
 ) => {
   const Themed: React.FCX<P> = props => {
     const { colorMode } = ThemeContainer.useContainer();

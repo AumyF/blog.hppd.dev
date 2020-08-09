@@ -1,6 +1,7 @@
+/** @type {import("./src/@types/tailwindcss").TailwindPlugin.CreatePlugin}  */
 const plugin = require("tailwindcss/plugin");
 
-/**@type import("gatsby").GatsbyConfig */
+/** @type import("gatsby").GatsbyConfig */
 module.exports = {
   purge: ["./src/**/*.tsx"],
   theme: {
@@ -41,5 +42,14 @@ module.exports = {
     },
   },
   variants: {},
-  plugins: [],
+  plugins: [
+    plugin(({ addUtilities }) => {
+      const contents = {
+        ".contents": {
+          display: "contents",
+        },
+      };
+      addUtilities(contents, ["responsive"]);
+    }),
+  ],
 };

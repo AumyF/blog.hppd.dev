@@ -1,21 +1,17 @@
-import { ThemeContainer } from "../../styles/theme";
+import { ThemeContainer, withTheme } from "../../styles/theme";
 import React from "react";
 import { css } from "@emotion/core";
 import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export const ThemeSwitcher: React.FCX = ({ className }) => {
+export const ThemeSwitcherBase: React.FCX = ({ className }) => {
   const { colorMode, toggleTheme } = ThemeContainer.useContainer();
   return (
     <button
       name="テーマを変更"
       type="button"
-      className={className}
+      className={className + "cursor-pointer contents"}
       onClick={toggleTheme}
-      css={css`
-        cursor: pointer;
-        display: contents;
-      `}
     >
       <FontAwesomeIcon
         className="text-secondary"
@@ -24,3 +20,8 @@ export const ThemeSwitcher: React.FCX = ({ className }) => {
     </button>
   );
 };
+
+export const ThemeSwitcher = withTheme(ThemeSwitcherBase, {
+  dark: css``,
+  light: css``,
+});

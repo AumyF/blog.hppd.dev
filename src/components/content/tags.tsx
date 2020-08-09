@@ -1,41 +1,31 @@
-import React from "react";
-import { css } from "@emotion/core";
+import React, { FCX } from "react";
 import { Link } from "gatsby";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTag } from "@fortawesome/free-solid-svg-icons";
+import styled from "@emotion/styled";
+import tw from "twin.macro";
 
 export type PostTagsProps = { tags: readonly string[] };
 
-export const PostTags: React.FC<PostTagsProps> = ({ tags }) => (
-  <ul
-    css={css`
-      margin: 0;
-      padding: 0;
-    `}
-  >
+const PostTagsBase: FCX<PostTagsProps> = ({ tags, className }) => (
+  <ul {...{ className }}>
     {tags.map(tag => (
-      <li
-        css={css`
-          list-style: none;
-          display: inline;
-        `}
-        key={tag}
-      >
-        <Link
-          css={css`
-            text-decoration: none;
-          `}
-          to={`/tags/${tag}/`}
-        >
-          <FontAwesomeIcon
-            icon={faTag}
-            css={css`
-              margin: 0 4px;
-            `}
-          />
+      <li key={tag}>
+        <Link to={`/tags/${tag}`}>
+          <FontAwesomeIcon icon={faTag} />
           {tag}
         </Link>
       </li>
     ))}
   </ul>
 );
+
+export const PostTags = styled(PostTagsBase)`
+  ${tw``};
+  > li {
+    ${tw`inline`}
+    > a > svg {
+      ${tw`mx-1`}
+    }
+  }
+`;
