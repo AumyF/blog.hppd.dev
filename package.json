@@ -69,7 +69,7 @@
     "@types/react-helmet": "^6.1.0",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-gatsby": "^0.5.5",
-    "dependency-cruiser": "^9.9.5",
+    "dependency-cruiser": "^9.10.1",
     "jsonc-parser": "^2.3.0",
     "prettier": "^2.0.5",
     "tailwindcss": "^1.6.2",
