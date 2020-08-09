@@ -5,6 +5,7 @@ import { css } from "@emotion/core";
 import { HeaderAutoLink } from "../atoms/autolink-header";
 import { Link } from "gatsby";
 import tw from "twin.macro";
+import { AnchorOrLink } from "../atoms/anchor-or-link";
 
 export const headingStyle = css`
   font-feature-settings: "palt";
@@ -67,7 +68,7 @@ export const ArticleElements: MDXProviderComponentsProp = {
     return props.className?.includes(`autolink-headers`) ? (
       <HeaderAutoLink {...props} />
     ) : (
-      <Link to={props.href!} {...(props as any)} />
+      <AnchorOrLink to={props.href!} {...props} />
     );
   },
   strong: Strong,

@@ -1,7 +1,6 @@
 import React from "react";
 import { useSite } from "../../hooks/use-site";
 import { css } from "@emotion/core";
-import { Link } from "gatsby";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTag, faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
 import { faTwitter, faGithub } from "@fortawesome/free-brands-svg-icons";
@@ -9,6 +8,7 @@ import { ThemeSwitcher } from "../theme-switcher";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import tw from "twin.macro";
 import { withTheme } from "../../styles/theme";
+import { AnchorOrLink } from "../atoms/anchor-or-link";
 
 export type SiteHeaderProps = {};
 
@@ -43,10 +43,10 @@ export const SiteHeader = withTheme(SiteHeaderInner, {
 });
 
 const Icon: React.FCX<{ icon: IconProp; to: string }> = ({ icon, to }) => (
-  <Link {...{ to, alt: "icon" }}>
+  <AnchorOrLink {...{ to, alt: "icon" }}>
     <FontAwesomeIcon
       {...{ icon }}
       className="text-background transition-colors hover:text-primary text-3xl mx-1"
     />
-  </Link>
+  </AnchorOrLink>
 );
