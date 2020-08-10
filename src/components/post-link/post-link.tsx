@@ -6,6 +6,9 @@ import { TagList } from "./tag-list";
 import { PostDate } from "./post-date";
 import { PickAndPartialPick } from "../../utils/type-utils";
 import styled from "@emotion/styled";
+import { withTheme } from "../../styles/theme";
+import tw from "twin.macro";
+import { invisibleAnchor } from "../../styles/styles";
 
 export type PostLinkProps = PickAndPartialPick<
   Post,
@@ -14,7 +17,7 @@ export type PostLinkProps = PickAndPartialPick<
 >;
 
 export module PostLink {
-  export const Plain: React.FCX<PostLinkProps> = ({
+  export const Base: React.FCX<PostLinkProps> = ({
     path,
     title,
     className,
@@ -22,64 +25,34 @@ export module PostLink {
     excerpt,
   }) => {
     return (
-      <article {...{ className }}>
-        <Link to={`/${path}`}>
-          <h2>{title}</h2>
+      <article className={className + " p-4"}>
+        <Link
+          css={invisibleAnchor}
+          className="text-2xl leading-normal font-bold"
+          to={`/${path}`}
+        >
+          {title}
         </Link>
         {path && <PostDate {...{ path }} />}
-        {tags && <TagList.Styled {...{ tags }} />}
-        <div
-          css={css`
-            font-size: 0.9em;
-            color: var(--foreground-neutral);
-            /*
-            position: relative;
-            &::after {
-              width: 100%;
-              height: 100%;
-              background-image: linear-gradient(
-                to bottom,
-                ${cube(0, 1)
-                  .map(([i, p]) => `hsla(0, 0%, 10%, ${p * 95}%) ${i * 100}%`)
-                  .join(", ")}
-              );
-              content: "";
-              z-index: 100000;
-              position: absolute;
-              top: 0;
-              left: 0;
-              pointer-events: none;
-            }*/
-          `}
-        >
-          {excerpt}
-        </div>
+        {tags && <TagList {...{ tags }} />}
+        <div>{excerpt}</div>
       </article>
     );
   };
 
-  export const Styled = styled(Plain)`
-    display: block;
-    border-radius: 1rem;
-    color: var(--foreground-neutral);
-    background-color: var(--postlink-background);
-    text-decoration: none;
-    padding: 1rem;
-    width: 100%;
-    height: 100%;
-    > a {
-      text-decoration: none;
-      &:hover {
-        text-decoration: underline var(--primary-neutral);
+  export const Styled = withTheme(Base, {
+    dark: css`
+      > div {
+        ${tw`text-gray-500`};
       }
-      h2 {
-        font-weight: 600;
-        font-size: 1.5em;
-        margin: 0;
-        line-height: 1.25;
+    `,
+
+    light: css`
+      > div {
+        ${tw`text-gray-700`}
       }
-    }
-  `;
+    `,
+  });
 }
 
 const cube = (

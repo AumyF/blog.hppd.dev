@@ -4,7 +4,8 @@ import { Layout } from "../components/layout";
 import { PageProps, graphql, Link } from "gatsby";
 import { TagsPageQuery } from "../../types/graphqlTypes";
 import { PostList } from "../components/post-link/post-list";
-import { Heading2 } from "../components/article-elements";
+import { h2 } from "../components/content/article-styles";
+import { Article } from "../components/article";
 
 export type TagsPageProps = PageProps<TagsPageQuery>;
 
@@ -23,22 +24,19 @@ export const TagsPage: (props: TagsPageProps) => React.ReactElement = ({
       })),
     }}
   >
-    {group.map(({ fieldValue, totalCount, edges }) => (
-      <section key={fieldValue ?? ""}>
-        <Heading2 id={`${fieldValue}`}>
-          <Link to={"/tags/" + fieldValue ?? "#"}>{fieldValue}</Link>
-          <span
-            css={css`
-              font-size: 1rem;
-              margin-left: 0.5em;
-            `}
-          >
-            記事数: {totalCount}
-          </span>
-        </Heading2>
-        <PostList edges={edges} />
-      </section>
-    ))}
+    <Article>
+      {group.map(({ fieldValue, totalCount, edges }) => (
+        <section key={fieldValue ?? ""}>
+          <h2 id={`${fieldValue}`}>
+            <Link to={"/tags/" + fieldValue ?? "#"}>{fieldValue}</Link>
+            <span className="text-base ml-4 font-normal">
+              記事数: {totalCount}
+            </span>
+          </h2>
+          <PostList edges={edges} />
+        </section>
+      ))}
+    </Article>
   </Layout>
 );
 

@@ -6,6 +6,8 @@ import { generateVariables } from "./variables";
 import { hsla } from "../libs/styleFn/color";
 import { useLocalStorageState } from "../hooks/use-local-storage-state";
 import { config } from "@fortawesome/fontawesome-svg-core";
+import tw from "twin.macro";
+import { growingUnderlineAnchor } from "./styles";
 
 config.autoAddCss = false;
 
@@ -121,13 +123,10 @@ const ThemeStoreInner: React.FC = () => {
         body {
         }
         a {
-          color: var(--primary-neutral);
-          text-decoration: underline var(--primary-neutral);
-          text-decoration-thickness: 1px;
-          &:hover {
-            text-decoration-thickness: 2px;
-          }
+          ${tw`text-teal-500`};
+          ${growingUnderlineAnchor};
         }
+
         ${prismStyles}
       `}
     />

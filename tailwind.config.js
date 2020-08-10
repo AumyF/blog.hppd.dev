@@ -49,7 +49,20 @@ module.exports = {
           display: "contents",
         },
       };
-      addUtilities(contents, ["responsive"]);
+      addUtilities(contents, { variants: ["hover", "responsive"] });
+    }),
+    plugin(({ addUtilities }) => {
+      const underlineThickness = {
+        ".underline-1": {
+          textDecorationThickness: "1px",
+        },
+        ".underline-2": {
+          textDecorationThickness: "2px",
+        },
+      };
+      addUtilities(underlineThickness, {
+        variants: ["hover", "responsive"],
+      });
     }),
   ],
 };

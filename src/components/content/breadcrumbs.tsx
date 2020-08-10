@@ -3,6 +3,7 @@ import { css } from "@emotion/core";
 import { Link } from "gatsby";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { invisibleAnchor } from "../../styles/styles";
 
 export type BreadcrumbsProps = {
   date?: string[];
@@ -31,11 +32,7 @@ export const Breadcrumbs: React.FCX<BreadcrumbsProps> = ({
         css={css`
           color: var(--foreground-neutral);
           a {
-            text-decoration: underline solid #0000;
-            transition: text-decoration 100ms ease-in-out;
-            &:hover {
-              text-decoration: underline solid var(--primary-neutral);
-            }
+            ${invisibleAnchor}
           }
         `}
       >
