@@ -10,16 +10,7 @@ export type BreadcrumbsProps = {
   path: string;
 };
 
-const Slash = (
-  <span
-    css={css`
-      margin: 0 4px;
-      user-select: none;
-    `}
-  >
-    /
-  </span>
-);
+const Slash = <span className="select-none mx-1">/</span>;
 
 export const Breadcrumbs: React.FCX<BreadcrumbsProps> = ({
   date,
@@ -30,7 +21,6 @@ export const Breadcrumbs: React.FCX<BreadcrumbsProps> = ({
     <nav {...{ className }}>
       <span
         css={css`
-          color: var(--foreground-neutral);
           a {
             ${invisibleAnchor}
           }
@@ -55,13 +45,7 @@ export const Breadcrumbs: React.FCX<BreadcrumbsProps> = ({
             <Link to={`/${year}/${month}/${dayPath}/`}>{dayPath}</Link>
           </>
         )}
-        <FontAwesomeIcon
-          icon={faChevronRight}
-          css={css`
-            margin-left: 4px;
-            color: var(--foreground-neutral);
-          `}
-        />
+        <FontAwesomeIcon icon={faChevronRight} className="ml-1" />
       </span>
     </nav>
   );

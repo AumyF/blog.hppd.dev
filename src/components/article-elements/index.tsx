@@ -1,5 +1,4 @@
 import { MDXProviderComponentsProp } from "@mdx-js/react";
-import styled from "@emotion/styled";
 import React from "react";
 import { css } from "@emotion/core";
 import { HeaderAutoLink } from "../atoms/autolink-header";

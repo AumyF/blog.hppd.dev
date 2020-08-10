@@ -27,18 +27,6 @@ module.exports = {
       minWidth: {
         "0": "0",
       },
-      colors: {
-        white: "var(--white)",
-        foreground: {
-          dark: "var(--foreground-dark)",
-          neutral: "var(--foreground-neutral)",
-          light: "var(--foreground-weak)",
-        },
-        background: "var(--background)",
-        primary: "var(--primary-neutral)",
-        secondary: "var(--secondary-neutral)",
-        border: "var(--border)",
-      },
     },
   },
   variants: {},

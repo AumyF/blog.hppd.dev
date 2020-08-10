@@ -1,80 +1,44 @@
 import { css } from "@emotion/core";
-import { letterSpacing } from "../../libs/styleFn/text";
 import { headingStyle } from "../article-elements/";
 import tw from "twin.macro";
 
-export const h2 = css`
-  ${headingStyle};
-  ${tw`leading-snug my-5 text-4xl`};
-  border-bottom: 1px solid var(--border);
-  font-feature-settings: "palt";
-`;
-
-export const h3 = css`
-  ${headingStyle};
-  ${tw`leading-snug my-4`};
-  font-size: 1.8rem;
-`;
-
-export const h4 = css`
-  ${headingStyle};
-  font-size: 1.5rem;
-`;
-
-export const blockquote = css`
-  ${tw`pl-6 border-l-2 border-foreground-neutral`};
-`;
-
-export const p = css`
-  ${tw`my-4`};
-`;
-
-export const hr = css`
-  ${tw`my-4 border-t`};
-`;
-
-export const ul = css`
-  ${tw`list-disc py-1 px-2 pl-8`};
-`;
-
-export const ol = css`
-  ${tw`list-decimal py-1 px-2 pl-8`};
-`;
-
-export const strong = css`
-  ${tw`font-bold`};
+const listStyle = css`
+  ${tw`py-1 px-2 pl-8`}
 `;
 
 export const ArticleStyles = css`
   h2 {
     ${headingStyle};
-    ${tw`leading-snug my-5 text-4xl`};
-    border-bottom: 1px solid var(--border);
+    ${tw`leading-snug my-5 text-4xl border-b border-gray-800`};
     font-feature-settings: "palt";
   }
   h3 {
-    ${h3};
+    ${headingStyle};
+    ${tw`leading-snug my-4 text-3xl`};
   }
   h4 {
-    ${h4};
+    ${headingStyle};
+    ${tw`text-2xl`};
   }
   blockquote {
-    ${blockquote};
+    ${tw`pl-6 border-l-2 border-gray-700`};
   }
   p {
-    ${p};
+    ${tw`my-4`};
   }
   hr {
-    ${hr};
+    ${tw`my-4 border-t`};
   }
   ul {
-    ${ul};
+    ${listStyle}
+    ${tw`list-disc`};
   }
   ol {
-    ${ol};
+    ${listStyle}
+    ${tw`list-decimal`};
   }
   strong {
-    ${strong};
+    ${tw`font-bold`};
   }
   a {
     ${tw`underline underline-1 hover:underline-2`}
@@ -95,7 +59,7 @@ export const ArticleStyles = css`
   }
   table {
     > thead {
-      border-bottom: 1px solid var(--foreground-neutral);
+      ${tw`border-b border-gray-700`}
     }
     > tbody {
       > tr {
@@ -105,7 +69,7 @@ export const ArticleStyles = css`
         > td {
           padding: 0.2rem 1rem;
           &:not(:last-child) {
-            border-right: 1px solid var(--border);
+            ${tw`border-r border-gray-800`}
           }
         }
       }

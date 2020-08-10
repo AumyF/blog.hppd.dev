@@ -1,12 +1,8 @@
 import React from "react";
-import { css } from "@emotion/core";
 import { faTags } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Post } from "../../../types/graphqlTypes";
 import { Link } from "gatsby";
-import styled from "@emotion/styled";
-import tw from "twin.macro";
-import { withTheme } from "../../styles/theme";
 
 export type TagListProps = Pick<Post, "tags">;
 

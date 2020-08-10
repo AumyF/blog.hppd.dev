@@ -6,12 +6,11 @@ export type HeaderAutoLinkProps = {};
 export const HeaderAutoLink: React.FCX<HeaderAutoLinkProps> = props => (
   <a
     {...props}
+    className={" text-gray-400 fill-current float-left absolute"}
     css={css`
-      float: left;
       left: -20px;
       position: absolute;
       svg {
-        fill: var(--foreground-neutral);
         display: inline;
         transform: scale(1.2);
       }
