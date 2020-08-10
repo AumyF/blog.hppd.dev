@@ -3,7 +3,7 @@ import { css } from "@emotion/core";
 import { Link } from "gatsby";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { invisibleAnchor } from "../../styles/styles";
+import { invisibleAnchor } from "../styles/styles";
 
 export type BreadcrumbsProps = {
   date?: string[];

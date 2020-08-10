@@ -1,14 +1,8 @@
 import { MDXProviderComponentsProp } from "@mdx-js/react";
 import React from "react";
 import { css } from "@emotion/core";
-import { HeaderAutoLink } from "../atoms/autolink-header";
-import { AnchorOrLink } from "../atoms/anchor-or-link";
-
-export const headingStyle = css`
-  font-feature-settings: "palt";
-  font-weight: 200;
-  font-family: "Hiragino Sans", "Noto Sans CJK JP", "Yu Gothic", sans-serif;
-`;
+import { HeaderAutoLink } from "./autolink-header";
+import { AnchorOrLink } from "../../components/atoms/anchor-or-link";
 
 export const ArticleElements: MDXProviderComponentsProp = {
   a: (props: JSX.IntrinsicElements["a"]) => {

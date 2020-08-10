@@ -2,16 +2,15 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import { css, Global } from "@emotion/core";
 import { TOC } from "../../libs/toc";
-import { Footer } from "../content/footer";
+import { Footer } from "./footer";
+import { Breadcrumbs } from "./breadcrumbs";
+import { Header } from "./header";
 import "prismjs/plugins/line-numbers/prism-line-numbers.css";
 import "tailwindcss/dist/base.min.css";
 import { SiteHeader } from "../header";
 import { TableOfContents } from "../table-of-contents";
-import { Breadcrumbs } from "../content/breadcrumbs";
-import { Header } from "../content/header";
-import { globalStyles } from "../../styles/global";
+import { globalStyles } from "../styles/global";
 import { config } from "@fortawesome/fontawesome-svg-core";
-import bg from "../../images/dark.svg";
 config.autoAddCss = false;
 
 export type LayoutProps = {

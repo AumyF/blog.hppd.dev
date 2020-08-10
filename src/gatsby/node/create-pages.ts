@@ -6,7 +6,7 @@ import { ArchiveYearPageContext } from "../../templates/ArchiveYearPage";
 import { ArchiveMonthPageContenxt } from "../../templates/ArchiveMonthPage";
 import Path from "path";
 import { assertsNonNull } from "../../utils/asserts-non-null";
-import { BlogPostContext } from "../../templates/BlogPost";
+import { BlogPostContext } from "../../templates/blog-post";
 
 export const createPages: GatsbyNode["createPages"] = async ({
   graphql,
@@ -133,7 +133,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
 
     createPage<BlogPostContext>({
       path: post.path,
-      component: Path.resolve("./src/templates/BlogPost.tsx"),
+      component: Path.resolve("./src/templates/blog-post/index.tsx"),
       context: { id: post.id },
     });
 

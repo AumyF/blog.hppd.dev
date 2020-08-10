@@ -1,13 +1,13 @@
 import React from "react";
 import { MDXProvider } from "@mdx-js/react";
 import { MDXRenderer } from "gatsby-plugin-mdx";
-import { ArticleElements } from "../components/article-elements";
-import { PostTags } from "../components/content/tags";
+import { ArticleElements } from "./article-elements";
 import { graphql, PageProps } from "gatsby";
-import { BlogPostQuery } from "../../types/graphqlTypes";
-import { assertsNonNull } from "../utils/asserts-non-null";
-import { Layout } from "../components/layout";
-import { Article } from "../components/article";
+import { BlogPostQuery } from "../../../types/graphqlTypes";
+import { assertsNonNull } from "../../utils/asserts-non-null";
+import { Layout } from "../../components/layout";
+import { Article } from "../../components/article";
+import { TagList } from "../../components/atoms/tag-list";
 
 export type BlogPostContext = {
   id: string;
@@ -19,7 +19,7 @@ export const BlogPost: React.FC<BlogPostProps> = ({ data: { post } }) => {
   const { body, date, tags, title, toc, path } = assertsNonNull(post);
   return (
     <Layout {...{ title, date, path, toc }}>
-      <PostTags tags={tags} />
+      <TagList tags={tags} />
       <Article>
         <MDXProvider components={ArticleElements}>
           <MDXRenderer>{body}</MDXRenderer>

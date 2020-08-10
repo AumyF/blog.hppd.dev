@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "gatsby";
 import { Post } from "../../../types/graphqlTypes";
-import { TagList } from "./tag-list";
+import { TagList } from "../atoms/tag-list";
 import { PostDate } from "./post-date";
 import { PickAndPartialPick } from "../../utils/type-utils";
-import { invisibleAnchor } from "../../styles/styles";
+import { invisibleAnchor } from "../styles/styles";
 
 export type PostLinkProps = PickAndPartialPick<
   Post,

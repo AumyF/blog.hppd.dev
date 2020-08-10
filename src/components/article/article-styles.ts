@@ -1,9 +1,13 @@
 import { css } from "@emotion/core";
-import { headingStyle } from "../article-elements/";
 import tw from "twin.macro";
 
 const listStyle = css`
   ${tw`py-1 px-2 pl-8`}
+`;
+const headingStyle = css`
+  font-feature-settings: "palt";
+  font-weight: 200;
+  font-family: "Hiragino Sans", "Noto Sans CJK JP", "Yu Gothic", sans-serif;
 `;
 
 export const ArticleStyles = css`

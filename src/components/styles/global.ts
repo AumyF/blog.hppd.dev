@@ -1,7 +1,7 @@
 import { css } from "@emotion/core";
 import tw from "twin.macro";
 import { growingUnderlineAnchor } from "./styles";
-import { prismStyles } from "../components/layout/prism-styles";
+import { prismStyles } from "./prism-styles";
 
 export const globalStyles = css`
   * {
