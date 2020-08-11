@@ -12,27 +12,23 @@ export type PostLinkProps = PickAndPartialPick<
   "tags" | "excerpt"
 >;
 
-export module PostLink {
-  export const Styled: React.FCX<PostLinkProps> = ({
-    path,
-    title,
-    className,
-    tags,
-    excerpt,
-  }) => {
-    return (
-      <article className={className + " p-4"}>
-        <Link
-          css={invisibleAnchor}
-          className="text-2xl leading-normal font-bold"
-          to={`/${path}`}
-        >
-          {title}
-        </Link>
-        {path && <PostDate {...{ path }} />}
-        {tags && <TagList {...{ tags }} />}
-        <div className="text-gray-500">{excerpt}</div>
-      </article>
-    );
-  };
-}
+export const PostLink: React.FCX<PostLinkProps> = ({
+  path,
+  title,
+  className,
+  tags,
+  excerpt,
+}) => (
+  <article className={className + " p-4 border-gray-800 border rounded-lg"}>
+    <Link
+      css={invisibleAnchor}
+      className="text-2xl leading-normal font-bold"
+      to={`/${path}`}
+    >
+      {title}
+    </Link>
+    {path && <PostDate {...{ path }} />}
+    {tags && <TagList {...{ tags }} />}
+    <div className="text-gray-500">{excerpt}</div>
+  </article>
+);

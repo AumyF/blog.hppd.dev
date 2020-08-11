@@ -16,7 +16,7 @@ export const SiteHeader: React.FCX<SiteHeaderProps> = ({ className }) => {
         className + " bg-gray-100 text-gray-900 leading-tight text-center"
       }
     >
-      <div className="flex items-center justify-center gap-4">
+      <div className="flex container mx-auto px-4 items-center gap-4 justify-between">
         <h1 className="text-3xl">{siteMetadata?.title}</h1>
         <nav className="py-2">
           <Icon to="/tags" icon={faTag} />

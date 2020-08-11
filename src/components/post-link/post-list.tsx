@@ -12,20 +12,15 @@ export type PostListProps = {
 
 export const PostList: React.FC<PostListProps> = ({ edges }) => (
   <div
+    className="p-0 grid justify-between"
     css={css`
-      list-style: none;
-      padding: 0;
-      display: grid;
-      justify-content: space-between;
       row-gap: 1.5rem;
       column-gap: 1.5rem;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     `}
   >
     {edges.map(({ node: { title, path, tags, excerpt } }) => (
-      <PostLink.Styled
-        {...{ path, title, tags, excerpt, key: title ?? path }}
-      />
+      <PostLink {...{ path, title, tags, excerpt, key: title ?? path }} />
     ))}
   </div>
 );
