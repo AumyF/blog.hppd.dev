@@ -4,10 +4,10 @@ import { css, Global } from "@emotion/core";
 import { TOC } from "../../libs/toc";
 import { Footer } from "./footer";
 import { Breadcrumbs } from "./breadcrumbs";
-import { Header } from "./header";
+import { Title } from "./title";
 import "prismjs/plugins/line-numbers/prism-line-numbers.css";
 import "tailwindcss/dist/base.min.css";
-import { SiteHeader } from "../header";
+import { SiteHeader } from "./header";
 import { TableOfContents } from "../table-of-contents";
 import { globalStyles } from "../styles/global";
 import { config } from "@fortawesome/fontawesome-svg-core";
@@ -51,7 +51,7 @@ export const Layout: React.FCX<LayoutProps> = ({
         />
       )}
       <main className="leading-relaxed p-4 flex-grow min-w-0">
-        <Header>{title}</Header>
+        <Title>{title}</Title>
         {children}
       </main>
     </div>
