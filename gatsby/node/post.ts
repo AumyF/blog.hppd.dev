@@ -1,4 +1,4 @@
-import { TOC } from "./toc";
+import { TOC } from "../../src/libs/toc";
 import { Mdx } from "../../types/graphqlTypes";
 import { compact } from "lodash";
 import { PostDate } from "./date";
