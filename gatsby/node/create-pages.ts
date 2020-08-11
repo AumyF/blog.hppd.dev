@@ -1,12 +1,12 @@
 import { GatsbyNode, NodeInput } from "gatsby";
-import { GatsbyNodeQuery } from "../../../types/graphqlTypes";
-import { Post } from "../../libs/post";
-import { IndividualTagPageContext } from "../../templates/IndividualTagPage";
-import { ArchiveYearPageContext } from "../../templates/ArchiveYearPage";
-import { ArchiveMonthPageContenxt } from "../../templates/ArchiveMonthPage";
+import { GatsbyNodeQuery } from "../../types/graphqlTypes";
+import { IndividualTagPageContext } from "../../src/templates/IndividualTagPage";
+import { ArchiveYearPageContext } from "../../src/templates/ArchiveYearPage";
+import { ArchiveMonthPageContenxt } from "../../src/templates/ArchiveMonthPage";
 import Path from "path";
-import { assertsNonNull } from "../../utils/asserts-non-null";
-import { BlogPostContext } from "../../templates/blog-post";
+import { assertsNonNull } from "../../src/utils/asserts-non-null";
+import { BlogPostContext } from "../../src/templates/blog-post";
+import { Post } from "./post";
 
 export const createPages: GatsbyNode["createPages"] = async ({
   graphql,

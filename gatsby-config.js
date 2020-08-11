@@ -13,10 +13,6 @@ module.exports = {
       resolve: `gatsby-plugin-postcss`,
     },
     {
-      resolve: `gatsby-plugin-ts-config`,
-      options: { configDir: `src/gatsby` },
-    },
-    {
       resolve: `gatsby-plugin-graphql-codegen`,
       options: {
         codegen: codegen,
