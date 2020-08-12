@@ -18,6 +18,9 @@ module.exports = {
       transitionProperty: {
         "text-decoration": "text-decoration",
       },
+      transitionDuration: {
+        "50": "50ms",
+      },
       height: {
         "min-content": "min-content",
       },

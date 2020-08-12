@@ -7,7 +7,7 @@ const Item: React.FCX<TOC> = ({ items, className }) => (
     {items.map(items => (
       <li key={items.title} className="leading-normal" css={css``}>
         <a
-          className="block my-1 no-underline transition-all duration-75 hover:bg-gray-800"
+          className="block px-1 my-1 no-underline transition-all duration-50 hover:bg-gray-800 text-gray-500"
           href={items.url}
         >
           {items.title}
