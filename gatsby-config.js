@@ -6,7 +6,7 @@ module.exports = {
   /* Your site config here */
   siteMetadata: {
     title: "続かぬ",
-    description: "規則正しい生活は、永久にこれを放棄しようかと",
+    description: "作ってる間がピーク",
   },
   plugins: [
     {

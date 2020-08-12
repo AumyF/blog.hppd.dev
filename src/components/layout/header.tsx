@@ -1,10 +1,12 @@
 import React from "react";
 import { useSite } from "../../hooks/use-site";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTag, faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
 import { faTwitter, faGithub } from "@fortawesome/free-brands-svg-icons";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { AnchorOrLink } from "../atoms/anchor-or-link";
+import { Link } from "gatsby";
+import tw from "twin.macro";
+import { invisibleAnchor } from "../styles/styles";
 
 export type SiteHeaderProps = {};
 
@@ -13,14 +15,36 @@ export const SiteHeader: React.FCX<SiteHeaderProps> = ({ className }) => {
   return (
     <header
       className={
-        className + " bg-gray-100 text-gray-900 leading-tight text-center"
+        className + " bg-gray-100 text-gray-800 leading-tight text-center"
       }
     >
-      <div className="flex container mx-auto px-4 items-center gap-4 justify-between">
-        <h1 className="text-3xl">{siteMetadata?.title}</h1>
+      <div className="flex container mx-auto px-4 items-center gap-2 justify-end">
+        <div className="mr-auto flex items-center flex-wrap">
+          <h1 className="text-3xl font-bold pr-2 ">
+            <Link to="/" className="text-current no-underline">
+              {siteMetadata?.title}
+            </Link>
+          </h1>
+          <span className="pl-2 border-l-2 border-gray-700 ">
+            {siteMetadata?.description}
+          </span>
+        </div>
+        {/* <nav>
+          <Link css={[navigation, invisibleAnchor]} to="/about">
+            About
+          </Link>
+        </nav> */}
+        <nav>
+          <Link css={[navigation, invisibleAnchor]} to="/tags">
+            Tags
+          </Link>
+        </nav>
+        {/* <nav>
+          <Link css={[navigation, invisibleAnchor]} to="/archives">
+            Archives
+          </Link>
+        </nav> */}
         <nav className="py-2">
-          <Icon to="/tags" icon={faTag} />
-          <Icon to="/archives" icon={faCalendarAlt} />
           <Icon to="https://twitter.com/MominisJ" icon={faTwitter} />
           <Icon to="https://github.com/AumyF" icon={faGithub} />
         </nav>
@@ -28,6 +52,8 @@ export const SiteHeader: React.FCX<SiteHeaderProps> = ({ className }) => {
     </header>
   );
 };
+
+const navigation = tw`text-current`;
 
 type HeaderIconProps = { icon: IconProp; to: string };
 
