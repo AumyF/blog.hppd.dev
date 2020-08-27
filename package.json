@@ -38,7 +38,7 @@
     "gatsby-remark-autolink-headers": "^2.3.11",
     "gatsby-remark-code-titles": "^1.1.0",
     "gatsby-remark-prismjs": "^3.5.11",
-    "gatsby-source-filesystem": "^2.3.25",
+    "gatsby-source-filesystem": "^2.3.26",
     "jest": "^25.5.4",
     "lodash": "^4.17.20",
     "prismjs": "^1.21.0",
