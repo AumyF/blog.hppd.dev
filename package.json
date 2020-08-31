@@ -31,7 +31,7 @@
     "gatsby": "^2.24.52",
     "gatsby-plugin-emotion": "^4.3.10",
     "gatsby-plugin-graphql-codegen": "^2.7.1",
-    "gatsby-plugin-mdx": "^1.2.36",
+    "gatsby-plugin-mdx": "^1.2.37",
     "gatsby-plugin-postcss": "^2.3.11",
     "gatsby-plugin-react-helmet": "^3.3.10",
     "gatsby-plugin-typescript": "^2.4.18",
