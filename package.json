@@ -28,7 +28,7 @@
     "@mdx-js/mdx": "^1.6.16",
     "@mdx-js/react": "^1.6.16",
     "eslint-config-react-app": "^5.2.1",
-    "gatsby": "^2.24.51",
+    "gatsby": "^2.24.52",
     "gatsby-plugin-emotion": "^4.3.10",
     "gatsby-plugin-graphql-codegen": "^2.7.1",
     "gatsby-plugin-mdx": "^1.2.36",
