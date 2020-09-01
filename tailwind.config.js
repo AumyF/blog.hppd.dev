@@ -19,7 +19,7 @@ module.exports = {
         "text-decoration": "text-decoration",
       },
       transitionDuration: {
-        "50": "50ms",
+        50: "50ms",
       },
       height: {
         "min-content": "min-content",
@@ -28,7 +28,7 @@ module.exports = {
         "min-content": "min-content",
       },
       minWidth: {
-        "0": "0",
+        0: "0",
       },
     },
   },
@@ -56,4 +56,7 @@ module.exports = {
       });
     }),
   ],
+  future: {
+    removeDeprecatedGapUtilities: true,
+  },
 };
