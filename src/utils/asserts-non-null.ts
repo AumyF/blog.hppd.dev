@@ -1,7 +1,7 @@
 import { panic } from "./panic";
 
 class AssertsNonNullError extends Error {
-  constructor(e: string = '"assertsNonNull" recieved nullish.') {
+  constructor(e = '"assertsNonNull" recieved nullish.') {
     super(e);
     this.name = new.target.name;
   }

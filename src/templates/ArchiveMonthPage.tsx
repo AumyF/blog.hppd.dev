@@ -1,8 +1,6 @@
 import React from "react";
 import { PageProps, graphql } from "gatsby";
-import { Layout } from "../components/layout";
 import { ArchiveMonthPageQuery } from "../../types/graphqlTypes";
-import { PostList } from "../components/post-link/post-list";
 import { PostListPage } from "./post-list-page";
 
 export type ArchiveMonthPageContenxt = {

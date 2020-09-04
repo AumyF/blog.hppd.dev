@@ -1,4 +1,16 @@
 {
-  "extends": "react-app",
-  "ignorePatterns": ["public"]
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "react", "react-hooks"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+    "prettier/@typescript-eslint"
+  ],
+  "ignorePatterns": ["*.js", "/public", "/types"],
+  "rules": {
+    "react/prop-types": "off",
+    "@typescript-eslint/ban-types": "off"
+  }
 }

@@ -2,7 +2,7 @@ import React from "react";
 import { useSite } from "../../hooks/use-site";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTwitter, faGithub } from "@fortawesome/free-brands-svg-icons";
-import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import type { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { AnchorOrLink } from "../atoms/anchor-or-link";
 import { Link } from "gatsby";
 import tw from "twin.macro";
