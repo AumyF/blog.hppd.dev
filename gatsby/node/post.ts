@@ -2,6 +2,7 @@ import { TOC } from "../../src/libs/toc";
 import { Mdx } from "../../types/graphqlTypes";
 import { compact } from "lodash";
 import { PostDate } from "./date";
+import { assertsNonNull } from "../../src/utils/asserts-non-null";
 
 export type Post = {
   id: string;
@@ -30,7 +31,9 @@ export const Post: (e: {
   node: { body, excerpt, id, tableOfContents, frontmatter, fileAbsolutePath },
 }) => {
   return {
-    path: genPostPath(fileAbsolutePath),
+    path: assertsNonNull(
+      fileAbsolutePath.split("/").pop()?.split(".")[0].split("-").join("/")
+    ), // TODO .aplit("-").join("/") === .replaceAll(...)
     date: frontmatter?.date ?? "2000-01-01",
     body,
     id,

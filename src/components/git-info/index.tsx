@@ -3,13 +3,13 @@ import { useLatestCommit } from "./useLatestCommit";
 
 export type GitInfoProps = { filePath: string };
 
-export const GitInfo: React.FC<GitInfoProps> = ({ filePath }) => {
+export const GitInfo: React.FC<GitInfoProps> = ({ filePath: path }) => {
   const {
     isLoading,
     isError,
     data: { lastUpdate, message, url },
     errMessage,
-  } = useLatestCommit(filePath);
+  } = useLatestCommit(path.split("/").join("-"));
   return (
     <div>
       {isLoading ? (
@@ -32,7 +32,7 @@ export const GitInfo: React.FC<GitInfoProps> = ({ filePath }) => {
           </table>
           <a
             className="block text-center"
-            href={`https://github.com/AumyF/blog/blob/master/posts/${filePath}.mdx`}
+            href={`https://github.com/AumyF/blog/blob/master/posts/${path}.mdx`}
           >
             View source on GitHub
           </a>

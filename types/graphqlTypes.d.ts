@@ -596,11 +596,10 @@ export type FileFieldsEnum =
   'childMdx___rawBody' |
   'childMdx___fileAbsolutePath' |
   'childMdx___frontmatter___title' |
-  'childMdx___frontmatter___date' |
-  'childMdx___frontmatter___tags' |
   'childMdx___frontmatter___status' |
-  'childMdx___frontmatter___path' |
-  'childMdx___frontmatter___description' |
+  'childMdx___frontmatter___tags' |
+  'childMdx___frontmatter___date' |
+  'childMdx___slug' |
   'childMdx___body' |
   'childMdx___excerpt' |
   'childMdx___headings' |
@@ -774,6 +773,7 @@ export type Mdx = Node & {
   rawBody: Scalars['String'];
   fileAbsolutePath: Scalars['String'];
   frontmatter?: Maybe<MdxFrontmatter>;
+  slug?: Maybe<Scalars['String']>;
   body: Scalars['String'];
   excerpt: Scalars['String'];
   headings?: Maybe<Array<Maybe<MdxHeadingMdx>>>;
@@ -835,11 +835,10 @@ export type MdxFieldsEnum =
   'rawBody' |
   'fileAbsolutePath' |
   'frontmatter___title' |
-  'frontmatter___date' |
-  'frontmatter___tags' |
   'frontmatter___status' |
-  'frontmatter___path' |
-  'frontmatter___description' |
+  'frontmatter___tags' |
+  'frontmatter___date' |
+  'slug' |
   'body' |
   'excerpt' |
   'headings' |
@@ -943,6 +942,7 @@ export type MdxFilterInput = {
   rawBody?: Maybe<StringQueryOperatorInput>;
   fileAbsolutePath?: Maybe<StringQueryOperatorInput>;
   frontmatter?: Maybe<MdxFrontmatterFilterInput>;
+  slug?: Maybe<StringQueryOperatorInput>;
   body?: Maybe<StringQueryOperatorInput>;
   excerpt?: Maybe<StringQueryOperatorInput>;
   headings?: Maybe<MdxHeadingMdxFilterListInput>;
@@ -959,11 +959,9 @@ export type MdxFilterInput = {
 
 export type MdxFrontmatter = {
   title: Scalars['String'];
-  date?: Maybe<Scalars['Date']>;
-  tags?: Maybe<Array<Maybe<Scalars['String']>>>;
   status?: Maybe<Scalars['String']>;
-  path?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
+  tags?: Maybe<Array<Maybe<Scalars['String']>>>;
+  date?: Maybe<Scalars['Date']>;
 };
 
 
@@ -976,11 +974,9 @@ export type MdxFrontmatterDateArgs = {
 
 export type MdxFrontmatterFilterInput = {
   title?: Maybe<StringQueryOperatorInput>;
-  date?: Maybe<DateQueryOperatorInput>;
-  tags?: Maybe<StringQueryOperatorInput>;
   status?: Maybe<StringQueryOperatorInput>;
-  path?: Maybe<StringQueryOperatorInput>;
-  description?: Maybe<StringQueryOperatorInput>;
+  tags?: Maybe<StringQueryOperatorInput>;
+  date?: Maybe<DateQueryOperatorInput>;
 };
 
 export type MdxGroupConnection = {
@@ -1061,7 +1057,6 @@ export type Post = Node & {
   status: Scalars['String'];
   tags: Array<Scalars['String']>;
   toc: Scalars['JSON'];
-  description?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   parent?: Maybe<Node>;
   children: Array<Node>;
@@ -1112,7 +1107,6 @@ export type PostFieldsEnum =
   'status' |
   'tags' |
   'toc' |
-  'description' |
   'id' |
   'parent___id' |
   'parent___parent___id' |
@@ -1209,7 +1203,6 @@ export type PostFilterInput = {
   status?: Maybe<StringQueryOperatorInput>;
   tags?: Maybe<StringQueryOperatorInput>;
   toc?: Maybe<JsonQueryOperatorInput>;
-  description?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
@@ -1239,10 +1232,10 @@ export type Query = {
   allSitePage: SitePageConnection;
   site?: Maybe<Site>;
   allSite: SiteConnection;
-  post?: Maybe<Post>;
-  allPost: PostConnection;
   mdx?: Maybe<Mdx>;
   allMdx: MdxConnection;
+  post?: Maybe<Post>;
+  allPost: PostConnection;
   siteBuildMetadata?: Maybe<SiteBuildMetadata>;
   allSiteBuildMetadata: SiteBuildMetadataConnection;
   sitePlugin?: Maybe<SitePlugin>;
@@ -1379,7 +1372,7 @@ export type QueryAllSitePageArgs = {
 export type QuerySiteArgs = {
   buildTime?: Maybe<DateQueryOperatorInput>;
   siteMetadata?: Maybe<SiteSiteMetadataFilterInput>;
-  port?: Maybe<DateQueryOperatorInput>;
+  port?: Maybe<IntQueryOperatorInput>;
   host?: Maybe<StringQueryOperatorInput>;
   polyfill?: Maybe<BooleanQueryOperatorInput>;
   pathPrefix?: Maybe<StringQueryOperatorInput>;
@@ -1398,35 +1391,11 @@ export type QueryAllSiteArgs = {
 };
 
 
-export type QueryPostArgs = {
-  title?: Maybe<StringQueryOperatorInput>;
-  body?: Maybe<StringQueryOperatorInput>;
-  date?: Maybe<DateQueryOperatorInput>;
-  excerpt?: Maybe<StringQueryOperatorInput>;
-  path?: Maybe<StringQueryOperatorInput>;
-  status?: Maybe<StringQueryOperatorInput>;
-  tags?: Maybe<StringQueryOperatorInput>;
-  toc?: Maybe<JsonQueryOperatorInput>;
-  description?: Maybe<StringQueryOperatorInput>;
-  id?: Maybe<StringQueryOperatorInput>;
-  parent?: Maybe<NodeFilterInput>;
-  children?: Maybe<NodeFilterListInput>;
-  internal?: Maybe<InternalFilterInput>;
-};
-
-
-export type QueryAllPostArgs = {
-  filter?: Maybe<PostFilterInput>;
-  sort?: Maybe<PostSortInput>;
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-};
-
-
 export type QueryMdxArgs = {
   rawBody?: Maybe<StringQueryOperatorInput>;
   fileAbsolutePath?: Maybe<StringQueryOperatorInput>;
   frontmatter?: Maybe<MdxFrontmatterFilterInput>;
+  slug?: Maybe<StringQueryOperatorInput>;
   body?: Maybe<StringQueryOperatorInput>;
   excerpt?: Maybe<StringQueryOperatorInput>;
   headings?: Maybe<MdxHeadingMdxFilterListInput>;
@@ -1445,6 +1414,30 @@ export type QueryMdxArgs = {
 export type QueryAllMdxArgs = {
   filter?: Maybe<MdxFilterInput>;
   sort?: Maybe<MdxSortInput>;
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryPostArgs = {
+  title?: Maybe<StringQueryOperatorInput>;
+  body?: Maybe<StringQueryOperatorInput>;
+  date?: Maybe<DateQueryOperatorInput>;
+  excerpt?: Maybe<StringQueryOperatorInput>;
+  path?: Maybe<StringQueryOperatorInput>;
+  status?: Maybe<StringQueryOperatorInput>;
+  tags?: Maybe<StringQueryOperatorInput>;
+  toc?: Maybe<JsonQueryOperatorInput>;
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+};
+
+
+export type QueryAllPostArgs = {
+  filter?: Maybe<PostFilterInput>;
+  sort?: Maybe<PostSortInput>;
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
 };
@@ -1494,7 +1487,7 @@ export type QueryAllSitePluginArgs = {
 export type Site = Node & {
   buildTime?: Maybe<Scalars['Date']>;
   siteMetadata?: Maybe<SiteSiteMetadata>;
-  port?: Maybe<Scalars['Date']>;
+  port?: Maybe<Scalars['Int']>;
   host?: Maybe<Scalars['String']>;
   polyfill?: Maybe<Scalars['Boolean']>;
   pathPrefix?: Maybe<Scalars['String']>;
@@ -1506,14 +1499,6 @@ export type Site = Node & {
 
 
 export type SiteBuildTimeArgs = {
-  formatString?: Maybe<Scalars['String']>;
-  fromNow?: Maybe<Scalars['Boolean']>;
-  difference?: Maybe<Scalars['String']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-export type SitePortArgs = {
   formatString?: Maybe<Scalars['String']>;
   fromNow?: Maybe<Scalars['Boolean']>;
   difference?: Maybe<Scalars['String']>;
@@ -1799,7 +1784,7 @@ export type SiteFieldsEnum =
 export type SiteFilterInput = {
   buildTime?: Maybe<DateQueryOperatorInput>;
   siteMetadata?: Maybe<SiteSiteMetadataFilterInput>;
-  port?: Maybe<DateQueryOperatorInput>;
+  port?: Maybe<IntQueryOperatorInput>;
   host?: Maybe<StringQueryOperatorInput>;
   polyfill?: Maybe<BooleanQueryOperatorInput>;
   pathPrefix?: Maybe<StringQueryOperatorInput>;
@@ -2020,15 +2005,15 @@ export type SitePageFieldsEnum =
   'pluginCreator___resolve' |
   'pluginCreator___name' |
   'pluginCreator___version' |
-  'pluginCreator___pluginOptions___configDir' |
+  'pluginCreator___pluginOptions___codegen' |
+  'pluginCreator___pluginOptions___fileName' |
+  'pluginCreator___pluginOptions___documentPaths' |
   'pluginCreator___pluginOptions___isTSX' |
   'pluginCreator___pluginOptions___allExtensions' |
   'pluginCreator___pluginOptions___allowNamespaces' |
   'pluginCreator___pluginOptions___name' |
   'pluginCreator___pluginOptions___path' |
   'pluginCreator___pluginOptions___pathCheck' |
-  'pluginCreator___pluginOptions___codegen' |
-  'pluginCreator___pluginOptions___fileName' |
   'pluginCreator___nodeAPIs' |
   'pluginCreator___browserAPIs' |
   'pluginCreator___ssrAPIs' |
@@ -2215,15 +2200,15 @@ export type SitePluginFieldsEnum =
   'resolve' |
   'name' |
   'version' |
-  'pluginOptions___configDir' |
+  'pluginOptions___codegen' |
+  'pluginOptions___fileName' |
+  'pluginOptions___documentPaths' |
   'pluginOptions___isTSX' |
   'pluginOptions___allExtensions' |
   'pluginOptions___allowNamespaces' |
   'pluginOptions___name' |
   'pluginOptions___path' |
   'pluginOptions___pathCheck' |
-  'pluginOptions___codegen' |
-  'pluginOptions___fileName' |
   'nodeAPIs' |
   'browserAPIs' |
   'ssrAPIs' |
@@ -2336,27 +2321,27 @@ export type SitePluginPackageJsonPeerDependenciesFilterListInput = {
 };
 
 export type SitePluginPluginOptions = {
-  configDir?: Maybe<Scalars['String']>;
+  codegen?: Maybe<Scalars['Boolean']>;
+  fileName?: Maybe<Scalars['String']>;
+  documentPaths?: Maybe<Array<Maybe<Scalars['String']>>>;
   isTSX?: Maybe<Scalars['Boolean']>;
   allExtensions?: Maybe<Scalars['Boolean']>;
   allowNamespaces?: Maybe<Scalars['Boolean']>;
   name?: Maybe<Scalars['String']>;
   path?: Maybe<Scalars['String']>;
   pathCheck?: Maybe<Scalars['Boolean']>;
-  codegen?: Maybe<Scalars['Boolean']>;
-  fileName?: Maybe<Scalars['String']>;
 };
 
 export type SitePluginPluginOptionsFilterInput = {
-  configDir?: Maybe<StringQueryOperatorInput>;
+  codegen?: Maybe<BooleanQueryOperatorInput>;
+  fileName?: Maybe<StringQueryOperatorInput>;
+  documentPaths?: Maybe<StringQueryOperatorInput>;
   isTSX?: Maybe<BooleanQueryOperatorInput>;
   allExtensions?: Maybe<BooleanQueryOperatorInput>;
   allowNamespaces?: Maybe<BooleanQueryOperatorInput>;
   name?: Maybe<StringQueryOperatorInput>;
   path?: Maybe<StringQueryOperatorInput>;
   pathCheck?: Maybe<BooleanQueryOperatorInput>;
-  codegen?: Maybe<BooleanQueryOperatorInput>;
-  fileName?: Maybe<StringQueryOperatorInput>;
 };
 
 export type SitePluginSortInput = {
@@ -2409,20 +2394,12 @@ export type GatsbyNodeQuery = { allMdx: (
     Pick<MdxConnection, 'distinct'>
     & { edges: Array<{ node: (
         Pick<Mdx, 'id' | 'tableOfContents' | 'fileAbsolutePath' | 'body' | 'excerpt'>
-        & { internal: Pick<Internal, 'content' | 'type'>, frontmatter?: Maybe<Pick<MdxFrontmatter, 'date' | 'status' | 'tags' | 'title'>> }
+        & { internal: Pick<Internal, 'content' | 'type'>, frontmatter?: Maybe<(
+          Pick<MdxFrontmatter, 'date' | 'status' | 'tags' | 'title'>
+          & { year: MdxFrontmatter['date'], month: MdxFrontmatter['date'] }
+        )> }
       ) }> }
-  ), allDirectory: { group: Array<(
-      Pick<DirectoryGroupConnection, 'fieldValue'>
-      & { edges: Array<{ node: Pick<Directory, 'name'> }> }
-    )> } };
-
-export type UseStaticQueryQueryVariables = {};
-
-
-export type UseStaticQueryQuery = { site?: Maybe<(
-    Pick<Site, 'buildTime'>
-    & { siteMetadata?: Maybe<Pick<SiteSiteMetadata, 'title' | 'description'>> }
-  )> };
+  ) };
 
 export type IndexQueryVariables = {};
 
@@ -2436,6 +2413,14 @@ export type TagsPageQuery = { allPost: { group: Array<(
       Pick<PostGroupConnection, 'fieldValue' | 'totalCount'>
       & { edges: Array<{ node: Pick<Post, 'id' | 'excerpt' | 'path' | 'tags' | 'title'> }> }
     )> } };
+
+export type UseStaticQueryQueryVariables = {};
+
+
+export type UseStaticQueryQuery = { site?: Maybe<(
+    Pick<Site, 'buildTime'>
+    & { siteMetadata?: Maybe<Pick<SiteSiteMetadata, 'title' | 'description'>> }
+  )> };
 
 export type ArchiveMonthPageQueryVariables = {
   startDate?: Maybe<Scalars['Date']>;
@@ -2452,13 +2437,6 @@ export type ArchiveYearPageQueryVariables = {
 
 
 export type ArchiveYearPageQuery = { allPost: { edges: Array<{ node: Pick<Post, 'title' | 'date' | 'path' | 'id' | 'tags' | 'excerpt'> }> } };
-
-export type BlogPostQueryVariables = {
-  id?: Maybe<Scalars['String']>;
-};
-
-
-export type BlogPostQuery = { post?: Maybe<Pick<Post, 'title' | 'date' | 'body' | 'toc' | 'tags' | 'path'>> };
 
 export type IndividualTagPageQueryVariables = {
   tag?: Maybe<Scalars['String']>;
