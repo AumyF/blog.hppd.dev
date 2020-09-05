@@ -1,6 +1,3 @@
-const codegen = Boolean(parseInt(process.env.GATSBY_CODEGEN));
-console.log(`Codegen: ${codegen}`);
-
 /** @type import('gatsby').GatsbyConfig */
 module.exports = {
   /* Your site config here */
@@ -15,8 +12,14 @@ module.exports = {
     {
       resolve: `gatsby-plugin-graphql-codegen`,
       options: {
-        codegen: codegen,
+        codegen: true,
         fileName: `types/graphqlTypes.d.ts`,
+        documentPaths: [
+          "./gatsby/**/*.{ts,tsx}",
+          "./src/pages/*.{ts,tsx}",
+          "./src/hooks/*.{ts,tsx}",
+          "./src/templates/*.{ts,tsx}",
+        ],
       },
     },
     {
