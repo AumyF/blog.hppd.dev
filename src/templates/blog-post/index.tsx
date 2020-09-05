@@ -8,6 +8,8 @@ import { assertsNonNull } from "../../utils/asserts-non-null";
 import { Layout } from "../../components/layout";
 import { Article } from "../../components/article";
 import { TagList } from "../../components/atoms/tag-list";
+import { GitInfo } from "../../components/git-info";
+import Sidebar from "../../components/layout/sidebar";
 
 export type BlogPostContext = {
   id: string;
@@ -18,7 +20,22 @@ export type BlogPostProps = PageProps<BlogPostQuery, BlogPostContext>;
 export const BlogPost: React.FC<BlogPostProps> = ({ data: { post } }) => {
   const { body, date, tags, title, toc, path } = assertsNonNull(post);
   return (
-    <Layout {...{ title, date, path, toc }}>
+    <Layout
+      {...{ title, date, path }}
+      SidebarComponent={() => (
+        <Sidebar>
+          {TOC => (
+            <>
+              <TOC toc={toc} />
+              <div className="text-center pb-2 px-4 border-b border-gray-700">
+                Git Information
+              </div>
+              <GitInfo filePath={path} />
+            </>
+          )}
+        </Sidebar>
+      )}
+    >
       <TagList tags={tags} />
       <Article>
         <MDXProvider components={ArticleElements}>

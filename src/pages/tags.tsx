@@ -4,6 +4,7 @@ import { PageProps, graphql, Link } from "gatsby";
 import { TagsPageQuery } from "../../types/graphqlTypes";
 import { PostList } from "../components/post-link/post-list";
 import { Article } from "../components/article";
+import Sidebar from "../components/layout/sidebar";
 
 export type TagsPageProps = PageProps<TagsPageQuery>;
 
@@ -15,12 +16,20 @@ export const TagsPage: (props: TagsPageProps) => React.ReactElement = ({
   <Layout
     path="tags"
     title="TAGS"
-    toc={{
-      items: group.map(({ fieldValue }) => ({
-        title: fieldValue ?? "",
-        url: `./#${fieldValue}`,
-      })),
-    }}
+    SidebarComponent={() => (
+      <Sidebar>
+        {TOC => (
+          <TOC
+            toc={{
+              items: group.map(({ fieldValue }) => ({
+                title: fieldValue ?? "",
+                url: `./#${fieldValue}`,
+              })),
+            }}
+          />
+        )}
+      </Sidebar>
+    )}
   >
     <Article>
       {group.map(({ fieldValue, totalCount, edges }) => (
