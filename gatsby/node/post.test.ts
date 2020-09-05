@@ -13,7 +13,6 @@ describe("Post", (): void => {
         frontmatter: {
           title: "title",
           date: "",
-          path: "path",
           status: "public",
           tags: ["tag1", "tag2"],
         },
