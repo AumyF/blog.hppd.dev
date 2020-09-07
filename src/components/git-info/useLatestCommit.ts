@@ -1,4 +1,5 @@
 import { useReducer, useEffect } from "react";
+import { panic } from "../../utils/panic";
 
 type User = { name: string; email: string; date: string };
 
@@ -44,7 +45,12 @@ const latestCommitReducer: React.Reducer<State, Action> = (state, action) => {
         data: action.payload,
       };
     case "FETCH_FAILURE":
-      return { ...state, isError: true, isLoading: false };
+      return {
+        ...state,
+        isError: true,
+        isLoading: false,
+        errMessage: action.message,
+      };
   }
 };
 
@@ -64,26 +70,33 @@ export const useLatestCommit = (filePath: string): State => {
     const fetchLatestCommit = async () => {
       dispatch({ type: "FETCH_START" });
       try {
-        const {
-          html_url: url,
-          commit: {
-            message,
-            committer: { date: lastUpdate },
-          },
-        } = await fetch(
+        const response = await fetch(
           `https://api.github.com/repos/AumyF/blog/commits?path=posts/${encodeURIComponent(
             filePath
           )}.mdx&page=1&per_page=1`
-        )
-          .then(response => response.json() as Promise<[LatestCommit]>)
-          .then(obj => obj[0]);
+        );
+
+        const [
+          {
+            html_url: url,
+            commit: {
+              message,
+              committer: { date: lastUpdate },
+            },
+          },
+        ] = response.ok
+          ? await (response.json() as Promise<[LatestCommit]>)
+          : panic(new Error(`${response.status} ${response.statusText}`));
 
         dispatch({
           type: "FETCH_SUCCESS",
           payload: { url, lastUpdate, message },
         });
       } catch (error) {
-        dispatch({ type: "FETCH_FAILURE", message: error.message });
+        dispatch({
+          type: "FETCH_FAILURE",
+          message: `${error.name}: ${error.message}`,
+        });
       }
     };
 
