@@ -1,7 +1,7 @@
 import { GatsbyLinkProps, Link } from "gatsby";
 import React from "react";
 /**
- * https://www.gatsbyjs.org/docs/gatsby-link/#reminder-use-link-only-for-internal-links
+ * @see https://www.gatsbyjs.org/docs/gatsby-link/#reminder-use-link-only-for-internal-links
  */
 export const AnchorOrLink: React.FC<GatsbyLinkProps<unknown>> = ({
   to,

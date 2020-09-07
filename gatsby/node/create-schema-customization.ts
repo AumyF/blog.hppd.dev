@@ -32,9 +32,11 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
         body: "String!",
         date: {
           type: "Date!",
-          /* https://www.gatsbyjs.org/docs/schema-customization/#extensions-and-directives
-          Without this property, a warning occurs: "Deprecation warning - adding inferred resolver for field Post.date. In Gatsby v3, only fields with an explicit directive/extension will get a resolver."
-          */
+          /**
+           * Added because of avoiding `Deprecation warning - adding inferred resolver for field Post.date. In Gatsby v3, only fields with an explicit directive/extension will get a resolver.`
+           * @see https://www.gatsbyjs.org/docs/schema-customization/#extensions-and-directives
+           *
+           */
           extensions: {
             dateformat: {},
           },
