@@ -1057,7 +1057,6 @@ export type Post = Node & {
   status: Scalars['String'];
   tags: Array<Scalars['String']>;
   toc: Scalars['JSON'];
-  description?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   parent?: Maybe<Node>;
   children: Array<Node>;
@@ -1108,7 +1107,6 @@ export type PostFieldsEnum =
   'status' |
   'tags' |
   'toc' |
-  'description' |
   'id' |
   'parent___id' |
   'parent___parent___id' |
@@ -1205,7 +1203,6 @@ export type PostFilterInput = {
   status?: Maybe<StringQueryOperatorInput>;
   tags?: Maybe<StringQueryOperatorInput>;
   toc?: Maybe<JsonQueryOperatorInput>;
-  description?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
@@ -1431,7 +1428,6 @@ export type QueryPostArgs = {
   status?: Maybe<StringQueryOperatorInput>;
   tags?: Maybe<StringQueryOperatorInput>;
   toc?: Maybe<JsonQueryOperatorInput>;
-  description?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
@@ -2448,3 +2444,10 @@ export type IndividualTagPageQueryVariables = {
 
 
 export type IndividualTagPageQuery = { allPost: { edges: Array<{ node: Pick<Post, 'title' | 'path' | 'tags' | 'excerpt'> }> } };
+
+export type BlogPostQueryVariables = {
+  id?: Maybe<Scalars['String']>;
+};
+
+
+export type BlogPostQuery = { post?: Maybe<Pick<Post, 'title' | 'date' | 'body' | 'toc' | 'tags' | 'path'>> };

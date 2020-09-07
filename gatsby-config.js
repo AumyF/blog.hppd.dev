@@ -18,7 +18,7 @@ module.exports = {
           "./gatsby/**/*.{ts,tsx}",
           "./src/pages/*.{ts,tsx}",
           "./src/hooks/*.{ts,tsx}",
-          "./src/templates/*.{ts,tsx}",
+          "./src/templates/**/*.{ts,tsx}",
         ],
       },
     },
