@@ -596,9 +596,9 @@ export type FileFieldsEnum =
   'childMdx___rawBody' |
   'childMdx___fileAbsolutePath' |
   'childMdx___frontmatter___title' |
+  'childMdx___frontmatter___date' |
   'childMdx___frontmatter___status' |
   'childMdx___frontmatter___tags' |
-  'childMdx___frontmatter___date' |
   'childMdx___slug' |
   'childMdx___body' |
   'childMdx___excerpt' |
@@ -835,9 +835,9 @@ export type MdxFieldsEnum =
   'rawBody' |
   'fileAbsolutePath' |
   'frontmatter___title' |
+  'frontmatter___date' |
   'frontmatter___status' |
   'frontmatter___tags' |
-  'frontmatter___date' |
   'slug' |
   'body' |
   'excerpt' |
@@ -959,9 +959,9 @@ export type MdxFilterInput = {
 
 export type MdxFrontmatter = {
   title: Scalars['String'];
+  date?: Maybe<Scalars['Date']>;
   status?: Maybe<Scalars['String']>;
   tags?: Maybe<Array<Maybe<Scalars['String']>>>;
-  date?: Maybe<Scalars['Date']>;
 };
 
 
@@ -974,9 +974,9 @@ export type MdxFrontmatterDateArgs = {
 
 export type MdxFrontmatterFilterInput = {
   title?: Maybe<StringQueryOperatorInput>;
+  date?: Maybe<DateQueryOperatorInput>;
   status?: Maybe<StringQueryOperatorInput>;
   tags?: Maybe<StringQueryOperatorInput>;
-  date?: Maybe<DateQueryOperatorInput>;
 };
 
 export type MdxGroupConnection = {
@@ -1057,6 +1057,7 @@ export type Post = Node & {
   status: Scalars['String'];
   tags: Array<Scalars['String']>;
   toc: Scalars['JSON'];
+  description?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   parent?: Maybe<Node>;
   children: Array<Node>;
@@ -1107,6 +1108,7 @@ export type PostFieldsEnum =
   'status' |
   'tags' |
   'toc' |
+  'description' |
   'id' |
   'parent___id' |
   'parent___parent___id' |
@@ -1203,6 +1205,7 @@ export type PostFilterInput = {
   status?: Maybe<StringQueryOperatorInput>;
   tags?: Maybe<StringQueryOperatorInput>;
   toc?: Maybe<JsonQueryOperatorInput>;
+  description?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
@@ -1428,6 +1431,7 @@ export type QueryPostArgs = {
   status?: Maybe<StringQueryOperatorInput>;
   tags?: Maybe<StringQueryOperatorInput>;
   toc?: Maybe<JsonQueryOperatorInput>;
+  description?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
