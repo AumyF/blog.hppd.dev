@@ -6,4 +6,9 @@ require("ts-node").register(
   )
 );
 
+// /** @type import("gatsby").GatsbyNode["onCreateNode"] */
+// const onCreateNode = (args, options) => {
+//   console.log(args.node.internal.type);
+// };
+
 module.exports = require("./gatsby/node");

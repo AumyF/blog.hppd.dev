@@ -10,7 +10,7 @@ export type TagsPageProps = PageProps<TagsPageQuery>;
 
 export const TagsPage: (props: TagsPageProps) => React.ReactElement = ({
   data: {
-    allPost: { group },
+    allMdx: { group },
   },
 }) => (
   <Layout
@@ -32,7 +32,7 @@ export const TagsPage: (props: TagsPageProps) => React.ReactElement = ({
     )}
   >
     <Article>
-      {group.map(({ fieldValue, totalCount, edges }) => (
+      {group.map(({ fieldValue, totalCount, nodes }) => (
         <section key={fieldValue ?? ""}>
           <h2 id={`${fieldValue}`}>
             <Link to={"/tags/" + fieldValue ?? "#"}>{fieldValue}</Link>
@@ -40,7 +40,7 @@ export const TagsPage: (props: TagsPageProps) => React.ReactElement = ({
               記事数: {totalCount}
             </span>
           </h2>
-          <PostList edges={edges} />
+          <PostList {...{ nodes }} />
         </section>
       ))}
     </Article>
@@ -49,17 +49,20 @@ export const TagsPage: (props: TagsPageProps) => React.ReactElement = ({
 
 export const pageQuery = graphql`
   query TagsPage {
-    allPost {
-      group(field: tags) {
+    allMdx {
+      group(field: frontmatter___tags) {
         fieldValue
         totalCount
-        edges {
-          node {
-            id
-            excerpt
-            path
+        nodes {
+          excerpt(truncate: true)
+          id
+          frontmatter {
             tags
             title
+          }
+          fields {
+            path
+            yyyymmdd
           }
         }
       }

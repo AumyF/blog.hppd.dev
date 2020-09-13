@@ -1,44 +1,44 @@
 import React from "react";
 import { PageProps, graphql } from "gatsby";
-import { ArchiveMonthPageQuery } from "../../types/graphqlTypes";
+import { ArchiveMonthTemplateQuery } from "../../types/graphqlTypes";
 import { PostListPage } from "./post-list-page";
 
 export type ArchiveMonthPageContenxt = {
-  year: string;
-  month: string;
-  startDate: string;
-  endDate: string;
+  yyyymm: string;
 };
 export type ArchiveMonthPageProps = PageProps<
-  ArchiveMonthPageQuery,
+  ArchiveMonthTemplateQuery,
   ArchiveMonthPageContenxt
 >;
 
 export const ArchiveMonthPage: React.FC<ArchiveMonthPageProps> = ({
-  pageContext: { month, year },
+  pageContext: { yyyymm },
   data: {
-    allPost: { edges },
+    allMdx: { nodes },
   },
 }) => (
   <PostListPage
-    {...{ edges }}
-    title={`${year}/${month}`}
-    path={`${year}/${month}`}
+    {...{ nodes }}
+    title={yyyymm}
+    path={yyyymm.split("-").join("/")}
   />
 );
 
 export const pageQuery = graphql`
-  query ArchiveMonthPage($startDate: Date, $endDate: Date) {
-    allPost(filter: { date: { gt: $startDate, lt: $endDate } }) {
-      edges {
-        node {
+  query ArchiveMonthTemplate($yyyymm: Date) {
+    allMdx(filter: { fields: { yyyymm: { eq: $yyyymm } } }) {
+      nodes {
+        id
+        frontmatter {
           title
           date
-          path
-          id
           tags
-          excerpt
         }
+        fields {
+          path
+          yyyymmdd
+        }
+        excerpt(truncate: true)
       }
     }
   }

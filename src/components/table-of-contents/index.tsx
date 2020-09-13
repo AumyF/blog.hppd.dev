@@ -1,6 +1,13 @@
 import React from "react";
 import { css } from "@emotion/core";
-import { TOC } from "../../libs/toc";
+
+export type TOC = Readonly<{ items: TOCItems }>;
+
+export type TOCItems = {
+  url: string;
+  title: string;
+  items?: TOCItems;
+}[];
 
 const Item: React.FCX<TOC> = ({ items, className }) => (
   <ul className={className}>

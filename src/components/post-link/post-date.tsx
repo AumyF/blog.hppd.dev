@@ -4,7 +4,9 @@ import { faCalendarDay } from "@fortawesome/free-solid-svg-icons";
 import { css } from "@emotion/core";
 import { Post } from "../../../types/graphqlTypes";
 
-export type PostDateProps = Pick<Post, "path">;
+export type PostDateProps = {
+  path: string;
+};
 
 export const PostDate: React.FCX<PostDateProps> = ({ path }) => (
   <div>

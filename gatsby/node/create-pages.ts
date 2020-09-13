@@ -1,51 +1,43 @@
-import { GatsbyNode, NodeInput } from "gatsby";
+import { GatsbyNode } from "gatsby";
 import { GatsbyNodeQuery } from "../../types/graphqlTypes";
-import { IndividualTagPageContext } from "../../src/templates/IndividualTagPage";
-import { ArchiveYearPageContext } from "../../src/templates/ArchiveYearPage";
-import { ArchiveMonthPageContenxt } from "../../src/templates/ArchiveMonthPage";
+import { TagPageContext } from "../../src/templates/tag-page-template";
 import Path from "path";
-import { BlogPostContext } from "../../src/templates/blog-post";
-import { Post } from "./post";
+import { BlogPostContext } from "../../src/templates/blog-post-template";
+import { cyan, yellow } from "./colored-print";
+import { assertsNonNull } from "../../src/utils/asserts-non-null";
+import { ArchiveYearPageContext } from "../../src/templates/archive-year-template";
+import { ArchiveMonthPageContenxt } from "../../src/templates/archive-month-template";
 
-const cyan = (text: unknown) => {
-  return `\x1b[36m${text}\x1b[0m`;
-};
-
-const yellow = (text: unknown) => {
-  return `\x1b[33m${text}\x1b[0m`;
-};
+const BlogPostTemplate = Path.resolve(
+  "./src/templates/blog-post-template/index.tsx"
+);
+const TagPageTemplate = Path.resolve("./src/templates/tag-page-template.tsx");
+const ArchiveYearTemplate = Path.resolve(
+  "./src/templates/archive-year-template.tsx"
+);
+const ArchiveMonthTemplate = Path.resolve(
+  "./src/templates/archive-month-template.tsx"
+);
 
 export const createPages: GatsbyNode["createPages"] = async ({
   graphql,
-  actions: { createPage, createNode },
-  loadNodeContent,
-  createNodeId,
-  createContentDigest,
+  actions: { createPage },
   reporter,
 }) => {
   console.log(cyan("started ") + "createPages");
+
   const result = await graphql<GatsbyNodeQuery>(`
     query gatsbyNode {
       allMdx(filter: { frontmatter: { status: { ne: "private" } } }) {
-        distinct(field: frontmatter___tags)
+        allTags: distinct(field: frontmatter___tags)
+        allYears: distinct(field: fields___yyyy)
+        allMonthes: distinct(field: fields___yyyymm)
+        allFilenames: distinct(field: fields___filename)
         edges {
           node {
             id
-            tableOfContents(maxDepth: 10)
-            fileAbsolutePath
-            body
-            excerpt(truncate: true)
-            internal {
-              content
-              type
-            }
-            frontmatter {
-              year: date(formatString: "YYYY")
-              month: date(formatString: "MM")
-              date
-              status
-              tags
-              title
+            fields {
+              path
             }
           }
         }
@@ -57,103 +49,52 @@ export const createPages: GatsbyNode["createPages"] = async ({
     reporter.panicOnBuild(result.errors);
     return;
   }
+
   if (!result.data) {
     reporter.panicOnBuild("result.data is undefined");
     return;
   }
 
-  type Month = {
-    y: string;
-    m: string;
-  };
+  const { allMdx } = result.data;
 
-  const allYears = new Set<string>();
-  const allMonthes = new Set<Month>();
-
-  for (const {
-    node: { frontmatter },
-  } of result.data.allMdx.edges) {
-    allYears.add(frontmatter?.year);
-    allMonthes.add({ y: frontmatter?.year, m: frontmatter?.month });
-  }
-
-  for (const year of allYears) {
-    console.log(`  ${yellow("creating")} ArchiveYearPage - ${year}`);
-    createPage<ArchiveYearPageContext>({
-      component: Path.resolve("./src/templates/ArchiveYearPage.tsx"),
-      context: {
-        year,
-        startDate: `${year}-01-01`,
-        endDate: `${Number.parseInt(year) + 1}-01-01`,
-      },
-      path: `/${year}/`,
-    });
-  }
-
-  for (const { y, m } of allMonthes) {
-    console.log(`  ${yellow("creating")} ArchiveMonthPage - ${y}-${m}`);
-    createPage<ArchiveMonthPageContenxt>({
-      component: Path.resolve("./src/templates/ArchiveMonthPage.tsx"),
-      context: {
-        year: y,
-        month: m,
-        startDate: `${y}-${m}-01`,
-        endDate: `${y}-${parseInt(m) + 1}-01`,
-      },
-      path: `/${y}/${m}`,
-    });
-  }
-
-  const genPostNode = (
-    edge: Parameters<typeof Post>[0],
-    content: string
-  ): NodeInput & {
-    title: string;
-    body: string;
-    date: any;
-    excerpt: string;
-    path: string;
-    status: string;
-    tags: string[];
-    toc: any;
-  } => {
-    const { node } = edge;
-    const p = Post({ node });
-    const pn: ReturnType<typeof genPostNode> = {
-      ...p,
-      excerpt: node.excerpt,
-      id: createNodeId(`${node.id} WRYYYYY`),
-      parent: node.id,
-      internal: {
-        content,
-        type: `Post`,
-        contentDigest: createContentDigest(p),
-      },
-    };
-    return pn;
-  };
-
-  // Postを生成してGraphQLに突っ込み、ついでにcreatePage
-  for (const edge of result.data.allMdx.edges) {
-    const post = genPostNode(edge, await loadNodeContent(edge.node as any));
-    createNode(post);
-
-    console.log(`  ${yellow("creating")} BlogPostPage - ${post.path}`);
+  // // 記事
+  for (const { node } of allMdx.edges) {
+    console.log(`  ${yellow("creating")} BlogPostPage - ${node.fields?.path}`);
     createPage<BlogPostContext>({
-      path: post.path,
-      component: Path.resolve("./src/templates/blog-post/index.tsx"),
-      context: { id: post.id },
+      path: assertsNonNull(node.fields?.path),
+      component: BlogPostTemplate,
+      context: { id: node.id },
     });
   }
 
-  // 各タグのページ
-  for (const tag of result.data.allMdx.distinct) {
-    console.log(`${yellow(`  creating`)} IndividualTagPage - ${tag}`);
-    createPage<IndividualTagPageContext>({
-      path: "/tags/" + tag,
-      component: Path.resolve("./src/templates/IndividualTagPage.tsx"),
+  // 各タグのページ;
+  for (const tag of allMdx.allTags) {
+    console.log(`  ${yellow("creating")} TagPage - ${tag}`);
+    createPage<TagPageContext>({
+      path: `/tags/${tag}`,
+      component: TagPageTemplate,
       context: {
         tag,
+      },
+    });
+  }
+
+  for (const yyyy of allMdx.allYears) {
+    createPage<ArchiveYearPageContext>({
+      path: `/${yyyy}`,
+      component: ArchiveYearTemplate,
+      context: {
+        yyyy,
+      },
+    });
+  }
+
+  for (const yyyymm of allMdx.allMonthes) {
+    createPage<ArchiveMonthPageContenxt>({
+      path: `/${yyyymm.split("-").join("/")}`,
+      component: ArchiveMonthTemplate,
+      context: {
+        yyyymm,
       },
     });
   }

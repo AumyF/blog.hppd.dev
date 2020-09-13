@@ -10,9 +10,9 @@ export type PostListPageProps = {
 export const PostListPage: React.FCX<PostListPageProps> = ({
   title,
   path,
-  edges,
+  nodes,
 }) => (
   <Layout {...{ title, path }}>
-    <PostList {...{ edges }} />
+    <PostList {...{ nodes }} />
   </Layout>
 );

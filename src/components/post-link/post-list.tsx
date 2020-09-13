@@ -1,16 +1,19 @@
 import React from "react";
 import { css } from "@emotion/core";
 import { PostLink } from "./post-link";
-import { Post } from "../../../types/graphqlTypes";
+import { Mdx, MdxFields, MdxFrontmatter } from "../../../types/graphqlTypes";
 
 export type PostListProps = {
-  edges: {
-    node: Pick<Post, "title" | "path" | "excerpt"> &
-      Partial<Pick<Post, "tags">>;
+  nodes: {
+    frontmatter?: Pick<MdxFrontmatter, "title" | "tags"> | null | undefined;
+    fields?: Pick<MdxFields, "path" | "yyyymmdd"> | null | undefined;
+    excerpt: string;
   }[];
 };
 
-export const PostList: React.FC<PostListProps> = ({ edges }) => (
+const isntNull = <T extends {}>(v: T | null | undefined): v is T => v != null;
+
+export const PostList: React.FC<PostListProps> = ({ nodes }) => (
   <div
     className="p-0 grid justify-between"
     css={css`
@@ -19,8 +22,19 @@ export const PostList: React.FC<PostListProps> = ({ edges }) => (
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     `}
   >
-    {edges.map(({ node: { title, path, tags, excerpt } }) => (
-      <PostLink {...{ path, title, tags, excerpt }} key={title ?? path} />
-    ))}
+    {nodes.map(
+      ({ frontmatter, fields, excerpt }) =>
+        frontmatter?.tags &&
+        fields?.path && (
+          <PostLink
+            path={fields.path}
+            yyyymmdd={fields.yyyymmdd}
+            title={frontmatter.title}
+            tags={frontmatter.tags.filter(isntNull)}
+            key={fields.path}
+            excerpt={excerpt}
+          />
+        )
+    )}
   </div>
 );

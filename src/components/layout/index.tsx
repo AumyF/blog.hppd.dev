@@ -1,7 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import { Global } from "@emotion/core";
-import { TOC } from "../../libs/toc";
 import { Footer } from "./footer";
 import { Breadcrumbs } from "./breadcrumbs";
 import { Title } from "./title";
@@ -15,7 +14,6 @@ config.autoAddCss = false;
 export type LayoutProps = {
   date?: string;
   title: string;
-  toc?: TOC;
   path: string;
   SidebarComponent?: () => React.ReactNode;
 };

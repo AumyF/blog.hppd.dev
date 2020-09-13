@@ -5,25 +5,27 @@ import { PostListPage } from "../templates/post-list-page";
 
 export const IndexPage: React.FC<PageProps<IndexQuery>> = ({
   data: {
-    allPost: { edges },
+    allMdx: { nodes },
   },
 }) => {
-  return <PostListPage path="" {...{ title: "Index", edges }} />;
+  return <PostListPage path="" {...{ title: "Index", nodes }} />;
 };
 
 export default IndexPage;
 
 export const pageQuery = graphql`
   query Index {
-    allPost(sort: { order: DESC, fields: date }) {
-      edges {
-        node {
-          id
+    allMdx {
+      nodes {
+        id
+        excerpt(truncate: true)
+        frontmatter {
           title
           tags
-          date
+        }
+        fields {
           path
-          excerpt
+          yyyymmdd
         }
       }
     }

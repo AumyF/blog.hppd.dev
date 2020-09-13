@@ -596,9 +596,9 @@ export type FileFieldsEnum =
   'childMdx___rawBody' |
   'childMdx___fileAbsolutePath' |
   'childMdx___frontmatter___title' |
-  'childMdx___frontmatter___date' |
   'childMdx___frontmatter___status' |
   'childMdx___frontmatter___tags' |
+  'childMdx___frontmatter___date' |
   'childMdx___slug' |
   'childMdx___body' |
   'childMdx___excerpt' |
@@ -612,6 +612,11 @@ export type FileFieldsEnum =
   'childMdx___wordCount___paragraphs' |
   'childMdx___wordCount___sentences' |
   'childMdx___wordCount___words' |
+  'childMdx___fields___path' |
+  'childMdx___fields___yyyy' |
+  'childMdx___fields___yyyymm' |
+  'childMdx___fields___yyyymmdd' |
+  'childMdx___fields___filename' |
   'childMdx___id' |
   'childMdx___parent___id' |
   'childMdx___parent___parent___id' |
@@ -782,6 +787,7 @@ export type Mdx = Node & {
   tableOfContents?: Maybe<Scalars['JSON']>;
   timeToRead?: Maybe<Scalars['Int']>;
   wordCount?: Maybe<MdxWordCount>;
+  fields?: Maybe<MdxFields>;
   id: Scalars['ID'];
   parent?: Maybe<Node>;
   children: Array<Node>;
@@ -831,13 +837,45 @@ export type MdxEdge = {
   previous?: Maybe<Mdx>;
 };
 
+export type MdxFields = {
+  path?: Maybe<Scalars['String']>;
+  yyyy?: Maybe<Scalars['Date']>;
+  yyyymm?: Maybe<Scalars['Date']>;
+  yyyymmdd?: Maybe<Scalars['Date']>;
+  filename?: Maybe<Scalars['String']>;
+};
+
+
+export type MdxFieldsYyyyArgs = {
+  formatString?: Maybe<Scalars['String']>;
+  fromNow?: Maybe<Scalars['Boolean']>;
+  difference?: Maybe<Scalars['String']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type MdxFieldsYyyymmArgs = {
+  formatString?: Maybe<Scalars['String']>;
+  fromNow?: Maybe<Scalars['Boolean']>;
+  difference?: Maybe<Scalars['String']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type MdxFieldsYyyymmddArgs = {
+  formatString?: Maybe<Scalars['String']>;
+  fromNow?: Maybe<Scalars['Boolean']>;
+  difference?: Maybe<Scalars['String']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
 export type MdxFieldsEnum = 
   'rawBody' |
   'fileAbsolutePath' |
   'frontmatter___title' |
-  'frontmatter___date' |
   'frontmatter___status' |
   'frontmatter___tags' |
+  'frontmatter___date' |
   'slug' |
   'body' |
   'excerpt' |
@@ -851,6 +889,11 @@ export type MdxFieldsEnum =
   'wordCount___paragraphs' |
   'wordCount___sentences' |
   'wordCount___words' |
+  'fields___path' |
+  'fields___yyyy' |
+  'fields___yyyymm' |
+  'fields___yyyymmdd' |
+  'fields___filename' |
   'id' |
   'parent___id' |
   'parent___parent___id' |
@@ -938,6 +981,14 @@ export type MdxFieldsEnum =
   'internal___owner' |
   'internal___type';
 
+export type MdxFieldsFilterInput = {
+  path?: Maybe<StringQueryOperatorInput>;
+  yyyy?: Maybe<DateQueryOperatorInput>;
+  yyyymm?: Maybe<DateQueryOperatorInput>;
+  yyyymmdd?: Maybe<DateQueryOperatorInput>;
+  filename?: Maybe<StringQueryOperatorInput>;
+};
+
 export type MdxFilterInput = {
   rawBody?: Maybe<StringQueryOperatorInput>;
   fileAbsolutePath?: Maybe<StringQueryOperatorInput>;
@@ -951,6 +1002,7 @@ export type MdxFilterInput = {
   tableOfContents?: Maybe<JsonQueryOperatorInput>;
   timeToRead?: Maybe<IntQueryOperatorInput>;
   wordCount?: Maybe<MdxWordCountFilterInput>;
+  fields?: Maybe<MdxFieldsFilterInput>;
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
@@ -959,9 +1011,9 @@ export type MdxFilterInput = {
 
 export type MdxFrontmatter = {
   title: Scalars['String'];
-  date?: Maybe<Scalars['Date']>;
   status?: Maybe<Scalars['String']>;
   tags?: Maybe<Array<Maybe<Scalars['String']>>>;
+  date?: Maybe<Scalars['Date']>;
 };
 
 
@@ -974,9 +1026,9 @@ export type MdxFrontmatterDateArgs = {
 
 export type MdxFrontmatterFilterInput = {
   title?: Maybe<StringQueryOperatorInput>;
-  date?: Maybe<DateQueryOperatorInput>;
   status?: Maybe<StringQueryOperatorInput>;
   tags?: Maybe<StringQueryOperatorInput>;
+  date?: Maybe<DateQueryOperatorInput>;
 };
 
 export type MdxGroupConnection = {
@@ -1048,184 +1100,6 @@ export type PageInfo = {
   totalCount: Scalars['Int'];
 };
 
-export type Post = Node & {
-  title: Scalars['String'];
-  body: Scalars['String'];
-  date: Scalars['Date'];
-  excerpt: Scalars['String'];
-  path: Scalars['String'];
-  status: Scalars['String'];
-  tags: Array<Scalars['String']>;
-  toc: Scalars['JSON'];
-  description?: Maybe<Scalars['String']>;
-  id: Scalars['ID'];
-  parent?: Maybe<Node>;
-  children: Array<Node>;
-  internal: Internal;
-};
-
-
-export type PostDateArgs = {
-  formatString?: Maybe<Scalars['String']>;
-  fromNow?: Maybe<Scalars['Boolean']>;
-  difference?: Maybe<Scalars['String']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-export type PostConnection = {
-  totalCount: Scalars['Int'];
-  edges: Array<PostEdge>;
-  nodes: Array<Post>;
-  pageInfo: PageInfo;
-  distinct: Array<Scalars['String']>;
-  group: Array<PostGroupConnection>;
-};
-
-
-export type PostConnectionDistinctArgs = {
-  field: PostFieldsEnum;
-};
-
-
-export type PostConnectionGroupArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  field: PostFieldsEnum;
-};
-
-export type PostEdge = {
-  next?: Maybe<Post>;
-  node: Post;
-  previous?: Maybe<Post>;
-};
-
-export type PostFieldsEnum = 
-  'title' |
-  'body' |
-  'date' |
-  'excerpt' |
-  'path' |
-  'status' |
-  'tags' |
-  'toc' |
-  'description' |
-  'id' |
-  'parent___id' |
-  'parent___parent___id' |
-  'parent___parent___parent___id' |
-  'parent___parent___parent___children' |
-  'parent___parent___children' |
-  'parent___parent___children___id' |
-  'parent___parent___children___children' |
-  'parent___parent___internal___content' |
-  'parent___parent___internal___contentDigest' |
-  'parent___parent___internal___description' |
-  'parent___parent___internal___fieldOwners' |
-  'parent___parent___internal___ignoreType' |
-  'parent___parent___internal___mediaType' |
-  'parent___parent___internal___owner' |
-  'parent___parent___internal___type' |
-  'parent___children' |
-  'parent___children___id' |
-  'parent___children___parent___id' |
-  'parent___children___parent___children' |
-  'parent___children___children' |
-  'parent___children___children___id' |
-  'parent___children___children___children' |
-  'parent___children___internal___content' |
-  'parent___children___internal___contentDigest' |
-  'parent___children___internal___description' |
-  'parent___children___internal___fieldOwners' |
-  'parent___children___internal___ignoreType' |
-  'parent___children___internal___mediaType' |
-  'parent___children___internal___owner' |
-  'parent___children___internal___type' |
-  'parent___internal___content' |
-  'parent___internal___contentDigest' |
-  'parent___internal___description' |
-  'parent___internal___fieldOwners' |
-  'parent___internal___ignoreType' |
-  'parent___internal___mediaType' |
-  'parent___internal___owner' |
-  'parent___internal___type' |
-  'children' |
-  'children___id' |
-  'children___parent___id' |
-  'children___parent___parent___id' |
-  'children___parent___parent___children' |
-  'children___parent___children' |
-  'children___parent___children___id' |
-  'children___parent___children___children' |
-  'children___parent___internal___content' |
-  'children___parent___internal___contentDigest' |
-  'children___parent___internal___description' |
-  'children___parent___internal___fieldOwners' |
-  'children___parent___internal___ignoreType' |
-  'children___parent___internal___mediaType' |
-  'children___parent___internal___owner' |
-  'children___parent___internal___type' |
-  'children___children' |
-  'children___children___id' |
-  'children___children___parent___id' |
-  'children___children___parent___children' |
-  'children___children___children' |
-  'children___children___children___id' |
-  'children___children___children___children' |
-  'children___children___internal___content' |
-  'children___children___internal___contentDigest' |
-  'children___children___internal___description' |
-  'children___children___internal___fieldOwners' |
-  'children___children___internal___ignoreType' |
-  'children___children___internal___mediaType' |
-  'children___children___internal___owner' |
-  'children___children___internal___type' |
-  'children___internal___content' |
-  'children___internal___contentDigest' |
-  'children___internal___description' |
-  'children___internal___fieldOwners' |
-  'children___internal___ignoreType' |
-  'children___internal___mediaType' |
-  'children___internal___owner' |
-  'children___internal___type' |
-  'internal___content' |
-  'internal___contentDigest' |
-  'internal___description' |
-  'internal___fieldOwners' |
-  'internal___ignoreType' |
-  'internal___mediaType' |
-  'internal___owner' |
-  'internal___type';
-
-export type PostFilterInput = {
-  title?: Maybe<StringQueryOperatorInput>;
-  body?: Maybe<StringQueryOperatorInput>;
-  date?: Maybe<DateQueryOperatorInput>;
-  excerpt?: Maybe<StringQueryOperatorInput>;
-  path?: Maybe<StringQueryOperatorInput>;
-  status?: Maybe<StringQueryOperatorInput>;
-  tags?: Maybe<StringQueryOperatorInput>;
-  toc?: Maybe<JsonQueryOperatorInput>;
-  description?: Maybe<StringQueryOperatorInput>;
-  id?: Maybe<StringQueryOperatorInput>;
-  parent?: Maybe<NodeFilterInput>;
-  children?: Maybe<NodeFilterListInput>;
-  internal?: Maybe<InternalFilterInput>;
-};
-
-export type PostGroupConnection = {
-  totalCount: Scalars['Int'];
-  edges: Array<PostEdge>;
-  nodes: Array<Post>;
-  pageInfo: PageInfo;
-  field: Scalars['String'];
-  fieldValue?: Maybe<Scalars['String']>;
-};
-
-export type PostSortInput = {
-  fields?: Maybe<Array<Maybe<PostFieldsEnum>>>;
-  order?: Maybe<Array<Maybe<SortOrderEnum>>>;
-};
-
 export type Query = {
   file?: Maybe<File>;
   allFile: FileConnection;
@@ -1237,8 +1111,6 @@ export type Query = {
   allSite: SiteConnection;
   mdx?: Maybe<Mdx>;
   allMdx: MdxConnection;
-  post?: Maybe<Post>;
-  allPost: PostConnection;
   siteBuildMetadata?: Maybe<SiteBuildMetadata>;
   allSiteBuildMetadata: SiteBuildMetadataConnection;
   sitePlugin?: Maybe<SitePlugin>;
@@ -1407,6 +1279,7 @@ export type QueryMdxArgs = {
   tableOfContents?: Maybe<JsonQueryOperatorInput>;
   timeToRead?: Maybe<IntQueryOperatorInput>;
   wordCount?: Maybe<MdxWordCountFilterInput>;
+  fields?: Maybe<MdxFieldsFilterInput>;
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
@@ -1417,31 +1290,6 @@ export type QueryMdxArgs = {
 export type QueryAllMdxArgs = {
   filter?: Maybe<MdxFilterInput>;
   sort?: Maybe<MdxSortInput>;
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-};
-
-
-export type QueryPostArgs = {
-  title?: Maybe<StringQueryOperatorInput>;
-  body?: Maybe<StringQueryOperatorInput>;
-  date?: Maybe<DateQueryOperatorInput>;
-  excerpt?: Maybe<StringQueryOperatorInput>;
-  path?: Maybe<StringQueryOperatorInput>;
-  status?: Maybe<StringQueryOperatorInput>;
-  tags?: Maybe<StringQueryOperatorInput>;
-  toc?: Maybe<JsonQueryOperatorInput>;
-  description?: Maybe<StringQueryOperatorInput>;
-  id?: Maybe<StringQueryOperatorInput>;
-  parent?: Maybe<NodeFilterInput>;
-  children?: Maybe<NodeFilterListInput>;
-  internal?: Maybe<InternalFilterInput>;
-};
-
-
-export type QueryAllPostArgs = {
-  filter?: Maybe<PostFilterInput>;
-  sort?: Maybe<PostSortInput>;
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
 };
@@ -1846,21 +1694,17 @@ export type SitePageConnectionGroupArgs = {
 };
 
 export type SitePageContext = {
-  year?: Maybe<Scalars['Date']>;
-  startDate?: Maybe<Scalars['Date']>;
-  endDate?: Maybe<Scalars['String']>;
-  month?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   tag?: Maybe<Scalars['String']>;
+  yyyy?: Maybe<Scalars['Date']>;
+  yyyymm?: Maybe<Scalars['Date']>;
 };
 
 export type SitePageContextFilterInput = {
-  year?: Maybe<DateQueryOperatorInput>;
-  startDate?: Maybe<DateQueryOperatorInput>;
-  endDate?: Maybe<StringQueryOperatorInput>;
-  month?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
   tag?: Maybe<StringQueryOperatorInput>;
+  yyyy?: Maybe<DateQueryOperatorInput>;
+  yyyymm?: Maybe<DateQueryOperatorInput>;
 };
 
 export type SitePageEdge = {
@@ -1962,12 +1806,10 @@ export type SitePageFieldsEnum =
   'internal___owner' |
   'internal___type' |
   'isCreatedByStatefulCreatePages' |
-  'context___year' |
-  'context___startDate' |
-  'context___endDate' |
-  'context___month' |
   'context___id' |
   'context___tag' |
+  'context___yyyy' |
+  'context___yyyymm' |
   'pluginCreator___id' |
   'pluginCreator___parent___id' |
   'pluginCreator___parent___parent___id' |
@@ -2381,41 +2223,34 @@ export type StringQueryOperatorInput = {
   glob?: Maybe<Scalars['String']>;
 };
 
-export type TableOfContents = {
-  items: Array<Maybe<TableOfContentsItem>>;
-};
-
-export type TableOfContentsItem = {
-  url: Scalars['String'];
-  title: Scalars['String'];
-  items?: Maybe<Array<Maybe<TableOfContentsItem>>>;
-};
-
 export type GatsbyNodeQueryVariables = {};
 
 
 export type GatsbyNodeQuery = { allMdx: (
-    Pick<MdxConnection, 'distinct'>
+    { allTags: MdxConnection['distinct'], allYears: MdxConnection['distinct'], allMonthes: MdxConnection['distinct'], allFilenames: MdxConnection['distinct'] }
     & { edges: Array<{ node: (
-        Pick<Mdx, 'id' | 'tableOfContents' | 'fileAbsolutePath' | 'body' | 'excerpt'>
-        & { internal: Pick<Internal, 'content' | 'type'>, frontmatter?: Maybe<(
-          Pick<MdxFrontmatter, 'date' | 'status' | 'tags' | 'title'>
-          & { year: MdxFrontmatter['date'], month: MdxFrontmatter['date'] }
-        )> }
+        Pick<Mdx, 'id'>
+        & { fields?: Maybe<Pick<MdxFields, 'path'>> }
       ) }> }
   ) };
 
 export type IndexQueryVariables = {};
 
 
-export type IndexQuery = { allPost: { edges: Array<{ node: Pick<Post, 'id' | 'title' | 'tags' | 'date' | 'path' | 'excerpt'> }> } };
+export type IndexQuery = { allMdx: { nodes: Array<(
+      Pick<Mdx, 'id' | 'excerpt'>
+      & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'title' | 'tags'>>, fields?: Maybe<Pick<MdxFields, 'path' | 'yyyymmdd'>> }
+    )> } };
 
 export type TagsPageQueryVariables = {};
 
 
-export type TagsPageQuery = { allPost: { group: Array<(
-      Pick<PostGroupConnection, 'fieldValue' | 'totalCount'>
-      & { edges: Array<{ node: Pick<Post, 'id' | 'excerpt' | 'path' | 'tags' | 'title'> }> }
+export type TagsPageQuery = { allMdx: { group: Array<(
+      Pick<MdxGroupConnection, 'fieldValue' | 'totalCount'>
+      & { nodes: Array<(
+        Pick<Mdx, 'excerpt' | 'id'>
+        & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'tags' | 'title'>>, fields?: Maybe<Pick<MdxFields, 'path' | 'yyyymmdd'>> }
+      )> }
     )> } };
 
 export type UseStaticQueryQueryVariables = {};
@@ -2426,32 +2261,42 @@ export type UseStaticQueryQuery = { site?: Maybe<(
     & { siteMetadata?: Maybe<Pick<SiteSiteMetadata, 'title' | 'description'>> }
   )> };
 
-export type ArchiveMonthPageQueryVariables = {
-  startDate?: Maybe<Scalars['Date']>;
-  endDate?: Maybe<Scalars['Date']>;
+export type ArchiveMonthTemplateQueryVariables = {
+  yyyymm?: Maybe<Scalars['Date']>;
 };
 
 
-export type ArchiveMonthPageQuery = { allPost: { edges: Array<{ node: Pick<Post, 'title' | 'date' | 'path' | 'id' | 'tags' | 'excerpt'> }> } };
+export type ArchiveMonthTemplateQuery = { allMdx: { nodes: Array<(
+      Pick<Mdx, 'id' | 'excerpt'>
+      & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'title' | 'date' | 'tags'>>, fields?: Maybe<Pick<MdxFields, 'path' | 'yyyymmdd'>> }
+    )> } };
 
-export type ArchiveYearPageQueryVariables = {
-  startDate?: Maybe<Scalars['Date']>;
-  endDate?: Maybe<Scalars['Date']>;
+export type ArchiveYearTemplateQueryVariables = {
+  yyyy?: Maybe<Scalars['Date']>;
 };
 
 
-export type ArchiveYearPageQuery = { allPost: { edges: Array<{ node: Pick<Post, 'title' | 'date' | 'path' | 'id' | 'tags' | 'excerpt'> }> } };
-
-export type IndividualTagPageQueryVariables = {
-  tag?: Maybe<Scalars['String']>;
-};
-
-
-export type IndividualTagPageQuery = { allPost: { edges: Array<{ node: Pick<Post, 'title' | 'path' | 'tags' | 'excerpt'> }> } };
+export type ArchiveYearTemplateQuery = { allMdx: { nodes: Array<(
+      Pick<Mdx, 'id' | 'excerpt'>
+      & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'title' | 'date' | 'tags'>>, fields?: Maybe<Pick<MdxFields, 'path' | 'yyyymmdd'>> }
+    )> } };
 
 export type BlogPostQueryVariables = {
   id?: Maybe<Scalars['String']>;
 };
 
 
-export type BlogPostQuery = { post?: Maybe<Pick<Post, 'title' | 'date' | 'body' | 'toc' | 'tags' | 'path'>> };
+export type BlogPostQuery = { mdx?: Maybe<(
+    Pick<Mdx, 'tableOfContents' | 'body' | 'excerpt'>
+    & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'title' | 'date' | 'tags'>>, fields?: Maybe<Pick<MdxFields, 'path'>> }
+  )> };
+
+export type TagPageTemplateQueryVariables = {
+  tag?: Maybe<Scalars['String']>;
+};
+
+
+export type TagPageTemplateQuery = { allMdx: { nodes: Array<(
+      Pick<Mdx, 'excerpt'>
+      & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'title' | 'tags'>>, fields?: Maybe<Pick<MdxFields, 'path' | 'yyyymmdd'>> }
+    )> } };

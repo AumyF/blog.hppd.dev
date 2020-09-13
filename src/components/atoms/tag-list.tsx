@@ -13,7 +13,7 @@ const Tag: React.FCX<{ tag: Post["tags"][number] }> = ({ tag, className }) => (
 );
 
 export const TagList: React.FCX<TagListProps> = ({ tags, className }) => (
-  <div className={className + " inline-flex flex-wrap gap-1"}>
+  <div className={`${className ?? ""} inline-flex flex-wrap gap-1`}>
     <span>
       <FontAwesomeIcon icon={faTags} />
     </span>

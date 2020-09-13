@@ -1,15 +1,16 @@
 import React from "react";
-import { MDXProvider } from "@mdx-js/react";
-import { MDXRenderer } from "gatsby-plugin-mdx";
-import { ArticleElements } from "./article-elements";
 import { graphql, PageProps } from "gatsby";
 import { BlogPostQuery } from "../../../types/graphqlTypes";
-import { assertsNonNull } from "../../utils/asserts-non-null";
+import { assertsNonNull as $ } from "../../utils/asserts-non-null";
 import { Layout } from "../../components/layout";
 import { Article } from "../../components/article";
 import { TagList } from "../../components/atoms/tag-list";
 import { GitInfo } from "../../components/git-info";
 import Sidebar from "../../components/layout/sidebar";
+import { compact } from "lodash";
+import { MDXProvider } from "@mdx-js/react";
+import { MDXRenderer } from "gatsby-plugin-mdx";
+import { ArticleElements } from "./article-elements";
 
 export type BlogPostContext = {
   id: string;
@@ -17,16 +18,21 @@ export type BlogPostContext = {
 
 export type BlogPostProps = PageProps<BlogPostQuery, BlogPostContext>;
 
-export const BlogPost: React.FC<BlogPostProps> = ({ data: { post } }) => {
-  const { body, date, tags, title, toc, path } = assertsNonNull(post);
+export const BlogPost: React.FC<BlogPostProps> = ({ data: { mdx } }) => {
+  const frontmatter = $(mdx?.frontmatter);
+  const path = $(mdx?.fields?.path);
   return (
     <Layout
-      {...{ title, date, path }}
+      {...{
+        title: frontmatter.title,
+        date: frontmatter.date,
+        path: path,
+      }}
       SidebarComponent={() => (
         <Sidebar>
           {TOC => (
             <>
-              <TOC toc={toc} />
+              <TOC toc={mdx?.tableOfContents} />
               <div className="text-center pb-2 px-4 border-b border-gray-700">
                 Git Information
               </div>
@@ -36,10 +42,10 @@ export const BlogPost: React.FC<BlogPostProps> = ({ data: { post } }) => {
         </Sidebar>
       )}
     >
-      <TagList tags={tags} />
+      <TagList tags={compact(frontmatter.tags)} />
       <Article>
         <MDXProvider components={ArticleElements}>
-          <MDXRenderer>{body}</MDXRenderer>
+          <MDXRenderer>{$(mdx?.body)}</MDXRenderer>
         </MDXProvider>
       </Article>
     </Layout>
@@ -48,13 +54,18 @@ export const BlogPost: React.FC<BlogPostProps> = ({ data: { post } }) => {
 
 export const pageQuery = graphql`
   query BlogPost($id: String) {
-    post(id: { eq: $id }) {
-      title
-      date(formatString: "yy-MM-DD")
+    mdx(id: { eq: $id }) {
+      frontmatter {
+        title
+        date(formatString: "yy-MM-DD")
+        tags
+      }
+      tableOfContents
       body
-      toc
-      tags
-      path
+      excerpt(truncate: true)
+      fields {
+        path
+      }
     }
   }
 `;
