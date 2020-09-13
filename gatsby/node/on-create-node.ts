@@ -45,5 +45,6 @@ export const onCreateNode: Gatsby.GatsbyNode["onCreateNode"] = ({
     ["yyyymm", `${year}-${month}`],
     ["yyyymmdd", `${year}-${month}-${day}`],
     ["filename", filename],
+    ["relativeDir", `${year}-${month}-${day}-${filename}`],
   ])(node);
 };

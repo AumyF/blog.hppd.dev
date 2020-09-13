@@ -4,12 +4,13 @@ import { useLatestCommit } from "./useLatestCommit";
 export type GitInfoProps = { filePath: string };
 
 export const GitInfo: React.FC<GitInfoProps> = ({ filePath: path }) => {
+  path = `${path}/index`;
   const {
     isLoading,
     isError,
     data: { lastUpdate, message, url },
     errMessage,
-  } = useLatestCommit(path.split("/").join("-"));
+  } = useLatestCommit(path);
   return (
     <div>
       {isLoading ? (

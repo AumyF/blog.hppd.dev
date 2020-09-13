@@ -26,7 +26,7 @@ export const BlogPost: React.FC<BlogPostProps> = ({ data: { mdx } }) => {
       {...{
         title: frontmatter.title,
         date: frontmatter.date,
-        path: path,
+        path,
       }}
       SidebarComponent={() => (
         <Sidebar>
@@ -36,7 +36,7 @@ export const BlogPost: React.FC<BlogPostProps> = ({ data: { mdx } }) => {
               <div className="text-center pb-2 px-4 border-b border-gray-700">
                 Git Information
               </div>
-              <GitInfo filePath={path} />
+              <GitInfo filePath={$(mdx?.fields?.relativeDir)} />
             </>
           )}
         </Sidebar>
@@ -65,6 +65,7 @@ export const pageQuery = graphql`
       excerpt(truncate: true)
       fields {
         path
+        relativeDir
       }
     }
   }
