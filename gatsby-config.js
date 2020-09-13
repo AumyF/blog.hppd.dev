@@ -2,8 +2,9 @@
 module.exports = {
   /* Your site config here */
   siteMetadata: {
-    title: "続かぬ",
+    title: "FortunateRicefield",
     description: "作ってる間がピーク",
+    domainName: "localhost:8000", // ダミーですよ！
   },
   plugins: [
     {

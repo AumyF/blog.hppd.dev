@@ -1,25 +1,17 @@
 import { useStaticQuery, graphql } from "gatsby";
-import {
-  Site,
-  SiteSiteMetadata,
-  UseStaticQueryQuery,
-} from "../../types/graphqlTypes";
+import { UseSiteQuery } from "../../types/graphqlTypes";
 import { assertsNonNull } from "../utils/asserts-non-null";
 
-export const useSite = (): Pick<Site, "buildTime"> & {
-  siteMetadata?:
-    | Pick<SiteSiteMetadata, "title" | "description">
-    | null
-    | undefined;
-} =>
+export const useSite = (): NonNullable<UseSiteQuery["site"]> =>
   assertsNonNull(
-    useStaticQuery<UseStaticQueryQuery>(graphql`
-      query useStaticQuery {
+    useStaticQuery<UseSiteQuery>(graphql`
+      query useSite {
         site {
           buildTime(formatString: "yyyy-MM-DD")
           siteMetadata {
             title
             description
+            domainName
           }
         }
       }

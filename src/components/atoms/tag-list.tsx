@@ -1,12 +1,11 @@
 import React from "react";
 import { faTags } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Post } from "../../../types/graphqlTypes";
 import { Link } from "gatsby";
 
-export type TagListProps = Pick<Post, "tags">;
+export type TagListProps = { tags: string[] };
 
-const Tag: React.FCX<{ tag: Post["tags"][number] }> = ({ tag, className }) => (
+const Tag: React.FCX<{ tag: string }> = ({ tag, className }) => (
   <Link className={"text-teal-500 " + className} to={`/tags/${tag}`}>
     {tag}
   </Link>

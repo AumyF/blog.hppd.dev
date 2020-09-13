@@ -7,6 +7,7 @@ import { AnchorOrLink } from "../atoms/anchor-or-link";
 import { Link } from "gatsby";
 import tw from "twin.macro";
 import { invisibleAnchor } from "../styles/styles";
+import svg from "../../../static/ftrf-logo.svg";
 
 export type SiteHeaderProps = {};
 
@@ -15,17 +16,17 @@ export const SiteHeader: React.FCX<SiteHeaderProps> = ({ className }) => {
   return (
     <header
       className={
-        className + " bg-gray-100 text-gray-800 leading-tight text-center"
+        className + " text-gray-100 bg-gray-900 leading-tight text-center"
       }
     >
       <div className="flex container mx-auto px-4 items-center gap-2 justify-end">
         <div className="mr-auto flex items-center flex-wrap">
           <h1 className="text-3xl font-bold pr-2 ">
             <Link to="/" className="text-current no-underline">
-              {siteMetadata?.title}
+              <img src={svg} alt="FortunateRicefield" />
             </Link>
           </h1>
-          <span className="pl-2 border-l-2 border-gray-700 ">
+          <span className="pl-2 border-l-2 border-gray-300 ">
             {siteMetadata?.description}
           </span>
         </div>
@@ -60,7 +61,7 @@ type HeaderIconProps = { icon: IconProp; to: string };
 const Icon: React.FCX<HeaderIconProps> = ({ icon, to }) => (
   <AnchorOrLink
     {...{ to, alt: "icon" }}
-    className="transition-colors text-3xl mx-1 text-gray-900 hover:text-teal-500"
+    className="transition-colors text-3xl mx-1 text-gray-300 hover:text-teal-500"
   >
     <FontAwesomeIcon {...{ icon }} />
   </AnchorOrLink>
