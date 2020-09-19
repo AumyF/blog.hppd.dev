@@ -15,12 +15,17 @@ export const Footer: React.FC<FooterProps> = () => {
     >
       © 2020 Mominis
       <br />
-      Built with <a href="https://gatsbyjs.org/">Gatsby</a>, hosted on{" "}
-      <a href="https://netlify.com">Netlify</a>.
-      <br />
       Build date: {buildTime}
       <br />
-      This website uses [Google Analytics](https://analytics.google.com).
+      This website is built with <a href="https://gatsbyjs.org/">Gatsby</a>,
+      hosted on{" "}
+      <a href="https://firebase.google.com/docs/hosting?hl=ja">
+        Firebase Hosting
+      </a>
+      .
+      <br />
+      This website uses{" "}
+      <a href="https://analytics.google.com">Google Analytics</a>.
     </footer>
   );
 };
