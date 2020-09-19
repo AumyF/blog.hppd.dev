@@ -15,7 +15,7 @@ export default IndexPage;
 
 export const pageQuery = graphql`
   query Index {
-    allMdx {
+    allMdx(sort: { order: DESC, fields: fields___yyyymmdd }) {
       nodes {
         id
         excerpt(truncate: true)

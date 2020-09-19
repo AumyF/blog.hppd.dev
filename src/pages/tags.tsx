@@ -34,12 +34,12 @@ export const TagsPage: (props: TagsPageProps) => React.ReactElement = ({
     <Article>
       {group.map(({ fieldValue, totalCount, nodes }) => (
         <section key={fieldValue ?? ""}>
-          <h2 id={`${fieldValue}`}>
+          <h1 id={`${fieldValue}`}>
             <Link to={"/tags/" + fieldValue ?? "#"}>{fieldValue}</Link>
             <span className="text-base ml-4 font-normal">
               記事数: {totalCount}
             </span>
-          </h2>
+          </h1>
           <PostList {...{ nodes }} />
         </section>
       ))}
@@ -49,7 +49,7 @@ export const TagsPage: (props: TagsPageProps) => React.ReactElement = ({
 
 export const pageQuery = graphql`
   query TagsPage {
-    allMdx {
+    allMdx(sort: { order: DESC, fields: fields___yyyymmdd }) {
       group(field: frontmatter___tags) {
         fieldValue
         totalCount
