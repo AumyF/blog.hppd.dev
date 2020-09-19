@@ -6,7 +6,7 @@ import { Link } from "gatsby";
 export type TagListProps = { tags: string[] };
 
 const Tag: React.FCX<{ tag: string }> = ({ tag, className }) => (
-  <Link className={"text-teal-500 " + className} to={`/tags/${tag}`}>
+  <Link className={"text-fuchsia-white " + className} to={`/tags/${tag}`}>
     {tag}
   </Link>
 );

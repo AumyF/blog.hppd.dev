@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { invisibleAnchor } from "../styles/styles";
 import { useSite } from "../../hooks/use-site";
+import { assertsNonNull } from "../../utils/asserts-non-null";
+import tw from "twin.macro";
 
 export type BreadcrumbsProps = {
   date?: string[];
@@ -18,17 +20,26 @@ export const Breadcrumbs: React.FCX<BreadcrumbsProps> = ({
   className,
 }) => {
   const [year, month, dayPath] = date ?? [undefined, undefined, undefined];
-  const domainName = useSite().siteMetadata?.domainName;
+  const [topLevelDomain, ...restDomainName] = assertsNonNull(
+    useSite().siteMetadata?.domainName?.split(".").reverse()
+  );
+
+  const second = `${restDomainName[0]}.${topLevelDomain}`;
   return (
-    <nav {...{ className }}>
-      <span
+    <nav className={`${className ?? ""} text-gray-200 bg-gray-900`}>
+      <div
+        className="container mx-auto px-4"
         css={css`
           a {
             ${invisibleAnchor}
+            ${tw`text-fuchsia-black`}
           }
         `}
       >
-        <Link to="/">{domainName}</Link>
+        <Link to={`https://${restDomainName[1]}.${second}`}>
+          {restDomainName[1]}
+        </Link>
+        .<a href={`https://` + second}>{second}</a>
         {year && (
           <>
             {Slash}
@@ -48,7 +59,7 @@ export const Breadcrumbs: React.FCX<BreadcrumbsProps> = ({
           </>
         )}
         <FontAwesomeIcon icon={faChevronRight} className="ml-1" />
-      </span>
+      </div>
     </nav>
   );
 };

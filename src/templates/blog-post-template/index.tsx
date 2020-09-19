@@ -25,7 +25,6 @@ export const BlogPost: React.FC<BlogPostProps> = ({ data: { mdx } }) => {
     <Layout
       {...{
         title: frontmatter.title,
-        date: frontmatter.date,
         path,
       }}
       SidebarComponent={() => (
@@ -33,7 +32,7 @@ export const BlogPost: React.FC<BlogPostProps> = ({ data: { mdx } }) => {
           {TOC => (
             <>
               <TOC toc={mdx?.tableOfContents} />
-              <div className="text-center pb-2 px-4 border-b border-gray-700">
+              <div className="text-center pb-2 px-4 border-b border-gray-400">
                 Git Information
               </div>
               <GitInfo filePath={$(mdx?.fields?.relativeDir)} />
@@ -57,7 +56,6 @@ export const pageQuery = graphql`
     mdx(id: { eq: $id }) {
       frontmatter {
         title
-        date(formatString: "yy-MM-DD")
         tags
       }
       tableOfContents

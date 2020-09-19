@@ -27,7 +27,6 @@ export const pageQuery = graphql`
         id
         frontmatter {
           title
-          date
           tags
         }
         fields {

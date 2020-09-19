@@ -16,7 +16,7 @@ export const GitInfo: React.FC<GitInfoProps> = ({ filePath: path }) => {
       {isLoading ? (
         "Loading..."
       ) : isError ? (
-        <span className="text-red-400">{`Error: ${errMessage}`}</span>
+        <span className="text-error">{`Error: ${errMessage}`}</span>
       ) : (
         <>
           <table className="my-2">
@@ -45,9 +45,9 @@ export const GitInfo: React.FC<GitInfoProps> = ({ filePath: path }) => {
 
 const Raw: React.FC<{ head: string; data: React.ReactNode }> = props => (
   <tr>
-    <th className="text-gray-400 p-1 pl-2 text-left border-r border-gray-700">
+    <th className="text-gray-600 p-1 pl-2 text-left border-r border-gray-300">
       {props.head}
     </th>
-    <td className="text-gray-400 p-1 pl-2 break-all">{props.data}</td>
+    <td className="text-gray-600 p-1 pl-2 break-all">{props.data}</td>
   </tr>
 );

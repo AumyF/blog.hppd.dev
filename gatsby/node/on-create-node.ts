@@ -14,7 +14,7 @@ export const onCreateNode: Gatsby.GatsbyNode["onCreateNode"] = ({
   node,
   actions: { createNodeField },
 }) => {
-  console.log(node.internal.type);
+  // console.log(node.internal.type);
   if (!isMdx(node)) return;
 
   const splitted = node.fileAbsolutePath?.split("/");

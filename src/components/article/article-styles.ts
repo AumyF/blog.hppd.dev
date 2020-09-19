@@ -6,26 +6,26 @@ const listStyle = css`
 `;
 const headingStyle = css`
   font-feature-settings: "palt";
-  font-weight: 200;
+  font-weight: 600;
   font-family: "Hiragino Sans", "Noto Sans CJK JP", "Yu Gothic", sans-serif;
 `;
 
 export const ArticleStyles = css`
+  h1 {
+    ${headingStyle};
+    ${tw`leading-snug mb-3 mt-8 text-3xl border-b border-gray-300`};
+    font-feature-settings: "palt";
+  }
   h2 {
     ${headingStyle};
-    ${tw`leading-snug my-5 text-4xl border-b border-gray-800`};
-    font-feature-settings: "palt";
+    ${tw`leading-snug mb-3 mt-6 text-2xl`};
   }
   h3 {
     ${headingStyle};
-    ${tw`leading-snug my-4 text-3xl`};
-  }
-  h4 {
-    ${headingStyle};
-    ${tw`text-2xl`};
+    ${tw`text-xl`};
   }
   blockquote {
-    ${tw`pl-6 border-l-2 border-gray-700`};
+    ${tw`pl-6 border-l-2 border-gray-300`};
   }
   p {
     ${tw`my-4`};
@@ -51,8 +51,7 @@ export const ArticleStyles = css`
   hr {
     margin-top: 0.75rem;
     margin-bottom: 0.75rem;
-    border: none;
-    border-bottom: 1px solid var(--border);
+    ${tw`border-t-0 border-b border-gray-300`}
   }
   pre {
     overflow-x: scroll;
@@ -63,7 +62,7 @@ export const ArticleStyles = css`
   }
   table {
     > thead {
-      ${tw`border-b border-gray-700`}
+      ${tw`border-b border-gray-400`}
     }
     > tbody {
       > tr {
@@ -73,10 +72,13 @@ export const ArticleStyles = css`
         > td {
           padding: 0.2rem 1rem;
           &:not(:last-child) {
-            ${tw`border-r border-gray-800`}
+            ${tw`border-r border-gray-300`}
           }
         }
       }
     }
+  }
+  iframe {
+    max-width: 100%;
   }
 `;

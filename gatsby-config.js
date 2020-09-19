@@ -2,9 +2,9 @@
 module.exports = {
   /* Your site config here */
   siteMetadata: {
-    title: "FortunateRicefield",
+    title: "Happy Paddy",
     description: "作ってる間がピーク",
-    domainName: "localhost:8000", // ダミーですよ！
+    domainName: "blog.hppd.dev", // ダミーですよ！
   },
   plugins: [
     {

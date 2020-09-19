@@ -1,4 +1,5 @@
 import { css } from "@emotion/core";
+import tw from "twin.macro";
 
 export const prismStyles = css`
   .gatsby-highlight {
@@ -31,7 +32,7 @@ export const prismStyles = css`
     margin-bottom: -9px;
     padding: 0.25rem 0.5rem;
     font-size: 0.8em;
-    color: var(--white);
+    ${tw`text-gray-100`}
     font-weight: 600;
     border-radius: 1rem 1rem 0 0;
   }

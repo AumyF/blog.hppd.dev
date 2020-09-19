@@ -8,13 +8,13 @@ export const globalStyles = css`
     transition: 200ms background-color ease;
   }
   html {
-    scrollbar-color: #4a5568 #1a202c;
+    scrollbar-color: hsl(260, 25%, 35%) hsl(260, 12.5%, 90%);
     overflow-y: scroll;
   }
   body {
   }
   a {
-    ${tw`text-teal-500`};
+    ${tw`text-fuchsia-white`};
     ${growingUnderlineAnchor};
   }
 

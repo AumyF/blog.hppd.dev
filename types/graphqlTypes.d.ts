@@ -598,7 +598,6 @@ export type FileFieldsEnum =
   'childMdx___frontmatter___title' |
   'childMdx___frontmatter___status' |
   'childMdx___frontmatter___tags' |
-  'childMdx___frontmatter___date' |
   'childMdx___slug' |
   'childMdx___body' |
   'childMdx___excerpt' |
@@ -877,7 +876,6 @@ export type MdxFieldsEnum =
   'frontmatter___title' |
   'frontmatter___status' |
   'frontmatter___tags' |
-  'frontmatter___date' |
   'slug' |
   'body' |
   'excerpt' |
@@ -1017,22 +1015,12 @@ export type MdxFrontmatter = {
   title: Scalars['String'];
   status?: Maybe<Scalars['String']>;
   tags?: Maybe<Array<Maybe<Scalars['String']>>>;
-  date?: Maybe<Scalars['Date']>;
-};
-
-
-export type MdxFrontmatterDateArgs = {
-  formatString?: Maybe<Scalars['String']>;
-  fromNow?: Maybe<Scalars['Boolean']>;
-  difference?: Maybe<Scalars['String']>;
-  locale?: Maybe<Scalars['String']>;
 };
 
 export type MdxFrontmatterFilterInput = {
   title?: Maybe<StringQueryOperatorInput>;
   status?: Maybe<StringQueryOperatorInput>;
   tags?: Maybe<StringQueryOperatorInput>;
-  date?: Maybe<DateQueryOperatorInput>;
 };
 
 export type MdxGroupConnection = {
@@ -2275,7 +2263,7 @@ export type ArchiveMonthTemplateQueryVariables = {
 
 export type ArchiveMonthTemplateQuery = { allMdx: { nodes: Array<(
       Pick<Mdx, 'id' | 'excerpt'>
-      & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'title' | 'date' | 'tags'>>, fields?: Maybe<Pick<MdxFields, 'path' | 'yyyymmdd'>> }
+      & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'title' | 'tags'>>, fields?: Maybe<Pick<MdxFields, 'path' | 'yyyymmdd'>> }
     )> } };
 
 export type ArchiveYearTemplateQueryVariables = {
@@ -2285,7 +2273,7 @@ export type ArchiveYearTemplateQueryVariables = {
 
 export type ArchiveYearTemplateQuery = { allMdx: { nodes: Array<(
       Pick<Mdx, 'id' | 'excerpt'>
-      & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'title' | 'date' | 'tags'>>, fields?: Maybe<Pick<MdxFields, 'path' | 'yyyymmdd'>> }
+      & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'title' | 'tags'>>, fields?: Maybe<Pick<MdxFields, 'path' | 'yyyymmdd'>> }
     )> } };
 
 export type BlogPostQueryVariables = {
@@ -2295,7 +2283,7 @@ export type BlogPostQueryVariables = {
 
 export type BlogPostQuery = { mdx?: Maybe<(
     Pick<Mdx, 'tableOfContents' | 'body' | 'excerpt'>
-    & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'title' | 'date' | 'tags'>>, fields?: Maybe<Pick<MdxFields, 'path' | 'relativeDir'>> }
+    & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'title' | 'tags'>>, fields?: Maybe<Pick<MdxFields, 'path' | 'relativeDir'>> }
   )> };
 
 export type TagPageTemplateQueryVariables = {

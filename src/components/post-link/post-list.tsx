@@ -14,14 +14,7 @@ export type PostListProps = {
 const isntNull = <T extends {}>(v: T | null | undefined): v is T => v != null;
 
 export const PostList: React.FC<PostListProps> = ({ nodes }) => (
-  <div
-    className="p-0 grid justify-between"
-    css={css`
-      row-gap: 1.5rem;
-      column-gap: 1.5rem;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    `}
-  >
+  <div className="p-0">
     {nodes.map(
       ({ frontmatter, fields, excerpt }) =>
         frontmatter?.tags &&

@@ -14,7 +14,7 @@ const Item: React.FCX<TOC> = ({ items, className }) => (
     {items.map(items => (
       <li key={items.title} className="leading-normal" css={css``}>
         <a
-          className="block px-1 my-1 no-underline transition-all duration-50 hover:bg-gray-800 text-gray-500 hover:text-gray-400"
+          className="block px-1 my-1 no-underline hover:bg-gray-200 text-gray-600 hover:text-gray-700"
           href={items.url}
         >
           {items.title}
@@ -33,8 +33,8 @@ export const TableOfContents: React.FCX<TableOfContentsProps> = ({
   toc: TOC,
   className = "",
 }) => (
-  <div className={className + " py-2"}>
-    <div className="text-center pb-2 px-4 border-b border-gray-700">
+  <div className={`${className ?? ""} pb-2`}>
+    <div className="text-center pb-2 px-4 border-b border-gray-400">
       Table of Contents
     </div>
     <Item className="pt-2" items={TOC.items} />
