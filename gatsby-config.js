@@ -62,5 +62,21 @@ module.exports = {
       },
     },
     `gatsby-plugin-emotion`,
+    {
+      resolve: "gatsby-plugin-google-analytics",
+      options: { trackingId: process.env.GOOGLE_ANALYTICS_ID },
+    },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Happy Paddy`,
+        short_name: `hppd`,
+        start_url: `/`,
+        background_color: `#e4e2e9`,
+        theme_color: `#f9477a`,
+        display: `minimal-ui`,
+        icon: `static/favicon.png`,
+      },
+    },
   ],
 };

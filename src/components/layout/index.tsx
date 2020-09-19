@@ -28,8 +28,8 @@ export const Layout: React.FCX<LayoutProps> = ({
   SidebarComponent = null,
 }) => (
   <div className={className + " min-h-screen text-gray-800 bg-gray-200"}>
-    <Helmet>
-      <title>{title}</title>
+    <Helmet htmlAttributes={{ lang: "ja" }}>
+      <title>{title} - Happy Paddy</title>
     </Helmet>
     <Global styles={globalStyles} />
     <SiteHeader />

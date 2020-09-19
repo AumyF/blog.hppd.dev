@@ -19,6 +19,8 @@ export const Footer: React.FC<FooterProps> = () => {
       <a href="https://netlify.com">Netlify</a>.
       <br />
       Build date: {buildTime}
+      <br />
+      This website uses [Google Analytics](https://analytics.google.com).
     </footer>
   );
 };
