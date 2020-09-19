@@ -5,7 +5,7 @@ import { PostDate } from "./post-date";
 import { invisibleAnchor } from "../styles/styles";
 import { css } from "@emotion/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTag, faTags } from "@fortawesome/free-solid-svg-icons";
+import { faCalendar, faTag, faTags } from "@fortawesome/free-solid-svg-icons";
 
 export type PostLinkProps = {
   path: string;
@@ -34,19 +34,14 @@ export const PostLink: React.FCX<PostLinkProps> = ({
     >
       <div className="flex items-baseline gap-2 flex-wrap">
         <h3 className="text-3xl  font-bold leading-tight">{title}</h3>
-        <div className="flex gap-2 text-gray-800">
+        <div className="contents text-gray-800">
           {yyyymmdd && <PostDate path={yyyymmdd} />}
-          <span className="inline pl-1">
-            <FontAwesomeIcon icon={faTags} />
+          <div className="flex flex-wrap items-baseline gap-1">
+            <FontAwesomeIcon className="my-auto " icon={faTags} />
             {tags.map(tag => (
-              <span
-                key={tag}
-                className="bg-fuchsia-black text-gray-900 px-2 rounded ml-1"
-              >
-                {tag}
-              </span>
+              <div key={tag}>{tag}</div>
             ))}
-          </span>
+          </div>
         </div>
       </div>
       <div className="text-gray-600">{excerpt}</div>
