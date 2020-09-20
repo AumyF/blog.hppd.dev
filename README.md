@@ -1,14 +1,34 @@
-# blog.kkrn.me
+# blog.hppd.dev
 
-こころのめー！！！のぶろぐー！！！
+Happy Paddy!!!!!
 
 ## 使ってるもの
 
-言語は100% TypeScript, フレームワークはGatsby, ブログの記事はMDX, スタイリングはEmotion, アイコン類は Font Awesome, その他はpackage.jsonを読め
+言語は(ほぼ)100% TypeScript, フレームワークはGatsby, ブログの記事はMDX, スタイリングはEmotionとTailwind, デプロイは Firebase Hosting, その他はpackage.jsonを読んでね
+
+### Gatsby プラグイン
+
+- emotion
+- google-analytics
+- graphql-codegen
+- manifest
+- mdx
+  - autolink-headers
+  - code-titles
+  - prismjs
+- postcss
+- react-helmet
+- typescript
+- source-filesystem
+
+### その他特記事項
+
+TailwindはPostCSSとEmotion(twin.macro)の2段構成。
+gatsby-nodeをTypeScriptで書き、gatsby-node.jsでts-nodeを呼んでトランスパイルしている。
 
 ## ライセンス
 
-MITライセンス
+MIT License
 
 ## うごかす
 
@@ -16,6 +36,6 @@ MITライセンス
 
 ## なんかこうファイル間の依存関係が見れるやつ
 
-`graphviz`を導入して `npm run depgraph` で出てくる `dependencygraph.svg`
+brewかaptかなんかで`graphviz`を導入して `npm run depgraph` で出てくる `dependencygraph.svg` を見ると幸せになれるぞ！
 
 ![image](dependencygraph.svg)
