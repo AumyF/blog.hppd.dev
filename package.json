@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "depgraph": "depcruise --config .dependency-cruiser.json --output-type dot src | dot -T svg > dependencygraph.svg",
+    "depgraph": "depcruise --config .dependency-cruiser.json --output-type dot . | dot -T svg > dependencygraph.svg",
     "develop": "gatsby develop --host 0.0.0.0",
     "format": "prettier --write \"**/*.{js,jsx,json,md,ts,tsx,mdx}\"",
     "lint": "eslint \"src/**/*.{ts,tsx}\"",
