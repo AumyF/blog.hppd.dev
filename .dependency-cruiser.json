@@ -1,0 +1,7 @@
+{
+  "options": {
+    "includeOnly": "(^src|^gatsby)",
+    "doNotFollow": "node_modules",
+    "tsPreCompilationDeps": true
+  }
+}
