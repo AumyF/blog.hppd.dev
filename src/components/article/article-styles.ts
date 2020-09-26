@@ -16,23 +16,29 @@ export const ArticleStyles = css`
     ${tw`leading-snug mb-3 mt-8 text-3xl border-b border-gray-300`};
     font-feature-settings: "palt";
   }
+
   h2 {
     ${headingStyle};
     ${tw`leading-snug mb-3 mt-6 text-2xl`};
   }
+
   h3 {
     ${headingStyle};
     ${tw`text-xl`};
   }
+
   blockquote {
     ${tw`pl-6 border-l-2 border-gray-300`};
   }
+
   p {
     ${tw`my-4`};
   }
+
   hr {
     ${tw`my-4 border-t`};
   }
+
   ul {
     ${listStyle}
     ${tw`list-disc`};
@@ -41,25 +47,31 @@ export const ArticleStyles = css`
     ${listStyle}
     ${tw`list-decimal`};
   }
+
   strong {
     ${tw`font-bold`};
   }
+
   a {
     ${tw`underline underline-1 hover:underline-2`}
     transition: text-decoration 100ms ease-in-out;
   }
+
   hr {
     margin-top: 0.75rem;
     margin-bottom: 0.75rem;
     ${tw`border-t-0 border-b border-gray-300`}
   }
+
   pre {
     overflow-x: scroll;
   }
+
   p,
   li {
     line-height: 1.75;
   }
+
   table {
     > thead {
       ${tw`border-b border-gray-400`}
@@ -78,6 +90,7 @@ export const ArticleStyles = css`
       }
     }
   }
+
   iframe {
     max-width: 100%;
   }

@@ -35,6 +35,7 @@
     "gatsby-plugin-netlify-cache": "^1.2.0",
     "gatsby-plugin-postcss": "^2.3.11",
     "gatsby-plugin-react-helmet": "^3.3.10",
+    "gatsby-plugin-twitter": "^2.3.11",
     "gatsby-plugin-typescript": "^2.4.19",
     "gatsby-remark-autolink-headers": "^2.3.12",
     "gatsby-remark-code-titles": "^1.1.0",
