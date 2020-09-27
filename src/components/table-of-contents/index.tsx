@@ -1,7 +1,7 @@
 import React from "react";
 import { css } from "@emotion/core";
 
-export type TOC = Readonly<{ items: TOCItems }>;
+export type TOC = Readonly<{ items?: TOCItems }>;
 
 export type TOCItems = {
   url: string;
@@ -9,7 +9,7 @@ export type TOCItems = {
   items?: TOCItems;
 }[];
 
-const Item: React.FCX<TOC> = ({ items, className }) => (
+const Item: React.FCX<{ items: TOCItems }> = ({ items, className }) => (
   <ul className={className}>
     {items.map(items => (
       <li key={items.title} className="leading-normal" css={css``}>
@@ -30,13 +30,14 @@ export type TableOfContentsProps = {
 };
 
 export const TableOfContents: React.FCX<TableOfContentsProps> = ({
-  toc: TOC,
+  toc: { items = null },
   className = "",
-}) => (
-  <div className={`${className ?? ""} pb-2`}>
-    <div className="text-center pb-2 px-4 border-b border-gray-400">
-      Table of Contents
+}) =>
+  items && (
+    <div className={`${className ?? ""} pb-2`}>
+      <div className="text-center pb-2 px-4 border-b border-gray-400">
+        Table of Contents
+      </div>
+      <Item className="pt-2" items={items} />
     </div>
-    <Item className="pt-2" items={TOC.items} />
-  </div>
-);
+  );
