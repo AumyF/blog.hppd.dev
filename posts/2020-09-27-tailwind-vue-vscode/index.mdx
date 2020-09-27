@@ -1,0 +1,37 @@
+---
+title: ".vue, .svelteファイルでTailwindCSSのVSCode拡張の補完が (設定いじらないと) 出ない"
+tags: [Web, WebFrontend, Vue, Tailwind, VSCode]
+status: public
+---
+
+[TailwindCSS](https://tailwindcss.com) は _utility-first_ な CSS フレームワーク．`mx-auto` とか `flex` とか `flex-wrap` といったように，
+1 クラスに 1 プロパティを割り当てる粒度の細かさからデザインの自由度が高いのが特徴．カスタマイズ性も高いのでたのしい．
+
+# 問題と解決
+
+で，設定ファイル `tailwind.config.js` を読み込んでそこで定義されてるクラス名を補完に出してくれる VSCode の拡張機能
+(GitHub:[tailwindlabs/tailwindcss-intellisense](https://github.com/tailwindlabs/tailwindcss-intellisense),
+VSCode Marketplace: [bradlc.vscode-tailwindcss](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)) がある．
+
+あるのだが，`.vue` ファイル (SFC: Single File Component) のテンプレートではちゃんと動いてくれない．なぜかは知らんが拡張機能が素では Vue ファイルに適用されないので，
+VSCode の `settings.json` から HTML と同じ挙動をするよう割り当ててやる必要がある．知らんけどSvelteでも同じような問題があって同じように解決できるらしい…
+
+```json
+{
+  // ...
+  "tailwindCSS.includeLanguages": {
+    "vue": "html"
+    // "vue-html": "html",
+    // "vue-postcss": "html"
+    // こいつらはなくても大丈夫？
+  }
+  /// ...
+}
+```
+
+たぶん，`javascriptreact` とかにすると `className` に反応したりするんだろうなあと思う．
+
+# おわりに
+
+- JSX の `className` に慣れすぎて Vue の `class` に違和感．
+- `vue-html` と `vue-postcss`，一体何なんだ．有識者教えてくれ．
