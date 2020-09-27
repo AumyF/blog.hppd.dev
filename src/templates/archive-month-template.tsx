@@ -26,7 +26,10 @@ export const ArchiveMonthPage: React.FC<ArchiveMonthPageProps> = ({
 
 export const pageQuery = graphql`
   query ArchiveMonthTemplate($yyyymm: Date) {
-    allMdx(filter: { fields: { yyyymm: { eq: $yyyymm } } }) {
+    allMdx(
+      filter: { fields: { yyyymm: { eq: $yyyymm } } }
+      sort: { order: DESC, fields: fields___yyyymmdd }
+    ) {
       nodes {
         id
         frontmatter {

@@ -22,7 +22,10 @@ export default ArchiveYearPage;
 
 export const pageQuery = graphql`
   query ArchiveYearTemplate($yyyy: Date) {
-    allMdx(filter: { fields: { yyyy: { eq: $yyyy } } }) {
+    allMdx(
+      filter: { fields: { yyyy: { eq: $yyyy } } }
+      sort: { order: DESC, fields: fields___yyyymmdd }
+    ) {
       nodes {
         id
         frontmatter {

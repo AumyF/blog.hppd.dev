@@ -24,7 +24,10 @@ export default TagPageTemplate;
 
 export const pageQuery = graphql`
   query TagPageTemplate($tag: String) {
-    allMdx(filter: { frontmatter: { tags: { eq: $tag } } }) {
+    allMdx(
+      filter: { frontmatter: { tags: { eq: $tag } } }
+      sort: { order: DESC, fields: fields___yyyymmdd }
+    ) {
       nodes {
         excerpt(truncate: true)
         frontmatter {
