@@ -37,19 +37,25 @@ export const Layout: React.FCX<LayoutProps> = ({
     <div className="container mx-auto flex gap-2">
       {SidebarComponent && (
         <div
-          className="shadow-lg rounded-md flex-shrink-0 hidden md:block sticky h-min-content top-0 px-4 bg-gray-100 py-5"
-          css={css`
-            flex-basis: 192px;
-            ${media("lg")} {
-              flex-basis: 255px;
-            }
-          `}
+          className="shadow-lg rounded-md flex-shrink-0 hidden md:block sticky h-min-content top-0 px-4 bg-white py-5"
+          css={[
+            css`
+              flex-basis: 192px;
+              ${media("lg")} {
+                flex-basis: 255px;
+              }
+            `,
+            shadow,
+          ]}
         >
           {SidebarComponent()}
         </div>
       )}
 
-      <main className="leading-relaxed p-8 rounded-md flex-grow min-w-0 bg-gray-100 shadow-lg">
+      <main
+        className="leading-relaxed p-8 rounded-md flex-grow min-w-0 bg-white "
+        css={shadow}
+      >
         <Title>{title}</Title>
         {children}
       </main>
@@ -57,3 +63,7 @@ export const Layout: React.FCX<LayoutProps> = ({
     <Footer />
   </div>
 );
+
+const shadow = css`
+  box-shadow: 0 2px 5px hsla(260, 60%, 50%, 0.1);
+`;

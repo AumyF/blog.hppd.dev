@@ -29,7 +29,7 @@ export const PostLink: React.FCX<PostLinkProps> = ({
     <article
       className={
         className +
-        " p-4 bg-gray-100 hover:bg-gray-200 border-t border-gray-200"
+        " p-4 bg-transparent hover:bg-gray-200 border-t border-gray-200"
       }
     >
       <div className="flex items-baseline gap-2 flex-wrap">
