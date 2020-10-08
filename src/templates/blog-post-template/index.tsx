@@ -6,11 +6,11 @@ import { Layout } from "../../components/layout";
 import { Article } from "../../components/article";
 import { TagList } from "../../components/atoms/tag-list";
 import { GitInfo } from "../../components/git-info";
-import Sidebar from "../../components/layout/sidebar";
 import { compact } from "lodash";
 import { MDXProvider } from "@mdx-js/react";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import { ArticleElements } from "./article-elements";
+import { TableOfContents } from "../../components/table-of-contents";
 
 export type BlogPostContext = {
   id: string;
@@ -27,19 +27,16 @@ export const BlogPost: React.FC<BlogPostProps> = ({ data: { mdx } }) => {
         title: frontmatter.title,
         path,
       }}
-      SidebarComponent={() => (
-        <Sidebar>
-          {TOC => (
-            <>
-              <TOC toc={mdx?.tableOfContents} />
-              <div className="text-center pb-2 px-4 border-b border-gray-400">
-                Git Information
-              </div>
-              <GitInfo filePath={$(mdx?.fields?.relativeDir)} />
-            </>
-          )}
-        </Sidebar>
-      )}
+      SidebarComponent={[
+        {
+          title: "Table of Contents",
+          children: <TableOfContents toc={mdx?.tableOfContents} />,
+        },
+        {
+          title: "Git Information",
+          children: <GitInfo filePath={$(mdx?.fields?.relativeDir)} />,
+        },
+      ]}
     >
       <TagList tags={compact(frontmatter.tags)} />
       <Article>

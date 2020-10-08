@@ -1,5 +1,6 @@
 import React from "react";
 import { css } from "@emotion/core";
+import { Link } from "gatsby";
 
 export type TOC = Readonly<{ items?: TOCItems }>;
 
@@ -13,12 +14,12 @@ const Item: React.FCX<{ items: TOCItems }> = ({ items, className }) => (
   <ul className={className}>
     {items.map(items => (
       <li key={items.title} className="leading-normal" css={css``}>
-        <a
+        <Link
           className="block px-1 my-1 no-underline hover:bg-gray-200 text-gray-600 hover:text-gray-700"
-          href={items.url}
+          to={items.url}
         >
           {items.title}
-        </a>
+        </Link>
         {items.items ? <Item className="ml-4" items={items.items} /> : null}
       </li>
     ))}
@@ -35,9 +36,6 @@ export const TableOfContents: React.FCX<TableOfContentsProps> = ({
 }) =>
   items && (
     <div className={`${className ?? ""} pb-2`}>
-      <div className="text-center pb-2 px-4 border-b border-gray-400">
-        Table of Contents
-      </div>
       <Item className="pt-2" items={items} />
     </div>
   );

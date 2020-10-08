@@ -4,7 +4,7 @@ import tw from "twin.macro";
 export const prismStyles = css`
   .gatsby-highlight {
     pre[class*="language-"] {
-      border-radius: 0 0 1rem 1rem;
+      border-radius: 1rem;
     }
     &-code-line {
       background-color: #013c33;

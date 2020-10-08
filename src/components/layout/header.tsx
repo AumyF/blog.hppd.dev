@@ -1,5 +1,4 @@
 import React from "react";
-import { useSite } from "../../hooks/use-site";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTwitter, faGithub } from "@fortawesome/free-brands-svg-icons";
 import type { IconProp } from "@fortawesome/fontawesome-svg-core";
@@ -12,7 +11,6 @@ import { invisibleAnchor } from "../styles/styles";
 export type SiteHeaderProps = {};
 
 export const SiteHeader: React.FCX<SiteHeaderProps> = ({ className }) => {
-  const { siteMetadata } = useSite();
   return (
     <header
       className={

@@ -1,5 +1,4 @@
 import React from "react";
-import { css } from "@emotion/core";
 
 export type NiconicoProps = {
   src: string;
