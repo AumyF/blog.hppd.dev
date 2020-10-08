@@ -1,9 +1,8 @@
 import React from "react";
-import { css } from "@emotion/core";
 
 export type ColorCheckerProps = {};
 
-export const ColorChecker: React.FC<ColorCheckerProps> = ({}) => (
+export const ColorChecker: React.FC<ColorCheckerProps> = () => (
   <div>
     <table>
       <tbody>

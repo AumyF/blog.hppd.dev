@@ -1,7 +1,6 @@
 import React from "react";
-import { css } from "@emotion/core";
 import { PostLink } from "./post-link";
-import { Mdx, MdxFields, MdxFrontmatter } from "../../../types/graphqlTypes";
+import { MdxFields, MdxFrontmatter } from "../../../types/graphqlTypes";
 
 export type PostListProps = {
   nodes: {

@@ -8,7 +8,7 @@ export type PostDateProps = {
 };
 
 export const PostDate: React.FCX<PostDateProps> = ({ path, className }) => (
-  <div className="inline">
+  <div className={"inline " + className}>
     <FontAwesomeIcon icon={faCalendarDay} />
     <span
       css={css`
