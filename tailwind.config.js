@@ -14,6 +14,9 @@ module.exports = {
       lineHeight: {
         relaxed: "1.75",
       },
+      borderRadius: {
+        xl: ".75rem",
+      },
       transitionProperty: {
         "text-decoration": "text-decoration",
       },
@@ -87,5 +90,6 @@ module.exports = {
   ],
   future: {
     removeDeprecatedGapUtilities: true,
+    purgeLayersByDefault: true,
   },
 };
