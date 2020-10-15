@@ -68,7 +68,7 @@
     "jest": "^25.5.4",
     "jsonc-parser": "^2.3.0",
     "prettier": "^2.1.2",
-    "tailwindcss": "^1.8.13",
+    "tailwindcss": "^1.9.2",
     "ts-jest": "^25.5.1",
     "ts-node": "^9.0.0",
     "twin.macro": "^1.10.0",
