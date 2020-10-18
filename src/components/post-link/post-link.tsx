@@ -3,6 +3,7 @@ import { Link } from "gatsby";
 import { PostDate } from "./post-date";
 import { invisibleAnchor } from "../styles/styles";
 import { TagList } from "../atoms/tag-list";
+import clsx from "clsx";
 
 export type PostLinkProps = {
   path: string;
@@ -23,7 +24,7 @@ export const PostLink: React.FCX<PostLinkProps> = ({
   excerpt,
 }) => (
   <article
-    className={className + " p-4 bg-transparent border-t border-gray-200"}
+    className={clsx(className, "p-4 bg-transparent border-t border-gray-200")}
   >
     <div className="flex items-baseline gap-2 flex-wrap">
       <Link
