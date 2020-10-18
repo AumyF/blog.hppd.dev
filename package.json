@@ -34,7 +34,7 @@
     "gatsby-plugin-mdx": "^1.2.46",
     "gatsby-plugin-netlify-cache": "^1.2.0",
     "gatsby-plugin-postcss": "^2.3.13",
-    "gatsby-plugin-react-helmet": "^3.3.13",
+    "gatsby-plugin-react-helmet": "^3.3.14",
     "gatsby-plugin-twitter": "^2.3.12",
     "gatsby-plugin-typescript": "^2.4.22",
     "gatsby-remark-autolink-headers": "^2.3.15",
