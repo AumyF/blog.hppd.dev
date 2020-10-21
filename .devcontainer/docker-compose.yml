@@ -1,0 +1,4 @@
+volumes:
+  - .:/workspace:cached
+  - ~/.zshrc:/root/.zshrc # zsh configs
+  
