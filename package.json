@@ -64,7 +64,7 @@
     "dependency-cruiser": "^9.15.1",
     "eslint-config-prettier": "^6.13.0",
     "eslint-plugin-prettier": "^3.1.4",
-    "eslint-plugin-react": "^7.21.4",
+    "eslint-plugin-react": "^7.21.5",
     "eslint-plugin-react-hooks": "^4.2.0",
     "jest": "^25.5.4",
     "jsonc-parser": "^2.3.0",
