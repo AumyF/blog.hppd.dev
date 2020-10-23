@@ -596,8 +596,8 @@ export type FileFieldsEnum =
   'childMdx___rawBody' |
   'childMdx___fileAbsolutePath' |
   'childMdx___frontmatter___title' |
-  'childMdx___frontmatter___tags' |
   'childMdx___frontmatter___status' |
+  'childMdx___frontmatter___tags' |
   'childMdx___slug' |
   'childMdx___body' |
   'childMdx___excerpt' |
@@ -874,8 +874,8 @@ export type MdxFieldsEnum =
   'rawBody' |
   'fileAbsolutePath' |
   'frontmatter___title' |
-  'frontmatter___tags' |
   'frontmatter___status' |
+  'frontmatter___tags' |
   'slug' |
   'body' |
   'excerpt' |
@@ -1013,14 +1013,14 @@ export type MdxFilterInput = {
 
 export type MdxFrontmatter = {
   title: Scalars['String'];
-  tags?: Maybe<Array<Maybe<Scalars['String']>>>;
   status?: Maybe<Scalars['String']>;
+  tags?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
 export type MdxFrontmatterFilterInput = {
   title?: Maybe<StringQueryOperatorInput>;
-  tags?: Maybe<StringQueryOperatorInput>;
   status?: Maybe<StringQueryOperatorInput>;
+  tags?: Maybe<StringQueryOperatorInput>;
 };
 
 export type MdxGroupConnection = {
