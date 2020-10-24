@@ -10,6 +10,7 @@ import { SiteHeader } from "./header";
 import { globalStyles } from "../styles/global";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import tw from "twin.macro";
+import clsx from "clsx";
 config.autoAddCss = false;
 
 export type LayoutProps = {
@@ -28,7 +29,7 @@ export const Layout: React.FCX<LayoutProps> = ({
   className,
   SidebarComponent: SidebarComponents = null,
 }) => (
-  <div className={className + " min-h-screen text-gray-800 bg-gray-200"}>
+  <div className={clsx(className, "min-h-screen text-gray-800 bg-gray-200")}>
     <Helmet htmlAttributes={{ lang: "ja" }}>
       <title>{title} - Happy Paddy</title>
     </Helmet>
@@ -71,7 +72,7 @@ const SidebarCard: React.FCX<SidebarCardProps> = ({
   children,
   className,
 }) => (
-  <div className={`${className ?? ""} p-4 mb-4`}>
+  <div className={clsx(className, `p-4 mb-4`)}>
     <div className="text-center pb-2 px-4 border-b border-gray-400">
       {title}
     </div>

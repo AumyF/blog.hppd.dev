@@ -7,6 +7,7 @@ import { invisibleAnchor } from "../styles/styles";
 import { useSite } from "../../hooks/use-site";
 import { assertsNonNull } from "../../utils/asserts-non-null";
 import tw from "twin.macro";
+import clsx from "clsx";
 
 export type BreadcrumbsProps = {
   date?: string[];
@@ -26,7 +27,7 @@ export const Breadcrumbs: React.FCX<BreadcrumbsProps> = ({
 
   const second = `${restDomainName[0]}.${topLevelDomain}`;
   return (
-    <nav className={`${className ?? ""} text-gray-200 bg-gray-900`}>
+    <nav className={clsx(`text-gray-200 bg-gray-900`, className)}>
       <div
         className="container mx-auto px-4"
         css={css`

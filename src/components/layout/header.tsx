@@ -6,6 +6,7 @@ import { AnchorOrLink } from "../atoms/anchor-or-link";
 import { Link } from "gatsby";
 import tw from "twin.macro";
 import { invisibleAnchor } from "../styles/styles";
+import clsx from "clsx";
 // import svg from "../../../static/ftrf-logo.svg";
 
 export type SiteHeaderProps = {};
@@ -13,9 +14,10 @@ export type SiteHeaderProps = {};
 export const SiteHeader: React.FCX<SiteHeaderProps> = ({ className }) => {
   return (
     <header
-      className={
-        className + " text-gray-200 bg-gray-900 leading-tight text-center"
-      }
+      className={clsx(
+        className,
+        "text-gray-200 bg-gray-900 leading-tight text-center"
+      )}
     >
       <div className="flex container mx-auto px-4 items-center gap-2 justify-end">
         <h1 className="text-3xl font-bold pr-2 mr-auto">

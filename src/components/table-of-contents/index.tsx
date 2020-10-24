@@ -1,6 +1,7 @@
 import React from "react";
 import { css } from "@emotion/core";
 import { Link } from "gatsby";
+import clsx from "clsx";
 
 export type TOC = Readonly<{ items?: TOCItems }>;
 
@@ -35,7 +36,7 @@ export const TableOfContents: React.FCX<TableOfContentsProps> = ({
   className = "",
 }) =>
   items && (
-    <div className={`${className ?? ""} pb-2`}>
+    <div className={clsx(`pb-2`, className)}>
       <Item className="pt-2" items={items} />
     </div>
   );
