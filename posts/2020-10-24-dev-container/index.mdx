@@ -1,0 +1,89 @@
+---
+title: 当ブログはDev Containerに載っています(それだけ)
+date: 2020-10-24
+tags: [Blog, Gatsby, Web, WebFrontend, TypeScript, VSCode, Docker, 雑度が高い]
+---
+
+2^10 の日からこんにちは、おーみーです。みなさんは **Windows Subsystem for Linux** してますか？おれは今まさにこの記事を WSL2 から書いています。きょうは Gatsby.js で作ってるこのブログがどんな感じで開発されているのか解説していきますよ。個人的なブログというのは好き勝手に技術をとっかえひっかえできるのでね。いつかはプロダクト開発とかいってビジネスさんと折り合いをつけられるようにならなきゃいけないのがつらいところですけど。
+
+# TLDR (って CRLF と似てますよね) (CRLF はお嫌いでしたか)
+
+WSL2 上の Docker に VSCode からリモート接続してます。
+
+# WSL2 とは？
+
+**Windows Subsystem for Linux** 略して WSL は一言で言えば **Windows 上で Linux が使える** 仕組みです。WSL1 と WSL2 の 2 種類があって、WSL1 は Linux 上のソフトウェアのシステムコールを Windows の NT カーネル用に翻訳することで動く互換レイヤで、それに対し WSL2 は MS 謹製の魔改造 Linux カーネルを Hyper-V に載せた軽量仮想マシンになっています。
+
+WSL1 は仮想マシンではないので RAM 消費が少ない代わりに WSL1 非対応のシステムコールが飛んでくると死亡する弱点があります。例えば Docker とかは動きませんし、 [glibc 2.31 で `nanosleep` に WSL1 非対応のシステムコールが突っ込まれて Ubuntu 20.04 と WSL1 のコンビで rustup とかがコケる事案](https://qiita.com/AumyF/items/eaf42dd3345a2285ff9e) が起きたりなんかもしました。リンク先は手前味噌です。
+
+一方の WSL2 は WSL1 と逆です。互換レイヤなんてパチモンではない本物の Linux カーネルを 100%使用しているので Docker も走りますし glibc が荒ぶったときも WSL2 はどこ吹く風でした。まあその時は WSL2 は Insider ビルドにしか提供されてなかったんですけどね。そして仮想マシンなので実行コストが高価です。RAM もりもり食われます。
+
+WSL2 の導入を簡単に説明すると Windows + S → Windows の機能の有効化または無効化 → Linux 用 Windows サブシステム にチェック → OS 再起動 です。さらに https://docs.microsoft.com/ja-jp/windows/wsl/wsl2-kernel から WSL2 カーネルを落としてインスコしたら Microsoft Store で「Ubuntu」って検索して出てくる Ubuntu 20.04 をぶち込めば終わりです。簡単でしょう？もっと詳しい導入方法はググってください。
+
+# VSCode Remote - Containers とは？
+
+閑話休題。Atom が生み出した Electron で Atom と Sublime とを撲殺した我らが Visual Studio Code ですが、WSL や Docker コンテナに(ローカルマシンの上だけど) リモート接続して開発できます。すごい！たのしい！
+
+Windows ローカル上で開発すると Node その他ランタイム類のバージョン管理やプラットフォーム間の使用の違いやらなんやらで憤死しがちです。WSL2 のがマシですが、Node のバージョンミスってライブラリが爆発する未来が見えます。anyenv はコミット頻度低くて心配です。asdf は Node 入れるときなんとか署名入れるのが大変です。そこで Docker を使うと開発環境をちゃっちゃと揃えられます。
+
+Docker Desktop をポチポチ入れて Settings から Use the WSL2 based engine にチェック入れれば Docker on WSL2 は準備 OK です。
+
+# AumyF/blog.hppd.dev/.devcontainer/Dockerfile を見てみよう
+
+当ブログのDockerfile を見てみましょう。
+
+```dockerfile
+ARG VARIANT="14-buster"
+FROM mcr.microsoft.com/vscode/devcontainers/typescript-node:0-${VARIANT}
+```
+
+コメントとか省きましたがだいぶ短いですね… `FROM` してるのは Microsoft 先生が TypeScript Node 向けに用意してくださっている Image です。Microsoft Container Registory で MCR。Master Boot Record に似ています。
+
+実のところ Dev Container の構築で重要なのは Dockerfile より devcontainer.json です。
+
+```json
+{
+  "name": "blog.hppd.dev",
+  "build": {
+    "dockerfile": "Dockerfile",
+    // Update 'VARIANT' to pick a Node version: 10, 12, 14
+    "args": { "VARIANT": "14" }
+  },
+
+  // Set *default* container specific settings.json values on container create.
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/zsh"
+  },
+
+  // Add the IDs of extensions you want installed when the container is created.
+  "extensions": [
+    "dbaeumer.vscode-eslint",
+    "wraith13.background-phi-colors",
+    "esbenp.prettier-vscode",
+    "bradlc.vscode-tailwindcss",
+    "jpoissonnier.vscode-styled-components",
+    "wraith13.bracket-lens"
+  ],
+
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  "forwardPorts": [8000],
+
+  // Use 'postCreateCommand' to run commands after the container is created.
+  "postCreateCommand": "npm i"
+
+  // Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
+  // "remoteUser": "node",
+  // "postStartCommand": "npm i",
+  // "postAttachCommand": "npm i"
+}
+```
+
+`settings` で (あんまりやると共同作業者の顰蹙を買いそうですけど) VSCode の設定を編集できたり `extensions` で拡張機能を入れたりできます。eslint, Prettier, Tailwind, Emotion 用の拡張を入れておきました。Bracket Lens と Background Phi Colors はおれの趣味ですが、これを気に入らない人もいると思うのでどうするか悩むところです。おれとしては外したくない。またホストから `node_modules` を引っ張るのは流石にアレ (特に純 Windows か macOS の環境で実行すると sharp などのバイナリが `windows` とか `darwin` 向けになっててコケる) なので `.cache` と一緒に `.dockerignore` してコンテナが爆誕した瞬間に `npm i` で引っ張っています。
+
+[devcontainer.jsonの公式リファレンス](https://code.visualstudio.com/docs/remote/devcontainerjson-reference)貼っときますね (詳しくはこれ見て)。
+
+# まとめ
+
+WSL2だらだ適当に書くとWSLについてダラダラ書いてしまう。免罪符として「雑度が高い」タグを生み出した。こいつの存在自体の雑度が高くないか？
+
+WSLに対してDockerの知識が全然ないことがバレたので勉強する。コンテナとイメージの違いも正直あんまりわかってない。めざせDockerの話するとめっちゃ早口になるオタク。
