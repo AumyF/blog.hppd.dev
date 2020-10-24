@@ -1,5 +1,5 @@
 {
-  "name": "Node.js & TypeScript",
+  "name": "blog.hppd.dev",
   "build": {
     "dockerfile": "Dockerfile",
     // Update 'VARIANT' to pick a Node version: 10, 12, 14
@@ -17,17 +17,18 @@
     "wraith13.background-phi-colors",
     "esbenp.prettier-vscode",
     "bradlc.vscode-tailwindcss",
-    "jpoissonnier.vscode-styled-components"
+    "jpoissonnier.vscode-styled-components",
+    "wraith13.bracket-lens"
   ],
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   "forwardPorts": [8000],
 
   // Use 'postCreateCommand' to run commands after the container is created.
-  // "postCreateCommand": "npm i",
+  "postCreateCommand": "npm i"
 
   // Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
   // "remoteUser": "node",
   // "postStartCommand": "npm i",
-  "postAttachCommand": "npm i"
+  // "postAttachCommand": "npm i"
 }
