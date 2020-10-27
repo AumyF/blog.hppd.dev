@@ -48,6 +48,10 @@ export const ArticleStyles = css`
     ${tw`list-decimal`};
   }
 
+  li:not(:last-child) {
+    ${tw`mb-2`}
+  }
+
   strong {
     ${tw`font-bold`};
   }
