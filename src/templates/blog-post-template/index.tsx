@@ -11,6 +11,7 @@ import { MDXProvider } from "@mdx-js/react";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import { ArticleElements } from "./article-elements";
 import { TableOfContents } from "../../components/table-of-contents";
+import { Title } from "../../components/layout/title";
 
 export type BlogPostContext = {
   id: string;
@@ -37,8 +38,17 @@ export const BlogPost: React.FC<BlogPostProps> = ({ data: { mdx } }) => {
           children: <GitInfo filePath={$(mdx?.fields?.relativeDir)} />,
         },
       ]}
+      TitleComponent={title => (
+        <TagList
+          className="mx-auto mt-2"
+          tags={
+            frontmatter.tags?.filter(
+              (tag): tag is string => typeof tag === "string"
+            ) ?? [""]
+          }
+        />
+      )}
     >
-      <TagList tags={compact(frontmatter.tags)} />
       <Article>
         <MDXProvider components={ArticleElements}>
           <MDXRenderer>{$(mdx?.body)}</MDXRenderer>

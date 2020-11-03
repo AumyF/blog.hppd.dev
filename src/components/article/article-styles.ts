@@ -32,7 +32,7 @@ export const ArticleStyles = css`
   }
 
   p {
-    ${tw`my-4`};
+    ${tw`mb-4`};
   }
 
   hr {

@@ -13,7 +13,7 @@ const Tag: React.FCX<{ tag: string }> = ({ tag, className }) => (
 );
 
 export const TagList: React.FCX<TagListProps> = ({ tags, className }) => (
-  <div className={clsx(className, ` inline-flex flex-wrap gap-1`)}>
+  <div className={clsx(className, `w-max-content flex flex-wrap gap-1`)}>
     <span>
       <FontAwesomeIcon icon={faTags} />
     </span>

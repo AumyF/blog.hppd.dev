@@ -17,6 +17,7 @@ export type LayoutProps = {
   title: string;
   path: string;
   SidebarComponent?: React.ComponentProps<typeof SidebarCard>[];
+  TitleComponent?: React.ComponentType<{ title: string }>;
 };
 
 const media = (size: "sm" | "md" | "lg" | "xl") =>
@@ -28,6 +29,7 @@ export const Layout: React.FCX<LayoutProps> = ({
   path,
   className,
   SidebarComponent: SidebarComponents = null,
+  TitleComponent,
 }) => (
   <div className={clsx(className, "min-h-screen text-text bg-background")}>
     <Helmet htmlAttributes={{ lang: "ja" }}>
@@ -36,7 +38,11 @@ export const Layout: React.FCX<LayoutProps> = ({
     <Global styles={globalStyles} />
     <SiteHeader />
     <Breadcrumbs className="mb-8 pb-1" date={path?.split("/")} path={path} />
-    <div className="container mx-auto flex gap-4">
+    <div className="container mx-auto my-8 px-4">
+      <Title>{title}</Title>
+      {TitleComponent && <TitleComponent {...{ title }} />}
+    </div>
+    <div className="container mx-auto flex gap-4 px-4">
       {SidebarComponents && (
         <div
           className="flex-shrink-0 hidden md:block sticky h-min-content"
@@ -57,7 +63,6 @@ export const Layout: React.FCX<LayoutProps> = ({
       )}
 
       <main className="leading-relaxed p-8 flex-grow min-w-0 " css={cardStyle}>
-        <Title>{title}</Title>
         {children}
       </main>
     </div>

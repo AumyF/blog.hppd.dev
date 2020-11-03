@@ -2,13 +2,23 @@ import React from "react";
 import { graphql, PageProps } from "gatsby";
 import { IndexQuery } from "../../types/graphqlTypes";
 import { PostListPage } from "../templates/post-list-page";
+import { Layout } from "../components/layout";
+import { PostList } from "../components/post-link/post-list";
+import tw from "twin.macro";
+
+const Heading = tw.h1`text-4xl font-bold text-center mb-8 leading-tight`;
 
 export const IndexPage: React.FC<PageProps<IndexQuery>> = ({
   data: {
     allMdx: { nodes },
   },
 }) => {
-  return <PostListPage path="" {...{ title: "Index", nodes }} />;
+  return (
+    <Layout {...{ title: "Index", path: "/" }}>
+      <Heading>Recent posts</Heading>
+      <PostList {...{ nodes }} />
+    </Layout>
+  );
 };
 
 export default IndexPage;
