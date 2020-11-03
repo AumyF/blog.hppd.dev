@@ -6,7 +6,6 @@ import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { invisibleAnchor } from "../styles/styles";
 import { useSite } from "../../hooks/use-site";
 import { assertsNonNull } from "../../utils/asserts-non-null";
-import tw from "twin.macro";
 import clsx from "clsx";
 
 export type BreadcrumbsProps = {

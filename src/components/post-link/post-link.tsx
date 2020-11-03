@@ -5,7 +5,6 @@ import { invisibleAnchor } from "../styles/styles";
 import { TagList } from "../atoms/tag-list";
 import clsx from "clsx";
 import { css } from "@emotion/core";
-import tw from "twin.macro";
 
 export type PostLinkProps = {
   path: string;

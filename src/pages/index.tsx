@@ -1,7 +1,6 @@
 import React from "react";
 import { graphql, PageProps } from "gatsby";
 import { IndexQuery } from "../../types/graphqlTypes";
-import { PostListPage } from "../templates/post-list-page";
 import { Layout } from "../components/layout";
 import { PostList } from "../components/post-link/post-list";
 import tw from "twin.macro";

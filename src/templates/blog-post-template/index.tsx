@@ -6,12 +6,10 @@ import { Layout } from "../../components/layout";
 import { Article } from "../../components/article";
 import { TagList } from "../../components/atoms/tag-list";
 import { GitInfo } from "../../components/git-info";
-import { compact } from "lodash";
 import { MDXProvider } from "@mdx-js/react";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import { ArticleElements } from "./article-elements";
 import { TableOfContents } from "../../components/table-of-contents";
-import { Title } from "../../components/layout/title";
 
 export type BlogPostContext = {
   id: string;
@@ -38,7 +36,7 @@ export const BlogPost: React.FC<BlogPostProps> = ({ data: { mdx } }) => {
           children: <GitInfo filePath={$(mdx?.fields?.relativeDir)} />,
         },
       ]}
-      TitleComponent={title => (
+      TitleComponent={() => (
         <TagList
           className="mx-auto mt-2"
           tags={
