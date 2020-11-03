@@ -17,7 +17,7 @@ export const Footer: React.FC<FooterProps> = () => {
       <br />
       Build date: {buildTime}
       <br />
-      This website is built with <a href="https://gatsbyjs.org/">Gatsby</a>,
+      This website is built with <a href="https://gatsbyjs.org/">Gatsby</a> and
       hosted on{" "}
       <a href="https://firebase.google.com/docs/hosting?hl=ja">
         Firebase Hosting
