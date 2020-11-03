@@ -27,13 +27,12 @@ export const Breadcrumbs: React.FCX<BreadcrumbsProps> = ({
 
   const second = `${restDomainName[0]}.${topLevelDomain}`;
   return (
-    <nav className={clsx(`text-gray-200 bg-gray-900`, className)}>
+    <nav className={clsx(`text-text bg-white`, className)}>
       <div
         className="container mx-auto px-4"
         css={css`
           a {
             ${invisibleAnchor}
-            ${tw`text-fuchsia-black`}
           }
         `}
       >

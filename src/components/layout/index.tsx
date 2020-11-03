@@ -29,7 +29,7 @@ export const Layout: React.FCX<LayoutProps> = ({
   className,
   SidebarComponent: SidebarComponents = null,
 }) => (
-  <div className={clsx(className, "min-h-screen text-gray-800 bg-gray-200")}>
+  <div className={clsx(className, "min-h-screen text-text bg-background")}>
     <Helmet htmlAttributes={{ lang: "ja" }}>
       <title>{title} - Happy Paddy</title>
     </Helmet>
@@ -73,9 +73,7 @@ const SidebarCard: React.FCX<SidebarCardProps> = ({
   className,
 }) => (
   <div className={clsx(className, `p-4 mb-4`)}>
-    <div className="text-center pb-2 px-4 border-b border-gray-400">
-      {title}
-    </div>
+    <div className="text-center pb-2 px-4 border-b border-border">{title}</div>
     <div>{children}</div>
   </div>
 );

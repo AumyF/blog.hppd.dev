@@ -45,9 +45,9 @@ export const GitInfo: React.FC<GitInfoProps> = ({ filePath: path }) => {
 
 const Raw: React.FC<{ head: string; data: React.ReactNode }> = props => (
   <tr>
-    <th className="text-gray-600 p-1 pl-2 text-left border-r border-gray-300">
+    <th className="text-text p-1 pl-2 text-left border-r border-border">
       {props.head}
     </th>
-    <td className="text-gray-600 p-1 pl-2 break-all">{props.data}</td>
+    <td className="text-weak p-1 pl-2 break-all">{props.data}</td>
   </tr>
 );

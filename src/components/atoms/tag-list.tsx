@@ -7,7 +7,7 @@ import clsx from "clsx";
 export type TagListProps = { tags: string[] };
 
 const Tag: React.FCX<{ tag: string }> = ({ tag, className }) => (
-  <Link className={clsx("text-fuchsia-white ", className)} to={`/tags/${tag}`}>
+  <Link className={clsx(" ", className)} to={`/tags/${tag}`}>
     {tag}
   </Link>
 );

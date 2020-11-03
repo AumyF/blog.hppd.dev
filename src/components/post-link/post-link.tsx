@@ -24,7 +24,7 @@ export const PostLink: React.FCX<PostLinkProps> = ({
   excerpt,
 }) => (
   <article
-    className={clsx(className, "p-4 bg-transparent border-t border-gray-200")}
+    className={clsx(className, "p-4 bg-transparent border-t border-border")}
   >
     <div className="flex items-baseline gap-2 flex-wrap">
       <Link
@@ -34,13 +34,13 @@ export const PostLink: React.FCX<PostLinkProps> = ({
       >
         {title}
       </Link>
-      <div className="contents text-gray-800">
+      <div className="contents">
         {yyyymmdd && <PostDate path={yyyymmdd} />}
         <div className="flex flex-wrap items-baseline gap-1">
           <TagList tags={tags} />
         </div>
       </div>
     </div>
-    <div className="text-gray-600">{excerpt}</div>
+    <div className="text-weak">{excerpt}</div>
   </article>
 );
