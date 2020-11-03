@@ -16,7 +16,7 @@ export const SiteHeader: React.FCX<SiteHeaderProps> = ({ className }) => {
     <header
       className={clsx(
         className,
-        "text-gray-200 bg-gray-900 leading-tight text-center"
+        "text-text bg-white leading-tight text-center"
       )}
     >
       <div className="flex container mx-auto px-4 items-center gap-2 justify-end">
@@ -57,7 +57,7 @@ type HeaderIconProps = { icon: IconProp; to: string };
 const Icon: React.FCX<HeaderIconProps> = ({ icon, to }) => (
   <AnchorOrLink
     {...{ to, alt: "icon" }}
-    className="transition-colors text-3xl mx-1 text-gray-200 hover:text-fuchsia-black"
+    className="transition-colors text-3xl mx-1 text-text hover:text-fuchsia-black"
   >
     <FontAwesomeIcon {...{ icon }} />
   </AnchorOrLink>

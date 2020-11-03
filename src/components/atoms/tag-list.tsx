@@ -7,13 +7,13 @@ import clsx from "clsx";
 export type TagListProps = { tags: string[] };
 
 const Tag: React.FCX<{ tag: string }> = ({ tag, className }) => (
-  <Link className={clsx("text-fuchsia-white ", className)} to={`/tags/${tag}`}>
+  <Link className={clsx(" ", className)} to={`/tags/${tag}`}>
     {tag}
   </Link>
 );
 
 export const TagList: React.FCX<TagListProps> = ({ tags, className }) => (
-  <div className={clsx(className, ` inline-flex flex-wrap gap-1`)}>
+  <div className={clsx(className, `w-max-content flex flex-wrap gap-1`)}>
     <span>
       <FontAwesomeIcon icon={faTags} />
     </span>

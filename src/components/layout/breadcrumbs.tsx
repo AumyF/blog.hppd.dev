@@ -6,7 +6,6 @@ import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { invisibleAnchor } from "../styles/styles";
 import { useSite } from "../../hooks/use-site";
 import { assertsNonNull } from "../../utils/asserts-non-null";
-import tw from "twin.macro";
 import clsx from "clsx";
 
 export type BreadcrumbsProps = {
@@ -27,13 +26,12 @@ export const Breadcrumbs: React.FCX<BreadcrumbsProps> = ({
 
   const second = `${restDomainName[0]}.${topLevelDomain}`;
   return (
-    <nav className={clsx(`text-gray-200 bg-gray-900`, className)}>
+    <nav className={clsx(`text-text bg-white`, className)}>
       <div
         className="container mx-auto px-4"
         css={css`
           a {
             ${invisibleAnchor}
-            ${tw`text-fuchsia-black`}
           }
         `}
       >
