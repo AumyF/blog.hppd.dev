@@ -56,6 +56,15 @@ module.exports = {
           800: "hsl(260, 25%, 35%)",
           900: "hsl(260, 10%, 15%)",
         },
+        background: "#edecfb",
+        border: "#d0cee3",
+        weak: "#7975a2",
+        text: "#4a457f",
+        primary: {
+          shade: "#e64a73",
+          normal: "#ea6386",
+          light: "#ed7e9b",
+        },
         fuchsia: {
           white: "hsl(343, 94%, 63%)",
           black: "hsl(343, 94%, 75%)",

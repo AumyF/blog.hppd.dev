@@ -32,7 +32,7 @@ export const prismStyles = css`
     margin-bottom: -9px;
     padding: 0.25rem 0.5rem;
     font-size: 0.8em;
-    ${tw`text-gray-100`}
+    ${tw`text-background`}
     font-weight: 600;
     border-radius: 1rem 1rem 0 0;
   }

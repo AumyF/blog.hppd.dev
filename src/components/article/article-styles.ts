@@ -13,7 +13,7 @@ const headingStyle = css`
 export const ArticleStyles = css`
   h1 {
     ${headingStyle};
-    ${tw`leading-snug mb-3 mt-8 text-3xl border-b border-gray-300`};
+    ${tw`leading-snug mb-3 mt-8 text-3xl border-b border-border`};
     font-feature-settings: "palt";
   }
 
@@ -28,11 +28,11 @@ export const ArticleStyles = css`
   }
 
   blockquote {
-    ${tw`pl-6 border-l-2 border-gray-300`};
+    ${tw`pl-6 border-l-2 border-border`};
   }
 
   p {
-    ${tw`my-4`};
+    ${tw`mb-4`};
   }
 
   hr {
@@ -64,7 +64,7 @@ export const ArticleStyles = css`
   hr {
     margin-top: 0.75rem;
     margin-bottom: 0.75rem;
-    ${tw`border-t-0 border-b border-gray-300`}
+    ${tw`border-t-0 border-b border-border`}
   }
 
   pre {
@@ -78,7 +78,7 @@ export const ArticleStyles = css`
 
   table {
     > thead {
-      ${tw`border-b border-gray-400`}
+      ${tw`border-b border-border`}
     }
     > tbody {
       > tr {
@@ -88,7 +88,7 @@ export const ArticleStyles = css`
         > td {
           padding: 0.2rem 1rem;
           &:not(:last-child) {
-            ${tw`border-r border-gray-300`}
+            ${tw`border-r border-border`}
           }
         }
       }

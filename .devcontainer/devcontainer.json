@@ -13,12 +13,13 @@
 
   // Add the IDs of extensions you want installed when the container is created.
   "extensions": [
-    "dbaeumer.vscode-eslint",
-    "wraith13.background-phi-colors",
-    "esbenp.prettier-vscode",
     "bradlc.vscode-tailwindcss",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
     "jpoissonnier.vscode-styled-components",
-    "wraith13.bracket-lens"
+    "wraith13.background-phi-colors",
+    "wraith13.bracket-lens",
+    "wraith13.clairvoyant"
   ],
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
