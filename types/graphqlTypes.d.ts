@@ -1861,9 +1861,19 @@ export type SitePageFieldsEnum =
   'pluginCreator___pluginOptions___documentPaths' |
   'pluginCreator___pluginOptions___isTSX' |
   'pluginCreator___pluginOptions___allExtensions' |
-  'pluginCreator___pluginOptions___allowNamespaces' |
+  'pluginCreator___pluginOptions___jsxPragma' |
   'pluginCreator___pluginOptions___name' |
   'pluginCreator___pluginOptions___path' |
+  'pluginCreator___pluginOptions___extensions' |
+  'pluginCreator___pluginOptions___mediaTypes' |
+  'pluginCreator___pluginOptions___sourceMap' |
+  'pluginCreator___pluginOptions___autoLabel' |
+  'pluginCreator___pluginOptions___labelFormat' |
+  'pluginCreator___pluginOptions___cssPropOptimization' |
+  'pluginCreator___pluginOptions___head' |
+  'pluginCreator___pluginOptions___anonymize' |
+  'pluginCreator___pluginOptions___respectDNT' |
+  'pluginCreator___pluginOptions___pageTransitionDelay' |
   'pluginCreator___pluginOptions___short_name' |
   'pluginCreator___pluginOptions___start_url' |
   'pluginCreator___pluginOptions___background_color' |
@@ -2067,9 +2077,19 @@ export type SitePluginFieldsEnum =
   'pluginOptions___documentPaths' |
   'pluginOptions___isTSX' |
   'pluginOptions___allExtensions' |
-  'pluginOptions___allowNamespaces' |
+  'pluginOptions___jsxPragma' |
   'pluginOptions___name' |
   'pluginOptions___path' |
+  'pluginOptions___extensions' |
+  'pluginOptions___mediaTypes' |
+  'pluginOptions___sourceMap' |
+  'pluginOptions___autoLabel' |
+  'pluginOptions___labelFormat' |
+  'pluginOptions___cssPropOptimization' |
+  'pluginOptions___head' |
+  'pluginOptions___anonymize' |
+  'pluginOptions___respectDNT' |
+  'pluginOptions___pageTransitionDelay' |
   'pluginOptions___short_name' |
   'pluginOptions___start_url' |
   'pluginOptions___background_color' |
@@ -2199,9 +2219,19 @@ export type SitePluginPluginOptions = {
   documentPaths?: Maybe<Array<Maybe<Scalars['String']>>>;
   isTSX?: Maybe<Scalars['Boolean']>;
   allExtensions?: Maybe<Scalars['Boolean']>;
-  allowNamespaces?: Maybe<Scalars['Boolean']>;
+  jsxPragma?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   path?: Maybe<Scalars['String']>;
+  extensions?: Maybe<Array<Maybe<Scalars['String']>>>;
+  mediaTypes?: Maybe<Array<Maybe<Scalars['String']>>>;
+  sourceMap?: Maybe<Scalars['Boolean']>;
+  autoLabel?: Maybe<Scalars['Boolean']>;
+  labelFormat?: Maybe<Scalars['String']>;
+  cssPropOptimization?: Maybe<Scalars['Boolean']>;
+  head?: Maybe<Scalars['Boolean']>;
+  anonymize?: Maybe<Scalars['Boolean']>;
+  respectDNT?: Maybe<Scalars['Boolean']>;
+  pageTransitionDelay?: Maybe<Scalars['Int']>;
   short_name?: Maybe<Scalars['String']>;
   start_url?: Maybe<Scalars['String']>;
   background_color?: Maybe<Scalars['String']>;
@@ -2222,9 +2252,19 @@ export type SitePluginPluginOptionsFilterInput = {
   documentPaths?: Maybe<StringQueryOperatorInput>;
   isTSX?: Maybe<BooleanQueryOperatorInput>;
   allExtensions?: Maybe<BooleanQueryOperatorInput>;
-  allowNamespaces?: Maybe<BooleanQueryOperatorInput>;
+  jsxPragma?: Maybe<StringQueryOperatorInput>;
   name?: Maybe<StringQueryOperatorInput>;
   path?: Maybe<StringQueryOperatorInput>;
+  extensions?: Maybe<StringQueryOperatorInput>;
+  mediaTypes?: Maybe<StringQueryOperatorInput>;
+  sourceMap?: Maybe<BooleanQueryOperatorInput>;
+  autoLabel?: Maybe<BooleanQueryOperatorInput>;
+  labelFormat?: Maybe<StringQueryOperatorInput>;
+  cssPropOptimization?: Maybe<BooleanQueryOperatorInput>;
+  head?: Maybe<BooleanQueryOperatorInput>;
+  anonymize?: Maybe<BooleanQueryOperatorInput>;
+  respectDNT?: Maybe<BooleanQueryOperatorInput>;
+  pageTransitionDelay?: Maybe<IntQueryOperatorInput>;
   short_name?: Maybe<StringQueryOperatorInput>;
   start_url?: Maybe<StringQueryOperatorInput>;
   background_color?: Maybe<StringQueryOperatorInput>;
