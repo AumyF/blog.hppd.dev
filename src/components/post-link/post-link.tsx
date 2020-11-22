@@ -28,7 +28,7 @@ export const PostLink: React.FCX<PostLinkProps> = ({
     className={clsx(className, "p-4 bg-transparent border-t border-border")}
   >
     <div
-      className="flex flex-wrap items-baseline gap-4 text-weak"
+      className="flex flex-wrap items-baseline gap-x-4 text-weak"
       // css={css`
       //   a {
       //     ${tw`text-weak`}

@@ -42,7 +42,7 @@ export const Layout: React.FCX<LayoutProps> = ({
       <Title>{title}</Title>
       {TitleComponent && <TitleComponent {...{ title }} />}
     </div>
-    <div className="container mx-auto flex gap-4 px-4">
+    <div className="container mx-auto flex gap-4 px-0 sm:px-4 transition-all duration-100">
       {SidebarComponents && (
         <div
           className="flex-shrink-0 hidden md:block sticky h-min-content"
