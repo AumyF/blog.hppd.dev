@@ -26,10 +26,10 @@
   "forwardPorts": [8000],
 
   // Use 'postCreateCommand' to run commands after the container is created.
-  "postCreateCommand": "npm i",
+  // "postCreateCommand": "npm i",
 
   // Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
-  "remoteUser": "node"
+  "remoteUser": "node",
   // "postStartCommand": "npm i",
-  // "postAttachCommand": "npm i"
+  "postAttachCommand": "npm i"
 }
