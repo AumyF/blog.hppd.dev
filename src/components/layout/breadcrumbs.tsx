@@ -1,12 +1,13 @@
-import React from "react";
 import { css } from "@emotion/core";
-import { Link } from "gatsby";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { invisibleAnchor } from "../styles/styles";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import clsx from "clsx";
+import { Link } from "gatsby";
+import React from "react";
+
 import { useSite } from "../../hooks/use-site";
 import { assertsNonNull } from "../../utils/asserts-non-null";
-import clsx from "clsx";
+import { invisibleAnchor } from "../styles/styles";
 
 export type BreadcrumbsProps = {
   date?: string[];
@@ -16,8 +17,8 @@ export type BreadcrumbsProps = {
 const Slash = <span className="select-none mx-1">/</span>;
 
 export const Breadcrumbs: React.FCX<BreadcrumbsProps> = ({
-  date,
   className,
+  date,
 }) => {
   const [year, month, dayPath] = date ?? [undefined, undefined, undefined];
   const [topLevelDomain, ...restDomainName] = assertsNonNull(

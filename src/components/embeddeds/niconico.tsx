@@ -1,15 +1,15 @@
 import React from "react";
 
 export type NiconicoProps = {
-  src: string;
   from?: number;
+  src: string;
   title?: string;
 };
 
 export const Niconico: React.FCX<NiconicoProps> = ({
-  src,
-  from = 0,
   className = "",
+  from = 0,
+  src,
   title = "",
 }) => (
   <iframe

@@ -1,16 +1,32 @@
 {
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "react", "react-hooks"],
+  "plugins": [
+    "@typescript-eslint",
+    "react",
+    "react-hooks",
+    "simple-import-sort",
+    "sort-destructure-keys",
+    "typescript-sort-keys"
+  ],
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
-    "prettier/@typescript-eslint"
+    "prettier/@typescript-eslint",
+    "plugin:typescript-sort-keys/recommended"
   ],
   "ignorePatterns": ["*.js", "/public", "/types"],
   "rules": {
     "react/prop-types": "off",
-    "@typescript-eslint/ban-types": "off"
+    "@typescript-eslint/ban-types": "off",
+    "simple-import-sort/imports": "warn",
+    "simple-import-sort/exports": "warn",
+    "sort-imports": "off",
+    "import/order": "off",
+    "sort-destructure-keys/sort-destructure-keys": [
+      "warn",
+      { "caseSensitive": false }
+    ]
   }
 }

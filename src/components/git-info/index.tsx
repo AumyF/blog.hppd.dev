@@ -1,4 +1,5 @@
 import React from "react";
+
 import { useLatestCommit } from "./useLatestCommit";
 
 export type GitInfoProps = { filePath: string };
@@ -6,10 +7,10 @@ export type GitInfoProps = { filePath: string };
 export const GitInfo: React.FC<GitInfoProps> = ({ filePath: path }) => {
   path = `${path}/index`;
   const {
-    isLoading,
-    isError,
     data: { lastUpdate, message, url },
     errMessage,
+    isError,
+    isLoading,
   } = useLatestCommit(path);
   return (
     <div>
@@ -43,7 +44,7 @@ export const GitInfo: React.FC<GitInfoProps> = ({ filePath: path }) => {
   );
 };
 
-const Raw: React.FC<{ head: string; data: React.ReactNode }> = props => (
+const Raw: React.FC<{ data: React.ReactNode; head: string }> = props => (
   <tr>
     <th className="text-text p-1 pl-2 text-left border-r border-border">
       {props.head}

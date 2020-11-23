@@ -1,28 +1,29 @@
-import React from "react";
-import { Link } from "gatsby";
-import { PostDate } from "./post-date";
-import { invisibleAnchor } from "../styles/styles";
-import { TagList } from "../atoms/tag-list";
-import clsx from "clsx";
 import { css } from "@emotion/core";
+import clsx from "clsx";
+import { Link } from "gatsby";
+import React from "react";
+
+import { TagList } from "../atoms/tag-list";
+import { invisibleAnchor } from "../styles/styles";
+import { PostDate } from "./post-date";
 
 export type PostLinkProps = {
-  path: string;
-  title: string;
-  tags: string[];
-  yyyymmdd: string;
   excerpt: string;
+  path: string;
+  tags: string[];
+  title: string;
+  yyyymmdd: string;
 };
 // PickAndPartialPick<Post, "path" | "title", "tags"> &
 //   Pick<MdxFields, "yyyymmdd">;
 
 export const PostLink: React.FCX<PostLinkProps> = ({
-  path,
-  title,
   className,
-  tags,
-  yyyymmdd,
   excerpt,
+  path,
+  tags,
+  title,
+  yyyymmdd,
 }) => (
   <article
     className={clsx(className, "p-4 bg-transparent border-t border-border")}

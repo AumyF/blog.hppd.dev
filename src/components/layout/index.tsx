@@ -1,34 +1,36 @@
-import React from "react";
-import { Helmet } from "react-helmet";
-import { css, Global } from "@emotion/core";
-import { Footer } from "./footer";
-import { Breadcrumbs } from "./breadcrumbs";
-import { Title } from "./title";
 import "prismjs/plugins/line-numbers/prism-line-numbers.css";
 import "tailwindcss/dist/base.min.css";
-import { SiteHeader } from "./header";
-import { globalStyles } from "../styles/global";
+
+import { css, Global } from "@emotion/core";
 import { config } from "@fortawesome/fontawesome-svg-core";
-import tw from "twin.macro";
 import clsx from "clsx";
+import React from "react";
+import { Helmet } from "react-helmet";
+import tw from "twin.macro";
+
+import { globalStyles } from "../styles/global";
+import { Breadcrumbs } from "./breadcrumbs";
+import { Footer } from "./footer";
+import { SiteHeader } from "./header";
+import { Title } from "./title";
 config.autoAddCss = false;
 
 export type LayoutProps = {
-  title: string;
-  path: string;
   SidebarComponent?: React.ComponentProps<typeof SidebarCard>[];
   TitleComponent?: React.ComponentType<{ title: string }>;
+  path: string;
+  title: string;
 };
 
 const media = (size: "sm" | "md" | "lg" | "xl") =>
   `@media (min-width: ${{ sm: 560, md: 768, lg: 960, xl: 1024 }[size]}px)`;
 
 export const Layout: React.FCX<LayoutProps> = ({
-  title,
   children,
-  path,
   className,
+  path,
   SidebarComponent: SidebarComponents = null,
+  title,
   TitleComponent,
 }) => (
   <div className={clsx(className, "min-h-screen text-text bg-background")}>
@@ -73,9 +75,9 @@ export const Layout: React.FCX<LayoutProps> = ({
 type SidebarCardProps = { readonly title: string };
 
 const SidebarCard: React.FCX<SidebarCardProps> = ({
-  title,
   children,
   className,
+  title,
 }) => (
   <div className={clsx(className, `p-4 mb-4`)}>
     <div className="text-center pb-2 px-4 border-b border-border">{title}</div>

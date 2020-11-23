@@ -1,15 +1,16 @@
-import React from "react";
+import { MDXProvider } from "@mdx-js/react";
 import { graphql, PageProps } from "gatsby";
+import { MDXRenderer } from "gatsby-plugin-mdx";
+import React from "react";
+
 import { BlogPostQuery } from "../../../types/graphqlTypes";
-import { assertsNonNull as $ } from "../../utils/asserts-non-null";
-import { Layout } from "../../components/layout";
 import { Article } from "../../components/article";
 import { TagList } from "../../components/atoms/tag-list";
 import { GitInfo } from "../../components/git-info";
-import { MDXProvider } from "@mdx-js/react";
-import { MDXRenderer } from "gatsby-plugin-mdx";
-import { ArticleElements } from "./article-elements";
+import { Layout } from "../../components/layout";
 import { TableOfContents } from "../../components/table-of-contents";
+import { assertsNonNull as $ } from "../../utils/asserts-non-null";
+import { ArticleElements } from "./article-elements";
 
 export type BlogPostContext = {
   id: string;

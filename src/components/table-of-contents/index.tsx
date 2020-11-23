@@ -1,17 +1,17 @@
-import React from "react";
 import { css } from "@emotion/core";
-import { Link } from "gatsby";
 import clsx from "clsx";
+import { Link } from "gatsby";
+import React from "react";
 
 export type TOC = Readonly<{ items?: TOCItems }>;
 
 export type TOCItems = {
-  url: string;
-  title: string;
   items?: TOCItems;
+  title: string;
+  url: string;
 }[];
 
-const Item: React.FCX<{ items: TOCItems }> = ({ items, className }) => (
+const Item: React.FCX<{ items: TOCItems }> = ({ className, items }) => (
   <ul className={className}>
     {items.map(items => (
       <li key={items.title} className="leading-normal" css={css``}>
@@ -32,8 +32,8 @@ export type TableOfContentsProps = {
 };
 
 export const TableOfContents: React.FCX<TableOfContentsProps> = ({
-  toc: { items = null },
   className = "",
+  toc: { items = null },
 }) =>
   items && (
     <div className={clsx(`pb-2`, className)}>

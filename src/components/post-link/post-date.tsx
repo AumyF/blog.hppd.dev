@@ -1,14 +1,14 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCalendarDay } from "@fortawesome/free-solid-svg-icons";
 import { css } from "@emotion/core";
+import { faCalendarDay } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import clsx from "clsx";
+import React from "react";
 
 export type PostDateProps = {
   path: string;
 };
 
-export const PostDate: React.FCX<PostDateProps> = ({ path, className }) => (
+export const PostDate: React.FCX<PostDateProps> = ({ className, path }) => (
   <div className={clsx("inline ", className)}>
     <FontAwesomeIcon icon={faCalendarDay} />
     <span

@@ -30,7 +30,7 @@ Docker Desktop をポチポチ入れて Settings から Use the WSL2 based engin
 
 # AumyF/blog.hppd.dev/.devcontainer/Dockerfile を見てみよう
 
-当ブログのDockerfile を見てみましょう。
+当ブログの Dockerfile を見てみましょう。
 
 ```dockerfile
 ARG VARIANT="14-buster"
@@ -80,10 +80,10 @@ FROM mcr.microsoft.com/vscode/devcontainers/typescript-node:0-${VARIANT}
 
 `settings` で (あんまりやると共同作業者の顰蹙を買いそうですけど) VSCode の設定を編集できたり `extensions` で拡張機能を入れたりできます。eslint, Prettier, Tailwind, Emotion 用の拡張を入れておきました。Bracket Lens と Background Phi Colors はおれの趣味ですが、これを気に入らない人もいると思うのでどうするか悩むところです。おれとしては外したくない。またホストから `node_modules` を引っ張るのは流石にアレ (特に純 Windows か macOS の環境で実行すると sharp などのバイナリが `windows` とか `darwin` 向けになっててコケる) なので `.cache` と一緒に `.dockerignore` してコンテナが爆誕した瞬間に `npm i` で引っ張っています。
 
-[devcontainer.jsonの公式リファレンス](https://code.visualstudio.com/docs/remote/devcontainerjson-reference)貼っときますね (詳しくはこれ見て)。
+[devcontainer.json の公式リファレンス](https://code.visualstudio.com/docs/remote/devcontainerjson-reference)貼っときますね (詳しくはこれ見て)。
 
 # まとめ
 
-WSL2だらだ適当に書くとWSLについてダラダラ書いてしまう。免罪符として「雑度が高い」タグを生み出した。こいつの存在自体の雑度が高くないか？
+WSL2 だらだ適当に書くと WSL についてダラダラ書いてしまう。免罪符として「雑度が高い」タグを生み出した。こいつの存在自体の雑度が高くないか？
 
-WSLに対してDockerの知識が全然ないことがバレたので勉強する。コンテナとイメージの違いも正直あんまりわかってない。めざせDockerの話するとめっちゃ早口になるオタク。
+WSL に対して Docker の知識が全然ないことがバレたので勉強する。コンテナとイメージの違いも正直あんまりわかってない。めざせ Docker の話するとめっちゃ早口になるオタク。

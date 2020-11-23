@@ -1,12 +1,13 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTwitter, faGithub } from "@fortawesome/free-brands-svg-icons";
 import type { IconProp } from "@fortawesome/fontawesome-svg-core";
-import { AnchorOrLink } from "../atoms/anchor-or-link";
-import { Link } from "gatsby";
-import tw from "twin.macro";
-import { invisibleAnchor } from "../styles/styles";
+import { faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import clsx from "clsx";
+import { Link } from "gatsby";
+import React from "react";
+import tw from "twin.macro";
+
+import { AnchorOrLink } from "../atoms/anchor-or-link";
+import { invisibleAnchor } from "../styles/styles";
 // import svg from "../../../static/ftrf-logo.svg";
 
 export type SiteHeaderProps = {};

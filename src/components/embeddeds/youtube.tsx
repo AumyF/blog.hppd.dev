@@ -1,14 +1,14 @@
 import React from "react";
 
 export type YouTubeProps = {
-  src: string;
   from?: number;
+  src: string;
 };
 
 export const YouTube: React.FCX<YouTubeProps> = ({
-  src,
-  from = 0,
   className = "",
+  from = 0,
+  src,
 }) => (
   <iframe
     className={className + " "}

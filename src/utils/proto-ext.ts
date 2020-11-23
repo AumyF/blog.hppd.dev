@@ -5,8 +5,8 @@ export const log = Symbol("log");
 
 declare global {
   interface Object {
-    [tap](fun: (arg: this) => unknown): this;
     [log](): this;
+    [tap](fun: (arg: this) => unknown): this;
   }
 }
 

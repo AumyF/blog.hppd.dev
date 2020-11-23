@@ -4,8 +4,8 @@ import React from "react";
  * @see https://www.gatsbyjs.org/docs/gatsby-link/#reminder-use-link-only-for-internal-links
  */
 export const AnchorOrLink: React.FC<GatsbyLinkProps<unknown>> = ({
-  to,
   children,
+  to,
   ...other
 }) => {
   // Tailor the following test to your environment.

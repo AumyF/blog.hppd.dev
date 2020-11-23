@@ -1,9 +1,10 @@
+import { graphql, Link, PageProps } from "gatsby";
 import React from "react";
-import { Layout } from "../components/layout";
-import { PageProps, graphql, Link } from "gatsby";
+
 import { TagsPageQuery } from "../../types/graphqlTypes";
-import { PostList } from "../components/post-link/post-list";
 import { Article } from "../components/article";
+import { Layout } from "../components/layout";
+import { PostList } from "../components/post-link/post-list";
 import { TableOfContents } from "../components/table-of-contents";
 
 export type TagsPageProps = PageProps<TagsPageQuery>;
@@ -33,7 +34,7 @@ export const TagsPage: (props: TagsPageProps) => React.ReactElement = ({
     ]}
   >
     <Article>
-      {group.map(({ fieldValue, totalCount, nodes }) => (
+      {group.map(({ fieldValue, nodes, totalCount }) => (
         <section key={fieldValue ?? ""}>
           <h1 id={`${fieldValue}`}>
             <Link to={"/tags/" + fieldValue ?? "#"}>{fieldValue}</Link>

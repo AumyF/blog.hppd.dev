@@ -1,5 +1,6 @@
-import React from "react";
 import { css } from "@emotion/core";
+import React from "react";
+
 import { useSite } from "../../hooks/use-site";
 
 export type FooterProps = {};

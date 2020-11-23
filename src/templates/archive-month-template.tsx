@@ -1,5 +1,6 @@
+import { graphql, PageProps } from "gatsby";
 import React from "react";
-import { PageProps, graphql } from "gatsby";
+
 import { ArchiveMonthTemplateQuery } from "../../types/graphqlTypes";
 import { PostListPage } from "./post-list-page";
 
@@ -12,10 +13,10 @@ export type ArchiveMonthPageProps = PageProps<
 >;
 
 export const ArchiveMonthPage: React.FC<ArchiveMonthPageProps> = ({
-  pageContext: { yyyymm },
   data: {
     allMdx: { nodes },
   },
+  pageContext: { yyyymm },
 }) => (
   <PostListPage
     {...{ nodes }}
