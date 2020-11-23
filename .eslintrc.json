@@ -28,5 +28,10 @@
       "warn",
       { "caseSensitive": false }
     ]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }
