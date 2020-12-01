@@ -72,7 +72,7 @@
     "eslint-plugin-typescript-sort-keys": "^1.5.0",
     "jest": "^25.5.4",
     "jsonc-parser": "^3.0.0",
-    "prettier": "^2.2.0",
+    "prettier": "^2.2.1",
     "tailwindcss": "^1.9.6",
     "ts-jest": "^25.5.1",
     "ts-node": "^9.0.0",
