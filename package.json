@@ -38,7 +38,7 @@
     "gatsby-plugin-react-helmet": "^3.5.0",
     "gatsby-plugin-twitter": "^2.5.0",
     "gatsby-plugin-typescript": "^2.8.0",
-    "gatsby-remark-autolink-headers": "^2.6.0",
+    "gatsby-remark-autolink-headers": "^2.7.0",
     "gatsby-remark-code-titles": "^1.1.0",
     "gatsby-remark-prismjs": "^3.9.0",
     "gatsby-source-filesystem": "^2.6.1",
