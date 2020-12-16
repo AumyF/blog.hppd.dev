@@ -27,11 +27,11 @@ export const SiteHeader: React.FCX<SiteHeaderProps> = ({ className }) => {
             Happy Paddy
           </Link>
         </h1>
-        {/* <nav>
+        <nav>
           <Link css={[navigation, invisibleAnchor]} to="/about">
             About
           </Link>
-        </nav> */}
+        </nav>
         <nav>
           <Link css={[navigation, invisibleAnchor]} to="/tags">
             Tags
