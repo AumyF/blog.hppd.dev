@@ -6,7 +6,8 @@
     "react-hooks",
     "simple-import-sort",
     "sort-destructure-keys",
-    "typescript-sort-keys"
+    "typescript-sort-keys",
+    "@emotion"
   ],
   "extends": [
     "eslint:recommended",
@@ -17,6 +18,8 @@
   ],
   "ignorePatterns": ["*.js", "/public", "/types"],
   "rules": {
+    // https://emotion.sh/docs/emotion-11#package-renaming
+    "@emotion/pkg-renaming": "error",
     "react/prop-types": "off",
     "@typescript-eslint/ban-types": "off",
     "simple-import-sort/imports": "warn",

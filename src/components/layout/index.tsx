@@ -1,7 +1,7 @@
 import "prismjs/plugins/line-numbers/prism-line-numbers.css";
 import "tailwindcss/dist/base.min.css";
 
-import { css, Global } from "@emotion/core";
+import { css, Global } from '@emotion/react';
 import { config } from "@fortawesome/fontawesome-svg-core";
 import clsx from "clsx";
 import React from "react";

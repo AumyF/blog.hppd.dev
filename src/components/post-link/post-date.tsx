@@ -1,4 +1,4 @@
-import { css } from "@emotion/core";
+import { css } from '@emotion/react';
 import { faCalendarDay } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import clsx from "clsx";

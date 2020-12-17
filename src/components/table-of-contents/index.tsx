@@ -1,4 +1,4 @@
-import { css } from "@emotion/core";
+import { css } from '@emotion/react';
 import clsx from "clsx";
 import { Link } from "gatsby";
 import React from "react";
