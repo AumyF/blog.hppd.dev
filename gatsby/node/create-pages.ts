@@ -1,12 +1,13 @@
 import { GatsbyNode } from "gatsby";
-import { GatsbyNodeQuery } from "../../types/graphqlTypes";
-import { TagPageContext } from "../../src/templates/tag-page-template";
 import Path from "path";
-import { BlogPostContext } from "../../src/templates/blog-post-template";
-import { cyan, yellow } from "./colored-print";
-import { assertsNonNull } from "../../src/utils/asserts-non-null";
-import { ArchiveYearPageContext } from "../../src/templates/archive-year-template";
+
 import { ArchiveMonthPageContenxt } from "../../src/templates/archive-month-template";
+import { ArchiveYearPageContext } from "../../src/templates/archive-year-template";
+import { BlogPostContext } from "../../src/templates/blog-post-template";
+import { TagPageContext } from "../../src/templates/tag-page-template";
+import { assertsNonNull } from "../../src/utils/asserts-non-null";
+import { GatsbyNodeQuery } from "../../types/graphqlTypes";
+import { cyan, yellow } from "./colored-print";
 
 const BlogPostTemplate = Path.resolve(
   "./src/templates/blog-post-template/index.tsx"
@@ -20,8 +21,8 @@ const ArchiveMonthTemplate = Path.resolve(
 );
 
 export const createPages: GatsbyNode["createPages"] = async ({
-  graphql,
   actions: { createPage },
+  graphql,
   reporter,
 }) => {
   console.log(cyan("started ") + "createPages");
