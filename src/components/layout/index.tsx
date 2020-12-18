@@ -45,7 +45,7 @@ export const Layout: React.FCX<LayoutProps> = ({
     </Helmet>
     <Global styles={globalStyles} />
     <SiteHeader />
-    <Breadcrumbs className="mb-8 pb-1" date={path?.split("/")} path={path} />
+    <Breadcrumbs date={path?.split("/")} path={path} />
     <div className="container mx-auto my-8 px-4">
       <Title>{title}</Title>
       {TitleComponent && <TitleComponent {...{ title }} />}

@@ -1,3 +1,12 @@
+import {
+  Box,
+  Container,
+  Divider,
+  Flex,
+  Heading,
+  HStack,
+  Spacer,
+} from "@chakra-ui/react";
 import { css } from "@emotion/react";
 import type { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
@@ -14,40 +23,48 @@ export type SiteHeaderProps = {};
 
 export const SiteHeader: React.FCX<SiteHeaderProps> = ({ className }) => {
   return (
-    <header
+    <Box
+      as="header"
+      bg="white"
+      textAlign="center"
+      py=".5rem"
       className={clsx(
         className,
         "text-text bg-white leading-tight text-center"
       )}
     >
-      <div className="flex container mx-auto px-4 items-center gap-2 justify-end">
-        <h1 className="text-3xl font-bold pr-2 mr-auto">
-          <Link to="/" className="text-current no-underline">
-            {/* <img src={svg} alt="FortunateRicefield" /> */}
-            Happy Paddy
-          </Link>
-        </h1>
-        <nav>
-          <Link css={[navigation, invisibleAnchor]} to="/about">
-            About
-          </Link>
-        </nav>
-        <nav>
-          <Link css={[navigation, invisibleAnchor]} to="/tags">
-            Tags
-          </Link>
-        </nav>
-        {/* <nav>
-          <Link css={[navigation, invisibleAnchor]} to="/archives">
-            Archives
-          </Link>
-        </nav> */}
-        <nav className="py-2">
-          <Icon to="https://twitter.com/MominisJ" icon={faTwitter} />
-          <Icon to="https://github.com/AumyF" icon={faGithub} />
-        </nav>
-      </div>
-    </header>
+      <Container maxW="120ch">
+        <Flex
+          direction="row"
+          alignItems="center"
+          className="flex container mx-auto px-4 items-center gap-2 justify-end"
+        >
+          <Heading as="h1" className="text-3xl font-bold pr-2 mr-auto">
+            <Link to="/" className="text-current no-underline">
+              {/* <img src={svg} alt="FortunateRicefield" /> */}
+              Happy Paddy
+            </Link>
+          </Heading>
+          <Spacer />
+          <HStack divider={<Divider orientation="vertical" />}>
+            <nav>
+              <Link css={[navigation, invisibleAnchor]} to="/about">
+                About
+              </Link>
+            </nav>
+            <nav>
+              <Link css={[navigation, invisibleAnchor]} to="/tags">
+                Tags
+              </Link>
+            </nav>
+            {/* <nav className="py-2">
+              <Icon to="https://twitter.com/MominisJ" icon={faTwitter} />
+              <Icon to="https://github.com/AumyF" icon={faGithub} />
+            </nav> */}
+          </HStack>
+        </Flex>
+      </Container>
+    </Box>
   );
 };
 
