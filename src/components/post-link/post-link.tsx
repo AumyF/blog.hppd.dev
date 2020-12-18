@@ -1,10 +1,10 @@
-import { css } from '@emotion/react';
+import { Box, Heading, Text, Wrap, WrapItem } from "@chakra-ui/react";
+import { css } from "@emotion/react";
 import clsx from "clsx";
-import { Link } from "gatsby";
 import React from "react";
 
+import { Hyper } from "../atoms/Hyper";
 import { TagList } from "../atoms/tag-list";
-import { invisibleAnchor } from "../styles/styles";
 import { PostDate } from "./post-date";
 
 export type PostLinkProps = {
@@ -17,42 +17,34 @@ export type PostLinkProps = {
 // PickAndPartialPick<Post, "path" | "title", "tags"> &
 //   Pick<MdxFields, "yyyymmdd">;
 
-export const PostLink: React.FCX<PostLinkProps> = ({
-  className,
+export const PostLink: React.VFC<PostLinkProps> = ({
   excerpt,
   path,
   tags,
   title,
   yyyymmdd,
 }) => (
-  <article
-    className={clsx(className, "p-4 bg-transparent border-t border-border")}
-  >
-    <div
-      className="flex flex-wrap items-baseline gap-x-4 text-weak"
-      // css={css`
-      //   a {
-      //     ${tw`text-weak`}
-      //   }
-      // `}
-    >
-      {yyyymmdd && <PostDate path={yyyymmdd} />}
-      <TagList tags={tags} />
-    </div>
-    <div className="my-2">
-      <Link
+  <Box as="article" px=".5rem">
+    <Wrap spacing=".5rem" direction="row" wrap="wrap">
+      {yyyymmdd && (
+        <WrapItem>
+          <PostDate path={yyyymmdd} />
+        </WrapItem>
+      )}
+      <WrapItem>
+        <TagList tags={tags} />
+      </WrapItem>
+    </Wrap>
+    <Heading my=".5rem">
+      <Hyper
         to={`/${path}`}
-        className="text-3xl font-bold leading-tight"
-        css={[
-          invisibleAnchor,
-          css`
-            font-feature-settings: "palt";
-          `,
-        ]}
+        css={css`
+          font-feature-settings: "palt";
+        `}
       >
         {title}
-      </Link>
-    </div>
-    <div className="text-weak">{excerpt}</div>
-  </article>
+      </Hyper>
+    </Heading>
+    <Text color="gray.600">{excerpt}</Text>
+  </Box>
 );

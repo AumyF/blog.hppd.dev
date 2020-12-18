@@ -1,5 +1,12 @@
 import "prismjs/plugins/line-numbers/prism-line-numbers.css";
 
+import {
+  Box,
+  ChakraComponent,
+  Container,
+  Heading,
+  Stack,
+} from "@chakra-ui/react";
 import { css, Global } from "@emotion/react";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import clsx from "clsx";
@@ -20,9 +27,6 @@ export type LayoutProps = {
   title: string;
 };
 
-const media = (size: "sm" | "md" | "lg" | "xl") =>
-  `@media (min-width: ${{ sm: 560, md: 768, lg: 960, xl: 1024 }[size]}px)`;
-
 export const Layout: React.FCX<LayoutProps> = ({
   children,
   className,
@@ -31,7 +35,11 @@ export const Layout: React.FCX<LayoutProps> = ({
   title,
   TitleComponent,
 }) => (
-  <div className={clsx(className, "min-h-screen text-text bg-background")}>
+  <Box
+    bg="gray.100"
+    minH="100vh"
+    className={clsx(className, "min-h-screen text-text bg-background")}
+  >
     <Helmet htmlAttributes={{ lang: "ja" }}>
       <title>{title} - Happy Paddy</title>
     </Helmet>
@@ -42,48 +50,70 @@ export const Layout: React.FCX<LayoutProps> = ({
       <Title>{title}</Title>
       {TitleComponent && <TitleComponent {...{ title }} />}
     </div>
-    <div className="container mx-auto flex gap-4 px-0 sm:px-4 transition-all duration-100">
-      {SidebarComponents && (
-        <div
-          className="flex-shrink-0 hidden md:block sticky h-min-content"
-          css={[
-            css`
-              flex-basis: 192px;
-              ${media("lg")} {
-                flex-basis: 255px;
-              }
-              top: 1rem;
-            `,
-          ]}
-        >
-          {SidebarComponents.map(props => (
-            <SidebarCard {...props} key={props.title} css={cardStyle} />
-          ))}
-        </div>
-      )}
+    <Container maxW="120ch">
+      <div className="container mx-auto flex gap-4 px-0 sm:px-4 transition-all duration-100">
+        <Stack direction="row-reverse" spacing="1rem">
+          {/* TODO: 別コンポーネントに切り出し */}
+          {SidebarComponents && (
+            <Stack
+              spacing="1rem"
+              flexShrink="unset"
+              position="sticky"
+              h="min-content"
+              className="flex-shrink-0 hidden md:block sticky h-min-content"
+              top="1rem"
+              css={[
+                css`
+                  flex-basis: 192px;
+                `,
+              ]}
+            >
+              {SidebarComponents.map(props => (
+                <SidebarCard {...props} key={props.title} />
+              ))}
+            </Stack>
+          )}
 
-      <main className="leading-relaxed p-8 flex-grow min-w-0 " css={cardStyle}>
-        {children}
-      </main>
-    </div>
+          <Box
+            as="main"
+            p="2rem"
+            className="leading-relaxed p-8 flex-grow min-w-0 "
+            {...cardChakra}
+          >
+            {children}
+          </Box>
+        </Stack>
+      </div>
+    </Container>
     <Footer />
-  </div>
+  </Box>
 );
 
 type SidebarCardProps = { readonly title: string };
 
-const SidebarCard: React.FCX<SidebarCardProps> = ({
-  children,
-  className,
-  title,
-}) => (
-  <div className={clsx(className, `p-4 mb-4`)}>
-    <div className="text-center pb-2 px-4 border-b border-border">{title}</div>
-    <div>{children}</div>
-  </div>
+const SidebarCard: ChakraComponent<"div", SidebarCardProps> = props => (
+  <Box p="1rem" {...cardChakra}>
+    <Heading
+      as="h4"
+      fontSize="1rem"
+      borderBottom="1px"
+      borderColor="gray.400"
+      textAlign="center"
+      pb=".5rem"
+      px="1rem"
+      mb=".5rem"
+      className="text-center pb-2 px-4 border-b border-border"
+    >
+      {props.title}
+    </Heading>
+    {props.children}
+  </Box>
 );
 
-const cardStyle = css`
-  box-shadow: 0 2px 5px hsla(260, 60%, 50%, 0.1);
-  /* ${tw`bg-white rounded-xl`} */
-`;
+const cardChakra = {
+  bg: "white",
+  rounded: "1rem",
+  css: css`
+    box-shadow: 0 2px 5px hsla(260, 60%, 50%, 0.1);
+  `,
+} as const;

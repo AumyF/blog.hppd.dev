@@ -58,6 +58,7 @@ module.exports = {
       },
     },
     `gatsby-plugin-twitter`,
+    `@chakra-ui/gatsby-plugin`,
     `gatsby-plugin-emotion`,
     {
       resolve: "gatsby-plugin-google-analytics",

@@ -1,3 +1,4 @@
+import { HStack } from "@chakra-ui/react";
 import { faTags } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import clsx from "clsx";
@@ -13,14 +14,16 @@ const Tag: React.FCX<{ tag: string }> = ({ className, tag }) => (
 );
 
 export const TagList: React.FCX<TagListProps> = ({ className, tags }) => (
-  <div className={clsx(className, `w-max-content flex flex-wrap gap-1`)}>
+  <HStack
+    spacing=".25rem"
+    wrap="wrap"
+    className={clsx(className, `w-max-content flex flex-wrap gap-1`)}
+  >
     <span>
       <FontAwesomeIcon icon={faTags} />
     </span>
-    <div className="contents">
-      {tags?.map(tag => (
-        <Tag tag={tag} key={tag} />
-      ))}
-    </div>
-  </div>
+    {tags?.map(tag => (
+      <Tag tag={tag} key={tag} />
+    ))}
+  </HStack>
 );
