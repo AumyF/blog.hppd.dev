@@ -9,9 +9,6 @@ module.exports = {
   plugins: [
     "gatsby-plugin-netlify-cache",
     {
-      resolve: `gatsby-plugin-postcss`,
-    },
-    {
       resolve: `gatsby-plugin-graphql-codegen`,
       options: {
         codegen: true,

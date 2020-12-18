@@ -1,10 +1,10 @@
+import { css } from "@emotion/react";
 import type { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import clsx from "clsx";
 import { Link } from "gatsby";
 import React from "react";
-import tw from "twin.macro";
 
 import { AnchorOrLink } from "../atoms/anchor-or-link";
 import { invisibleAnchor } from "../styles/styles";
@@ -51,7 +51,7 @@ export const SiteHeader: React.FCX<SiteHeaderProps> = ({ className }) => {
   );
 };
 
-const navigation = tw`text-current`;
+const navigation = css``;
 
 type HeaderIconProps = { icon: IconProp; to: string };
 

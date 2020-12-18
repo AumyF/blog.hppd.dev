@@ -1,12 +1,10 @@
 import "prismjs/plugins/line-numbers/prism-line-numbers.css";
-import "tailwindcss/dist/base.min.css";
 
-import { css, Global } from '@emotion/react';
+import { css, Global } from "@emotion/react";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import clsx from "clsx";
 import React from "react";
 import { Helmet } from "react-helmet";
-import tw from "twin.macro";
 
 import { globalStyles } from "../styles/global";
 import { Breadcrumbs } from "./breadcrumbs";
@@ -87,5 +85,5 @@ const SidebarCard: React.FCX<SidebarCardProps> = ({
 
 const cardStyle = css`
   box-shadow: 0 2px 5px hsla(260, 60%, 50%, 0.1);
-  ${tw`bg-white rounded-xl`}
+  /* ${tw`bg-white rounded-xl`} */
 `;

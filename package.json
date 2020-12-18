@@ -38,7 +38,6 @@
     "gatsby-plugin-manifest": "^2.9.0",
     "gatsby-plugin-mdx": "^1.7.0",
     "gatsby-plugin-netlify-cache": "^1.2.0",
-    "gatsby-plugin-postcss": "^2.3.13",
     "gatsby-plugin-react-helmet": "^3.7.0",
     "gatsby-plugin-twitter": "^2.7.0",
     "gatsby-plugin-typescript": "^2.9.0",

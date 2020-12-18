@@ -1,7 +1,5 @@
 import styled from "@emotion/styled";
 import React from "react";
-import tw from "twin.macro";
-
 type Props = {};
 
 export const Chronology: React.FC<Props> = styled.div`
@@ -10,8 +8,8 @@ export const Chronology: React.FC<Props> = styled.div`
     padding-left: 4rem;
     padding-bottom: 1rem;
     ::before {
-      ${tw`border-l-2 border-gray-200 absolute`}
-      height:100%;
+      /* ${tw`border-l-2 border-gray-200 absolute`} */
+      height: 100%;
       left: 31px;
       content: "";
     }
@@ -32,11 +30,11 @@ export const Chronology: React.FC<Props> = styled.div`
 `;
 
 export const ChronologyTime = styled.div`
-  ${tw`relative font-bold text-3xl`}
+  /* ${tw`relative font-bold text-3xl`} */
   ::before {
     --circle-radius: 8.5px;
     --circle-diameter: calc(var(--circle-radius) * 2);
-    ${tw`absolute bg-gray-300 my-auto border-white border-2`};
+    /* ${tw`absolute bg-gray-300 my-auto border-white border-2`}; */
     width: var(--circle-diameter);
     height: var(--circle-diameter);
     top: calc(50% - var(--circle-radius));

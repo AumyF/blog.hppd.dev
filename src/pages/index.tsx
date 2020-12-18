@@ -1,12 +1,12 @@
+import styled from "@emotion/styled";
 import { graphql, PageProps } from "gatsby";
 import React from "react";
-import tw from "twin.macro";
 
 import { IndexQuery } from "../../types/graphqlTypes";
 import { Layout } from "../components/layout";
 import { PostList } from "../components/post-link/post-list";
 
-const Heading = tw.h1`text-4xl font-bold text-center mb-8 leading-tight`;
+const Heading = styled.h1``;
 
 export const IndexPage: React.FC<PageProps<IndexQuery>> = ({
   data: {

@@ -1,5 +1,4 @@
-import { css } from '@emotion/react';
-import tw from "twin.macro";
+import { css } from "@emotion/react";
 
 import { prismStyles } from "./prism-styles";
 import { growingUnderlineAnchor } from "./styles";
@@ -15,7 +14,7 @@ export const globalStyles = css`
   body {
   }
   a {
-    ${tw`text-fuchsia-white`};
+    /* ${tw`text-fuchsia-white`}; */
     ${growingUnderlineAnchor};
   }
 
