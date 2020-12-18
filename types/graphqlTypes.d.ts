@@ -2230,7 +2230,7 @@ export type SitePluginPluginOptions = {
   lessBabel?: Maybe<Scalars['Boolean']>;
   mediaTypes?: Maybe<Array<Maybe<Scalars['String']>>>;
   sourceMap?: Maybe<Scalars['Boolean']>;
-  autoLabel?: Maybe<Scalars['Boolean']>;
+  autoLabel?: Maybe<Scalars['String']>;
   labelFormat?: Maybe<Scalars['String']>;
   cssPropOptimization?: Maybe<Scalars['Boolean']>;
   head?: Maybe<Scalars['Boolean']>;
@@ -2265,7 +2265,7 @@ export type SitePluginPluginOptionsFilterInput = {
   lessBabel?: Maybe<BooleanQueryOperatorInput>;
   mediaTypes?: Maybe<StringQueryOperatorInput>;
   sourceMap?: Maybe<BooleanQueryOperatorInput>;
-  autoLabel?: Maybe<BooleanQueryOperatorInput>;
+  autoLabel?: Maybe<StringQueryOperatorInput>;
   labelFormat?: Maybe<StringQueryOperatorInput>;
   cssPropOptimization?: Maybe<BooleanQueryOperatorInput>;
   head?: Maybe<BooleanQueryOperatorInput>;
