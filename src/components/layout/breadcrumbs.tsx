@@ -55,19 +55,19 @@ export const Breadcrumbs: React.FCX<BreadcrumbsProps> = ({
         {year && (
           <>
             {Slash}
-            <Link to={`/${year}/`}>{year}</Link>
+            <Hyper to={`/${year}/`}>{year}</Hyper>
           </>
         )}
         {month && (
           <>
             {Slash}
-            <Link to={`/${year}/${month}/`}>{month}</Link>
+            <Hyper to={`/${year}/${month}/`}>{month}</Hyper>
           </>
         )}
         {dayPath && (
           <>
             {Slash}
-            <Link to={`/${year}/${month}/${dayPath}/`}>{dayPath}</Link>
+            <Hyper to={`/${year}/${month}/${dayPath}/`}>{dayPath}</Hyper>
           </>
         )}
         <ChakraIcon ml=".25rem" icon={faChevronRight} />
