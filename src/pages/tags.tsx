@@ -4,6 +4,7 @@ import React from "react";
 import { TagsPageQuery } from "../../types/graphqlTypes";
 import { Article } from "../components/article";
 import { HeadTitle } from "../components/atoms/head-title";
+import { Hyper } from "../components/atoms/Hyper";
 import { Layout } from "../components/layout";
 import { BodyContainer } from "../components/layout/container";
 import { MainContent } from "../components/layout/main-content";
@@ -15,8 +16,11 @@ import {
 import { TitleContainer, TitleName } from "../components/layout/title";
 import { PostList } from "../components/post-link/post-list";
 import { TableOfContents } from "../components/table-of-contents";
+import { ArticleElements } from "../templates/blog-post-template/article-elements";
 
 export type TagsPageProps = PageProps<TagsPageQuery>;
+
+const H1 = ArticleElements.h1;
 
 export const TagsPage: (props: TagsPageProps) => React.ReactElement = ({
   data: {
@@ -49,12 +53,9 @@ export const TagsPage: (props: TagsPageProps) => React.ReactElement = ({
         <Article>
           {group.map(({ fieldValue, nodes, totalCount }) => (
             <section key={fieldValue ?? ""}>
-              <h1 id={`${fieldValue}`}>
-                <Link to={"/tags/" + fieldValue ?? "#"}>{fieldValue}</Link>
-                <span className="text-base ml-4 font-normal">
-                  記事数: {totalCount}
-                </span>
-              </h1>
+              <H1 id={`${fieldValue}`}>
+                <Hyper to={"/tags/" + fieldValue ?? "#"}>{fieldValue}</Hyper>
+              </H1>
               <PostList {...{ nodes }} />
             </section>
           ))}

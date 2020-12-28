@@ -9,15 +9,11 @@ export const Sidebar: ChakraComponent<"aside", { children: ReactNode }> = ({
       as="aside"
       display={{ base: "none", md: "flex" }}
       spacing="1rem"
-      flexShrink="unset"
       position="sticky"
       h="min-content"
       top="1rem"
-      css={[
-        css`
-          flex-basis: 192px;
-        `,
-      ]}
+      flexBasis={{ base: "220px", lg: "255px" }}
+      flexShrink={0}
     >
       {children}
     </Stack>

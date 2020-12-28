@@ -35,7 +35,7 @@ type PlainProps =
 const Plain: React.FC<PlainProps> = props => {
   if (props.status === "Error") return <Text>{props.errMessage}</Text>;
   return (
-    <VStack spacing=".5rem">
+    <VStack wordBreak="break-all" spacing=".5rem">
       {
         <>
           <Table size="sm">
@@ -43,7 +43,7 @@ const Plain: React.FC<PlainProps> = props => {
               <Tr>
                 <Th>Date</Th>
                 <Td>
-                  <Skeleton minW="20ch" isLoaded={props.status === "Success"}>
+                  <Skeleton isLoaded={props.status === "Success"}>
                     {props.lastUpdate}
                   </Skeleton>
                 </Td>

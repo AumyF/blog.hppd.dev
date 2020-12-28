@@ -6,7 +6,7 @@ import { cardChakra } from "./sidebar";
 export const MainContent: ChakraComponent<"main", { children: ReactNode }> = ({
   children,
 }) => (
-  <Box as="main" p="2rem" minW="0" flexGrow={1} {...cardChakra}>
+  <Box as="main" p="2rem" minW="0" flexShrink={1} {...cardChakra}>
     {children}
   </Box>
 );
