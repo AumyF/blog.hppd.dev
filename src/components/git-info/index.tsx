@@ -43,7 +43,7 @@ const Plain: React.FC<PlainProps> = props => {
               <Tr>
                 <Th>Date</Th>
                 <Td>
-                  <Skeleton isLoaded={props.status === "Success"}>
+                  <Skeleton minW="20ch" isLoaded={props.status === "Success"}>
                     {props.lastUpdate}
                   </Skeleton>
                 </Td>
