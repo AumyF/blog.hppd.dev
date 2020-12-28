@@ -3,7 +3,6 @@ import "prismjs/plugins/line-numbers/prism-line-numbers.css";
 import { Box } from "@chakra-ui/react";
 import { Global } from "@emotion/react";
 import { config } from "@fortawesome/fontawesome-svg-core";
-import clsx from "clsx";
 import React from "react";
 import { Helmet } from "react-helmet";
 

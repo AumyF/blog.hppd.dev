@@ -7,6 +7,7 @@ export const Sidebar: ChakraComponent<"aside", { children: ReactNode }> = ({
   return (
     <Stack
       as="aside"
+      display={{ base: "none", md: "flex" }}
       spacing="1rem"
       flexShrink="unset"
       position="sticky"
@@ -49,7 +50,5 @@ export const SidebarCard: ChakraComponent<"div", {}> = props => (
 export const cardChakra = {
   bg: "white",
   rounded: "1rem",
-  css: css`
-    box-shadow: 0 2px 5px hsla(260, 60%, 50%, 0.1);
-  `,
+  boxShadow: "md",
 } as const;
