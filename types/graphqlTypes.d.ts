@@ -2345,7 +2345,7 @@ export type TagsPageQueryVariables = {};
 
 
 export type TagsPageQuery = { allMdx: { group: Array<(
-      Pick<MdxGroupConnection, 'fieldValue' | 'totalCount'>
+      Pick<MdxGroupConnection, 'fieldValue'>
       & { nodes: Array<(
         Pick<Mdx, 'excerpt' | 'id'>
         & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'tags' | 'title'>>, fields?: Maybe<Pick<MdxFields, 'path' | 'yyyymmdd'>> }

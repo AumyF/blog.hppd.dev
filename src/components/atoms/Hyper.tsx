@@ -1,4 +1,4 @@
-import { ComponentWithAs, Link, LinkProps } from "@chakra-ui/react";
+import { Link } from "@chakra-ui/react";
 import { GatsbyLinkProps, Link as GatsbyLink } from "gatsby";
 import React, { ComponentProps } from "react";
 

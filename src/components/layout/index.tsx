@@ -6,11 +6,11 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import React from "react";
 import { Helmet } from "react-helmet";
 
-import { ColorChecker } from "../color-checker";
 import { globalStyles } from "../styles/global";
 import { Breadcrumbs } from "./breadcrumbs";
 import { Footer } from "./footer";
 import { SiteHeader } from "./header";
+
 config.autoAddCss = false;
 
 export type LayoutProps = {

@@ -1,4 +1,4 @@
-import { Box, ChakraComponent, css, Heading, Stack } from "@chakra-ui/react";
+import { Box, ChakraComponent, Heading, Stack } from "@chakra-ui/react";
 import React, { ReactNode } from "react";
 
 export const Sidebar: ChakraComponent<"aside", { children: ReactNode }> = ({

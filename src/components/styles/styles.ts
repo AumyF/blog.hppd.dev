@@ -7,5 +7,3 @@ export const invisibleAnchor = css`
     text-decoration-color: currentColor;
   }
 `;
-export const growingUnderlineAnchor = css();
-// tw`underline underline-1 hover:underline-2`

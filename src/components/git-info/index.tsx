@@ -8,7 +8,7 @@ import {
   Tr,
   VStack,
 } from "@chakra-ui/react";
-import React, { FC } from "react";
+import React from "react";
 
 import { Hyper } from "../atoms/Hyper";
 import { useLatestCommit } from "./useLatestCommit";

@@ -1,7 +1,6 @@
 import { css } from "@emotion/react";
 
 import { prismStyles } from "./prism-styles";
-import { growingUnderlineAnchor } from "./styles";
 
 export const globalStyles = css`
   * {
@@ -12,10 +11,6 @@ export const globalStyles = css`
     overflow-y: scroll;
   }
   body {
-  }
-  a {
-    /* ${tw`text-fuchsia-white`}; */
-    ${growingUnderlineAnchor};
   }
 
   ${prismStyles}

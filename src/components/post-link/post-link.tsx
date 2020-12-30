@@ -1,11 +1,11 @@
 import { Box, Heading, Text, Wrap, WrapItem } from "@chakra-ui/react";
 import { css } from "@emotion/react";
-import clsx from "clsx";
+import { faCalendarDay } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
 import { Hyper } from "../atoms/Hyper";
 import { TagList } from "../atoms/tag-list";
-import { PostDate } from "./post-date";
 
 export type PostLinkProps = {
   excerpt: string;
@@ -28,7 +28,10 @@ export const PostLink: React.VFC<PostLinkProps> = ({
     <Wrap spacing=".5rem" direction="row" wrap="wrap">
       {yyyymmdd && (
         <WrapItem>
-          <PostDate path={yyyymmdd} />
+          <div>
+            <FontAwesomeIcon icon={faCalendarDay} />
+            <Text ml=".5rem">{yyyymmdd}</Text>
+          </div>
         </WrapItem>
       )}
       <WrapItem>

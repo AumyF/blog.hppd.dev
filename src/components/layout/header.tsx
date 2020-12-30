@@ -15,7 +15,7 @@ import { invisibleAnchor } from "../styles/styles";
 
 export type SiteHeaderProps = {};
 
-export const SiteHeader: React.FCX<SiteHeaderProps> = ({}) => {
+export const SiteHeader: React.FCX<SiteHeaderProps> = () => {
   return (
     <Box
       as="header"

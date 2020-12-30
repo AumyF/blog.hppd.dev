@@ -1,4 +1,4 @@
-import { graphql, Link, PageProps } from "gatsby";
+import { graphql, PageProps } from "gatsby";
 import React from "react";
 
 import { TagsPageQuery } from "../../types/graphqlTypes";
@@ -51,7 +51,7 @@ export const TagsPage: (props: TagsPageProps) => React.ReactElement = ({
 
       <MainContent>
         <Article>
-          {group.map(({ fieldValue, nodes, totalCount }) => (
+          {group.map(({ fieldValue, nodes }) => (
             <section key={fieldValue ?? ""}>
               <H1 id={`${fieldValue}`}>
                 <Hyper to={"/tags/" + fieldValue ?? "#"}>{fieldValue}</Hyper>
@@ -70,7 +70,6 @@ export const pageQuery = graphql`
     allMdx(sort: { order: DESC, fields: fields___yyyymmdd }) {
       group(field: frontmatter___tags) {
         fieldValue
-        totalCount
         nodes {
           excerpt(truncate: true)
           id
