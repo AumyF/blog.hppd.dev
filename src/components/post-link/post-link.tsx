@@ -45,6 +45,6 @@ export const PostLink: React.VFC<PostLinkProps> = ({
         {title}
       </Hyper>
     </Heading>
-    <Text color="gray.600">{excerpt}</Text>
+    <Text color="gray.400">{excerpt}</Text>
   </Box>
 );

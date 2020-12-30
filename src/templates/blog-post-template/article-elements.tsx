@@ -36,8 +36,8 @@ export const ArticleElements: MDXProviderComponentsProp = {
   h1: chakra("h1", {
     baseStyle: {
       fontSize: "2rem",
-      borderBottom: "1px",
-      borderColor: "gray.300",
+      borderBottomWidth: "1px",
+      borderColor: "gray.600",
       marginY: "1rem",
     },
   }),

@@ -1,7 +1,6 @@
 import { chakra, Container, Link } from "@chakra-ui/react";
 import { css } from "@emotion/react";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import clsx from "clsx";
 import React from "react";
 
 import { useSite } from "../../hooks/use-site";
@@ -21,10 +20,7 @@ const Slash = (
   </chakra.span>
 );
 
-export const Breadcrumbs: React.FCX<BreadcrumbsProps> = ({
-  className,
-  date,
-}) => {
+export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ date }) => {
   const [year, month, dayPath] = date ?? [undefined, undefined, undefined];
   const [topLevelDomain, ...restDomainName] = assertsNonNull(
     useSite().siteMetadata?.domainName?.split(".").reverse()
@@ -32,12 +28,7 @@ export const Breadcrumbs: React.FCX<BreadcrumbsProps> = ({
 
   const second = `${restDomainName[0]}.${topLevelDomain}`;
   return (
-    <chakra.nav
-      mb="2rem"
-      pb=".25rem"
-      bg="white"
-      className={clsx(`text-text bg-white`, className)}
-    >
+    <chakra.nav py=".25rem" bg="purple.990">
       <Container
         maxW="120ch"
         px="1rem"

@@ -1,5 +1,6 @@
+import { Heading, ListItem, UnorderedList } from "@chakra-ui/react";
 import { PageProps } from "gatsby";
-import React from "react";
+import React, { ReactNode } from "react";
 
 import { Article } from "../components/article";
 import { HeadTitle } from "../components/atoms/head-title";
@@ -16,6 +17,12 @@ import { TitleContainer, TitleName } from "../components/layout/title";
 
 export type AboutPageProps = PageProps<{}>;
 
+const Head1: React.FC<{ children: ReactNode }> = props => (
+  <Heading as="h1" borderColor="gray.600" borderBottomWidth="1px" my="1rem">
+    {props.children}
+  </Heading>
+);
+
 export const About: React.VFC<AboutPageProps> = () => (
   <Layout path="about">
     <HeadTitle>About</HeadTitle>
@@ -27,16 +34,18 @@ export const About: React.VFC<AboutPageProps> = () => (
     <BodyContainer>
       <MainContent>
         <Article>
-          <h1>TL;DR</h1>
-          <ul>
-            <li>Aumyのブログです</li>
-            <li>このアニメがいいとかこのキーボードがいいとかを書く</li>
-            <li>
+          <Head1>TL;DR</Head1>
+          <UnorderedList>
+            <ListItem>Aumyのブログです</ListItem>
+            <ListItem>
+              このアニメがいいとかこのキーボードがいいとかを書く
+            </ListItem>
+            <ListItem>
               プログラミング技術的なことは
               <a href="https://zenn.dev/aumy">Zenn</a>で書く
-            </li>
-          </ul>
-          <h1>Aumy について</h1>
+            </ListItem>
+          </UnorderedList>
+          <Head1>Aumy について</Head1>
           <p>
             2003年，横浜市生まれ．プログラミングが趣味．初めてのプログラミングはVBS．最も打ち込んだ言語は
             (2020年現在) TypeScript．

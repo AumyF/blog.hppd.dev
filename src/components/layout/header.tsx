@@ -17,13 +17,21 @@ export type SiteHeaderProps = {};
 
 export const SiteHeader: React.FCX<SiteHeaderProps> = ({}) => {
   return (
-    <Box as="header" bg="white" textAlign="center" py=".5rem">
+    <Box
+      as="header"
+      bg="purple.990"
+      textAlign="center"
+      pb=".5rem"
+      mb="2rem"
+      borderBottom="1px"
+      borderBottomColor="purple.900"
+    >
       <Container maxW="120ch">
         <Flex direction="row" alignItems="center">
           <Heading as="h1">
             <Link to="/">
               {/* <img src={svg} alt="FortunateRicefield" /> */}
-              Happy Paddy
+              HappyPaddy::Blog
             </Link>
           </Heading>
           <Spacer />
