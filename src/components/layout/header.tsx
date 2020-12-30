@@ -24,7 +24,7 @@ export const SiteHeader: React.FCX<SiteHeaderProps> = () => {
       pb=".5rem"
       mb="2rem"
       borderBottom="1px"
-      borderBottomColor="purple.900"
+      borderBottomColor="gray.700"
     >
       <Container maxW="120ch">
         <Flex direction="row" alignItems="center">

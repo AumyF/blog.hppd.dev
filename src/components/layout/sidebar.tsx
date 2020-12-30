@@ -46,7 +46,7 @@ export const SidebarCard: ChakraComponent<"div", {}> = props => (
 export const cardChakra = {
   bg: "purple.990",
   borderWidth: "1px",
-  borderColor: "purple.900",
+  borderColor: "gray.700",
   rounded: "1rem",
   boxShadow: "md",
 } as const;
