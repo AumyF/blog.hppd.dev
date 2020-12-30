@@ -1,6 +1,4 @@
-import { css } from "@emotion/core";
-import tw from "twin.macro";
-
+import { css } from "@emotion/react";
 export const prismStyles = css`
   .gatsby-highlight {
     pre[class*="language-"] {
@@ -32,7 +30,6 @@ export const prismStyles = css`
     margin-bottom: -9px;
     padding: 0.25rem 0.5rem;
     font-size: 0.8em;
-    ${tw`text-background`}
     font-weight: 600;
     border-radius: 1rem 1rem 0 0;
   }

@@ -1,64 +1,58 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTwitter, faGithub } from "@fortawesome/free-brands-svg-icons";
-import type { IconProp } from "@fortawesome/fontawesome-svg-core";
-import { AnchorOrLink } from "../atoms/anchor-or-link";
+import {
+  Box,
+  Container,
+  Divider,
+  Flex,
+  Heading,
+  HStack,
+  Spacer,
+} from "@chakra-ui/react";
 import { Link } from "gatsby";
-import tw from "twin.macro";
+import React from "react";
+
 import { invisibleAnchor } from "../styles/styles";
-import clsx from "clsx";
 // import svg from "../../../static/ftrf-logo.svg";
 
 export type SiteHeaderProps = {};
 
-export const SiteHeader: React.FCX<SiteHeaderProps> = ({ className }) => {
+export const SiteHeader: React.FCX<SiteHeaderProps> = () => {
   return (
-    <header
-      className={clsx(
-        className,
-        "text-text bg-white leading-tight text-center"
-      )}
+    <Box
+      as="header"
+      bg="purple.990"
+      textAlign="center"
+      pb=".5rem"
+      mb="2rem"
+      borderBottom="1px"
+      borderBottomColor="purple.900"
     >
-      <div className="flex container mx-auto px-4 items-center gap-2 justify-end">
-        <h1 className="text-3xl font-bold pr-2 mr-auto">
-          <Link to="/" className="text-current no-underline">
-            {/* <img src={svg} alt="FortunateRicefield" /> */}
-            Happy Paddy
-          </Link>
-        </h1>
-        {/* <nav>
-          <Link css={[navigation, invisibleAnchor]} to="/about">
-            About
-          </Link>
-        </nav> */}
-        <nav>
-          <Link css={[navigation, invisibleAnchor]} to="/tags">
-            Tags
-          </Link>
-        </nav>
-        {/* <nav>
-          <Link css={[navigation, invisibleAnchor]} to="/archives">
-            Archives
-          </Link>
-        </nav> */}
-        <nav className="py-2">
-          <Icon to="https://twitter.com/MominisJ" icon={faTwitter} />
-          <Icon to="https://github.com/AumyF" icon={faGithub} />
-        </nav>
-      </div>
-    </header>
+      <Container maxW="120ch">
+        <Flex direction="row" alignItems="center">
+          <Heading as="h1">
+            <Link to="/">
+              {/* <img src={svg} alt="FortunateRicefield" /> */}
+              HappyPaddy::Blog
+            </Link>
+          </Heading>
+          <Spacer />
+          <HStack divider={<Divider orientation="vertical" />}>
+            <nav>
+              <Link css={[invisibleAnchor]} to="/about">
+                About
+              </Link>
+            </nav>
+            <nav>
+              <Link css={[invisibleAnchor]} to="/tags">
+                Tags
+              </Link>
+            </nav>
+            {/* <nav className="py-2">
+              <Icon to="https://twitter.com/MominisJ" icon={faTwitter} />
+              <Icon to="https://github.com/AumyF" icon={faGithub} />
+            </nav> */}
+          </HStack>
+        </Flex>
+      </Container>
+    </Box>
   );
 };
-
-const navigation = tw`text-current`;
-
-type HeaderIconProps = { icon: IconProp; to: string };
-
-const Icon: React.FCX<HeaderIconProps> = ({ icon, to }) => (
-  <AnchorOrLink
-    {...{ to, alt: "icon" }}
-    className="transition-colors text-3xl mx-1 text-text hover:text-fuchsia-black"
-  >
-    <FontAwesomeIcon {...{ icon }} />
-  </AnchorOrLink>
-);

@@ -1,5 +1,6 @@
+import { graphql, PageProps } from "gatsby";
 import React from "react";
-import { PageProps, graphql } from "gatsby";
+
 import { TagPageTemplateQuery } from "../../types/graphqlTypes";
 import { PostListPage } from "./post-list-page";
 
@@ -12,10 +13,10 @@ export type TagPageTemplateProps = PageProps<
 >;
 
 export const TagPageTemplate: React.FC<TagPageTemplateProps> = ({
-  pageContext: { tag },
   data: {
     allMdx: { nodes },
   },
+  pageContext: { tag },
 }) => (
   <PostListPage {...{ nodes }} title={`tag: ${tag}`} path={`tags/${tag}`} />
 );

@@ -1,4 +1,5 @@
 import * as Gatsby from "gatsby";
+
 import { assertsNonNull } from "../../src/utils/asserts-non-null";
 import * as GraphQLTypes from "../../types/graphqlTypes";
 
@@ -11,8 +12,8 @@ type Mdx = GraphQLNodeToGatsbyNode<GraphQLTypes.Mdx>;
 const isMdx = (node: Gatsby.Node): node is Mdx => node.internal.type === "Mdx";
 
 export const onCreateNode: Gatsby.GatsbyNode["onCreateNode"] = ({
-  node,
   actions: { createNodeField },
+  node,
 }) => {
   // console.log(node.internal.type);
   if (!isMdx(node)) return;

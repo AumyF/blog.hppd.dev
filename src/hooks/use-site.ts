@@ -1,4 +1,5 @@
-import { useStaticQuery, graphql } from "gatsby";
+import { graphql, useStaticQuery } from "gatsby";
+
 import { UseSiteQuery } from "../../types/graphqlTypes";
 import { assertsNonNull } from "../utils/asserts-non-null";
 

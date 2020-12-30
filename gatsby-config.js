@@ -7,10 +7,6 @@ module.exports = {
     domainName: "blog.hppd.dev", // ダミーですよ！
   },
   plugins: [
-    "gatsby-plugin-netlify-cache",
-    {
-      resolve: `gatsby-plugin-postcss`,
-    },
     {
       resolve: `gatsby-plugin-graphql-codegen`,
       options: {
@@ -61,6 +57,7 @@ module.exports = {
       },
     },
     `gatsby-plugin-twitter`,
+    `@chakra-ui/gatsby-plugin`,
     `gatsby-plugin-emotion`,
     {
       resolve: "gatsby-plugin-google-analytics",

@@ -7,7 +7,7 @@ Happy Paddy!!!!!
 
 ## 使ってるもの
 
-言語は(ほぼ)100% TypeScript, フレームワークはGatsby, ブログの記事はMDX, スタイリングはEmotionとTailwind, デプロイは Firebase Hosting, その他はpackage.jsonを読んでね
+言語は(ほぼ)100% TypeScript, フレームワークは Gatsby, ブログの記事は MDX, スタイリングは Emotion と Tailwind, デプロイは Firebase Hosting, その他は package.json を読んでね
 
 ### Gatsby プラグイン
 
@@ -26,8 +26,8 @@ Happy Paddy!!!!!
 
 ### その他特記事項
 
-TailwindはPostCSSとEmotion(twin.macro)の2段構成。
-gatsby-nodeをTypeScriptで書き、gatsby-node.jsでts-nodeを呼んでトランスパイルしている。
+Tailwind は PostCSS と Emotion(twin.macro)の 2 段構成。
+gatsby-node を TypeScript で書き、gatsby-node.js で ts-node を呼んでトランスパイルしている。
 
 ## ライセンス
 
@@ -39,6 +39,6 @@ MIT License
 
 ## なんかこうファイル間の依存関係が見れるやつ
 
-brewかaptかなんかで`graphviz`を導入して `npm run depgraph` で出てくる `dependencygraph.svg` を見ると幸せになれるぞ！
+brew か apt かなんかで`graphviz`を導入して `npm run depgraph` で出てくる `dependencygraph.svg` を見ると幸せになれるぞ！
 
 ![image](dependencygraph.svg)

@@ -1,17 +1,18 @@
-import { useReducer, useEffect } from "react";
+import { useEffect, useReducer } from "react";
+
 import { panic } from "../../utils/panic";
 
-type User = { name: string; email: string; date: string };
+type User = { date: string; email: string; name: string };
 
 type LatestCommit = {
-  sha: string;
-  node_id: string;
-  html_url: string;
   commit: {
     author: User;
     committer: User;
     message: string;
   };
+  html_url: string;
+  node_id: string;
+  sha: string;
 };
 
 type Data = {
@@ -21,16 +22,16 @@ type Data = {
 };
 
 type State = {
-  isLoading: boolean;
-  isError: boolean;
   data: Data;
   errMessage: string;
+  isError: boolean;
+  isLoading: boolean;
 };
 
 type Action =
   | { type: "FETCH_START" }
-  | { type: "FETCH_FAILURE"; message: string }
-  | { type: "FETCH_SUCCESS"; payload: Data };
+  | { message: string; type: "FETCH_FAILURE" }
+  | { payload: Data; type: "FETCH_SUCCESS" };
 
 const latestCommitReducer: React.Reducer<State, Action> = (state, action) => {
   switch (action.type) {
@@ -78,11 +79,11 @@ export const useLatestCommit = (filePath: string): State => {
 
         const [
           {
-            html_url: url,
             commit: {
-              message,
               committer: { date: lastUpdate },
+              message,
             },
+            html_url: url,
           },
         ] = response.ok
           ? await (response.json() as Promise<[LatestCommit]>)

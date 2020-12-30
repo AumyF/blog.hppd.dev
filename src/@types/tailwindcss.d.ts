@@ -25,8 +25,8 @@ export namespace TailwindPlugin {
 
   export type AddUtilitiesOptions =
     | {
-        respectPrefix?: boolean;
         respectImportant?: false;
+        respectPrefix?: boolean;
         variants?: Variants;
       }
     | Variants;
@@ -55,9 +55,9 @@ export namespace TailwindPlugin {
 
   export namespace AddVariant {
     export type CallBack = (arg: {
+      container: any;
       modifySelectors: ModifySelectors;
       separator: string;
-      container: any;
     }) => void;
 
     export type ModifySelectors = (callBack: ModifySelectorsCallBack) => void;
@@ -69,16 +69,16 @@ export namespace TailwindPlugin {
 
   // Helpers
   export type Helpers = {
-    addUtilities: AddUtilities;
-    addComponents: AddComponents;
     addBase: AddBase;
+    addComponents: AddComponents;
+    addUtilities: AddUtilities;
     addVariant: AddVariant;
+    config(configName: string): string;
     e: Escape;
+    postcss: any;
     prefix(className: string): string;
     theme(name: string, options?: object): any;
     variants(str: string): Variants;
-    config(configName: string): string;
-    postcss: any;
   };
 
   export type CreatePlugin = (plugin: (helpers: Helpers) => void) => Plugin;

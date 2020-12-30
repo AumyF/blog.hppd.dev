@@ -1865,6 +1865,7 @@ export type SitePageFieldsEnum =
   'pluginCreator___pluginOptions___name' |
   'pluginCreator___pluginOptions___path' |
   'pluginCreator___pluginOptions___extensions' |
+  'pluginCreator___pluginOptions___lessBabel' |
   'pluginCreator___pluginOptions___mediaTypes' |
   'pluginCreator___pluginOptions___sourceMap' |
   'pluginCreator___pluginOptions___autoLabel' |
@@ -1880,10 +1881,11 @@ export type SitePageFieldsEnum =
   'pluginCreator___pluginOptions___theme_color' |
   'pluginCreator___pluginOptions___display' |
   'pluginCreator___pluginOptions___icon' |
-  'pluginCreator___pluginOptions___cache_busting_mode' |
-  'pluginCreator___pluginOptions___include_favicon' |
   'pluginCreator___pluginOptions___legacy' |
   'pluginCreator___pluginOptions___theme_color_in_head' |
+  'pluginCreator___pluginOptions___cache_busting_mode' |
+  'pluginCreator___pluginOptions___crossOrigin' |
+  'pluginCreator___pluginOptions___include_favicon' |
   'pluginCreator___pluginOptions___cacheDigest' |
   'pluginCreator___pluginOptions___pathCheck' |
   'pluginCreator___nodeAPIs' |
@@ -2081,6 +2083,7 @@ export type SitePluginFieldsEnum =
   'pluginOptions___name' |
   'pluginOptions___path' |
   'pluginOptions___extensions' |
+  'pluginOptions___lessBabel' |
   'pluginOptions___mediaTypes' |
   'pluginOptions___sourceMap' |
   'pluginOptions___autoLabel' |
@@ -2096,10 +2099,11 @@ export type SitePluginFieldsEnum =
   'pluginOptions___theme_color' |
   'pluginOptions___display' |
   'pluginOptions___icon' |
-  'pluginOptions___cache_busting_mode' |
-  'pluginOptions___include_favicon' |
   'pluginOptions___legacy' |
   'pluginOptions___theme_color_in_head' |
+  'pluginOptions___cache_busting_mode' |
+  'pluginOptions___crossOrigin' |
+  'pluginOptions___include_favicon' |
   'pluginOptions___cacheDigest' |
   'pluginOptions___pathCheck' |
   'nodeAPIs' |
@@ -2223,9 +2227,10 @@ export type SitePluginPluginOptions = {
   name?: Maybe<Scalars['String']>;
   path?: Maybe<Scalars['String']>;
   extensions?: Maybe<Array<Maybe<Scalars['String']>>>;
+  lessBabel?: Maybe<Scalars['Boolean']>;
   mediaTypes?: Maybe<Array<Maybe<Scalars['String']>>>;
   sourceMap?: Maybe<Scalars['Boolean']>;
-  autoLabel?: Maybe<Scalars['Boolean']>;
+  autoLabel?: Maybe<Scalars['String']>;
   labelFormat?: Maybe<Scalars['String']>;
   cssPropOptimization?: Maybe<Scalars['Boolean']>;
   head?: Maybe<Scalars['Boolean']>;
@@ -2238,10 +2243,11 @@ export type SitePluginPluginOptions = {
   theme_color?: Maybe<Scalars['String']>;
   display?: Maybe<Scalars['String']>;
   icon?: Maybe<Scalars['String']>;
-  cache_busting_mode?: Maybe<Scalars['String']>;
-  include_favicon?: Maybe<Scalars['Boolean']>;
   legacy?: Maybe<Scalars['Boolean']>;
   theme_color_in_head?: Maybe<Scalars['Boolean']>;
+  cache_busting_mode?: Maybe<Scalars['String']>;
+  crossOrigin?: Maybe<Scalars['String']>;
+  include_favicon?: Maybe<Scalars['Boolean']>;
   cacheDigest?: Maybe<Scalars['String']>;
   pathCheck?: Maybe<Scalars['Boolean']>;
 };
@@ -2256,9 +2262,10 @@ export type SitePluginPluginOptionsFilterInput = {
   name?: Maybe<StringQueryOperatorInput>;
   path?: Maybe<StringQueryOperatorInput>;
   extensions?: Maybe<StringQueryOperatorInput>;
+  lessBabel?: Maybe<BooleanQueryOperatorInput>;
   mediaTypes?: Maybe<StringQueryOperatorInput>;
   sourceMap?: Maybe<BooleanQueryOperatorInput>;
-  autoLabel?: Maybe<BooleanQueryOperatorInput>;
+  autoLabel?: Maybe<StringQueryOperatorInput>;
   labelFormat?: Maybe<StringQueryOperatorInput>;
   cssPropOptimization?: Maybe<BooleanQueryOperatorInput>;
   head?: Maybe<BooleanQueryOperatorInput>;
@@ -2271,10 +2278,11 @@ export type SitePluginPluginOptionsFilterInput = {
   theme_color?: Maybe<StringQueryOperatorInput>;
   display?: Maybe<StringQueryOperatorInput>;
   icon?: Maybe<StringQueryOperatorInput>;
-  cache_busting_mode?: Maybe<StringQueryOperatorInput>;
-  include_favicon?: Maybe<BooleanQueryOperatorInput>;
   legacy?: Maybe<BooleanQueryOperatorInput>;
   theme_color_in_head?: Maybe<BooleanQueryOperatorInput>;
+  cache_busting_mode?: Maybe<StringQueryOperatorInput>;
+  crossOrigin?: Maybe<StringQueryOperatorInput>;
+  include_favicon?: Maybe<BooleanQueryOperatorInput>;
   cacheDigest?: Maybe<StringQueryOperatorInput>;
   pathCheck?: Maybe<BooleanQueryOperatorInput>;
 };
@@ -2337,7 +2345,7 @@ export type TagsPageQueryVariables = {};
 
 
 export type TagsPageQuery = { allMdx: { group: Array<(
-      Pick<MdxGroupConnection, 'fieldValue' | 'totalCount'>
+      Pick<MdxGroupConnection, 'fieldValue'>
       & { nodes: Array<(
         Pick<Mdx, 'excerpt' | 'id'>
         & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'tags' | 'title'>>, fields?: Maybe<Pick<MdxFields, 'path' | 'yyyymmdd'>> }

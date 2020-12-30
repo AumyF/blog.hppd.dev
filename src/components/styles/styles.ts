@@ -1,6 +1,4 @@
-import { css } from "@emotion/core";
-import tw from "twin.macro";
-
+import { css } from "@emotion/react";
 export const invisibleAnchor = css`
   transition: 75ms text-decoration-color ease;
   text-decoration-style: underline;
@@ -9,6 +7,3 @@ export const invisibleAnchor = css`
     text-decoration-color: currentColor;
   }
 `;
-export const growingUnderlineAnchor = css(
-  tw`underline underline-1 hover:underline-2`
-);
