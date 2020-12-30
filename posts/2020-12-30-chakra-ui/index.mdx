@@ -1,0 +1,180 @@
+---
+title: Gatsby.js で作ったブログに Chakra UI を導入した
+tags:
+  ["Gatsby", "Web", "WebFrontend", "ChakraUI", "Tailwind", "Blog", "TypeScript"]
+---
+
+このブログでは Tailwind CSS を使っていたが，「Chakra UI が良い」という話を微妙に聞くようになったのでブランチを切って試してみた．そしてわりと良かったので全部移行した．ついでにブログの色を変えてダークテーマにした．すぐデザインを変えたがる病．
+
+# What is Chakra UI
+
+> Chakra UI is a simple, modular and accessible component library that gives you the building blocks you need to build your React applications.
+
+**[Chakra UI](https://chakra-ui.com)** は React 向けのコンポーネントライブラリ集．シンプルでモジュラーでアクセシブルだそう．
+
+[Emotion](https://emotion.sh) に依存している．あとは Framer というフレームワーク (?) のアニメーションライブラリっぽいの [`framer-motion`](https://www.framer.com/motion/) を使っている．このブログでは Tailwind の補完として Emotion を使っていたが，いつの間にか v11 系が爆誕していたので同時に移行しておいた．`@emotion/core` が `@emotion/react` にリネームされたりしていたが，`@emotion/vue` とかが生えたりする予定でもあるのだろうか？
+
+```
+npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion
+```
+
+Chakra UI を使うにはアプリを ` <ChakraProvider></ChakraProvider>` で囲む必要があるのだが，Gatsby の場合はプラグイン `@chakra-ui/gatsby-plugin` を入れれば全部やってくれるので丸投げすれば ok．ここが Gatsby のいいところだが同時に欠点が生まれる場所でもある…
+
+`gatsby-plugin-chakra-ui`というのもあるがこれは公式ではない．
+
+# Chakra の思想教育を受ける
+
+とりえあず触れる前に思想でも読んどく．訳は超意訳．
+https://chakra-ui.com/docs/principles
+
+> Chakra UI is established on principles that keep its components fairly consistent. Understanding these concepts will help you better contribute to Chakra UI.
+
+> Chakra UI はコンポーネントに矛盾がないよう保つ原則にのっとっているよ．これを読むとコントリビュートするとき役立つよ．
+
+矛盾っていうのはたぶん思想に反してるってことだと思う…
+
+## 構成可能ってなにさ
+
+> Our goal is to design simple, composable components that cater to real-life UI design problems. In order to do that, we developed a set of principles that help us always be on that path.
+
+> おれたちのゴールは現実の UI デザインの問題にこたえられるシンプルでコンポーザブルなコンポーネントをデザインすることだ．その目的から外れないように行動指針のまとめを作って発展させてきた．
+
+composable は「構成可能な」って訳されるけどまずその日本語の意味がよくわからん．そういえば Gatsby のドキュメントの日本語訳プロジェクト (結局ポシャったっぽい) に参加したときに MDX の解説で Composition over Configuration みたいな表現が出てきて和訳に困ったりしたな．あれは Rails の Convention over Configuration のパロディだろう．
+
+どうでもいいけど「日本語は漢字があるから初見の単語の意味も字面から捉えられる」とか言ってる人間はたぶん外国語の知識も日本語の知識もないのだと思う．
+
+話を戻すと，composable の意味は，パーツを組み合わせて大きなものを組み上げられるみたいな感じだと勝手に解釈してる．
+
+## style props
+
+> - Style Props: All component styles can be overriden or extended via style props to reduce the use of css prop or styled(). Compose new components from Box.
+
+props を使ってスタイルを上書きしたり拡張したりできるらしい．`Box` から新しいコンポーネントを構成するっていうのは，まあ，Chakra UI の提供するコンポーネントみたいなのを自分で作れるよって感じ．
+
+## シンプル
+
+> - Simplicity: Strive to keep the component API fairly simple and show real world scenarios of using the component.
+
+コンポーネントの API をシンプルに保ち，現実での使い方を示す．ないようがない．
+
+## compose の意味
+
+> - Composition: Break down components into smaller parts with minimal props to keep complexity low, and compose them together. This will ensure that the styles and functionality are flexible and extensible.
+
+/compos(e|able|ition)/ についての解説あった．コンポーネントをより小さいパーツごとに分解して props を減らすことで複雑さを抑え，そんでそれらのパーツを組み合わせて使う．こうするとスタイルと機能の柔軟性と拡張性が上がる．
+
+## アクセシビリティ
+
+> - Accessibility: When creating a component, keep accessibility top of mind. This includes keyboard navigation, focus management, color contrast, voice over, and the correct aria-\* attributes.
+
+アクセシビリティ第一．キーボードナビゲーション，フォーカス管理，色のコントラスト，音声読み上げ，aria-\*属性．
+
+ここは Chakra UI のポイントとしてもかなり重要なところというか，Chakra の宣伝文句がそもそも「Build accessible React apps with speed」なのでまあそうかという感じ．モーダルとか自力実装するのは嫌だ．
+
+## ダークモード
+
+> - Dark Mode: Make components dark mode compatible. Use our `ColorModeProvider` component and `useColorMode` hook to handle styling. [Learn more about dark mode](https://chakra-ui.com/docs/features/color-mode).
+
+コンポーネントはダークモードでも使える．カラーモード取るのに React Hooks が使える．今のところダーク 1 本なので意味はないが．
+
+## props の名前
+
+> - Naming Props: We all know naming is the hardest thing in this industry. Generally, ensure a prop name is indicative of what it does. Boolean props should be named using auxiliary verbs such as `does`, `has`, `is` and `should`. For example, `Button` uses `isDisabled`, `isLoading`, etc.
+
+名前付けって作業が一番大変．一般的に prop の名前はそれが何をするのか明確になっている．真偽値なら `does` `has` `is` `should` みたいな助動詞を使う．`Button` には `isDisabled` `isLoading` みたいなのがある．まあよくリーダブルコードとかで言われるのと同じ感じ．大事．ところでシンプルな API のところに書いとけばいいのでは？
+
+# UIT
+
+タイムリーなことに UIT Meetup で Chakra UI の LT が行われている．観る
+https://youtu.be/mbtDV5EkSAI?t=482
+
+- Pure TypeScript なので自然な補完が出る
+- デフォルトの Breakpoints が em 指定
+- Stack…Flex ぽいやつ
+
+# Container
+
+Container 読む．
+https://chakra-ui.com/docs/layout/container
+
+> Containers are used to constrain a content's width to the current breakpoint, while keeping it fluid.
+
+> By default, it sets the `max-width` of the content to 60 characters (`60ch`) but you can customize this by passing custom `maxWidth` values or changing the container size tokens defined in `theme.sizes.container`.
+
+Tailwind と挙動が違う？Tailwind の `container` は `max-width` 1 個下のブレークポイントの幅になるのだが，ChakraUI のデフォルトだと `60ch` 固定っぽい．Tailwind の挙動を再現したいなら自力で書けということだろう．あと横の margin が自動に auto になる．Tailwind だと `mx-auto container` という指定が必要だった．
+
+# Box
+
+[`Box`](https://chakra-ui.com/docs/layout/box) はもっとも抽象的なコンポーネント．単に `div` を描画する．
+
+既存の `Box` とかをコンポーネントにまとめたいとき，型を `React.FC<React.ComponentProps<typeof Box>>` とするのはあまりにも面倒だ．しかしそんな時のために Chakra UI にはくっそ便利な `ChakraComponent<E, P>` 型が用意されている．`E` に `'div'` などの要素名を入れ，`P` にいつもどおりの Props の型を入れるとそのとおりの Props を受け取るコンポーネントの型になる…はずなのだが，`props` の型が `Box` と合わない．何もわからんので後に回す．
+
+# 便利なところ
+
+- `wrap="wrap-reverse"` みたいな文字列もちゃんと文字列リテラルの Union が取られている．TypeScript わかってる．
+- `Stack` の `divider` が地味に便利．並べるやつの隙間に線引こうとするとどうしても `:first-child`とかが必要になりがちだがこいつならまったく不要．最高．
+
+# 組み換え
+
+各種コンポーネントを Chakra っぽいコンポジション的な感じに組み替えた．すごくわかりやすくなってるというか今までアンチパターン踏んでたっぽい？特にサイドバーは `Layout` の `SidebarComponent` にわたす方式だったが，サイドバーだけ独立させて各テンプレート側から呼び出すようにしたらすごい楽になった．ついでにファイル間の依存関係グラフがエグいことになった．
+
+# Gatsby でのテーマのカスタマイズ
+
+ついにテーマをカスタマイズする刻 (とき) がやってきた．
+https://www.gatsbyjs.com/plugins/@chakra-ui/gatsby-plugin/#customizing-the-theme
+によれば
+
+> To use customize the theme in your Gatsby site, you can shadow the plugin’s `src/@chakra-ui/gatsby-plugin/theme.js` file with your own theme:
+
+だそう．要するに `src/@chakra-ui/gatsby-plugin/theme.js` でテーマオブジェクトを `export default` すればいいらしい．Gatsby プラグイン系だと `gatsby-config.js` でこねこねさせるのが多いのでわりと珍しいと思った．珍しすぎて `node_modules/@chakra-ui/gatsby-plugin/src/theme.js` を直接上書きさせるのかと勘違いしてた．
+
+こんな感じ．こういう奴は基本的に TypeScript 入れると爆発して死ぬので JavaScript で書くが，`extendTheme` で引数に型がちゃんとついてるので補完は効く (エラーは出ない)．
+
+```js
+import { extendTheme } from "@chakra-ui/react";
+
+const theme = extendTheme({
+  config: { initialColorMode: "dark" },
+  colors: {
+    gray: {
+      50: "#F9F9FD",
+      100: "#F0F1F8",
+      200: "#E7E6F1",
+      300: "#D2D3E3",
+      400: "#ABAAC3",
+      500: "#7F7C9A",
+      600: "#55516A",
+      700: "#37344A",
+      800: "#211E2D",
+    },
+    purple: { 990: "#1a1723" },
+  },
+  components: {
+    Link: {
+      baseStyle: {
+        color: "pink.400",
+      },
+    },
+  },
+});
+
+export default theme;
+```
+
+# 感想
+
+感想，ChakraUI はたのしい．
+
+- 自然に TSX で型がつくのでたのしい
+  - VSCode の Tailwind Intellisence Extension は Twin.macro の `tw` で効いてくれないのがつらかった
+- 普通にカスタマイズ性もそこそこあるのでたのしい
+- CSS modules に戻すときとかつらそう 知らんけど
+- 使いやすいコンポーネント設計の参考になった
+
+実際にうれしいところ以上にコンポーネント設計で学びがあった．わりと今まではなんでも props に受けがちというか，たとえば Layout が MainContent はおろか Header も Title も Sidebar も持ってて全部の中身を props でバケツリレーする方式だった．ページによって Title の下にタグ置いたり置かなかったり，Sidebar の Git Information があったりなかったり，Sidebar そのものがなかったり，まあ大変だった．全部剥がしてコンポーネントにしたら楽．ありがとう Chakra 先生．
+
+# 余談
+
+この記事は Zenn の scraps をもとに書かれました．作業ログを書くのに便利．
+
+[Gatsby & TypeScript の個人ブログを Tailwind から Chakra UI に入門しつつ移行したログ](https://zenn.dev/aumy/scraps/be4fed3f89ae99)

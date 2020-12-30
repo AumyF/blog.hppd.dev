@@ -1,16 +1,17 @@
-import { css } from '@emotion/react';
+import { Link } from "@chakra-ui/react";
+import { css } from "@emotion/react";
 import React from "react";
 
 export type HeaderAutoLinkProps = {};
 
 export const HeaderAutoLink: React.FCX<HeaderAutoLinkProps> = props => (
-  <a
+  <Link
     {...props}
-    className={"text-fuchsia-white fill-current float-left absolute"}
+    left="-20px"
+    pos="absolute"
     css={css`
-      left: -20px;
-      position: absolute;
       svg {
+        fill: currentColor;
         display: inline;
         transform: scale(1.2);
       }

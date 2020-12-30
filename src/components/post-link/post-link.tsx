@@ -1,4 +1,4 @@
-import { Box, Heading, Text, Wrap, WrapItem } from "@chakra-ui/react";
+import { Box, Heading, HStack, Text, Wrap, WrapItem } from "@chakra-ui/react";
 import { css } from "@emotion/react";
 import { faCalendarDay } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -28,10 +28,10 @@ export const PostLink: React.VFC<PostLinkProps> = ({
     <Wrap spacing=".5rem" direction="row" wrap="wrap">
       {yyyymmdd && (
         <WrapItem>
-          <div>
+          <HStack spacing=".5rem" alignItems="baseline">
             <FontAwesomeIcon icon={faCalendarDay} />
             <Text ml=".5rem">{yyyymmdd}</Text>
-          </div>
+          </HStack>
         </WrapItem>
       )}
       <WrapItem>

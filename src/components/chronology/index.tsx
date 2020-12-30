@@ -15,7 +15,7 @@ export const Chronology: React.FC<Props> = p => (
     _before={{
       content: `""`,
       borderLeft: "2px",
-      borderColor: "gray.300",
+      borderColor: "gray.600",
       pos: "absolute",
       height: "100%",
       left: "31px",
@@ -48,9 +48,9 @@ export const ChronologyTime: FC<{ children: ReactNode }> = props => (
     fontSize="3xl"
     _before={{
       pos: "absolute",
-      bg: "gray.500",
+      bg: "purple.300",
       my: "auto",
-      borderColor: "white",
+      borderColor: "purple.990",
       borderWidth: "2px",
       content: `""`,
       width: circleDiameter,
