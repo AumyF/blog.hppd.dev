@@ -5,6 +5,7 @@ import React from "react";
 
 import { BlogPostQuery } from "../../../types/graphqlTypes";
 import { Article } from "../../components/article";
+import { HeadTitle } from "../../components/atoms/head-title";
 import { TagList } from "../../components/atoms/tag-list";
 import { GitInfo } from "../../components/git-info";
 import { Layout } from "../../components/layout";
@@ -36,6 +37,7 @@ export const BlogPost: React.FC<BlogPostProps> = ({ data: { mdx } }) => {
         path,
       }}
     >
+      <HeadTitle>{frontmatter.title}</HeadTitle>
       <TitleContainer>
         <TitleName>{frontmatter.title}</TitleName>
         <TagList

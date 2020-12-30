@@ -28,6 +28,7 @@ export const IndexPage: React.FC<PageProps<IndexQuery>> = ({
           <Heading
             textAlign="center"
             mb="2rem"
+            pb=".5rem"
             borderBottom="1px"
             borderColor="gray.500"
           >

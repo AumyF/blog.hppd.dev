@@ -57,7 +57,11 @@ export const ArticleStyles = css`
 
   p,
   li {
-    line-height: 1.75;
+    line-height: 2;
+  }
+
+  p + p {
+    margin-top: 1rem;
   }
 
   table {
