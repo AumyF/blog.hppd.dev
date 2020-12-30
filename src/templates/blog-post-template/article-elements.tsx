@@ -23,7 +23,7 @@ const ArticleAnchor: React.FC<JSX.IntrinsicElements["a"]> = props =>
     <AnchorOrLink to={assertsNonNull(props.href)} {...props} />
   );
 
-export const ArticleElements: MDXProviderComponentsProp = {
+export const ArticleElements = {
   a: ArticleAnchor,
   code: Code,
   ul: UnorderedList,
@@ -51,4 +51,4 @@ export const ArticleElements: MDXProviderComponentsProp = {
       my: ".5rem",
     },
   }),
-};
+} as const;
