@@ -42,7 +42,7 @@
     "gatsby-remark-autolink-headers": "^2.8.0",
     "gatsby-remark-code-titles": "^1.1.0",
     "gatsby-remark-prismjs": "^3.10.0",
-    "gatsby-source-filesystem": "^2.8.0",
+    "gatsby-source-filesystem": "^2.8.1",
     "prismjs": "^1.22.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
