@@ -1,12 +1,14 @@
+import { Heading } from "@chakra-ui/react";
 import { graphql, PageProps } from "gatsby";
 import React from "react";
-import tw from "twin.macro";
 
 import { IndexQuery } from "../../types/graphqlTypes";
+import { HeadTitle } from "../components/atoms/head-title";
 import { Layout } from "../components/layout";
+import { BodyContainer } from "../components/layout/container";
+import { MainContent } from "../components/layout/main-content";
+import { TitleContainer, TitleName } from "../components/layout/title";
 import { PostList } from "../components/post-link/post-list";
-
-const Heading = tw.h1`text-4xl font-bold text-center mb-8 leading-tight`;
 
 export const IndexPage: React.FC<PageProps<IndexQuery>> = ({
   data: {
@@ -14,9 +16,26 @@ export const IndexPage: React.FC<PageProps<IndexQuery>> = ({
   },
 }) => {
   return (
-    <Layout {...{ title: "Index", path: "/" }}>
-      <Heading>Recent posts</Heading>
-      <PostList {...{ nodes }} />
+    <Layout {...{ path: "/" }}>
+      <HeadTitle>Index</HeadTitle>
+
+      <TitleContainer>
+        <TitleName>Index</TitleName>
+      </TitleContainer>
+
+      <BodyContainer>
+        <MainContent>
+          <Heading
+            textAlign="center"
+            mb="2rem"
+            borderBottom="1px"
+            borderColor="gray.500"
+          >
+            Recent posts
+          </Heading>
+          <PostList {...{ nodes }} />
+        </MainContent>
+      </BodyContainer>
     </Layout>
   );
 };

@@ -2230,7 +2230,7 @@ export type SitePluginPluginOptions = {
   lessBabel?: Maybe<Scalars['Boolean']>;
   mediaTypes?: Maybe<Array<Maybe<Scalars['String']>>>;
   sourceMap?: Maybe<Scalars['Boolean']>;
-  autoLabel?: Maybe<Scalars['Boolean']>;
+  autoLabel?: Maybe<Scalars['String']>;
   labelFormat?: Maybe<Scalars['String']>;
   cssPropOptimization?: Maybe<Scalars['Boolean']>;
   head?: Maybe<Scalars['Boolean']>;
@@ -2265,7 +2265,7 @@ export type SitePluginPluginOptionsFilterInput = {
   lessBabel?: Maybe<BooleanQueryOperatorInput>;
   mediaTypes?: Maybe<StringQueryOperatorInput>;
   sourceMap?: Maybe<BooleanQueryOperatorInput>;
-  autoLabel?: Maybe<BooleanQueryOperatorInput>;
+  autoLabel?: Maybe<StringQueryOperatorInput>;
   labelFormat?: Maybe<StringQueryOperatorInput>;
   cssPropOptimization?: Maybe<BooleanQueryOperatorInput>;
   head?: Maybe<BooleanQueryOperatorInput>;
@@ -2345,7 +2345,7 @@ export type TagsPageQueryVariables = {};
 
 
 export type TagsPageQuery = { allMdx: { group: Array<(
-      Pick<MdxGroupConnection, 'fieldValue' | 'totalCount'>
+      Pick<MdxGroupConnection, 'fieldValue'>
       & { nodes: Array<(
         Pick<Mdx, 'excerpt' | 'id'>
         & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'tags' | 'title'>>, fields?: Maybe<Pick<MdxFields, 'path' | 'yyyymmdd'>> }

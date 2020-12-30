@@ -1,3 +1,4 @@
+import { StackDivider, VStack } from "@chakra-ui/react";
 import React from "react";
 
 import { MdxFields, MdxFrontmatter } from "../../../types/graphqlTypes";
@@ -14,7 +15,7 @@ export type PostListProps = {
 const isntNull = <T extends {}>(v: T | null | undefined): v is T => v != null;
 
 export const PostList: React.FC<PostListProps> = ({ nodes }) => (
-  <div className="p-0">
+  <VStack divider={<StackDivider borderColor="gray.600" />} spacing="1.5rem">
     {nodes.map(
       ({ excerpt, fields, frontmatter }) =>
         frontmatter?.tags &&
@@ -29,5 +30,5 @@ export const PostList: React.FC<PostListProps> = ({ nodes }) => (
           />
         )
     )}
-  </div>
+  </VStack>
 );

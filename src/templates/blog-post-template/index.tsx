@@ -8,6 +8,14 @@ import { Article } from "../../components/article";
 import { TagList } from "../../components/atoms/tag-list";
 import { GitInfo } from "../../components/git-info";
 import { Layout } from "../../components/layout";
+import { BodyContainer } from "../../components/layout/container";
+import { MainContent } from "../../components/layout/main-content";
+import {
+  Sidebar,
+  SidebarCard,
+  SidebarCardTitle,
+} from "../../components/layout/sidebar";
+import { TitleContainer, TitleName } from "../../components/layout/title";
 import { TableOfContents } from "../../components/table-of-contents";
 import { assertsNonNull as $ } from "../../utils/asserts-non-null";
 import { ArticleElements } from "./article-elements";
@@ -27,32 +35,39 @@ export const BlogPost: React.FC<BlogPostProps> = ({ data: { mdx } }) => {
         title: frontmatter.title,
         path,
       }}
-      SidebarComponent={[
-        {
-          title: "Table of Contents",
-          children: <TableOfContents toc={mdx?.tableOfContents} />,
-        },
-        {
-          title: "Git Information",
-          children: <GitInfo filePath={$(mdx?.fields?.relativeDir)} />,
-        },
-      ]}
-      TitleComponent={() => (
+    >
+      <TitleContainer>
+        <TitleName>{frontmatter.title}</TitleName>
         <TagList
-          className="mx-auto mt-2"
           tags={
             frontmatter.tags?.filter(
               (tag): tag is string => typeof tag === "string"
             ) ?? [""]
           }
         />
-      )}
-    >
-      <Article>
-        <MDXProvider components={ArticleElements}>
-          <MDXRenderer>{$(mdx?.body)}</MDXRenderer>
-        </MDXProvider>
-      </Article>
+      </TitleContainer>
+
+      <BodyContainer>
+        <Sidebar>
+          <SidebarCard>
+            <SidebarCardTitle>Table of Contents</SidebarCardTitle>
+            <TableOfContents toc={mdx?.tableOfContents} />
+          </SidebarCard>
+
+          <SidebarCard>
+            <SidebarCardTitle>Git Information</SidebarCardTitle>
+            <GitInfo filePath={$(mdx?.fields?.relativeDir)} />
+          </SidebarCard>
+        </Sidebar>
+
+        <MainContent>
+          <Article>
+            <MDXProvider components={ArticleElements}>
+              <MDXRenderer>{$(mdx?.body)}</MDXRenderer>
+            </MDXProvider>
+          </Article>
+        </MainContent>
+      </BodyContainer>
     </Layout>
   );
 };

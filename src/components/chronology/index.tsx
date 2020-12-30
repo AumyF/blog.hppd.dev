@@ -1,51 +1,70 @@
+import { Box } from "@chakra-ui/react";
 import styled from "@emotion/styled";
-import React from "react";
-import tw from "twin.macro";
+import React, { FC, ReactNode } from "react";
+type Props = {
+  children: ReactNode;
+};
 
-type Props = {};
+export const Chronology: React.FC<Props> = p => (
+  <Box
+    {...p}
+    as="section"
+    pos="relative"
+    pl="4rem"
+    pb="1rem"
+    _before={{
+      content: `""`,
+      borderLeft: "2px",
+      borderColor: "gray.300",
+      pos: "absolute",
+      height: "100%",
+      left: "31px",
+    }}
+    _first={{
+      _before: {
+        top: "2rem",
+        height: "calc(100% - 2rem)",
+      },
+    }}
+    _last={{
+      paddingBottom: "4rem",
+      _before: {
+        bottom: "2rem",
+        height: "calc(100% - 2rem)",
+      },
+    }}
+  />
+);
 
-export const Chronology: React.FC<Props> = styled.div`
-  section {
-    position: relative;
-    padding-left: 4rem;
-    padding-bottom: 1rem;
-    ::before {
-      ${tw`border-l-2 border-gray-200 absolute`}
-      height:100%;
-      left: 31px;
-      content: "";
-    }
-    &:first-of-type::before {
-      --top: 2rem;
-      top: 2rem;
-      height: calc(100% - var(--top));
-    }
-    &:last-of-type {
-      padding-bottom: 4rem;
-      &::before {
-        --bottom: 2rem;
-        bottom: var(--bottom);
-        height: calc(100% - var(--bottom));
-      }
-    }
-  }
-`;
+const circleRadius = "8.5px";
+const circleDiameter = "17px";
 
-export const ChronologyTime = styled.div`
-  ${tw`relative font-bold text-3xl`}
-  ::before {
-    --circle-radius: 8.5px;
-    --circle-diameter: calc(var(--circle-radius) * 2);
-    ${tw`absolute bg-gray-300 my-auto border-white border-2`};
-    width: var(--circle-diameter);
-    height: var(--circle-diameter);
-    top: calc(50% - var(--circle-radius));
-    left: calc(-2rem - var(--circle-radius));
-    content: "";
-    border-radius: 50%;
-  }
-`;
-export const ChronologyTitle: React.FC<{}> = styled.div`
+export const ChronologyTime: FC<{ children: ReactNode }> = props => (
+  <Box
+    as="time"
+    d="block"
+    pos="relative"
+    fontWeight="600"
+    fontSize="3xl"
+    _before={{
+      pos: "absolute",
+      bg: "gray.500",
+      my: "auto",
+      borderColor: "white",
+      borderWidth: "2px",
+      content: `""`,
+      width: circleDiameter,
+      height: circleDiameter,
+      top: `calc(50% - ${circleRadius})`,
+      left: `calc(-2rem - ${circleRadius})`,
+      borderRadius: "50%",
+    }}
+  >
+    {props.children}
+  </Box>
+);
+
+export const ChronologyTitle = styled.div`
   font-weight: bold;
   font-size: 1.5rem;
 `;

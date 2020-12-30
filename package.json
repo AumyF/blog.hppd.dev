@@ -17,8 +17,11 @@
     "test": "jest"
   },
   "dependencies": {
-    "@emotion/core": "^10.1.1",
-    "@emotion/styled": "^10.0.27",
+    "@chakra-ui/gatsby-plugin": "^1.0.0",
+    "@chakra-ui/react": "^1.1.0",
+    "@emotion/eslint-plugin": "^11.0.0",
+    "@emotion/react": "^11.1.2",
+    "@emotion/styled": "^11.0.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-brands-svg-icons": "^5.15.1",
     "@fortawesome/free-regular-svg-icons": "^5.15.1",
@@ -26,15 +29,13 @@
     "@fortawesome/react-fontawesome": "^0.1.13",
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
-    "clsx": "^1.1.1",
+    "framer-motion": "^3.0.0",
     "gatsby": "^2.29.1",
-    "gatsby-plugin-emotion": "^4.5.0",
+    "gatsby-plugin-emotion": "^5.1.0",
     "gatsby-plugin-google-analytics": "^2.8.0",
     "gatsby-plugin-graphql-codegen": "^2.7.1",
     "gatsby-plugin-manifest": "^2.9.0",
     "gatsby-plugin-mdx": "^1.7.0",
-    "gatsby-plugin-netlify-cache": "^1.2.0",
-    "gatsby-plugin-postcss": "^2.3.13",
     "gatsby-plugin-react-helmet": "^3.7.0",
     "gatsby-plugin-twitter": "^2.7.0",
     "gatsby-plugin-typescript": "^2.9.0",
@@ -70,19 +71,8 @@
     "jest": "^25.5.4",
     "jsonc-parser": "^3.0.0",
     "prettier": "^2.2.1",
-    "tailwindcss": "^1.9.6",
     "ts-jest": "^25.5.1",
     "ts-node": "^9.1.1",
-    "twin.macro": "^1.12.1",
     "typescript": "^4.1.3"
-  },
-  "babelMacros": {
-    "twin": {
-      "config": "tailwind.config.js",
-      "preset": "emotion",
-      "debugProp": true,
-      "debugPlugins": false,
-      "debug": false
-    }
   }
 }
