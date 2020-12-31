@@ -29,7 +29,7 @@
     "@fortawesome/react-fontawesome": "^0.1.14",
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
-    "framer-motion": "^3.0.0",
+    "framer-motion": "^3.1.1",
     "gatsby": "^2.29.3",
     "gatsby-plugin-emotion": "^5.1.0",
     "gatsby-plugin-google-analytics": "^2.8.0",
