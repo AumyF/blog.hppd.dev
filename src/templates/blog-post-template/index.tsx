@@ -5,10 +5,10 @@ import React from "react";
 
 import { BlogPostQuery } from "../../../types/graphqlTypes";
 import { Article } from "../../components/article";
+import { ArticleInfo } from "../../components/article-info";
 import { HeadTitle } from "../../components/atoms/head-title";
 import { TagList } from "../../components/atoms/tag-list";
 import { Author } from "../../components/author";
-import { GitInfo } from "../../components/git-info";
 import { Layout } from "../../components/layout";
 import { BodyContainer } from "../../components/layout/container";
 import { MainContent } from "../../components/layout/main-content";
@@ -32,6 +32,7 @@ export type BlogPostProps = PageProps<BlogPostQuery, BlogPostContext>;
 export const BlogPost: React.FC<BlogPostProps> = ({ data: { mdx } }) => {
   const frontmatter = $(mdx?.frontmatter);
   const path = $(mdx?.fields?.path);
+
   return (
     <Layout
       {...{
@@ -42,7 +43,11 @@ export const BlogPost: React.FC<BlogPostProps> = ({ data: { mdx } }) => {
       <HeadTitle>{frontmatter.title}</HeadTitle>
       <TitleContainer>
         <TitleName>{frontmatter.title}</TitleName>
-        <TagList tags={frontmatter.tags?.flatMap(tag => tag ?? []) ?? []} />
+        <TagList
+          center
+          tags={frontmatter.tags?.flatMap(tag => tag ?? []) ?? []}
+        />
+        <ArticleInfo path={mdx?.fields?.relativeDir ?? ""} />
       </TitleContainer>
 
       <BodyContainer>
@@ -60,11 +65,6 @@ export const BlogPost: React.FC<BlogPostProps> = ({ data: { mdx } }) => {
           <SidebarCard>
             <SidebarCardTitle>共有</SidebarCardTitle>
             <Share url={path} />
-          </SidebarCard>
-
-          <SidebarCard>
-            <SidebarCardTitle>Git Information</SidebarCardTitle>
-            <GitInfo filePath={$(mdx?.fields?.relativeDir)} />
           </SidebarCard>
         </Sidebar>
 
