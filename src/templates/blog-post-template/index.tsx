@@ -40,18 +40,12 @@ export const BlogPost: React.FC<BlogPostProps> = ({ data: { mdx } }) => {
       <HeadTitle>{frontmatter.title}</HeadTitle>
       <TitleContainer>
         <TitleName>{frontmatter.title}</TitleName>
-        <TagList
-          tags={
-            frontmatter.tags?.filter(
-              (tag): tag is string => typeof tag === "string"
-            ) ?? [""]
-          }
-        />
+        <TagList tags={frontmatter.tags?.flatMap(tag => tag ?? []) ?? []} />
       </TitleContainer>
 
       <BodyContainer>
         <Sidebar>
-          <SidebarCard>
+          <SidebarCard scrollable>
             <SidebarCardTitle>Table of Contents</SidebarCardTitle>
             <TableOfContents toc={mdx?.tableOfContents} />
           </SidebarCard>

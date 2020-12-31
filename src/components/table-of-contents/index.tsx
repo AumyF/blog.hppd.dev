@@ -4,8 +4,9 @@ import {
   ListItem,
   UnorderedList,
 } from "@chakra-ui/react";
-import { Link } from "gatsby";
 import React from "react";
+
+import { Hyper } from "../atoms/Hyper";
 
 export type TOC = Readonly<{ items?: TOCItems }>;
 
@@ -28,12 +29,16 @@ const TOCItem: ChakraComponent<"ul", { items: TOCItems }> = ({
   >
     {items.map(items => (
       <ListItem key={items.title}>
-        <Link
-          className="block px-1 my-1 no-underline hover:bg-border text-weak"
+        <Hyper
+          d="block"
+          px="1"
+          my="1"
+          _hover={{ color: "green.300" }}
+          color="gray.400"
           to={items.url}
         >
           {items.title}
-        </Link>
+        </Hyper>
         {items.items ? <TOCItem ml="1rem" items={items.items} /> : null}
       </ListItem>
     ))}
@@ -49,6 +54,6 @@ export const TableOfContents: React.VFC<TableOfContentsProps> = ({
 }) =>
   items && (
     <Box pb="1rem">
-      <TOCItem className="pt-2" items={items} />
+      <TOCItem items={items} />
     </Box>
   );

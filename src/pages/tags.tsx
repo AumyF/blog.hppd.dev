@@ -36,7 +36,7 @@ export const TagsPage: (props: TagsPageProps) => React.ReactElement = ({
 
     <BodyContainer>
       <Sidebar>
-        <SidebarCard>
+        <SidebarCard scrollable>
           <SidebarCardTitle>Table of Contents</SidebarCardTitle>
           <TableOfContents
             toc={{

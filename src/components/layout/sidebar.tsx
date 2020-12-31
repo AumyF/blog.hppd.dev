@@ -14,6 +14,7 @@ export const Sidebar: ChakraComponent<"aside", { children: ReactNode }> = ({
       top="1rem"
       flexBasis={{ base: "220px", lg: "255px" }}
       flexShrink={0}
+      maxH="calc(100vh - 2rem)"
     >
       {children}
     </Stack>
@@ -37,9 +38,12 @@ export const SidebarCardTitle: ChakraComponent<"h4", { children: string }> = ({
   </Heading>
 );
 
-export const SidebarCard: ChakraComponent<"div", {}> = props => (
-  <Box p="1rem" {...cardChakra}>
-    {props.children}
+export const SidebarCard: ChakraComponent<"div", { scrollable?: boolean }> = ({
+  children,
+  scrollable,
+}) => (
+  <Box p="1rem" overflow={scrollable ? "auto" : "visible"} {...cardChakra}>
+    {children}
   </Box>
 );
 
