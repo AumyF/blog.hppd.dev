@@ -27,7 +27,7 @@ export const SiteHeader: React.FCX<SiteHeaderProps> = () => {
       borderBottomColor="gray.700"
     >
       <Container maxW="120ch">
-        <Flex direction="row" alignItems="center">
+        <Flex direction={{ base: "column", sm: "row" }} alignItems="center">
           <Heading as="h1">
             <Link to="/">
               {/* <img src={svg} alt="FortunateRicefield" /> */}
