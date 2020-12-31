@@ -7,7 +7,7 @@ export const globalStyles = css`
     transition: 200ms background-color ease;
   }
   html {
-    scrollbar-color: #7975a2 #4a457f;
+    scrollbar-color: #d2d3e3 #1a1723;
     overflow-y: scroll;
   }
   body {

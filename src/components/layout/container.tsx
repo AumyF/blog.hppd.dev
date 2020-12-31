@@ -1,4 +1,4 @@
-import { ChakraComponent, Container, Stack } from "@chakra-ui/react";
+import { ChakraComponent, Container, Flex, Stack } from "@chakra-ui/react";
 import React, { ReactNode } from "react";
 
 export const BodyContainer: ChakraComponent<
@@ -8,8 +8,8 @@ export const BodyContainer: ChakraComponent<
   }
 > = ({ children }) => (
   <Container maxW="120ch">
-    <Stack direction="row-reverse" justifyContent="space-around" spacing="1rem">
+    <Flex direction="row-reverse" justifyContent="space-around" gridGap="1rem">
       {children}
-    </Stack>
+    </Flex>
   </Container>
 );
