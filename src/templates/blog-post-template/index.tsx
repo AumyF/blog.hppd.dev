@@ -18,6 +18,7 @@ import {
   SidebarCardTitle,
 } from "../../components/layout/sidebar";
 import { TitleContainer, TitleName } from "../../components/layout/title";
+import { MobileTOC } from "../../components/mobile-toc";
 import { Share } from "../../components/share";
 import { TableOfContents } from "../../components/table-of-contents";
 import { assertsNonNull as $ } from "../../utils/asserts-non-null";
@@ -76,6 +77,8 @@ export const BlogPost: React.FC<BlogPostProps> = ({ data: { mdx } }) => {
           </Article>
         </MainContent>
       </BodyContainer>
+
+      <MobileTOC toc={mdx?.tableOfContents} />
     </Layout>
   );
 };

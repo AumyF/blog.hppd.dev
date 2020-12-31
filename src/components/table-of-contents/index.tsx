@@ -16,11 +16,10 @@ export type TOCItems = {
   url: string;
 }[];
 
-const TOCItem: ChakraComponent<"ul", { items: TOCItems }> = ({
-  className,
-  items,
-  ml = 0,
-}) => (
+const TOCItem: ChakraComponent<
+  "ul",
+  { items: TOCItems; onItemClick?: () => void }
+> = ({ className, items, ml = 0, onItemClick }) => (
   <UnorderedList
     spacing=".25rem"
     ml={ml}
@@ -33,27 +32,32 @@ const TOCItem: ChakraComponent<"ul", { items: TOCItems }> = ({
           d="block"
           px="1"
           my="1"
-          _hover={{ color: "green.300" }}
+          _hover={{ color: "teal.300" }}
           color="gray.400"
           to={items.url}
+          onClick={onItemClick}
         >
           {items.title}
         </Hyper>
-        {items.items ? <TOCItem ml="1rem" items={items.items} /> : null}
+        {items.items ? (
+          <TOCItem ml="1rem" items={items.items} onItemClick={onItemClick} />
+        ) : null}
       </ListItem>
     ))}
   </UnorderedList>
 );
 
 export type TableOfContentsProps = {
+  onItemClick?: () => void;
   toc: TOC;
 };
 
 export const TableOfContents: React.VFC<TableOfContentsProps> = ({
+  onItemClick,
   toc: { items = null },
 }) =>
   items && (
     <Box pb="1rem">
-      <TOCItem items={items} />
+      <TOCItem items={items} onItemClick={onItemClick} />
     </Box>
   );
