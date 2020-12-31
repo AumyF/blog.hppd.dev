@@ -7,6 +7,7 @@ import { BlogPostQuery } from "../../../types/graphqlTypes";
 import { Article } from "../../components/article";
 import { HeadTitle } from "../../components/atoms/head-title";
 import { TagList } from "../../components/atoms/tag-list";
+import { Author } from "../../components/author";
 import { GitInfo } from "../../components/git-info";
 import { Layout } from "../../components/layout";
 import { BodyContainer } from "../../components/layout/container";
@@ -17,6 +18,7 @@ import {
   SidebarCardTitle,
 } from "../../components/layout/sidebar";
 import { TitleContainer, TitleName } from "../../components/layout/title";
+import { Share } from "../../components/share";
 import { TableOfContents } from "../../components/table-of-contents";
 import { assertsNonNull as $ } from "../../utils/asserts-non-null";
 import { ArticleElements } from "./article-elements";
@@ -45,9 +47,19 @@ export const BlogPost: React.FC<BlogPostProps> = ({ data: { mdx } }) => {
 
       <BodyContainer>
         <Sidebar>
+          <SidebarCard>
+            <SidebarCardTitle>著者</SidebarCardTitle>
+            <Author />
+          </SidebarCard>
+
           <SidebarCard scrollable>
             <SidebarCardTitle>Table of Contents</SidebarCardTitle>
             <TableOfContents toc={mdx?.tableOfContents} />
+          </SidebarCard>
+
+          <SidebarCard>
+            <SidebarCardTitle>共有</SidebarCardTitle>
+            <Share url={path} />
           </SidebarCard>
 
           <SidebarCard>
