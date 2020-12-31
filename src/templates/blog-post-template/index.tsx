@@ -5,9 +5,10 @@ import React from "react";
 
 import { BlogPostQuery } from "../../../types/graphqlTypes";
 import { Article } from "../../components/article";
+import { ArticleInfo } from "../../components/article-info";
 import { HeadTitle } from "../../components/atoms/head-title";
 import { TagList } from "../../components/atoms/tag-list";
-import { GitInfo } from "../../components/git-info";
+import { Author } from "../../components/author";
 import { Layout } from "../../components/layout";
 import { BodyContainer } from "../../components/layout/container";
 import { MainContent } from "../../components/layout/main-content";
@@ -17,6 +18,8 @@ import {
   SidebarCardTitle,
 } from "../../components/layout/sidebar";
 import { TitleContainer, TitleName } from "../../components/layout/title";
+import { MobileTOC } from "../../components/mobile-toc";
+import { Share } from "../../components/share";
 import { TableOfContents } from "../../components/table-of-contents";
 import { assertsNonNull as $ } from "../../utils/asserts-non-null";
 import { ArticleElements } from "./article-elements";
@@ -30,6 +33,7 @@ export type BlogPostProps = PageProps<BlogPostQuery, BlogPostContext>;
 export const BlogPost: React.FC<BlogPostProps> = ({ data: { mdx } }) => {
   const frontmatter = $(mdx?.frontmatter);
   const path = $(mdx?.fields?.path);
+
   return (
     <Layout
       {...{
@@ -41,24 +45,27 @@ export const BlogPost: React.FC<BlogPostProps> = ({ data: { mdx } }) => {
       <TitleContainer>
         <TitleName>{frontmatter.title}</TitleName>
         <TagList
-          tags={
-            frontmatter.tags?.filter(
-              (tag): tag is string => typeof tag === "string"
-            ) ?? [""]
-          }
+          center
+          tags={frontmatter.tags?.flatMap(tag => tag ?? []) ?? []}
         />
+        <ArticleInfo path={mdx?.fields?.relativeDir ?? ""} />
       </TitleContainer>
 
       <BodyContainer>
         <Sidebar>
           <SidebarCard>
+            <SidebarCardTitle>著者</SidebarCardTitle>
+            <Author />
+          </SidebarCard>
+
+          <SidebarCard scrollable>
             <SidebarCardTitle>Table of Contents</SidebarCardTitle>
             <TableOfContents toc={mdx?.tableOfContents} />
           </SidebarCard>
 
           <SidebarCard>
-            <SidebarCardTitle>Git Information</SidebarCardTitle>
-            <GitInfo filePath={$(mdx?.fields?.relativeDir)} />
+            <SidebarCardTitle>共有</SidebarCardTitle>
+            <Share url={path} />
           </SidebarCard>
         </Sidebar>
 
@@ -70,6 +77,8 @@ export const BlogPost: React.FC<BlogPostProps> = ({ data: { mdx } }) => {
           </Article>
         </MainContent>
       </BodyContainer>
+
+      <MobileTOC toc={mdx?.tableOfContents} />
     </Layout>
   );
 };

@@ -30,6 +30,7 @@ const theme = extendTheme({
         color: "pink.400",
       },
     },
+    Container: { baseStyle: { px: ["0", "1rem"] } },
   },
 });
 

@@ -14,6 +14,7 @@ import {
   SidebarCardTitle,
 } from "../components/layout/sidebar";
 import { TitleContainer, TitleName } from "../components/layout/title";
+import { MobileTOC } from "../components/mobile-toc";
 import { PostList } from "../components/post-link/post-list";
 import { TableOfContents } from "../components/table-of-contents";
 import { ArticleElements } from "../templates/blog-post-template/article-elements";
@@ -26,44 +27,48 @@ export const TagsPage: (props: TagsPageProps) => React.ReactElement = ({
   data: {
     allMdx: { group },
   },
-}) => (
-  <Layout path="tags">
-    <HeadTitle>Tags</HeadTitle>
+}) => {
+  const toc = {
+    items: group.map(({ fieldValue }) => ({
+      title: fieldValue ?? "",
+      url: `./#${fieldValue}`,
+    })),
+  };
 
-    <TitleContainer>
-      <TitleName>Tags</TitleName>
-    </TitleContainer>
+  return (
+    <Layout path="tags">
+      <HeadTitle>Tags</HeadTitle>
 
-    <BodyContainer>
-      <Sidebar>
-        <SidebarCard>
-          <SidebarCardTitle>Table of Contents</SidebarCardTitle>
-          <TableOfContents
-            toc={{
-              items: group.map(({ fieldValue }) => ({
-                title: fieldValue ?? "",
-                url: `./#${fieldValue}`,
-              })),
-            }}
-          />
-        </SidebarCard>
-      </Sidebar>
+      <TitleContainer>
+        <TitleName>Tags</TitleName>
+      </TitleContainer>
 
-      <MainContent>
-        <Article>
-          {group.map(({ fieldValue, nodes }) => (
-            <section key={fieldValue ?? ""}>
-              <H1 id={`${fieldValue}`}>
-                <Hyper to={"/tags/" + fieldValue ?? "#"}>{fieldValue}</Hyper>
-              </H1>
-              <PostList {...{ nodes }} />
-            </section>
-          ))}
-        </Article>
-      </MainContent>
-    </BodyContainer>
-  </Layout>
-);
+      <BodyContainer>
+        <Sidebar>
+          <SidebarCard scrollable>
+            <SidebarCardTitle>Table of Contents</SidebarCardTitle>
+            <TableOfContents toc={toc} />
+          </SidebarCard>
+        </Sidebar>
+
+        <MainContent>
+          <Article>
+            {group.map(({ fieldValue, nodes }) => (
+              <section key={fieldValue ?? ""}>
+                <H1 id={`${fieldValue}`}>
+                  <Hyper to={"/tags/" + fieldValue ?? "#"}>{fieldValue}</Hyper>
+                </H1>
+                <PostList {...{ nodes }} />
+              </section>
+            ))}
+          </Article>
+        </MainContent>
+      </BodyContainer>
+
+      <MobileTOC toc={toc} />
+    </Layout>
+  );
+};
 
 export const pageQuery = graphql`
   query TagsPage {
