@@ -60,7 +60,7 @@
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-gatsby": "^0.9.1",
     "dependency-cruiser": "^9.21.2",
-    "eslint": "^7.16.0",
+    "eslint": "^7.17.0",
     "eslint-config-prettier": "^7.1.0",
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
