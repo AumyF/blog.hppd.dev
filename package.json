@@ -56,7 +56,7 @@
     "@types/react-helmet": "^6.1.0",
     "@types/webpack": "^4.41.25",
     "@typescript-eslint/eslint-plugin": "^4.11.1",
-    "@typescript-eslint/parser": "^4.11.1",
+    "@typescript-eslint/parser": "^4.12.0",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-gatsby": "^0.9.1",
     "dependency-cruiser": "^9.21.3",
