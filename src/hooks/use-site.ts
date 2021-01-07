@@ -12,7 +12,7 @@ export const useSite = (): NonNullable<UseSiteQuery["site"]> =>
           siteMetadata {
             title
             description
-            domainName
+            siteUrl
           }
         }
       }
