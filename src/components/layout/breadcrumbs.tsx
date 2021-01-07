@@ -23,7 +23,7 @@ const Slash = (
 export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ date }) => {
   const [year, month, dayPath] = date ?? [undefined, undefined, undefined];
   const [topLevelDomain, ...restDomainName] = assertsNonNull(
-    useSite().siteMetadata?.domainName?.split(".").reverse()
+    useSite().siteMetadata?.siteUrl?.split("//").pop()?.split(".").reverse()
   );
 
   const second = `${restDomainName[0]}.${topLevelDomain}`;

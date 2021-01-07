@@ -10,6 +10,7 @@ import {
 import { Link } from "gatsby";
 import React from "react";
 
+import { Hyper } from "../atoms/Hyper";
 import { invisibleAnchor } from "../styles/styles";
 // import svg from "../../../static/ftrf-logo.svg";
 
@@ -37,19 +38,14 @@ export const SiteHeader: React.FCX<SiteHeaderProps> = () => {
           <Spacer />
           <HStack divider={<Divider orientation="vertical" />}>
             <nav>
-              <Link css={[invisibleAnchor]} to="/about">
-                About
-              </Link>
+              <Hyper to="/about">About</Hyper>
             </nav>
             <nav>
-              <Link css={[invisibleAnchor]} to="/tags">
-                Tags
-              </Link>
+              <Hyper to="/tags">Tags</Hyper>
             </nav>
-            {/* <nav className="py-2">
-              <Icon to="https://twitter.com/MominisJ" icon={faTwitter} />
-              <Icon to="https://github.com/AumyF" icon={faGithub} />
-            </nav> */}
+            <nav>
+              <Hyper to="/rss.xml">RSS</Hyper>
+            </nav>
           </HStack>
         </Flex>
       </Container>
