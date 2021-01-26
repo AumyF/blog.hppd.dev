@@ -20,6 +20,12 @@ const ArchiveMonthTemplate = Path.resolve(
   "./src/templates/archive-month-template.tsx"
 );
 
+/**
+ * VSCode GraphQL 拡張によるサポートを有効化する．Tagged Template Literal を文字列にするだけ．
+ * @param graphqlQuery
+ */
+const gql = (graphqlQuery: TemplateStringsArray) => graphqlQuery.raw.join("");
+
 export const createPages: GatsbyNode["createPages"] = async ({
   actions: { createPage },
   graphql,
@@ -27,7 +33,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
 }) => {
   console.log(cyan("started ") + "createPages");
 
-  const result = await graphql<GatsbyNodeQuery>(`
+  const result = await graphql<GatsbyNodeQuery>(gql`
     query gatsbyNode {
       allMdx(filter: { frontmatter: { status: { ne: "private" } } }) {
         allTags: distinct(field: frontmatter___tags)
