@@ -344,6 +344,390 @@ export type DirectorySortInput = {
   order?: Maybe<Array<Maybe<SortOrderEnum>>>;
 };
 
+export type FeedZenn = Node & {
+  id: Scalars['ID'];
+  parent?: Maybe<Node>;
+  children: Array<Node>;
+  internal: Internal;
+  creator?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  link?: Maybe<Scalars['String']>;
+  pubDate?: Maybe<Scalars['String']>;
+  enclosure?: Maybe<FeedZennEnclosure>;
+  content?: Maybe<Scalars['String']>;
+  contentSnippet?: Maybe<Scalars['String']>;
+  guid?: Maybe<Scalars['String']>;
+  isoDate?: Maybe<Scalars['Date']>;
+  dc?: Maybe<FeedZennDc>;
+};
+
+
+export type FeedZennIsoDateArgs = {
+  formatString?: Maybe<Scalars['String']>;
+  fromNow?: Maybe<Scalars['Boolean']>;
+  difference?: Maybe<Scalars['String']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type FeedZennConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<FeedZennEdge>;
+  nodes: Array<FeedZenn>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  group: Array<FeedZennGroupConnection>;
+};
+
+
+export type FeedZennConnectionDistinctArgs = {
+  field: FeedZennFieldsEnum;
+};
+
+
+export type FeedZennConnectionGroupArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  field: FeedZennFieldsEnum;
+};
+
+export type FeedZennDc = {
+  creator?: Maybe<Scalars['String']>;
+};
+
+export type FeedZennDcFilterInput = {
+  creator?: Maybe<StringQueryOperatorInput>;
+};
+
+export type FeedZennEdge = {
+  next?: Maybe<FeedZenn>;
+  node: FeedZenn;
+  previous?: Maybe<FeedZenn>;
+};
+
+export type FeedZennEnclosure = {
+  url?: Maybe<Scalars['String']>;
+  length?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+};
+
+export type FeedZennEnclosureFilterInput = {
+  url?: Maybe<StringQueryOperatorInput>;
+  length?: Maybe<StringQueryOperatorInput>;
+  type?: Maybe<StringQueryOperatorInput>;
+};
+
+export type FeedZennFieldsEnum = 
+  'id' |
+  'parent___id' |
+  'parent___parent___id' |
+  'parent___parent___parent___id' |
+  'parent___parent___parent___children' |
+  'parent___parent___children' |
+  'parent___parent___children___id' |
+  'parent___parent___children___children' |
+  'parent___parent___internal___content' |
+  'parent___parent___internal___contentDigest' |
+  'parent___parent___internal___description' |
+  'parent___parent___internal___fieldOwners' |
+  'parent___parent___internal___ignoreType' |
+  'parent___parent___internal___mediaType' |
+  'parent___parent___internal___owner' |
+  'parent___parent___internal___type' |
+  'parent___children' |
+  'parent___children___id' |
+  'parent___children___parent___id' |
+  'parent___children___parent___children' |
+  'parent___children___children' |
+  'parent___children___children___id' |
+  'parent___children___children___children' |
+  'parent___children___internal___content' |
+  'parent___children___internal___contentDigest' |
+  'parent___children___internal___description' |
+  'parent___children___internal___fieldOwners' |
+  'parent___children___internal___ignoreType' |
+  'parent___children___internal___mediaType' |
+  'parent___children___internal___owner' |
+  'parent___children___internal___type' |
+  'parent___internal___content' |
+  'parent___internal___contentDigest' |
+  'parent___internal___description' |
+  'parent___internal___fieldOwners' |
+  'parent___internal___ignoreType' |
+  'parent___internal___mediaType' |
+  'parent___internal___owner' |
+  'parent___internal___type' |
+  'children' |
+  'children___id' |
+  'children___parent___id' |
+  'children___parent___parent___id' |
+  'children___parent___parent___children' |
+  'children___parent___children' |
+  'children___parent___children___id' |
+  'children___parent___children___children' |
+  'children___parent___internal___content' |
+  'children___parent___internal___contentDigest' |
+  'children___parent___internal___description' |
+  'children___parent___internal___fieldOwners' |
+  'children___parent___internal___ignoreType' |
+  'children___parent___internal___mediaType' |
+  'children___parent___internal___owner' |
+  'children___parent___internal___type' |
+  'children___children' |
+  'children___children___id' |
+  'children___children___parent___id' |
+  'children___children___parent___children' |
+  'children___children___children' |
+  'children___children___children___id' |
+  'children___children___children___children' |
+  'children___children___internal___content' |
+  'children___children___internal___contentDigest' |
+  'children___children___internal___description' |
+  'children___children___internal___fieldOwners' |
+  'children___children___internal___ignoreType' |
+  'children___children___internal___mediaType' |
+  'children___children___internal___owner' |
+  'children___children___internal___type' |
+  'children___internal___content' |
+  'children___internal___contentDigest' |
+  'children___internal___description' |
+  'children___internal___fieldOwners' |
+  'children___internal___ignoreType' |
+  'children___internal___mediaType' |
+  'children___internal___owner' |
+  'children___internal___type' |
+  'internal___content' |
+  'internal___contentDigest' |
+  'internal___description' |
+  'internal___fieldOwners' |
+  'internal___ignoreType' |
+  'internal___mediaType' |
+  'internal___owner' |
+  'internal___type' |
+  'creator' |
+  'title' |
+  'link' |
+  'pubDate' |
+  'enclosure___url' |
+  'enclosure___length' |
+  'enclosure___type' |
+  'content' |
+  'contentSnippet' |
+  'guid' |
+  'isoDate' |
+  'dc___creator';
+
+export type FeedZennFilterInput = {
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+  creator?: Maybe<StringQueryOperatorInput>;
+  title?: Maybe<StringQueryOperatorInput>;
+  link?: Maybe<StringQueryOperatorInput>;
+  pubDate?: Maybe<StringQueryOperatorInput>;
+  enclosure?: Maybe<FeedZennEnclosureFilterInput>;
+  content?: Maybe<StringQueryOperatorInput>;
+  contentSnippet?: Maybe<StringQueryOperatorInput>;
+  guid?: Maybe<StringQueryOperatorInput>;
+  isoDate?: Maybe<DateQueryOperatorInput>;
+  dc?: Maybe<FeedZennDcFilterInput>;
+};
+
+export type FeedZennGroupConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<FeedZennEdge>;
+  nodes: Array<FeedZenn>;
+  pageInfo: PageInfo;
+  field: Scalars['String'];
+  fieldValue?: Maybe<Scalars['String']>;
+};
+
+export type FeedZennMeta = Node & {
+  id: Scalars['ID'];
+  parent?: Maybe<Node>;
+  children: Array<Node>;
+  internal: Internal;
+  feedUrl?: Maybe<Scalars['String']>;
+  image?: Maybe<FeedZennMetaImage>;
+  title?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  generator?: Maybe<Scalars['String']>;
+  link?: Maybe<Scalars['String']>;
+  language?: Maybe<Scalars['String']>;
+  lastBuildDate?: Maybe<Scalars['String']>;
+};
+
+export type FeedZennMetaConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<FeedZennMetaEdge>;
+  nodes: Array<FeedZennMeta>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  group: Array<FeedZennMetaGroupConnection>;
+};
+
+
+export type FeedZennMetaConnectionDistinctArgs = {
+  field: FeedZennMetaFieldsEnum;
+};
+
+
+export type FeedZennMetaConnectionGroupArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  field: FeedZennMetaFieldsEnum;
+};
+
+export type FeedZennMetaEdge = {
+  next?: Maybe<FeedZennMeta>;
+  node: FeedZennMeta;
+  previous?: Maybe<FeedZennMeta>;
+};
+
+export type FeedZennMetaFieldsEnum = 
+  'id' |
+  'parent___id' |
+  'parent___parent___id' |
+  'parent___parent___parent___id' |
+  'parent___parent___parent___children' |
+  'parent___parent___children' |
+  'parent___parent___children___id' |
+  'parent___parent___children___children' |
+  'parent___parent___internal___content' |
+  'parent___parent___internal___contentDigest' |
+  'parent___parent___internal___description' |
+  'parent___parent___internal___fieldOwners' |
+  'parent___parent___internal___ignoreType' |
+  'parent___parent___internal___mediaType' |
+  'parent___parent___internal___owner' |
+  'parent___parent___internal___type' |
+  'parent___children' |
+  'parent___children___id' |
+  'parent___children___parent___id' |
+  'parent___children___parent___children' |
+  'parent___children___children' |
+  'parent___children___children___id' |
+  'parent___children___children___children' |
+  'parent___children___internal___content' |
+  'parent___children___internal___contentDigest' |
+  'parent___children___internal___description' |
+  'parent___children___internal___fieldOwners' |
+  'parent___children___internal___ignoreType' |
+  'parent___children___internal___mediaType' |
+  'parent___children___internal___owner' |
+  'parent___children___internal___type' |
+  'parent___internal___content' |
+  'parent___internal___contentDigest' |
+  'parent___internal___description' |
+  'parent___internal___fieldOwners' |
+  'parent___internal___ignoreType' |
+  'parent___internal___mediaType' |
+  'parent___internal___owner' |
+  'parent___internal___type' |
+  'children' |
+  'children___id' |
+  'children___parent___id' |
+  'children___parent___parent___id' |
+  'children___parent___parent___children' |
+  'children___parent___children' |
+  'children___parent___children___id' |
+  'children___parent___children___children' |
+  'children___parent___internal___content' |
+  'children___parent___internal___contentDigest' |
+  'children___parent___internal___description' |
+  'children___parent___internal___fieldOwners' |
+  'children___parent___internal___ignoreType' |
+  'children___parent___internal___mediaType' |
+  'children___parent___internal___owner' |
+  'children___parent___internal___type' |
+  'children___children' |
+  'children___children___id' |
+  'children___children___parent___id' |
+  'children___children___parent___children' |
+  'children___children___children' |
+  'children___children___children___id' |
+  'children___children___children___children' |
+  'children___children___internal___content' |
+  'children___children___internal___contentDigest' |
+  'children___children___internal___description' |
+  'children___children___internal___fieldOwners' |
+  'children___children___internal___ignoreType' |
+  'children___children___internal___mediaType' |
+  'children___children___internal___owner' |
+  'children___children___internal___type' |
+  'children___internal___content' |
+  'children___internal___contentDigest' |
+  'children___internal___description' |
+  'children___internal___fieldOwners' |
+  'children___internal___ignoreType' |
+  'children___internal___mediaType' |
+  'children___internal___owner' |
+  'children___internal___type' |
+  'internal___content' |
+  'internal___contentDigest' |
+  'internal___description' |
+  'internal___fieldOwners' |
+  'internal___ignoreType' |
+  'internal___mediaType' |
+  'internal___owner' |
+  'internal___type' |
+  'feedUrl' |
+  'image___link' |
+  'image___url' |
+  'image___title' |
+  'title' |
+  'description' |
+  'generator' |
+  'link' |
+  'language' |
+  'lastBuildDate';
+
+export type FeedZennMetaFilterInput = {
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+  feedUrl?: Maybe<StringQueryOperatorInput>;
+  image?: Maybe<FeedZennMetaImageFilterInput>;
+  title?: Maybe<StringQueryOperatorInput>;
+  description?: Maybe<StringQueryOperatorInput>;
+  generator?: Maybe<StringQueryOperatorInput>;
+  link?: Maybe<StringQueryOperatorInput>;
+  language?: Maybe<StringQueryOperatorInput>;
+  lastBuildDate?: Maybe<StringQueryOperatorInput>;
+};
+
+export type FeedZennMetaGroupConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<FeedZennMetaEdge>;
+  nodes: Array<FeedZennMeta>;
+  pageInfo: PageInfo;
+  field: Scalars['String'];
+  fieldValue?: Maybe<Scalars['String']>;
+};
+
+export type FeedZennMetaImage = {
+  link?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+};
+
+export type FeedZennMetaImageFilterInput = {
+  link?: Maybe<StringQueryOperatorInput>;
+  url?: Maybe<StringQueryOperatorInput>;
+  title?: Maybe<StringQueryOperatorInput>;
+};
+
+export type FeedZennMetaSortInput = {
+  fields?: Maybe<Array<Maybe<FeedZennMetaFieldsEnum>>>;
+  order?: Maybe<Array<Maybe<SortOrderEnum>>>;
+};
+
+export type FeedZennSortInput = {
+  fields?: Maybe<Array<Maybe<FeedZennFieldsEnum>>>;
+  order?: Maybe<Array<Maybe<SortOrderEnum>>>;
+};
+
 export type File = Node & {
   sourceInstanceName: Scalars['String'];
   absolutePath: Scalars['String'];
@@ -1187,6 +1571,10 @@ export type Query = {
   allSitePage: SitePageConnection;
   mdx?: Maybe<Mdx>;
   allMdx: MdxConnection;
+  feedZennMeta?: Maybe<FeedZennMeta>;
+  allFeedZennMeta: FeedZennMetaConnection;
+  feedZenn?: Maybe<FeedZenn>;
+  allFeedZenn: FeedZennConnection;
   siteBuildMetadata?: Maybe<SiteBuildMetadata>;
   allSiteBuildMetadata: SiteBuildMetadataConnection;
   sitePlugin?: Maybe<SitePlugin>;
@@ -1298,6 +1686,8 @@ export type QueryAllDirectoryArgs = {
 export type QuerySiteArgs = {
   buildTime?: Maybe<DateQueryOperatorInput>;
   siteMetadata?: Maybe<SiteSiteMetadataFilterInput>;
+  port?: Maybe<IntQueryOperatorInput>;
+  host?: Maybe<StringQueryOperatorInput>;
   polyfill?: Maybe<BooleanQueryOperatorInput>;
   pathPrefix?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
@@ -1370,6 +1760,56 @@ export type QueryAllMdxArgs = {
 };
 
 
+export type QueryFeedZennMetaArgs = {
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+  feedUrl?: Maybe<StringQueryOperatorInput>;
+  image?: Maybe<FeedZennMetaImageFilterInput>;
+  title?: Maybe<StringQueryOperatorInput>;
+  description?: Maybe<StringQueryOperatorInput>;
+  generator?: Maybe<StringQueryOperatorInput>;
+  link?: Maybe<StringQueryOperatorInput>;
+  language?: Maybe<StringQueryOperatorInput>;
+  lastBuildDate?: Maybe<StringQueryOperatorInput>;
+};
+
+
+export type QueryAllFeedZennMetaArgs = {
+  filter?: Maybe<FeedZennMetaFilterInput>;
+  sort?: Maybe<FeedZennMetaSortInput>;
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryFeedZennArgs = {
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+  creator?: Maybe<StringQueryOperatorInput>;
+  title?: Maybe<StringQueryOperatorInput>;
+  link?: Maybe<StringQueryOperatorInput>;
+  pubDate?: Maybe<StringQueryOperatorInput>;
+  enclosure?: Maybe<FeedZennEnclosureFilterInput>;
+  content?: Maybe<StringQueryOperatorInput>;
+  contentSnippet?: Maybe<StringQueryOperatorInput>;
+  guid?: Maybe<StringQueryOperatorInput>;
+  isoDate?: Maybe<DateQueryOperatorInput>;
+  dc?: Maybe<FeedZennDcFilterInput>;
+};
+
+
+export type QueryAllFeedZennArgs = {
+  filter?: Maybe<FeedZennFilterInput>;
+  sort?: Maybe<FeedZennSortInput>;
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+};
+
+
 export type QuerySiteBuildMetadataArgs = {
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
@@ -1414,6 +1854,8 @@ export type QueryAllSitePluginArgs = {
 export type Site = Node & {
   buildTime?: Maybe<Scalars['Date']>;
   siteMetadata?: Maybe<SiteSiteMetadata>;
+  port?: Maybe<Scalars['Int']>;
+  host?: Maybe<Scalars['String']>;
   polyfill?: Maybe<Scalars['Boolean']>;
   pathPrefix?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
@@ -1616,6 +2058,8 @@ export type SiteFieldsEnum =
   'siteMetadata___title' |
   'siteMetadata___description' |
   'siteMetadata___siteUrl' |
+  'port' |
+  'host' |
   'polyfill' |
   'pathPrefix' |
   'id' |
@@ -1708,6 +2152,8 @@ export type SiteFieldsEnum =
 export type SiteFilterInput = {
   buildTime?: Maybe<DateQueryOperatorInput>;
   siteMetadata?: Maybe<SiteSiteMetadataFilterInput>;
+  port?: Maybe<IntQueryOperatorInput>;
+  host?: Maybe<StringQueryOperatorInput>;
   polyfill?: Maybe<BooleanQueryOperatorInput>;
   pathPrefix?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
@@ -1934,9 +2380,11 @@ export type SitePageFieldsEnum =
   'pluginCreator___pluginOptions___jsxPragma' |
   'pluginCreator___pluginOptions___name' |
   'pluginCreator___pluginOptions___path' |
+  'pluginCreator___pluginOptions___url' |
   'pluginCreator___pluginOptions___extensions' |
   'pluginCreator___pluginOptions___lessBabel' |
   'pluginCreator___pluginOptions___mediaTypes' |
+  'pluginCreator___pluginOptions___root' |
   'pluginCreator___pluginOptions___sourceMap' |
   'pluginCreator___pluginOptions___autoLabel' |
   'pluginCreator___pluginOptions___labelFormat' |
@@ -2157,9 +2605,11 @@ export type SitePluginFieldsEnum =
   'pluginOptions___jsxPragma' |
   'pluginOptions___name' |
   'pluginOptions___path' |
+  'pluginOptions___url' |
   'pluginOptions___extensions' |
   'pluginOptions___lessBabel' |
   'pluginOptions___mediaTypes' |
+  'pluginOptions___root' |
   'pluginOptions___sourceMap' |
   'pluginOptions___autoLabel' |
   'pluginOptions___labelFormat' |
@@ -2303,9 +2753,11 @@ export type SitePluginPluginOptions = {
   jsxPragma?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   path?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
   extensions?: Maybe<Array<Maybe<Scalars['String']>>>;
   lessBabel?: Maybe<Scalars['Boolean']>;
   mediaTypes?: Maybe<Array<Maybe<Scalars['String']>>>;
+  root?: Maybe<Scalars['String']>;
   sourceMap?: Maybe<Scalars['Boolean']>;
   autoLabel?: Maybe<Scalars['String']>;
   labelFormat?: Maybe<Scalars['String']>;
@@ -2356,9 +2808,11 @@ export type SitePluginPluginOptionsFilterInput = {
   jsxPragma?: Maybe<StringQueryOperatorInput>;
   name?: Maybe<StringQueryOperatorInput>;
   path?: Maybe<StringQueryOperatorInput>;
+  url?: Maybe<StringQueryOperatorInput>;
   extensions?: Maybe<StringQueryOperatorInput>;
   lessBabel?: Maybe<BooleanQueryOperatorInput>;
   mediaTypes?: Maybe<StringQueryOperatorInput>;
+  root?: Maybe<StringQueryOperatorInput>;
   sourceMap?: Maybe<BooleanQueryOperatorInput>;
   autoLabel?: Maybe<StringQueryOperatorInput>;
   labelFormat?: Maybe<StringQueryOperatorInput>;
@@ -2416,17 +2870,6 @@ export type StringQueryOperatorInput = {
   regex?: Maybe<Scalars['String']>;
   glob?: Maybe<Scalars['String']>;
 };
-
-export type GatsbyNodeQueryVariables = {};
-
-
-export type GatsbyNodeQuery = { allMdx: (
-    { allTags: MdxConnection['distinct'], allYears: MdxConnection['distinct'], allMonthes: MdxConnection['distinct'], allFilenames: MdxConnection['distinct'] }
-    & { edges: Array<{ node: (
-        Pick<Mdx, 'id'>
-        & { fields?: Maybe<Pick<MdxFields, 'path'>> }
-      ) }> }
-  ) };
 
 export type IndexQueryVariables = {};
 
