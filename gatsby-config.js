@@ -88,6 +88,12 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-rss-feed`,
+      options: {
+        url: `https://zenn.dev/aumy/feed`,
+        name: `Zenn`,
+      },
+    },
       resolve: `gatsby-plugin-mdx`,
       options: {
         gatsbyRemarkPlugins: [

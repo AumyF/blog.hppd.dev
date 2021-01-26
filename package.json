@@ -44,6 +44,7 @@
     "gatsby-remark-code-titles": "^1.1.0",
     "gatsby-remark-prismjs": "^3.12.0",
     "gatsby-source-filesystem": "^2.10.0",
+    "gatsby-source-rss-feed": "^1.2.2",
     "prismjs": "^1.23.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
