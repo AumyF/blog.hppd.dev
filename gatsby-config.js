@@ -94,6 +94,7 @@ module.exports = {
         name: `Zenn`,
       },
     },
+    {
       resolve: `gatsby-plugin-mdx`,
       options: {
         gatsbyRemarkPlugins: [
