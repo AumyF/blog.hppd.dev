@@ -33,8 +33,8 @@ export const createPages: GatsbyNode["createPages"] = async ({
 }) => {
   console.log(cyan("started ") + "createPages");
 
-  const result = await graphql<GatsbyNodeQuery>(/* GraphQL */ `
-    query gatsbyNode {
+  const result = await graphql<GatsbyNodeQuery>(`
+    query GatsbyNode {
       allMdx(filter: { frontmatter: { status: { ne: "private" } } }) {
         allTags: distinct(field: frontmatter___tags)
         allYears: distinct(field: fields___yyyy)
