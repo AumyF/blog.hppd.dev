@@ -2871,6 +2871,17 @@ export type StringQueryOperatorInput = {
   glob?: Maybe<Scalars['String']>;
 };
 
+export type GatsbyNodeQueryVariables = {};
+
+
+export type GatsbyNodeQuery = { allMdx: (
+    { allTags: MdxConnection['distinct'], allYears: MdxConnection['distinct'], allMonthes: MdxConnection['distinct'], allFilenames: MdxConnection['distinct'] }
+    & { edges: Array<{ node: (
+        Pick<Mdx, 'id'>
+        & { fields?: Maybe<Pick<MdxFields, 'path'>> }
+      ) }> }
+  ) };
+
 export type IndexQueryVariables = {};
 
 
