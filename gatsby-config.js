@@ -4,7 +4,7 @@ module.exports = {
   siteMetadata: {
     title: "Happy Paddy",
     description: "作ってる間がピーク",
-    siteUrl: "https://blog.hppd.dev", // ダミーですよ！
+    siteUrl: "https://blog.hppd.dev",
   },
   plugins: [
     {
@@ -28,32 +28,32 @@ module.exports = {
               return allMdx.edges.map(edge => {
                 return Object.assign({}, edge.node.frontmatter, {
                   description: edge.node.excerpt,
-                  date: edge.node.frontmatter.date,
-                  url: site.siteMetadata.siteUrl + edge.node.fields.path,
-                  guid: site.siteMetadata.siteUrl + edge.node.fields.path,
+                  date: edge.node.fields.yyyymmdd,
+                  url: `${site.siteMetadata.siteUrl}/${edge.node.fields.path}`,
+                  guid: `${site.siteMetadata.siteUrl}/${edge.node.fields.path}`,
                   custom_elements: [{ "content:encoded": edge.node.html }],
                 });
               });
             },
-            query: `
-            {
-              allMdx(
-                sort: { order: DESC, fields: [frontmatter___date] },
-              ) {
-                edges {
-                  node {
-                    excerpt
-                    html
-                    fields { path }
-                    frontmatter {
-                      title
-                      date
+            query: /* GraphQL */ `
+              {
+                allMdx(sort: { order: DESC, fields: [frontmatter___date] }) {
+                  edges {
+                    node {
+                      excerpt
+                      html
+                      fields {
+                        path
+                        yyyymmdd
+                      }
+                      frontmatter {
+                        title
+                      }
                     }
                   }
                 }
               }
-            }
-          `,
+            `,
             output: "/rss.xml",
             title: "Happy_Paddy RSS Feed",
           },
