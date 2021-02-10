@@ -19,7 +19,7 @@
   "dependencies": {
     "@chakra-ui/gatsby-plugin": "^1.0.1",
     "@chakra-ui/react": "^1.2.1",
-    "@emotion/eslint-plugin": "^11.0.0",
+    "@emotion/eslint-plugin": "^11.2.0",
     "@emotion/react": "^11.1.4",
     "@emotion/styled": "^11.0.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
