@@ -11,6 +11,7 @@
     "format": "prettier --write \"**/*.{js,jsx,json,md,ts,tsx,mdx}\" && eslint --fix \"src/**/*.{ts,tsx}\"",
     "lint": "eslint \"src/**/*.{ts,tsx}\"",
     "tsc": "tsc",
+    "post": "node scripts/post.mjs",
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
