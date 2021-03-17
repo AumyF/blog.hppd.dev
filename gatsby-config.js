@@ -7,7 +7,7 @@ const dynamicPlugins = [];
 if (process.env["NODE_ENV"] === "production")
   dynamicPlugins.push({
     resolve: "gatsby-plugin-google-analytics",
-    options: { trackingId: process.env.GOOGLE_ANALYTICS_ID },
+    options: { trackingId: `UA-178484451-1` },
   });
 
 /**
