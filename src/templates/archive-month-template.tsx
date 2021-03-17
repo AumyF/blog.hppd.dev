@@ -1,14 +1,13 @@
 import { graphql, PageProps } from "gatsby";
 import React from "react";
 
-import { ArchiveMonthTemplateQuery } from "../../types/graphqlTypes";
 import { PostListPage } from "./post-list-page";
 
 export type ArchiveMonthPageContenxt = {
   yyyymm: string;
 };
 export type ArchiveMonthPageProps = PageProps<
-  ArchiveMonthTemplateQuery,
+  GatsbyTypes.ArchiveMonthTemplateQuery,
   ArchiveMonthPageContenxt
 >;
 

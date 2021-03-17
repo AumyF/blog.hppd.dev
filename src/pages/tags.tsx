@@ -1,7 +1,6 @@
 import { graphql, PageProps } from "gatsby";
 import React from "react";
 
-import { TagsPageQuery } from "../../types/graphqlTypes";
 import { Article } from "../components/article";
 import { HeadTitle } from "../components/atoms/head-title";
 import { Hyper } from "../components/atoms/Hyper";
@@ -19,7 +18,7 @@ import { PostList } from "../components/post-link/post-list";
 import { TableOfContents } from "../components/table-of-contents";
 import { ArticleElements } from "../templates/blog-post-template/article-elements";
 
-export type TagsPageProps = PageProps<TagsPageQuery>;
+export type TagsPageProps = PageProps<GatsbyTypes.TagsPageQuery>;
 
 const H1 = ArticleElements.h1;
 

@@ -1,13 +1,12 @@
 import * as Gatsby from "gatsby";
 
 import { assertsNonNull } from "../../src/utils/asserts-non-null";
-import * as GraphQLTypes from "../../types/graphqlTypes";
 
-type GraphQLNodeToGatsbyNode<G> = G extends GraphQLTypes.Node & infer R
+type GraphQLNodeToGatsbyNode<G> = G extends GatsbyTypes.Node & infer R
   ? Omit<R, "internal" | "children" | "parent"> & Gatsby.Node
   : never;
 
-type Mdx = GraphQLNodeToGatsbyNode<GraphQLTypes.Mdx>;
+type Mdx = GraphQLNodeToGatsbyNode<GatsbyTypes.Mdx>;
 
 const isMdx = (node: Gatsby.Node): node is Mdx => node.internal.type === "Mdx";
 

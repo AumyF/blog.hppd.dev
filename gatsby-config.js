@@ -1,4 +1,20 @@
-/** @type import('gatsby').GatsbyConfig */
+/**
+ * @type import('gatsby').PluginRef[]
+ */
+const dynamicPlugins = [];
+
+// https://github.com/gatsbyjs/gatsby/issues/29939#issuecomment-789211468
+if (process.env["NODE_ENV"] === "production")
+  dynamicPlugins.push({
+    resolve: "gatsby-plugin-google-analytics",
+    options: { trackingId: process.env.GOOGLE_ANALYTICS_ID },
+  });
+
+/**
+ * @typedef {import('gatsby-plugin-typegen/types').PluginOptions} TypegenOptions
+ */
+
+/** @type {import('gatsby').GatsbyConfig & {plugins: {resolve: `gatsby-plugin-typegen`, options: TypegenOptions}[]}} */
 module.exports = {
   /* Your site config here */
   siteMetadata: {
@@ -7,6 +23,7 @@ module.exports = {
     siteUrl: "https://blog.hppd.dev",
   },
   plugins: [
+    ...dynamicPlugins,
     {
       resolve: "gatsby-plugin-feed",
       options: {
@@ -61,16 +78,12 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-graphql-codegen`,
+      resolve: `gatsby-plugin-typegen`,
       options: {
-        codegen: true,
-        fileName: `types/graphqlTypes.d.ts`,
-        documentPaths: [
-          "./gatsby/**/*.{ts,tsx}",
-          "./src/pages/*.{ts,tsx}",
-          "./src/hooks/*.{ts,tsx}",
-          "./src/templates/**/*.{ts,tsx}",
-        ],
+        emitSchema: {
+          "src/__generated__/gatsby-schema.graphql": true,
+        },
+        outputPath: "src/__generated__/gatsby-types.d.ts",
       },
     },
     {
@@ -119,10 +132,6 @@ module.exports = {
     `gatsby-plugin-twitter`,
     `@chakra-ui/gatsby-plugin`,
     `gatsby-plugin-emotion`,
-    {
-      resolve: "gatsby-plugin-google-analytics",
-      options: { trackingId: process.env.GOOGLE_ANALYTICS_ID },
-    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

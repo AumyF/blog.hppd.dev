@@ -6,7 +6,8 @@ import { ArchiveYearPageContext } from "../../src/templates/archive-year-templat
 import { BlogPostContext } from "../../src/templates/blog-post-template";
 import { TagPageContext } from "../../src/templates/tag-page-template";
 import { assertsNonNull } from "../../src/utils/asserts-non-null";
-import { GatsbyNodeQuery } from "../../types/graphqlTypes";
+// import { GatsbyNodeQuery } from "";
+
 import { cyan, yellow } from "./colored-print";
 
 const BlogPostTemplate = Path.resolve(
@@ -20,11 +21,20 @@ const ArchiveMonthTemplate = Path.resolve(
   "./src/templates/archive-month-template.tsx"
 );
 
-/**
- * VSCode GraphQL 拡張によるサポートを有効化する．Tagged Template Literal を文字列にするだけ．
- * @param graphqlQuery
- */
-const gql = (graphqlQuery: TemplateStringsArray) => graphqlQuery.raw.join("");
+export type GatsbyNodeQuery = {
+  allMdx: {
+    allTags: GatsbyTypes.MdxConnection["distinct"];
+    allYears: GatsbyTypes.MdxConnection["distinct"];
+    allMonthes: GatsbyTypes.MdxConnection["distinct"];
+    allFilenames: GatsbyTypes.MdxConnection["distinct"];
+  } & {
+    edges: Array<{
+      node: Pick<GatsbyTypes.Mdx, "id"> & {
+        fields?: GatsbyTypes.Maybe<Pick<GatsbyTypes.MdxFields, "path">>;
+      };
+    }>;
+  };
+};
 
 export const createPages: GatsbyNode["createPages"] = async ({
   actions: { createPage },
@@ -33,7 +43,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
 }) => {
   console.log(cyan("started ") + "createPages");
 
-  const result = await graphql<GatsbyNodeQuery>(`
+  const result = await graphql<GatsbyNodeQuery>(/* GraphQL */ `
     query GatsbyNode {
       allMdx(filter: { frontmatter: { status: { ne: "private" } } }) {
         allTags: distinct(field: frontmatter___tags)
