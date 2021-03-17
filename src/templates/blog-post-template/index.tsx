@@ -3,7 +3,6 @@ import { graphql, PageProps } from "gatsby";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import React from "react";
 
-import { BlogPostQuery } from "../../../types/graphqlTypes";
 import { Article } from "../../components/article";
 import { ArticleInfo } from "../../components/article-info";
 import { HeadTitle } from "../../components/atoms/head-title";
@@ -20,7 +19,7 @@ import {
 import { TitleContainer, TitleName } from "../../components/layout/title";
 import { MobileTOC } from "../../components/mobile-toc";
 import { Share } from "../../components/share";
-import { TableOfContents } from "../../components/table-of-contents";
+import { TableOfContents, TOC } from "../../components/table-of-contents";
 import { assertsNonNull as $ } from "../../utils/asserts-non-null";
 import { ArticleElements } from "./article-elements";
 
@@ -28,7 +27,10 @@ export type BlogPostContext = {
   id: string;
 };
 
-export type BlogPostProps = PageProps<BlogPostQuery, BlogPostContext>;
+export type BlogPostProps = PageProps<
+  GatsbyTypes.BlogPostQuery,
+  BlogPostContext
+>;
 
 export const BlogPost: React.FC<BlogPostProps> = ({ data: { mdx } }) => {
   const frontmatter = $(mdx?.frontmatter);
@@ -60,7 +62,7 @@ export const BlogPost: React.FC<BlogPostProps> = ({ data: { mdx } }) => {
 
           <SidebarCard scrollable>
             <SidebarCardTitle>Table of Contents</SidebarCardTitle>
-            <TableOfContents toc={mdx?.tableOfContents} />
+            <TableOfContents toc={mdx?.tableOfContents as any} />
           </SidebarCard>
 
           <SidebarCard>
@@ -78,7 +80,7 @@ export const BlogPost: React.FC<BlogPostProps> = ({ data: { mdx } }) => {
         </MainContent>
       </BodyContainer>
 
-      <MobileTOC toc={mdx?.tableOfContents} />
+      <MobileTOC toc={mdx?.tableOfContents as any} />
     </Layout>
   );
 };

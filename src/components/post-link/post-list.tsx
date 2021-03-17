@@ -1,14 +1,19 @@
 import { StackDivider, VStack } from "@chakra-ui/react";
 import React from "react";
 
-import { MdxFields, MdxFrontmatter } from "../../../types/graphqlTypes";
 import { PostLink } from "./post-link";
 
 export type PostListProps = {
-  nodes: {
+  nodes: readonly {
     excerpt: string;
-    fields?: Pick<MdxFields, "path" | "yyyymmdd"> | null | undefined;
-    frontmatter?: Pick<MdxFrontmatter, "title" | "tags"> | null | undefined;
+    fields?:
+      | Pick<GatsbyTypes.MdxFields, "path" | "yyyymmdd">
+      | null
+      | undefined;
+    frontmatter?:
+      | Pick<GatsbyTypes.MdxFrontmatter, "title" | "tags">
+      | null
+      | undefined;
   }[];
 };
 
@@ -19,7 +24,8 @@ export const PostList: React.FC<PostListProps> = ({ nodes }) => (
     {nodes.map(
       ({ excerpt, fields, frontmatter }) =>
         frontmatter?.tags &&
-        fields?.path && (
+        fields?.path &&
+        fields.yyyymmdd && (
           <PostLink
             path={fields.path}
             yyyymmdd={fields.yyyymmdd}

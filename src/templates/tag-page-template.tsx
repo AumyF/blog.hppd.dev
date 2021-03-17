@@ -1,14 +1,13 @@
 import { graphql, PageProps } from "gatsby";
 import React from "react";
 
-import { TagPageTemplateQuery } from "../../types/graphqlTypes";
 import { PostListPage } from "./post-list-page";
 
 export type TagPageContext = {
   tag: string;
 };
 export type TagPageTemplateProps = PageProps<
-  TagPageTemplateQuery,
+  GatsbyTypes.TagPageTemplateQuery,
   TagPageContext
 >;
 

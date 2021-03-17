@@ -13,7 +13,7 @@
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
-    "prettier/@typescript-eslint",
+    "prettier",
     "plugin:typescript-sort-keys/recommended"
   ],
   "ignorePatterns": ["*.js", "/public", "/types"],

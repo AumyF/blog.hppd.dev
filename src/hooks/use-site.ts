@@ -1,11 +1,10 @@
 import { graphql, useStaticQuery } from "gatsby";
 
-import { UseSiteQuery } from "../../types/graphqlTypes";
 import { assertsNonNull } from "../utils/asserts-non-null";
 
-export const useSite = (): NonNullable<UseSiteQuery["site"]> =>
+export const useSite = (): NonNullable<GatsbyTypes.useSiteQuery["site"]> =>
   assertsNonNull(
-    useStaticQuery<UseSiteQuery>(graphql`
+    useStaticQuery<GatsbyTypes.useSiteQuery>(graphql`
       query useSite {
         site {
           buildTime(formatString: "yyyy-MM-DD")

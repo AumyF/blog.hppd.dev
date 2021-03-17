@@ -2,7 +2,6 @@ import { Heading } from "@chakra-ui/react";
 import { graphql, PageProps } from "gatsby";
 import React from "react";
 
-import { IndexQuery } from "../../types/graphqlTypes";
 import { HeadTitle } from "../components/atoms/head-title";
 import { Layout } from "../components/layout";
 import { BodyContainer } from "../components/layout/container";
@@ -10,7 +9,7 @@ import { MainContent } from "../components/layout/main-content";
 import { TitleContainer, TitleName } from "../components/layout/title";
 import { PostList } from "../components/post-link/post-list";
 
-export const IndexPage: React.FC<PageProps<IndexQuery>> = ({
+export const IndexPage: React.FC<PageProps<GatsbyTypes.IndexQuery>> = ({
   data: {
     allMdx: { nodes },
   },
