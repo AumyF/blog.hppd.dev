@@ -330,6 +330,8 @@ type Site implements Node {
     locale: String
   ): Date
   siteMetadata: SiteSiteMetadata
+  port: Int
+  host: String
   polyfill: Boolean
   pathPrefix: String
   id: ID!
@@ -475,66 +477,6 @@ type MdxFields {
   relativeDir: String
 }
 
-type FeedZennMeta implements Node {
-  id: ID!
-  parent: Node
-  children: [Node!]!
-  internal: Internal!
-  feedUrl: String
-  image: FeedZennMetaImage
-  title: String
-  description: String
-  generator: String
-  link: String
-  language: String
-  lastBuildDate: String
-}
-
-type FeedZennMetaImage {
-  link: String
-  url: String
-  title: String
-}
-
-type FeedZenn implements Node {
-  id: ID!
-  parent: Node
-  children: [Node!]!
-  internal: Internal!
-  creator: String
-  title: String
-  link: String
-  pubDate: String
-  enclosure: FeedZennEnclosure
-  content: String
-  contentSnippet: String
-  guid: String
-  isoDate(
-    # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
-    formatString: String
-
-    # Returns a string generated with Moment.js' `fromNow` function
-    fromNow: Boolean
-
-    # Returns the difference between this date and the current time. Defaults to "milliseconds" but you can also pass in as the measurement "years", "months", "weeks", "days", "hours", "minutes", and "seconds".
-    difference: String
-
-    # Configures the locale Moment.js will use to format the date.
-    locale: String
-  ): Date
-  dc: FeedZennDc
-}
-
-type FeedZennEnclosure {
-  url: String
-  length: String
-  type: String
-}
-
-type FeedZennDc {
-  creator: String
-}
-
 type SiteBuildMetadata implements Node {
   id: ID!
   parent: Node
@@ -572,11 +514,6 @@ type SitePlugin implements Node {
 }
 
 type SitePluginPluginOptions {
-  trackingId: String
-  head: Boolean
-  anonymize: Boolean
-  respectDNT: Boolean
-  pageTransitionDelay: Int
   query: String
   feeds: [SitePluginPluginOptionsFeeds]
   emitSchema: SitePluginPluginOptionsEmitSchema
@@ -586,7 +523,6 @@ type SitePluginPluginOptions {
   jsxPragma: String
   name: String
   path: String
-  url: String
   extensions: [String]
   lessBabel: Boolean
   mediaTypes: [String]
@@ -652,16 +588,12 @@ type Query {
   allFile(filter: FileFilterInput, sort: FileSortInput, skip: Int, limit: Int): FileConnection!
   directory(sourceInstanceName: StringQueryOperatorInput, absolutePath: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, extension: StringQueryOperatorInput, size: IntQueryOperatorInput, prettySize: StringQueryOperatorInput, modifiedTime: DateQueryOperatorInput, accessTime: DateQueryOperatorInput, changeTime: DateQueryOperatorInput, birthTime: DateQueryOperatorInput, root: StringQueryOperatorInput, dir: StringQueryOperatorInput, base: StringQueryOperatorInput, ext: StringQueryOperatorInput, name: StringQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, dev: IntQueryOperatorInput, mode: IntQueryOperatorInput, nlink: IntQueryOperatorInput, uid: IntQueryOperatorInput, gid: IntQueryOperatorInput, rdev: IntQueryOperatorInput, ino: FloatQueryOperatorInput, atimeMs: FloatQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, atime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, ctime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Directory
   allDirectory(filter: DirectoryFilterInput, sort: DirectorySortInput, skip: Int, limit: Int): DirectoryConnection!
-  site(buildTime: DateQueryOperatorInput, siteMetadata: SiteSiteMetadataFilterInput, polyfill: BooleanQueryOperatorInput, pathPrefix: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Site
+  site(buildTime: DateQueryOperatorInput, siteMetadata: SiteSiteMetadataFilterInput, port: IntQueryOperatorInput, host: StringQueryOperatorInput, polyfill: BooleanQueryOperatorInput, pathPrefix: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Site
   allSite(filter: SiteFilterInput, sort: SiteSortInput, skip: Int, limit: Int): SiteConnection!
   sitePage(path: StringQueryOperatorInput, component: StringQueryOperatorInput, internalComponentName: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, matchPath: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, isCreatedByStatefulCreatePages: BooleanQueryOperatorInput, context: SitePageContextFilterInput, pluginCreator: SitePluginFilterInput, pluginCreatorId: StringQueryOperatorInput, componentPath: StringQueryOperatorInput): SitePage
   allSitePage(filter: SitePageFilterInput, sort: SitePageSortInput, skip: Int, limit: Int): SitePageConnection!
   mdx(rawBody: StringQueryOperatorInput, fileAbsolutePath: StringQueryOperatorInput, frontmatter: MdxFrontmatterFilterInput, slug: StringQueryOperatorInput, body: StringQueryOperatorInput, excerpt: StringQueryOperatorInput, headings: MdxHeadingMdxFilterListInput, html: StringQueryOperatorInput, mdxAST: JSONQueryOperatorInput, tableOfContents: JSONQueryOperatorInput, timeToRead: IntQueryOperatorInput, wordCount: MdxWordCountFilterInput, fields: MdxFieldsFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Mdx
   allMdx(filter: MdxFilterInput, sort: MdxSortInput, skip: Int, limit: Int): MdxConnection!
-  feedZennMeta(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, feedUrl: StringQueryOperatorInput, image: FeedZennMetaImageFilterInput, title: StringQueryOperatorInput, description: StringQueryOperatorInput, generator: StringQueryOperatorInput, link: StringQueryOperatorInput, language: StringQueryOperatorInput, lastBuildDate: StringQueryOperatorInput): FeedZennMeta
-  allFeedZennMeta(filter: FeedZennMetaFilterInput, sort: FeedZennMetaSortInput, skip: Int, limit: Int): FeedZennMetaConnection!
-  feedZenn(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, creator: StringQueryOperatorInput, title: StringQueryOperatorInput, link: StringQueryOperatorInput, pubDate: StringQueryOperatorInput, enclosure: FeedZennEnclosureFilterInput, content: StringQueryOperatorInput, contentSnippet: StringQueryOperatorInput, guid: StringQueryOperatorInput, isoDate: DateQueryOperatorInput, dc: FeedZennDcFilterInput): FeedZenn
-  allFeedZenn(filter: FeedZennFilterInput, sort: FeedZennSortInput, skip: Int, limit: Int): FeedZennConnection!
   siteBuildMetadata(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, buildTime: DateQueryOperatorInput): SiteBuildMetadata
   allSiteBuildMetadata(filter: SiteBuildMetadataFilterInput, sort: SiteBuildMetadataSortInput, skip: Int, limit: Int): SiteBuildMetadataConnection!
   sitePlugin(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, resolve: StringQueryOperatorInput, name: StringQueryOperatorInput, version: StringQueryOperatorInput, pluginOptions: SitePluginPluginOptionsFilterInput, nodeAPIs: StringQueryOperatorInput, browserAPIs: StringQueryOperatorInput, ssrAPIs: StringQueryOperatorInput, pluginFilepath: StringQueryOperatorInput, packageJson: SitePluginPackageJsonFilterInput): SitePlugin
@@ -1357,6 +1289,8 @@ enum SiteFieldsEnum {
   siteMetadata___title
   siteMetadata___description
   siteMetadata___siteUrl
+  port
+  host
   polyfill
   pathPrefix
   id
@@ -1459,6 +1393,8 @@ type SiteGroupConnection {
 input SiteFilterInput {
   buildTime: DateQueryOperatorInput
   siteMetadata: SiteSiteMetadataFilterInput
+  port: IntQueryOperatorInput
+  host: StringQueryOperatorInput
   polyfill: BooleanQueryOperatorInput
   pathPrefix: StringQueryOperatorInput
   id: StringQueryOperatorInput
@@ -1496,11 +1432,6 @@ input SitePluginFilterInput {
 }
 
 input SitePluginPluginOptionsFilterInput {
-  trackingId: StringQueryOperatorInput
-  head: BooleanQueryOperatorInput
-  anonymize: BooleanQueryOperatorInput
-  respectDNT: BooleanQueryOperatorInput
-  pageTransitionDelay: IntQueryOperatorInput
   query: StringQueryOperatorInput
   feeds: SitePluginPluginOptionsFeedsFilterListInput
   emitSchema: SitePluginPluginOptionsEmitSchemaFilterInput
@@ -1510,7 +1441,6 @@ input SitePluginPluginOptionsFilterInput {
   jsxPragma: StringQueryOperatorInput
   name: StringQueryOperatorInput
   path: StringQueryOperatorInput
-  url: StringQueryOperatorInput
   extensions: StringQueryOperatorInput
   lessBabel: BooleanQueryOperatorInput
   mediaTypes: StringQueryOperatorInput
@@ -1740,11 +1670,6 @@ enum SitePageFieldsEnum {
   pluginCreator___resolve
   pluginCreator___name
   pluginCreator___version
-  pluginCreator___pluginOptions___trackingId
-  pluginCreator___pluginOptions___head
-  pluginCreator___pluginOptions___anonymize
-  pluginCreator___pluginOptions___respectDNT
-  pluginCreator___pluginOptions___pageTransitionDelay
   pluginCreator___pluginOptions___query
   pluginCreator___pluginOptions___feeds
   pluginCreator___pluginOptions___feeds___query
@@ -1757,7 +1682,6 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___jsxPragma
   pluginCreator___pluginOptions___name
   pluginCreator___pluginOptions___path
-  pluginCreator___pluginOptions___url
   pluginCreator___pluginOptions___extensions
   pluginCreator___pluginOptions___lessBabel
   pluginCreator___pluginOptions___mediaTypes
@@ -1973,312 +1897,6 @@ type MdxGroupConnection {
 
 input MdxSortInput {
   fields: [MdxFieldsEnum]
-  order: [SortOrderEnum] = [ASC]
-}
-
-input FeedZennMetaImageFilterInput {
-  link: StringQueryOperatorInput
-  url: StringQueryOperatorInput
-  title: StringQueryOperatorInput
-}
-
-type FeedZennMetaConnection {
-  totalCount: Int!
-  edges: [FeedZennMetaEdge!]!
-  nodes: [FeedZennMeta!]!
-  pageInfo: PageInfo!
-  distinct(field: FeedZennMetaFieldsEnum!): [String!]!
-  group(skip: Int, limit: Int, field: FeedZennMetaFieldsEnum!): [FeedZennMetaGroupConnection!]!
-}
-
-type FeedZennMetaEdge {
-  next: FeedZennMeta
-  node: FeedZennMeta!
-  previous: FeedZennMeta
-}
-
-enum FeedZennMetaFieldsEnum {
-  id
-  parent___id
-  parent___parent___id
-  parent___parent___parent___id
-  parent___parent___parent___children
-  parent___parent___children
-  parent___parent___children___id
-  parent___parent___children___children
-  parent___parent___internal___content
-  parent___parent___internal___contentDigest
-  parent___parent___internal___description
-  parent___parent___internal___fieldOwners
-  parent___parent___internal___ignoreType
-  parent___parent___internal___mediaType
-  parent___parent___internal___owner
-  parent___parent___internal___type
-  parent___children
-  parent___children___id
-  parent___children___parent___id
-  parent___children___parent___children
-  parent___children___children
-  parent___children___children___id
-  parent___children___children___children
-  parent___children___internal___content
-  parent___children___internal___contentDigest
-  parent___children___internal___description
-  parent___children___internal___fieldOwners
-  parent___children___internal___ignoreType
-  parent___children___internal___mediaType
-  parent___children___internal___owner
-  parent___children___internal___type
-  parent___internal___content
-  parent___internal___contentDigest
-  parent___internal___description
-  parent___internal___fieldOwners
-  parent___internal___ignoreType
-  parent___internal___mediaType
-  parent___internal___owner
-  parent___internal___type
-  children
-  children___id
-  children___parent___id
-  children___parent___parent___id
-  children___parent___parent___children
-  children___parent___children
-  children___parent___children___id
-  children___parent___children___children
-  children___parent___internal___content
-  children___parent___internal___contentDigest
-  children___parent___internal___description
-  children___parent___internal___fieldOwners
-  children___parent___internal___ignoreType
-  children___parent___internal___mediaType
-  children___parent___internal___owner
-  children___parent___internal___type
-  children___children
-  children___children___id
-  children___children___parent___id
-  children___children___parent___children
-  children___children___children
-  children___children___children___id
-  children___children___children___children
-  children___children___internal___content
-  children___children___internal___contentDigest
-  children___children___internal___description
-  children___children___internal___fieldOwners
-  children___children___internal___ignoreType
-  children___children___internal___mediaType
-  children___children___internal___owner
-  children___children___internal___type
-  children___internal___content
-  children___internal___contentDigest
-  children___internal___description
-  children___internal___fieldOwners
-  children___internal___ignoreType
-  children___internal___mediaType
-  children___internal___owner
-  children___internal___type
-  internal___content
-  internal___contentDigest
-  internal___description
-  internal___fieldOwners
-  internal___ignoreType
-  internal___mediaType
-  internal___owner
-  internal___type
-  feedUrl
-  image___link
-  image___url
-  image___title
-  title
-  description
-  generator
-  link
-  language
-  lastBuildDate
-}
-
-type FeedZennMetaGroupConnection {
-  totalCount: Int!
-  edges: [FeedZennMetaEdge!]!
-  nodes: [FeedZennMeta!]!
-  pageInfo: PageInfo!
-  field: String!
-  fieldValue: String
-}
-
-input FeedZennMetaFilterInput {
-  id: StringQueryOperatorInput
-  parent: NodeFilterInput
-  children: NodeFilterListInput
-  internal: InternalFilterInput
-  feedUrl: StringQueryOperatorInput
-  image: FeedZennMetaImageFilterInput
-  title: StringQueryOperatorInput
-  description: StringQueryOperatorInput
-  generator: StringQueryOperatorInput
-  link: StringQueryOperatorInput
-  language: StringQueryOperatorInput
-  lastBuildDate: StringQueryOperatorInput
-}
-
-input FeedZennMetaSortInput {
-  fields: [FeedZennMetaFieldsEnum]
-  order: [SortOrderEnum] = [ASC]
-}
-
-input FeedZennEnclosureFilterInput {
-  url: StringQueryOperatorInput
-  length: StringQueryOperatorInput
-  type: StringQueryOperatorInput
-}
-
-input FeedZennDcFilterInput {
-  creator: StringQueryOperatorInput
-}
-
-type FeedZennConnection {
-  totalCount: Int!
-  edges: [FeedZennEdge!]!
-  nodes: [FeedZenn!]!
-  pageInfo: PageInfo!
-  distinct(field: FeedZennFieldsEnum!): [String!]!
-  group(skip: Int, limit: Int, field: FeedZennFieldsEnum!): [FeedZennGroupConnection!]!
-}
-
-type FeedZennEdge {
-  next: FeedZenn
-  node: FeedZenn!
-  previous: FeedZenn
-}
-
-enum FeedZennFieldsEnum {
-  id
-  parent___id
-  parent___parent___id
-  parent___parent___parent___id
-  parent___parent___parent___children
-  parent___parent___children
-  parent___parent___children___id
-  parent___parent___children___children
-  parent___parent___internal___content
-  parent___parent___internal___contentDigest
-  parent___parent___internal___description
-  parent___parent___internal___fieldOwners
-  parent___parent___internal___ignoreType
-  parent___parent___internal___mediaType
-  parent___parent___internal___owner
-  parent___parent___internal___type
-  parent___children
-  parent___children___id
-  parent___children___parent___id
-  parent___children___parent___children
-  parent___children___children
-  parent___children___children___id
-  parent___children___children___children
-  parent___children___internal___content
-  parent___children___internal___contentDigest
-  parent___children___internal___description
-  parent___children___internal___fieldOwners
-  parent___children___internal___ignoreType
-  parent___children___internal___mediaType
-  parent___children___internal___owner
-  parent___children___internal___type
-  parent___internal___content
-  parent___internal___contentDigest
-  parent___internal___description
-  parent___internal___fieldOwners
-  parent___internal___ignoreType
-  parent___internal___mediaType
-  parent___internal___owner
-  parent___internal___type
-  children
-  children___id
-  children___parent___id
-  children___parent___parent___id
-  children___parent___parent___children
-  children___parent___children
-  children___parent___children___id
-  children___parent___children___children
-  children___parent___internal___content
-  children___parent___internal___contentDigest
-  children___parent___internal___description
-  children___parent___internal___fieldOwners
-  children___parent___internal___ignoreType
-  children___parent___internal___mediaType
-  children___parent___internal___owner
-  children___parent___internal___type
-  children___children
-  children___children___id
-  children___children___parent___id
-  children___children___parent___children
-  children___children___children
-  children___children___children___id
-  children___children___children___children
-  children___children___internal___content
-  children___children___internal___contentDigest
-  children___children___internal___description
-  children___children___internal___fieldOwners
-  children___children___internal___ignoreType
-  children___children___internal___mediaType
-  children___children___internal___owner
-  children___children___internal___type
-  children___internal___content
-  children___internal___contentDigest
-  children___internal___description
-  children___internal___fieldOwners
-  children___internal___ignoreType
-  children___internal___mediaType
-  children___internal___owner
-  children___internal___type
-  internal___content
-  internal___contentDigest
-  internal___description
-  internal___fieldOwners
-  internal___ignoreType
-  internal___mediaType
-  internal___owner
-  internal___type
-  creator
-  title
-  link
-  pubDate
-  enclosure___url
-  enclosure___length
-  enclosure___type
-  content
-  contentSnippet
-  guid
-  isoDate
-  dc___creator
-}
-
-type FeedZennGroupConnection {
-  totalCount: Int!
-  edges: [FeedZennEdge!]!
-  nodes: [FeedZenn!]!
-  pageInfo: PageInfo!
-  field: String!
-  fieldValue: String
-}
-
-input FeedZennFilterInput {
-  id: StringQueryOperatorInput
-  parent: NodeFilterInput
-  children: NodeFilterListInput
-  internal: InternalFilterInput
-  creator: StringQueryOperatorInput
-  title: StringQueryOperatorInput
-  link: StringQueryOperatorInput
-  pubDate: StringQueryOperatorInput
-  enclosure: FeedZennEnclosureFilterInput
-  content: StringQueryOperatorInput
-  contentSnippet: StringQueryOperatorInput
-  guid: StringQueryOperatorInput
-  isoDate: DateQueryOperatorInput
-  dc: FeedZennDcFilterInput
-}
-
-input FeedZennSortInput {
-  fields: [FeedZennFieldsEnum]
   order: [SortOrderEnum] = [ASC]
 }
 
@@ -2514,11 +2132,6 @@ enum SitePluginFieldsEnum {
   resolve
   name
   version
-  pluginOptions___trackingId
-  pluginOptions___head
-  pluginOptions___anonymize
-  pluginOptions___respectDNT
-  pluginOptions___pageTransitionDelay
   pluginOptions___query
   pluginOptions___feeds
   pluginOptions___feeds___query
@@ -2531,7 +2144,6 @@ enum SitePluginFieldsEnum {
   pluginOptions___jsxPragma
   pluginOptions___name
   pluginOptions___path
-  pluginOptions___url
   pluginOptions___extensions
   pluginOptions___lessBabel
   pluginOptions___mediaTypes
