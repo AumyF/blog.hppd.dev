@@ -20,7 +20,7 @@ Nix はそのへんの Linux ディストリビューションにぶち込める
 
 dotfiles で最も重要なのは導入のかんたんさである．私の dotfiles はそこまで簡単でもない気がする．まず Nix と home-manager を導入する必要があるが，省略．NixOS なら導入の手間はないがそもそも NixOS 用に作ってない．
 
-まず AumyF/dotfiles を適当なディレクトリに clone し `make link_nix` すると，~/.config/nixpkgs/home.base.nix にリポジトリの.config/nixpkgs/home.base.nix へのシンボリックリンクが貼られる．これで Git リポジトリの更新に追従しやすくなる．
+まず AumyF/dotfiles を適当なディレクトリに clone し `make link_nix` すると，~/.config/nixpkgs/home.base.nix にリポジトリの .config/nixpkgs/home.base.nix へのシンボリックリンクが貼られる．これで Git リポジトリの更新に追従しやすくなる．
 
 次に ~/.config/nixpkgs/home.nix を以下のように編集する．
 
@@ -146,7 +146,7 @@ programs.starship = {
 };
 ```
 
-## direnv
+### direnv
 
 [direnv](https://direnv.net/) はシェルに hook を仕込み，ディレクトリ移動したとき .envrc と .env を読んで環境変数を展開するツール．Nix には nix-shell という開発に便利なツール (処理系，パッケージマネージャ，フォーマッタ，リンタ，LSP サーバなど) が完備された専用のシェルを開く機能があって，direnv を使うとディレクトリで `nix-shell` を実行しなくてもディレクトリに移動するだけで自動で環境が切り替わってくれる．詳細は別の記事に書きたい．
 
