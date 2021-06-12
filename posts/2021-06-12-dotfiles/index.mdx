@@ -1,0 +1,214 @@
+---
+title: "Nix home-manager を使った dotfiles を紹介する"
+tags: [Nix, home-manager, dotfiles, zsh, vim]
+---
+
+import LinkToGitHub from "./link-to-github.tsx";
+import Prompt from "./shell-prompt.tsx";
+
+「プログラミングの困難さは暗号 (code) のように難解なプログラミング言語を解読することにある」という半分程度間違った理解が広まっているこの世の中にあって，世論へのアンチテーゼの象徴たる我々プログラマはいろいろなものをコードで表そうとしている．特に Linux において自分の設定ファイルを Git リポジトリにしてインターネットに公開するのが流行っており，dotfiles と呼ばれ，この記事では私 Aumy の <LinkToGitHub owner="AumyF" repo="dotfiles" /> を紹介していく．
+
+# Nix と home-manager
+
+本題に入る前に **Nix package manager** と **home-manager** について触れておく．Nix は純粋関数型パッケージマネージャで，パッケージを純粋関数 (暗黙的な入出力がない関数) で作る．パッケージ管理の文脈における暗黙的な入力とは主にシステムに入っているソフトへの依存とかで，たとえば npm パッケージ入れたら Python に依存しててエラーが出る，みたいなやつ．Nix にはそれがないので必要なソフトがあったらパッケージ定義にちゃんと書かなきゃいけない．
+
+Nix はそのへんの Linux ディストリビューションにぶち込めるほか，Nix をシステムのパッケージマネージャのみならずシステム設定を管理するツールとしても使う NixOS というディストリビューションもあるのだが，WSL 環境が提供されていないので使っていない．VirtualBox が重いので実マシンが欲しい．
+
+で，home-manager (<LinkToGitHub owner="nix-community" repo="home-manager" />) は Nix で dotfiles を管理するやつ．もっと正確にいうと Nix のパッケージとして書いた環境設定を読み込んでシステムに反映させるためのツールという使用感 (ソースは読んでない)．当然 Nix で扱えるパッケージをそのまま環境に導入することもできる．セットアップ用シェルスクリプトに `sudo apt update && sudo apt install nodejs ...` のようなコードを書く必要はない．
+
+# 導入方法
+
+dotfiles で最も重要なのは導入のかんたんさである．私の dotfiles はそこまで簡単でもない気がする．まず Nix と home-manager を導入する必要があるが，省略．NixOS なら導入の手間はないがそもそも NixOS 用に作ってない．
+
+まず AumyF/dotfiles を適当なディレクトリに clone し `make link_nix` すると，~/.config/nixpkgs/home.base.nix にリポジトリの.config/nixpkgs/home.base.nix へのシンボリックリンクが貼られる．これで Git リポジトリの更新に追従しやすくなる．
+
+次に ~/.config/nixpkgs/home.nix を以下のように編集する．
+
+```nix
+{ config, pkgs, ... }:
+{
+  imports = [ ./home.base.nix ];
+
+  # Let Home Manager install and manage itself.
+  programs.home-manager.enable = true;
+
+  # Home Manager needs a bit of information about you and the
+  # paths it should manage.
+  home.username = "user";
+  home.homeDirectory = "/home/user";
+}
+```
+
+ここで ./home.base.nix をインポートして実行するようにし，home.nix には環境依存などでリポジトリに置きたくない設定を置いておく．ちなみに `home.username = "user";` は `home = { username = "user" };` の変形．
+
+ここまでできたら導入は終わり．`home-manager switch` を実行することで設定が環境に反映される．home.base.nix が変更されるたびにこのコマンドを打って更新していこう．
+
+# 設定解説
+
+dotfiles の中核である設定の中身について解説する．
+
+## 引数
+
+pkgs には基本的に nixpkgs が渡されるはずだが，NixOS だと別のやつが渡されるのかもしれない．
+
+```nix
+{ config, pkgs, ... }:
+```
+
+この記事を書く段になって気づいたんだが，config ってなんだ？
+
+## home.packages
+
+導入するパッケージをここに書く．いわゆる Rewrite in Rust な CLI がいくつか (bat, dogdns, du-dust, fd, hexyl, procs, pueue, ripgrep, silicon, skim, zoxide) あるが，半分はファッションである．
+
+新しいものが好きなので Node.js は最新の v16 を導入している．現在は nvm や n などの Node.js バージョンを管理するやつは導入しておらず，v14 が必要になった場合は `nix run nixpkgs.nodejs-14_x` を実行して Node.js v14 が PATH に入ったシェルを開くようにしている．Nix の便利さである．
+
+その他，Nix で有用なツール (cachix, niv, nix-prefetch-github, rnix-lsp) が入っている．
+
+```nix
+{
+  home.packages = with pkgs; [
+    bat
+    cachix
+    dogdns
+    du-dust
+    fd
+    gh
+    git
+    hexyl
+    jq
+    niv
+    nix-prefetch-github
+    nodejs-16_x
+    procs
+    pueue
+    ripgrep
+    rnix-lsp
+    silicon
+    skim
+    zoxide
+  ];
+```
+
+## 各ソフトの設定
+
+home-manager に登録されている特定のソフトは Nix で設定を管理できる．ここで利用できるソフトは home-manager の nix channel，apt でいう PPA みたいなやつに入っている．nixpkgs が入る `home.packages` とは別にソフトを導入する場所でもある．
+
+### Neovim
+
+にわか Neovim 使いなので一応設定が入っている．一部プラグインが nixpkgs に登録されているとこういう感じで使えてうれしい．
+
+```nix
+programs.neovim = {
+  enable = true;
+  plugins = with pkgs.vimPlugins; [
+    coc-nvim
+  ];
+  extraConfig = ''
+    set encoding=utf-8
+    set autoindent
+    set smartindent
+    set number
+    set expandtab
+    set tabstop=2
+  '';
+};
+```
+
+### lsd
+
+色つきアイコンつきの ls コマンドであって違法薬物ではない．
+
+```nix
+programs.lsd = {
+  enable = true;
+};
+```
+
+### starship
+
+シェルのプロンプトをいい感じにするやつ．Rust 製．本来は starship.toml で行う設定を Nix で行える．
+
+```nix
+programs.starship = {
+  enable = true;
+  settings = {
+    status = {
+      disabled = false;
+
+    };
+    time = {
+      disabled = false;
+      utc_time_offset = "+9";
+    };
+
+  };
+};
+```
+
+## direnv
+
+[direnv](https://direnv.net/) はシェルに hook を仕込み，ディレクトリ移動したとき .envrc と .env を読んで環境変数を展開するツール．Nix には nix-shell という開発に便利なツール (処理系，パッケージマネージャ，フォーマッタ，リンタ，LSP サーバなど) が完備された専用のシェルを開く機能があって，direnv を使うとディレクトリで `nix-shell` を実行しなくてもディレクトリに移動するだけで自動で環境が切り替わってくれる．詳細は別の記事に書きたい．
+
+enableNixDirenvIntegration することで <LinkToGitHub owner="nix-community" repo="nix-direnv" /> を有効化しキャッシュが効くようになって 2 回目以降のロードが早くなる．
+
+```nix
+programs.direnv = {
+  enable = true;
+  enableNixDirenvIntegration = true;
+};
+```
+
+### zsh
+
+ログインシェルは zsh になっているが nushell とか ion-shell にも興味があるのでそのうち移行するかもしれない．
+
+cd を省略できる autocd のほか，補完有効化，サジェスト有効化 とかいろいろ．initExtra は普通にシェルスクリプトを書くところで，1 行目は消すと Nix と home-manager のパスが吹っ飛んでだるいことになる．そして，シェル入ったときとディレクトリ移動のときにリッチな感じで中身を表示するようにしている．
+
+```nix
+programs.zsh = {
+  enable = true;
+  autocd = true;
+  enableCompletion = true;
+  enableAutosuggestions = true;
+  shellAliases =
+    {
+      list = "lsd -F -l --blocks permission,user,group,size,date,name --date \"+%F %T UTC%z\"";
+      apt-bump = "sudo apt-get update && sudo apt-get upgrade -y";
+    };
+  initExtra = ''
+    if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi
+    lsd -F -l --blocks permission,user,group,size,date,name --date "+%F %T UTC%z"
+    chpwd() { lsd -F -l --blocks permission,user,group,size,date,name --date "+%F %T UTC%z" }
+  '';
+  plugins = [
+    {
+      name = "fast-syntax-highlighting";
+      src = pkgs.zsh-fast-syntax-highlighting.src;
+    }
+    {
+      name = "history-search-multi-word";
+      src = pkgs.fetchFromGitHub {
+        owner = "zdharma";
+        repo = "history-search-multi-word";
+        rev = "v1.2.52";
+        sha256 = "1dqwkw3cwvmmmaczs7vrh3wgrxhc9s2vbyn56nk9rc3561s0s9w7";
+      };
+    }
+    {
+      name = "zsh-completions";
+      src = pkgs.zsh-completions.src;
+    }
+    {
+      name = "nix-zsh-completions";
+      src = pkgs.nix-zsh-completions.src;
+    }
+  ];
+};
+```
+
+ここでもプラグインを pkgs から取ってきているが，<LinkToGitHub owner="zdharma" repo="history-search-multi-word" /> は存在しないので関数 fetchFromGitHub を使ってパッケージをその場で作って読み込んでいる．sha256 の計算は先ほど出てきた nix-prefetch-github と jq を使って <Prompt code={`nix-prefetch-github zdharma history-search-multi-word --rev v1.2.52 | jq -r .sha256 `} /> のようにすれば一発で求められる．fetchFromGitHub って副作用なような気もするけど「『指定した URL にリクエストを行う』という行為そのものを表す値」的ななんかを使ってるのだろう，知らんけど．
+
+# まとめ
+
+Nix はいいぞ．動的型付けなせいで全然エディタの補完が働いてくれないのがつらいけどいいぞ．home-manager の programs で使える設定が docs になってなくてソース読まないといけないけどいいぞ．ちなみにソースは https://github.com/nix-community/home-manager/tree/master/modules/programs の中から探すと良い．
