@@ -32,7 +32,11 @@ const TOCItem: ChakraComponent<
           d="block"
           px="1"
           my="1"
-          _hover={{ color: "teal.300" }}
+          transitionDuration="50ms"
+          _hover={{
+            color: "teal.300",
+            bgColor: "gray.700",
+          }}
           color="gray.400"
           to={items.url}
           onClick={onItemClick}
