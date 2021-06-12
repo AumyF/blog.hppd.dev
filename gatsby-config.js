@@ -100,13 +100,7 @@ module.exports = {
         path: `${__dirname}/posts`,
       },
     },
-    {
-      resolve: `gatsby-source-rss-feed`,
-      options: {
-        url: `https://zenn.dev/aumy/feed`,
-        name: `Zenn`,
-      },
-    },
+
     {
       resolve: `gatsby-plugin-mdx`,
       options: {

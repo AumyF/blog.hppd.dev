@@ -21,7 +21,7 @@ export const Author: React.FC = () => (
         </Flex>
       </Box>
     </Flex>
-    <Text fontSize="0.9rem">
+    <Text fontSize="0.9rem" textAlign="justify">
       2003年，横浜市生れ．小学生ごろからプログラミングに触れる．
       ビジネス，プロダクトとかよりもコンピュータの理論やオープンソースの文化が好き．
     </Text>
