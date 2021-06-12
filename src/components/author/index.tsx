@@ -12,10 +12,18 @@ export const Author: React.FC = () => (
       <Box>
         <Box mb="1">Aumy / おーみー</Box>
         <Flex gridGap="2">
-          <Hyper color="gray.300" to="https://twitter.com/aumy_f">
+          <Hyper
+            color="gray.300"
+            _hover={{ color: "#1da1f2" }}
+            to="https://twitter.com/aumy_f"
+          >
             <FontAwesomeIcon size="lg" icon={faTwitter} />
           </Hyper>
-          <Hyper color="gray.300" to="https://github.com/aumyf">
+          <Hyper
+            color="gray.300"
+            _hover={{ color: "gray.100" }}
+            to="https://github.com/aumyf"
+          >
             <FontAwesomeIcon size="lg" icon={faGithub} />
           </Hyper>
         </Flex>
