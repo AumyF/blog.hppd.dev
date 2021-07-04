@@ -9,7 +9,7 @@
     "depgraph": "depcruise --config .dependency-cruiser.json --output-type dot . | dot -T svg > dependencygraph.svg",
     "develop": "gatsby develop --host 0.0.0.0 --port 8000",
     "format": "prettier --write \"**/*.{js,jsx,json,md,ts,tsx,mdx}\" && eslint --fix \"src/**/*.{ts,tsx}\"",
-    "lint": "eslint \"src/**/*.{ts,tsx}\"",
+    "lint": "prettier --check \"**/*.{js,jsx,json,md,ts,tsx,mdx}\" && eslint \"src/**/*.{ts,tsx}\"",
     "tsc": "tsc",
     "post": "node scripts/post.mjs",
     "start": "npm run develop",
