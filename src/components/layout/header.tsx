@@ -11,7 +11,6 @@ import { Link } from "gatsby";
 import React from "react";
 
 import { Hyper } from "../atoms/Hyper";
-import { invisibleAnchor } from "../styles/styles";
 // import svg from "../../../static/ftrf-logo.svg";
 
 export type SiteHeaderProps = {};

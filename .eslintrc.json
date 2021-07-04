@@ -21,6 +21,7 @@
     // https://emotion.sh/docs/emotion-11#package-renaming
     "@emotion/pkg-renaming": "error",
     "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
     "@typescript-eslint/ban-types": "off",
     "simple-import-sort/imports": "warn",
     "simple-import-sort/exports": "warn",
