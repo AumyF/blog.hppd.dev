@@ -3,7 +3,6 @@
 Happy Paddy!!!!!
 
 ![CI](https://github.com/AumyF/blog.hppd.dev/workflows/CI/badge.svg?branch=develop)
-![Firebase Deployment](https://github.com/AumyF/blog.hppd.dev/workflows/Firebase%20Deployment/badge.svg?branch=master)
 
 ## 使ってるもの
 
