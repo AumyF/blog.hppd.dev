@@ -4,25 +4,16 @@ import { faCalendarDay } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
+import { Post } from "../../utils/post";
 import { Hyper } from "../atoms/Hyper";
 import { TagList } from "../atoms/tag-list";
 
 export type PostLinkProps = {
-  excerpt: string;
-  path: string;
-  tags: string[];
-  title: string;
-  yyyymmdd: string;
+  readonly post: Pick<Post, "excerpt" | "path" | "tags" | "title" | "yyyymmdd">;
 };
-// PickAndPartialPick<Post, "path" | "title", "tags"> &
-//   Pick<MdxFields, "yyyymmdd">;
 
 export const PostLink: React.VFC<PostLinkProps> = ({
-  excerpt,
-  path,
-  tags,
-  title,
-  yyyymmdd,
+  post: { excerpt, path, tags, title, yyyymmdd },
 }) => (
   <Box as="article" px=".5rem">
     <Wrap spacing=".5rem" direction="row" wrap="wrap">

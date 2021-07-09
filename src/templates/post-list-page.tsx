@@ -13,8 +13,8 @@ export type PostListPageProps = {
 } & PostListProps;
 
 export const PostListPage: React.FCX<PostListPageProps> = ({
-  nodes,
   path,
+  posts,
   title,
 }) => (
   <Layout {...{ path }}>
@@ -26,7 +26,7 @@ export const PostListPage: React.FCX<PostListPageProps> = ({
 
     <BodyContainer>
       <MainContent>
-        <PostList {...{ nodes }} />
+        <PostList posts={posts} />
       </MainContent>
     </BodyContainer>
   </Layout>

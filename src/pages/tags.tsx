@@ -17,6 +17,7 @@ import { MobileTOC } from "../components/mobile-toc";
 import { PostList } from "../components/post-link/post-list";
 import { TableOfContents } from "../components/table-of-contents";
 import { ArticleElements } from "../templates/blog-post-template/article-elements";
+import { Post } from "../utils/post";
 
 export type TagsPageProps = PageProps<GatsbyTypes.TagsPageQuery>;
 
@@ -57,7 +58,7 @@ export const TagsPage: (props: TagsPageProps) => React.ReactElement = ({
                 <H1 id={`${fieldValue}`}>
                   <Hyper to={"/tags/" + fieldValue ?? "#"}>{fieldValue}</Hyper>
                 </H1>
-                <PostList {...{ nodes }} />
+                <PostList posts={nodes.map(Post)} />
               </section>
             ))}
           </Article>

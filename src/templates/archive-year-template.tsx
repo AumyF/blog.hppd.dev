@@ -1,6 +1,7 @@
 import { graphql, PageProps } from "gatsby";
 import React from "react";
 
+import { Post } from "../utils/post";
 import { PostListPage } from "./post-list-page";
 
 export type ArchiveYearPageContext = {
@@ -16,7 +17,7 @@ export const ArchiveYearPage: React.FC<ArchiveYearPageProps> = ({
     allMdx: { nodes },
   },
   pageContext: { yyyy },
-}) => <PostListPage {...{ nodes }} title={yyyy} path={yyyy} />;
+}) => <PostListPage posts={nodes.map(Post)} title={yyyy} path={yyyy} />;
 
 export default ArchiveYearPage;
 
