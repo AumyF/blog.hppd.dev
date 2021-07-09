@@ -5,7 +5,10 @@ import React from "react";
 
 import { Hyper } from "./Hyper";
 
-export type TagListProps = { center?: boolean; tags: string[] };
+export type TagListProps = {
+  readonly center?: boolean;
+  readonly tags: readonly string[];
+};
 
 const Tag: React.FC<{ tag: string }> = ({ tag }) => (
   <Hyper color="purple.300" to={`/tags/${tag}`}>

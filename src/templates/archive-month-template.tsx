@@ -1,6 +1,7 @@
 import { graphql, PageProps } from "gatsby";
 import React from "react";
 
+import { Post } from "../utils/post";
 import { PostListPage } from "./post-list-page";
 
 export type ArchiveMonthPageContenxt = {
@@ -18,7 +19,7 @@ export const ArchiveMonthPage: React.FC<ArchiveMonthPageProps> = ({
   pageContext: { yyyymm },
 }) => (
   <PostListPage
-    {...{ nodes }}
+    posts={nodes.map(Post)}
     title={yyyymm}
     path={yyyymm.split("-").join("/")}
   />

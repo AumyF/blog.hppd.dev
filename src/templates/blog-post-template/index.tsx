@@ -19,7 +19,7 @@ import {
 import { TitleContainer, TitleName } from "../../components/layout/title";
 import { MobileTOC } from "../../components/mobile-toc";
 import { Share } from "../../components/share";
-import { TableOfContents, TOC } from "../../components/table-of-contents";
+import * as tableOfContents from "../../components/table-of-contents";
 import { assertsNonNull as $ } from "../../utils/asserts-non-null";
 import { ArticleElements } from "./article-elements";
 
@@ -62,7 +62,9 @@ export const BlogPost: React.FC<BlogPostProps> = ({ data: { mdx } }) => {
 
           <SidebarCard scrollable>
             <SidebarCardTitle>Table of Contents</SidebarCardTitle>
-            <TableOfContents toc={mdx?.tableOfContents as any} />
+            <tableOfContents.TableOfContents
+              toc={mdx?.tableOfContents as any}
+            />
           </SidebarCard>
 
           <SidebarCard>

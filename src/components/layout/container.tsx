@@ -1,5 +1,5 @@
-import { ChakraComponent, Container, Flex, Stack } from "@chakra-ui/react";
-import React, { ReactNode } from "react";
+import { ChakraComponent, Container, Flex } from "@chakra-ui/react";
+import { ReactNode } from "react";
 
 export const BodyContainer: ChakraComponent<
   "div",

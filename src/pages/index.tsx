@@ -8,12 +8,14 @@ import { BodyContainer } from "../components/layout/container";
 import { MainContent } from "../components/layout/main-content";
 import { TitleContainer, TitleName } from "../components/layout/title";
 import { PostList } from "../components/post-link/post-list";
+import { Post } from "../utils/post";
 
 export const IndexPage: React.FC<PageProps<GatsbyTypes.IndexQuery>> = ({
   data: {
     allMdx: { nodes },
   },
 }) => {
+  const posts = nodes.map(Post);
   return (
     <Layout {...{ path: "/" }}>
       <HeadTitle>Index</HeadTitle>
@@ -33,7 +35,7 @@ export const IndexPage: React.FC<PageProps<GatsbyTypes.IndexQuery>> = ({
           >
             Recent posts
           </Heading>
-          <PostList {...{ nodes }} />
+          <PostList {...{ posts }} />
         </MainContent>
       </BodyContainer>
     </Layout>

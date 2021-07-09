@@ -27,17 +27,16 @@ export const onCreateNode: Gatsby.GatsbyNode["onCreateNode"] = ({
 
   const path = `${year}/${month}/${day}-${filename}`;
 
-  const createNodeFields = (fields: [string, unknown][]) => (
-    node: Gatsby.Node
-  ) => {
-    for (const [name, value] of fields) {
-      createNodeField({
-        node,
-        name,
-        value,
-      });
-    }
-  };
+  const createNodeFields =
+    (fields: [string, unknown][]) => (node: Gatsby.Node) => {
+      for (const [name, value] of fields) {
+        createNodeField({
+          node,
+          name,
+          value,
+        });
+      }
+    };
 
   createNodeFields([
     ["path", path],

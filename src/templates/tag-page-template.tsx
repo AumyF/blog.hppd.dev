@@ -1,6 +1,7 @@
 import { graphql, PageProps } from "gatsby";
 import React from "react";
 
+import { Post } from "../utils/post";
 import { PostListPage } from "./post-list-page";
 
 export type TagPageContext = {
@@ -17,7 +18,11 @@ export const TagPageTemplate: React.FC<TagPageTemplateProps> = ({
   },
   pageContext: { tag },
 }) => (
-  <PostListPage {...{ nodes }} title={`tag: ${tag}`} path={`tags/${tag}`} />
+  <PostListPage
+    posts={nodes.map(Post)}
+    title={`tag: ${tag}`}
+    path={`tags/${tag}`}
+  />
 );
 
 export default TagPageTemplate;
