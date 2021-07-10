@@ -1,7 +1,13 @@
 import { extendTheme } from "@chakra-ui/react";
+import { mode } from "@chakra-ui/theme-tools";
+
+/**
+ * @type {import("@chakra-ui/react").ThemeConfig}
+ */
+const config = { useSystemColorMode: true };
 
 const theme = extendTheme({
-  config: { initialColorMode: "dark" },
+  config,
   colors: {
     gray: {
       50: "#F9F9FD",
@@ -26,9 +32,9 @@ const theme = extendTheme({
       },
     },
     Link: {
-      baseStyle: {
-        color: "pink.400",
-      },
+      baseStyle: props => ({
+        color: mode("pink.500", "pink.400")(props),
+      }),
     },
     Container: { baseStyle: { px: ["0", "1rem"] } },
   },

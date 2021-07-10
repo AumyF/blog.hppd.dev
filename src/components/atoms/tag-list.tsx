@@ -1,4 +1,4 @@
-import { HStack, Text } from "@chakra-ui/react";
+import { HStack, Text, useColorModeValue } from "@chakra-ui/react";
 import { faTags } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
@@ -10,11 +10,14 @@ export type TagListProps = {
   readonly tags: readonly string[];
 };
 
-const Tag: React.FC<{ tag: string }> = ({ tag }) => (
-  <Hyper color="purple.300" to={`/tags/${tag}`}>
-    {tag}
-  </Hyper>
-);
+const Tag: React.FC<{ tag: string }> = ({ tag }) => {
+  const color = useColorModeValue("purple.500", "purple.300");
+  return (
+    <Hyper color={color} to={`/tags/${tag}`}>
+      {tag}
+    </Hyper>
+  );
+};
 
 export const TagList: React.FC<TagListProps> = ({ center, tags }) => (
   <HStack

@@ -1,6 +1,6 @@
 import "prismjs/plugins/line-numbers/prism-line-numbers.css";
 
-import { Box } from "@chakra-ui/react";
+import { Box, useColorModeValue } from "@chakra-ui/react";
 import { Global } from "@emotion/react";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import React from "react";
@@ -18,14 +18,19 @@ export type LayoutProps = {
   path: string;
 };
 
-export const Layout: React.FC<LayoutProps> = ({ children, path }) => (
-  <Box bg="purple.990" color="gray.300" minH="100vh">
-    <Helmet htmlAttributes={{ lang: "ja" }} />
-    <Global styles={globalStyles} />
+export const Layout: React.FC<LayoutProps> = ({ children, path }) => {
+  const bg = useColorModeValue("gray.50", "purple.990");
+  const color = useColorModeValue("gray.600", "gray.300");
 
-    <Breadcrumbs date={path?.split("/")} path={path} />
-    <SiteHeader />
-    {children}
-    <Footer />
-  </Box>
-);
+  return (
+    <Box {...{ bg, color }} minH="100vh">
+      <Helmet htmlAttributes={{ lang: "ja" }} />
+      <Global styles={globalStyles} />
+
+      <Breadcrumbs date={path?.split("/")} path={path} />
+      <SiteHeader />
+      {children}
+      <Footer />
+    </Box>
+  );
+};

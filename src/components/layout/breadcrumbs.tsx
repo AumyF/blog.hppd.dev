@@ -1,4 +1,4 @@
-import { chakra, Container, Link } from "@chakra-ui/react";
+import { chakra, Container, Link, useColorModeValue } from "@chakra-ui/react";
 import { css } from "@emotion/react";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
@@ -27,12 +27,14 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ date }) => {
   );
 
   const second = `${restDomainName[0]}.${topLevelDomain}`;
+
+  const bg = useColorModeValue("gray.50", "purple.990");
+
   return (
-    <chakra.nav py=".25rem" bg="purple.990">
+    <chakra.nav py=".25rem" bg={bg}>
       <Container
         maxW="120ch"
         px="1rem"
-        className="container mx-auto px-4"
         css={css`
           a {
             ${invisibleAnchor}
