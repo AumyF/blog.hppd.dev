@@ -3,6 +3,7 @@ import {
   ChakraComponent,
   ListItem,
   UnorderedList,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import React from "react";
 
@@ -19,37 +20,41 @@ export type TOCItems = {
 const TOCItem: ChakraComponent<
   "ul",
   { items: TOCItems; onItemClick?: () => void }
-> = ({ className, items, ml = 0, onItemClick }) => (
-  <UnorderedList
-    spacing=".25rem"
-    ml={ml}
-    listStyleType="none"
-    className={className}
-  >
-    {items.map(items => (
-      <ListItem key={items.title}>
-        <Hyper
-          d="block"
-          px="1"
-          my="1"
-          transitionDuration="50ms"
-          _hover={{
-            color: "teal.300",
-            bgColor: "gray.700",
-          }}
-          color="gray.400"
-          to={items.url}
-          onClick={onItemClick}
-        >
-          {items.title}
-        </Hyper>
-        {items.items ? (
-          <TOCItem ml="1rem" items={items.items} onItemClick={onItemClick} />
-        ) : null}
-      </ListItem>
-    ))}
-  </UnorderedList>
-);
+> = ({ className, items, ml = 0, onItemClick }) => {
+  const textColor = useColorModeValue("gray.500", "gray.400");
+  const hoverTextColor = useColorModeValue("gray.700", "gray.200");
+
+  return (
+    <UnorderedList
+      spacing=".25rem"
+      ml={ml}
+      listStyleType="none"
+      className={className}
+    >
+      {items.map(items => (
+        <ListItem key={items.title}>
+          <Hyper
+            d="block"
+            px="1"
+            my="1"
+            transitionDuration="50ms"
+            _hover={{
+              color: hoverTextColor,
+            }}
+            color={textColor}
+            to={items.url}
+            onClick={onItemClick}
+          >
+            {items.title}
+          </Hyper>
+          {items.items ? (
+            <TOCItem ml="1rem" items={items.items} onItemClick={onItemClick} />
+          ) : null}
+        </ListItem>
+      ))}
+    </UnorderedList>
+  );
+};
 
 export type TableOfContentsProps = {
   onItemClick?: () => void;

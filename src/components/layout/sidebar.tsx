@@ -1,4 +1,10 @@
-import { Box, ChakraComponent, Heading, Stack } from "@chakra-ui/react";
+import {
+  Box,
+  ChakraComponent,
+  Heading,
+  Stack,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import React, { ReactNode } from "react";
 
 export const Sidebar: ChakraComponent<"aside", { children: ReactNode }> = ({
@@ -41,16 +47,20 @@ export const SidebarCardTitle: ChakraComponent<"h4", { children: string }> = ({
 export const SidebarCard: ChakraComponent<"div", { scrollable?: boolean }> = ({
   children,
   scrollable,
-}) => (
-  <Box p="1rem" overflow={scrollable ? "auto" : "visible"} {...cardChakra}>
-    {children}
-  </Box>
-);
+}) => {
+  const cardStyle = useCardStyle();
+  return (
+    <Box p="1rem" overflow={scrollable ? "auto" : "visible"} {...cardStyle}>
+      {children}
+    </Box>
+  );
+};
 
-export const cardChakra = {
-  bg: "purple.990",
-  borderWidth: { base: "0px", sm: "1px" },
-  borderY: "1px",
-  borderColor: "gray.700",
-  rounded: { base: "0", sm: "1rem" },
-} as const;
+export const useCardStyle = () =>
+  ({
+    bg: useColorModeValue("transparent", "transparent"),
+    borderColor: useColorModeValue("gray.400", "gray.700"),
+    borderWidth: { base: "0px", sm: "1px" },
+    borderYWidth: "1px",
+    rounded: { base: "0", sm: "1rem" },
+  } as const);

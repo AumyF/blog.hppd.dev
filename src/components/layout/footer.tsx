@@ -15,19 +15,19 @@ export const Footer: React.FC<FooterProps> = () => {
         padding: 2rem;
       `}
     >
-      © 2020 Mominis
+      © 2021 Aumy
       <br />
       Build date: {buildTime}
       <br />
-      This website is built with{" "}
-      <Link href="https://gatsbyjs.org/">Gatsby</Link> and hosted on{" "}
-      <Link href="https://firebase.google.com/docs/hosting?hl=ja">
-        Firebase Hosting
-      </Link>
+      Built with <Link href="https://gatsbyjs.org/">Gatsby</Link> and hosted on{" "}
+      <Link href="https://pages.cloudflare.com">Cloudflare Pages</Link>
       .
       <br />
       This website uses{" "}
-      <Link href="https://analytics.google.com">Google Analytics</Link>.
+      <Link href="https://www.cloudflare.com/web-analytics/">
+        Cloudflare Web Analytics
+      </Link>
+      .
     </footer>
   );
 };

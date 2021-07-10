@@ -6,6 +6,8 @@ import {
   Heading,
   HStack,
   Spacer,
+  useColorModePreference,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { Link } from "gatsby";
 import React from "react";
@@ -16,15 +18,15 @@ import { Hyper } from "../atoms/Hyper";
 export type SiteHeaderProps = {};
 
 export const SiteHeader: React.FCX<SiteHeaderProps> = () => {
+  const bg = useColorModeValue("gray.50", "purple.990");
   return (
     <Box
       as="header"
-      bg="purple.990"
       textAlign="center"
       pb=".5rem"
       mb="2rem"
-      borderBottom="1px"
       borderBottomColor="gray.700"
+      bg={bg}
     >
       <Container maxW="120ch">
         <Flex direction={{ base: "column", sm: "row" }} alignItems="center">

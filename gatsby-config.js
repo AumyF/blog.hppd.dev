@@ -1,16 +1,4 @@
 /**
- * @type import('gatsby').PluginRef[]
- */
-const dynamicPlugins = [];
-
-// https://github.com/gatsbyjs/gatsby/issues/29939#issuecomment-789211468
-if (process.env["NODE_ENV"] === "production")
-  dynamicPlugins.push({
-    resolve: "gatsby-plugin-google-analytics",
-    options: { trackingId: `UA-178484451-1` },
-  });
-
-/**
  * @typedef {import('gatsby-plugin-typegen/types').PluginOptions} TypegenOptions
  */
 
@@ -23,7 +11,6 @@ module.exports = {
     siteUrl: "https://blog.hppd.dev",
   },
   plugins: [
-    ...dynamicPlugins,
     {
       resolve: "gatsby-plugin-feed",
       options: {
