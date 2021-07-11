@@ -1,0 +1,39 @@
+---
+title: "NixでZshの補完を効かせる"
+tags: [Nix, zsh]
+---
+
+import LinkToGitHub from "../../src/components/atoms/link-to-github.tsx";
+
+もう一度言うが、世のなかには便利な CLI ツールがたくさんある。最近は <LinkToGitHub owner="x-motemen" repo="ghq" /> を知った。リポジトリ管理を何も考えずにできるのは良いことだ。
+
+ところでみなさんはこれらのツールをどうやって導入しているのか。apt とかではパッケージが少なかったりバージョンが古かったりするし、`curl | bash` で入れるとエコシステムから分離してしまう (URL が書き換えられるとセキュリティリスクにもなりうるそう)。
+
+僕は新しいツールを導入したときに PATH を通したりシェル補完を入れたりするのが本当に嫌いだ。dotfiles があるとはいえ、いちいち `.zshrc` を開いてシェルスクリプトとかいうスペースの有無で挙動が変わるような動的型付け言語をおっかなびっくり書くのをツールごとにやらなければならない。この作業は 19 世紀には刑罰や拷問として採用されていたという。
+
+# Nix は楽
+
+**Nix** は言語横断的なパッケージマネージャで、ghq 含め凄まじい数のパッケージが登録されている。僕は WSL 環境におけるほとんどのソフトウェアを Nix から導入しているのだが、1 つのエコシステムからすべてを管理できると本当に良い。`nix-env -iA nixpkgs.ghq` とすれば PATH が勝手に通ってくれるのだ。こんなにうれしいことはない。
+
+ただ、シェルの補完を効かせるのにはちょっと設定が必要で、それが以下。これを ~/.zshenv に追加しよう。home-manager の zsh では `programs.zsh.envExtra` に書く。
+
+```shell
+if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then
+  source $HOME/.nix-profile/etc/profile.d/nix.sh
+  export fpath=(
+    $HOME/.nix-profile/share/zsh/vendor-completions
+    $HOME/.nix-profile/share/zsh/site-functions
+    $fpath
+  )
+fi
+```
+
+CLI ツールの Nix パッケージでは多くが ~/.nix-profile/share/zsh/site-functions に補完ファイルを出力するので、こいつらを fpath に追加するだけで補完が効いてくれる。最高に便利。
+
+# おわりに
+
+Zsh をやめたいという気持ちもないではない。もっとちゃんと構造化されたデータを扱いたいのだ。<LinkToGitHub owner="powershell" repo="powershell" /> とか <LinkToGitHub owner="nushell" repo="nushell" /> あたりに目をつけている。
+
+# 参考
+
+https://magnus.therning.org/2021-06-06-zsh,-nix,-and-completions.html
