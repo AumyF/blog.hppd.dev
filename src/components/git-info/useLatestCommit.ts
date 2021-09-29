@@ -94,6 +94,7 @@ export const useLatestCommit = (filePath: string): State => {
           payload: { url, lastUpdate, message },
         });
       } catch (error) {
+        if (!(error instanceof Error)) throw error;
         dispatch({
           type: "FETCH_FAILURE",
           message: `${error.name}: ${error.message}`,
