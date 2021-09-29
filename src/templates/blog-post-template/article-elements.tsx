@@ -34,7 +34,7 @@ export const ArticleElements = {
   td: Td,
   h1: chakra("h1", {
     baseStyle: {
-      fontSize: "2.25rem",
+      fontSize: "2rem",
       borderBottomWidth: "1px",
       borderColor: "gray.600",
       marginY: "1.5rem",

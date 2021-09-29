@@ -8,7 +8,7 @@ export const BodyContainer: ChakraComponent<
   }
 > = ({ children }) => (
   <Container maxW="120ch">
-    <Flex direction="row-reverse" justifyContent="space-around" gridGap="1rem">
+    <Flex direction="row-reverse" justifyContent="space-around" gridGap="2rem">
       {children}
     </Flex>
   </Container>

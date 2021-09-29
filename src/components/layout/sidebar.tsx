@@ -50,7 +50,7 @@ export const SidebarCard: ChakraComponent<"div", { scrollable?: boolean }> = ({
 }) => {
   const cardStyle = useCardStyle();
   return (
-    <Box p="1rem" overflow={scrollable ? "auto" : "visible"} {...cardStyle}>
+    <Box overflow={scrollable ? "auto" : "visible"} {...cardStyle}>
       {children}
     </Box>
   );
@@ -59,8 +59,5 @@ export const SidebarCard: ChakraComponent<"div", { scrollable?: boolean }> = ({
 export const useCardStyle = () =>
   ({
     bg: useColorModeValue("transparent", "transparent"),
-    borderColor: useColorModeValue("gray.400", "gray.700"),
-    borderWidth: { base: "0px", sm: "1px" },
-    borderYWidth: "1px",
     rounded: { base: "0", sm: "1rem" },
   } as const);

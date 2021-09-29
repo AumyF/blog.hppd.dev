@@ -20,14 +20,7 @@ export type SiteHeaderProps = {};
 export const SiteHeader: React.FCX<SiteHeaderProps> = () => {
   const bg = useColorModeValue("gray.50", "purple.990");
   return (
-    <Box
-      as="header"
-      textAlign="center"
-      pb=".5rem"
-      mb="2rem"
-      borderBottomColor="gray.700"
-      bg={bg}
-    >
+    <Box as="header" textAlign="center" borderBottomColor="gray.700" bg={bg}>
       <Container maxW="120ch">
         <Flex direction={{ base: "column", sm: "row" }} alignItems="center">
           <Heading as="h1">
