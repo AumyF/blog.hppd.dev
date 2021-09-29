@@ -19,7 +19,7 @@ export const PostLink: React.VFC<PostLinkProps> = ({
   const excerptColor = useWeakTextColor();
 
   return (
-    <Box as="article" px=".5rem">
+    <Box as="article" px=".5rem" w="full">
       <Wrap spacing=".5rem" direction="row" wrap="wrap">
         {yyyymmdd && (
           <WrapItem>
