@@ -64,15 +64,19 @@ module.exports = {
         ],
       },
     },
-    {
-      resolve: `gatsby-plugin-typegen`,
-      options: {
-        emitSchema: {
-          "src/__generated__/gatsby-schema.graphql": true,
-        },
-        outputPath: "src/__generated__/gatsby-types.d.ts",
-      },
-    },
+    ...(process.env.NODE_ENV === "development"
+      ? [
+          {
+            resolve: `gatsby-plugin-typegen`,
+            options: {
+              emitSchema: {
+                "src/__generated__/gatsby-schema.graphql": true,
+              },
+              outputPath: "src/__generated__/gatsby-types.d.ts",
+            },
+          },
+        ]
+      : []),
     {
       resolve: `gatsby-plugin-typescript`,
       options: {
