@@ -491,22 +491,9 @@ type SiteBuildMetadata implements Node {
 
 type MdxFrontmatter {
   title: String!
-  status: String
   tags: [String]
-  date(
-    # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
-    formatString: String
-
-    # Returns a string generated with Moment.js' `fromNow` function
-    fromNow: Boolean
-
-    # Returns the difference between this date and the current time. Defaults to "milliseconds" but you can also pass in as the measurement "years", "months", "weeks", "days", "hours", "minutes", and "seconds".
-    difference: String
-
-    # Configures the locale Moment.js will use to format the date.
-    locale: String
-  ): Date
   description: String
+  status: String
 }
 
 type MdxHeadingMdx {
@@ -684,10 +671,9 @@ input MdxFilterInput {
 
 input MdxFrontmatterFilterInput {
   title: StringQueryOperatorInput
-  status: StringQueryOperatorInput
   tags: StringQueryOperatorInput
-  date: DateQueryOperatorInput
   description: StringQueryOperatorInput
+  status: StringQueryOperatorInput
 }
 
 input MdxHeadingMdxFilterListInput {
@@ -819,10 +805,9 @@ enum FileFieldsEnum {
   childrenMdx___rawBody
   childrenMdx___fileAbsolutePath
   childrenMdx___frontmatter___title
-  childrenMdx___frontmatter___status
   childrenMdx___frontmatter___tags
-  childrenMdx___frontmatter___date
   childrenMdx___frontmatter___description
+  childrenMdx___frontmatter___status
   childrenMdx___slug
   childrenMdx___body
   childrenMdx___excerpt @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -883,10 +868,9 @@ enum FileFieldsEnum {
   childMdx___rawBody
   childMdx___fileAbsolutePath
   childMdx___frontmatter___title
-  childMdx___frontmatter___status
   childMdx___frontmatter___tags
-  childMdx___frontmatter___date
   childMdx___frontmatter___description
+  childMdx___frontmatter___status
   childMdx___slug
   childMdx___body
   childMdx___excerpt @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -2291,10 +2275,9 @@ enum MdxFieldsEnum {
   rawBody
   fileAbsolutePath
   frontmatter___title
-  frontmatter___status
   frontmatter___tags
-  frontmatter___date
   frontmatter___description
+  frontmatter___status
   slug
   body
   excerpt @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")

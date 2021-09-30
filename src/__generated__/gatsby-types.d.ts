@@ -422,18 +422,9 @@ type SiteBuildMetadata_buildTimeArgs = {
 
 type MdxFrontmatter = {
   readonly title: Scalars['String'];
-  readonly status: Maybe<Scalars['String']>;
   readonly tags: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
-  readonly date: Maybe<Scalars['Date']>;
   readonly description: Maybe<Scalars['String']>;
-};
-
-
-type MdxFrontmatter_dateArgs = {
-  formatString: Maybe<Scalars['String']>;
-  fromNow: Maybe<Scalars['Boolean']>;
-  difference: Maybe<Scalars['String']>;
-  locale: Maybe<Scalars['String']>;
+  readonly status: Maybe<Scalars['String']>;
 };
 
 type MdxHeadingMdx = {
@@ -854,10 +845,9 @@ type MdxFilterInput = {
 
 type MdxFrontmatterFilterInput = {
   readonly title: Maybe<StringQueryOperatorInput>;
-  readonly status: Maybe<StringQueryOperatorInput>;
   readonly tags: Maybe<StringQueryOperatorInput>;
-  readonly date: Maybe<DateQueryOperatorInput>;
   readonly description: Maybe<StringQueryOperatorInput>;
+  readonly status: Maybe<StringQueryOperatorInput>;
 };
 
 type MdxHeadingMdxFilterListInput = {
@@ -1016,10 +1006,9 @@ type FileFieldsEnum =
   | 'childrenMdx.rawBody'
   | 'childrenMdx.fileAbsolutePath'
   | 'childrenMdx.frontmatter.title'
-  | 'childrenMdx.frontmatter.status'
   | 'childrenMdx.frontmatter.tags'
-  | 'childrenMdx.frontmatter.date'
   | 'childrenMdx.frontmatter.description'
+  | 'childrenMdx.frontmatter.status'
   | 'childrenMdx.slug'
   | 'childrenMdx.body'
   | 'childrenMdx.excerpt'
@@ -1080,10 +1069,9 @@ type FileFieldsEnum =
   | 'childMdx.rawBody'
   | 'childMdx.fileAbsolutePath'
   | 'childMdx.frontmatter.title'
-  | 'childMdx.frontmatter.status'
   | 'childMdx.frontmatter.tags'
-  | 'childMdx.frontmatter.date'
   | 'childMdx.frontmatter.description'
+  | 'childMdx.frontmatter.status'
   | 'childMdx.slug'
   | 'childMdx.body'
   | 'childMdx.excerpt'
@@ -2858,10 +2846,9 @@ type MdxFieldsEnum =
   | 'rawBody'
   | 'fileAbsolutePath'
   | 'frontmatter.title'
-  | 'frontmatter.status'
   | 'frontmatter.tags'
-  | 'frontmatter.date'
   | 'frontmatter.description'
+  | 'frontmatter.status'
   | 'slug'
   | 'body'
   | 'excerpt'
