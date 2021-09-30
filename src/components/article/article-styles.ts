@@ -24,6 +24,7 @@ export const ArticleStyles = css`
   }
 
   p {
+    text-align: justify;
   }
 
   hr {

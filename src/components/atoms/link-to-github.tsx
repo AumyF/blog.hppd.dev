@@ -3,7 +3,7 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
-import { Hyper } from "../../src/components/atoms/Hyper";
+import { Hyper } from "./Hyper";
 
 const LinkToGitHub: React.VFC<{
   owner: string;
@@ -20,7 +20,9 @@ const LinkToGitHub: React.VFC<{
       </span>
       <Hyper to={`https://github.com/${owner}`}>{owner}</Hyper>
       <chakra.span userSelect="none">/</chakra.span>
-      <Hyper to={`https://github.com/${owner}/${repo}`}>{repo}</Hyper>
+      <Hyper fontWeight="700" to={`https://github.com/${owner}/${repo}`}>
+        {repo}
+      </Hyper>
     </chakra.span>
   );
 };

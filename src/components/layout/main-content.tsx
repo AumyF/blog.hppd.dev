@@ -8,7 +8,7 @@ export const MainContent: ChakraComponent<"main", { children: ReactNode }> = ({
 }) => {
   const cardStyle = useCardStyle();
   return (
-    <Box as="main" p="2rem" minW="0" flexGrow={1} flexShrink={1} {...cardStyle}>
+    <Box as="main" minW="0" flexGrow={1} flexShrink={1} {...cardStyle}>
       {children}
     </Box>
   );

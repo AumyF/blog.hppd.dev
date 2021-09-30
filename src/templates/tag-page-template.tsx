@@ -34,15 +34,7 @@ export const pageQuery = graphql`
       sort: { order: DESC, fields: fields___yyyymmdd }
     ) {
       nodes {
-        excerpt(truncate: true)
-        frontmatter {
-          title
-          tags
-        }
-        fields {
-          path
-          yyyymmdd
-        }
+        ...Post
       }
     }
   }

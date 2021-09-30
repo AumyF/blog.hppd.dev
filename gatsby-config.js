@@ -41,7 +41,7 @@ module.exports = {
             },
             query: /* GraphQL */ `
               {
-                allMdx(sort: { order: DESC, fields: [frontmatter___date] }) {
+                allMdx(sort: { order: DESC, fields: [fields___yyyymmdd] }) {
                   edges {
                     node {
                       excerpt

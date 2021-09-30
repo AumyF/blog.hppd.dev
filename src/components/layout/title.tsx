@@ -5,8 +5,8 @@ import React, { ReactNode } from "react";
 export const TitleContainer: React.FC<{
   children?: ReactNode;
 }> = ({ children }) => (
-  <Container maxW="120ch" my="2rem" px="1rem">
-    <VStack alignItems="center" mx="auto">
+  <Container maxW="120ch" my="1.5rem" px="1rem">
+    <VStack alignItems="flex-start" mx="auto">
       {children}
     </VStack>
   </Container>
@@ -17,7 +17,6 @@ export const TitleName: ChakraComponent<"h1", { children: string }> = ({
 }) => (
   <Heading
     as="h1"
-    textAlign="center"
     css={css`
       font-feature-settings: "palt";
     `}

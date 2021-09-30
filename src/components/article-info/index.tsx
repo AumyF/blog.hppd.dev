@@ -1,41 +1,48 @@
-import { Box, Flex, Skeleton } from "@chakra-ui/react";
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import { faSync } from "@fortawesome/free-solid-svg-icons";
+import { Box, chakra, Skeleton } from "@chakra-ui/react";
 import React from "react";
 
-import { ChakraIcon } from "../atoms/chakra-icon";
 import { Hyper } from "../atoms/Hyper";
 import { useLatestCommit } from "../git-info/useLatestCommit";
 
-const ArticleInfoView: React.FC<{
-  errMessage: string;
-  isError: boolean;
-  isLoading: boolean;
-  lastUpdate: string;
+export const SeeInGitHub: React.FC<{
   url: string;
-}> = ({ isLoading, lastUpdate, url }) => (
-  <Flex gridGap="2" wrap="wrap" justifyContent="center">
-    <Box>
-      <ChakraIcon mr="1" icon={faSync} />
-      <Skeleton d="inline" w="20ch" isLoaded={!isLoading}>
-        <time>{lastUpdate}</time>
-      </Skeleton>
-    </Box>
-    <Box>
-      <ChakraIcon mr="1" icon={faGithub} />
-      <Hyper to={url}>GitHubで見る</Hyper>
-    </Box>
-  </Flex>
+}> = ({ url }) => (
+  <Box>
+    <chakra.span userSelect="none" cursor="default" marginInlineEnd="1">
+      source_url:
+    </chakra.span>
+    <Hyper to={url}>GitHubで見る</Hyper>
+  </Box>
 );
 
-export const ArticleInfo: React.FC<{ path: string }> = props => {
+const UpdatedAtView: React.FC<{
+  isLoading: boolean;
+  lastUpdate: string;
+}> = ({ isLoading, lastUpdate }) => (
+  <Box>
+    <chakra.span userSelect="none" cursor="default" marginInlineEnd="1">
+      updated_at:
+    </chakra.span>
+
+    <Skeleton d="inline" w="20ch" isLoaded={!isLoading}>
+      <time>{lastUpdate}</time>
+    </Skeleton>
+  </Box>
+);
+
+export const UpdatedAt: React.FC<{ path: string }> = props => {
   const path = `${props.path}/index`;
-  const { data, errMessage, isError, isLoading } = useLatestCommit(path);
+  const { data, isLoading } = useLatestCommit(path);
   const { lastUpdate } = data;
 
-  const url = `https://github.com/AumyF/blog/blob/master/posts/${path}.mdx`;
-
-  return (
-    <ArticleInfoView {...{ isError, isLoading, url, errMessage, lastUpdate }} />
-  );
+  return <UpdatedAtView {...{ isLoading, lastUpdate }} />;
 };
+
+export const ArticleInfo: React.FC<{ path: string }> = ({ path }) => (
+  <>
+    <UpdatedAt path={path} />
+    <SeeInGitHub
+      url={`https://github.com/AumyF/blog/blob/master/posts/${path}.mdx`}
+    />
+  </>
+);

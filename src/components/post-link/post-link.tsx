@@ -1,7 +1,14 @@
-import { Box, Heading, HStack, Text, Wrap, WrapItem } from "@chakra-ui/react";
+import {
+  Box,
+  chakra,
+  Flex,
+  Heading,
+  HStack,
+  Text,
+  Wrap,
+  WrapItem,
+} from "@chakra-ui/react";
 import { css } from "@emotion/react";
-import { faCalendarDay } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
 import { Post } from "../../utils/post";
@@ -19,21 +26,8 @@ export const PostLink: React.VFC<PostLinkProps> = ({
   const excerptColor = useWeakTextColor();
 
   return (
-    <Box as="article" px=".5rem">
-      <Wrap spacing=".5rem" direction="row" wrap="wrap">
-        {yyyymmdd && (
-          <WrapItem>
-            <HStack spacing=".5rem" alignItems="baseline">
-              <FontAwesomeIcon icon={faCalendarDay} />
-              <Text ml=".5rem">{yyyymmdd}</Text>
-            </HStack>
-          </WrapItem>
-        )}
-        <WrapItem>
-          <TagList tags={tags} />
-        </WrapItem>
-      </Wrap>
-      <Heading my=".5rem">
+    <Flex direction="column" gridGap="2" as="article" px=".5rem" w="full">
+      <Heading lineHeight="1" size="lg">
         <Hyper
           to={`/${path}`}
           css={css`
@@ -43,7 +37,17 @@ export const PostLink: React.VFC<PostLinkProps> = ({
           {title}
         </Hyper>
       </Heading>
+      <Wrap spacing=".5rem" direction="row" wrap="wrap">
+        {yyyymmdd && (
+          <WrapItem>
+            <Text>{yyyymmdd}</Text>
+          </WrapItem>
+        )}
+        <WrapItem>
+          <TagList tags={tags} />
+        </WrapItem>
+      </Wrap>
       <Text color={excerptColor}>{excerpt}</Text>
-    </Box>
+    </Flex>
   );
 };
