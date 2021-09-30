@@ -7,9 +7,9 @@ import { Hatebu } from "../../images/hatena-bookmark";
 import { Hyper } from "../atoms/Hyper";
 import { useIconColor } from "../styles/colors";
 
-export const Share: React.FC<{ url: string; title: string }> = ({
-  url,
+export const Share: React.FC<{ title: string; url: string }> = ({
   title,
+  url,
 }) => {
   const iconColor = useIconColor();
 
