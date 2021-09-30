@@ -26,15 +26,6 @@ export const IndexPage: React.FC<PageProps<GatsbyTypes.IndexQuery>> = ({
 
       <BodyContainer>
         <MainContent>
-          <Heading
-            textAlign="center"
-            mb="2rem"
-            pb=".5rem"
-            borderBottom="1px"
-            borderColor="gray.500"
-          >
-            Recent posts
-          </Heading>
           <PostList {...{ posts }} />
         </MainContent>
       </BodyContainer>
