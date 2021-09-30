@@ -48,16 +48,7 @@ export const pageQuery = graphql`
   query Index {
     allMdx(sort: { order: DESC, fields: fields___yyyymmdd }) {
       nodes {
-        id
-        excerpt(truncate: true)
-        frontmatter {
-          title
-          tags
-        }
-        fields {
-          path
-          yyyymmdd
-        }
+        ...Post
       }
     }
   }

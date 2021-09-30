@@ -3021,38 +3021,34 @@ type BlogPostQueryVariables = Exact<{
 
 type BlogPostQuery = { readonly mdx: Maybe<(
     Pick<Mdx, 'tableOfContents' | 'body' | 'excerpt'>
-    & { readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title' | 'tags'>>, readonly fields: Maybe<Pick<MdxFields, 'path' | 'relativeDir'>> }
+    & { readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title' | 'tags' | 'description'>>, readonly fields: Maybe<Pick<MdxFields, 'path' | 'relativeDir'>> }
   )> };
+
+type PostFragment = (
+  Pick<Mdx, 'id' | 'excerpt'>
+  & { readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title' | 'tags' | 'description'>>, readonly fields: Maybe<Pick<MdxFields, 'path' | 'yyyymmdd'>> }
+);
 
 type TagPageTemplateQueryVariables = Exact<{
   tag: Maybe<Scalars['String']>;
 }>;
 
 
-type TagPageTemplateQuery = { readonly allMdx: { readonly nodes: ReadonlyArray<(
-      Pick<Mdx, 'excerpt'>
-      & { readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title' | 'tags'>>, readonly fields: Maybe<Pick<MdxFields, 'path' | 'yyyymmdd'>> }
-    )> } };
+type TagPageTemplateQuery = { readonly allMdx: { readonly nodes: ReadonlyArray<PostFragment> } };
 
 type ArchiveYearTemplateQueryVariables = Exact<{
   yyyy: Maybe<Scalars['Date']>;
 }>;
 
 
-type ArchiveYearTemplateQuery = { readonly allMdx: { readonly nodes: ReadonlyArray<(
-      Pick<Mdx, 'id' | 'excerpt'>
-      & { readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title' | 'tags'>>, readonly fields: Maybe<Pick<MdxFields, 'path' | 'yyyymmdd'>> }
-    )> } };
+type ArchiveYearTemplateQuery = { readonly allMdx: { readonly nodes: ReadonlyArray<PostFragment> } };
 
 type ArchiveMonthTemplateQueryVariables = Exact<{
   yyyymm: Maybe<Scalars['Date']>;
 }>;
 
 
-type ArchiveMonthTemplateQuery = { readonly allMdx: { readonly nodes: ReadonlyArray<(
-      Pick<Mdx, 'id' | 'excerpt'>
-      & { readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title' | 'tags'>>, readonly fields: Maybe<Pick<MdxFields, 'path' | 'yyyymmdd'>> }
-    )> } };
+type ArchiveMonthTemplateQuery = { readonly allMdx: { readonly nodes: ReadonlyArray<PostFragment> } };
 
 type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -3062,10 +3058,7 @@ type PagesQueryQuery = { readonly allSiteFunction: { readonly nodes: ReadonlyArr
 type IndexQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type IndexQuery = { readonly allMdx: { readonly nodes: ReadonlyArray<(
-      Pick<Mdx, 'id' | 'excerpt'>
-      & { readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title' | 'tags'>>, readonly fields: Maybe<Pick<MdxFields, 'path' | 'yyyymmdd'>> }
-    )> } };
+type IndexQuery = { readonly allMdx: { readonly nodes: ReadonlyArray<PostFragment> } };
 
 type TagsPageQueryVariables = Exact<{ [key: string]: never; }>;
 
