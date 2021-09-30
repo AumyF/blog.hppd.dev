@@ -69,7 +69,7 @@ export const BlogPost: React.FC<BlogPostProps> = ({ data: { mdx } }) => {
 
           <SidebarCard>
             <SidebarCardTitle>共有</SidebarCardTitle>
-            <Share url={path} />
+            <Share url={path} title={frontmatter.title} />
           </SidebarCard>
         </Sidebar>
 
