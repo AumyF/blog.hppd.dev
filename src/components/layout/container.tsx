@@ -7,7 +7,7 @@ export const BodyContainer: ChakraComponent<
     children: ReactNode;
   }
 > = ({ children }) => (
-  <Container maxW="120ch">
+  <Container paddingInline="0.8rem" maxW="120ch">
     <Flex direction="row-reverse" justifyContent="space-around" gridGap="2rem">
       {children}
     </Flex>
