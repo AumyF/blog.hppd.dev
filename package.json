@@ -58,7 +58,7 @@
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
     "babel-plugin-transform-react-jsx": "^6.24.1",
-    "babel-preset-gatsby": "^2.4.0",
+    "babel-preset-gatsby": "^2.6.0",
     "dependency-cruiser": "^11.2.0",
     "eslint": "^7.30.0",
     "eslint-config-prettier": "^8.3.0",
